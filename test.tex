@@ -1,0 +1,14 @@
+\documentclass{article}
+\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+
+\def\Author{\expandafter\ifundefined\myAuthor
+  nothing
+\else
+  \myAuthor
+\fi}
+\begin{document}
+   \makeatletter\immediate\write\@auxout{\newcommand{\noexpand\myAuthor}{M. A. Moshier}}\makeatother
+   
+   \Author
+   
+\end{document}

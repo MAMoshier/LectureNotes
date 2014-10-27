@@ -1,0 +1,1575 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.5.30)  27 OCT 2014 00:40
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**test.tex
+(./test.tex
+LaTeX2e <2011/06/27>
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./test.aux)
+\openout1 = `test.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Argument of \@firstoftwo has an extra }.
+<inserted text> 
+                \par 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+./test.tex:10: Paragraph ended before \@firstoftwo was complete.
+<to be read again> 
+                   \par 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Missing \endcsname inserted.
+<to be read again> 
+                   \def 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Missing \endcsname inserted.
+<to be read again> 
+                   \def 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence marked <to be read again> should
+not appear between \csname and \endcsname.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:10: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.10 ...ommand{\noexpand\myAuthor}{M. A. Moshier}}
+                                                  \makeatother
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:12: Undefined control sequence.
+\Author ->\expandafter \ifundefined \myAuthor 
+                                              nothing \else \myAuthor \fi 
+l.12    \Author
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1
+
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./test.aux
+./test.aux:2: Missing control sequence inserted.
+<inserted text> 
+                \inaccessible 
+l.2 ...ved@d =*\def \def document{document}\edef {
+                                                   on input line 10}\protect...
+Please don't say `\def cs{...}', say `\def\cs{...}'.
+I've inserted an inaccessible control sequence so that your
+definition will be completed without mixing me up too badly.
+You can recover graciously from this error, if you're
+careful; see exercise 27.2 in The TeXbook.
+
+./test.aux:2: Use of \def doesn't match its definition.
+l.2 ...ediate \write \@unused   \def \MessageBreak
+                                                  
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.aux:3: Missing { inserted.
+<to be read again> 
+                   \let 
+l.3  \let
+          \protect \edef  Your command was ignored.\MessageBreak Type  I <co...
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+)
+Runaway text?
+\let \protect \edef Your command was ignored.\MessageBreak Type I <co\ETC.
+./test.tex:14: File ended while scanning text of \write.
+<inserted text> 
+                }
+l.14 \end{document}
+                   
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Can be used o...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ... help \endgroup {\par }\def \futurelet 
+                                                  \@let@token \let \edef \de...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Can be used o...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Command \\def...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\\  ->\let \reserved@e 
+                       \relax \let \reserved@f \relax \@ifstar {\let \reserv...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\\  ->\let \reserved@e \relax \let \reserved@f 
+                                               \relax \@ifstar {\let \reserv...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ...t \reserved@d =#1\def \reserved@a 
+                                                  {#2}\def \reserved@b {#3}\...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Argument of \@firstoftwo has an extra }.
+<inserted text> 
+                \par 
+l.14 \end{document}
+                   
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+./test.tex:14: Paragraph ended before \@firstoftwo was complete.
+<to be read again> 
+                   \par 
+l.14 \end{document}
+                   
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ... \reserved@a {#2}\def \reserved@b 
+                                                  {#3}\futurelet \@let@token...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ...t \reserved@d =#1\def \reserved@a 
+                                                  {#2}\def \reserved@b {#3}\...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \@newline doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ... \reserved@a {#2}\def \reserved@b 
+                                                  {#3}\futurelet \@let@token...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\@gnewline ...\@nolnerr \else \unskip \reserved@e 
+                                                  {\reserved@f #1}\nobreak \...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\@gnewline ...se \unskip \reserved@e {\reserved@f 
+                                                  #1}\nobreak \hfil \break \fi 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Argument of \@argdef has an extra }.
+<inserted text> 
+                \par 
+l.14 \end{document}
+                   
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+./test.tex:14: Paragraph ended before \@argdef was complete.
+<to be read again> 
+                   \par 
+l.14 \end{document}
+                   
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Can be used o...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@checkend #1->\def \reserved@a 
+                                {#1}\ifx \reserved@a \@currenvir \else \@bad...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Can be used o...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Command \\def...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\\  ->\let \reserved@e 
+                       \relax \let \reserved@f \relax \@ifstar {\let \reserv...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\\  ->\let \reserved@e \relax \let \reserved@f 
+                                               \relax \@ifstar {\let \reserv...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ...t \reserved@d =#1\def \reserved@a 
+                                                  {#2}\def \reserved@b {#3}\...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Argument of \@firstoftwo has an extra }.
+<inserted text> 
+                \par 
+l.14 \end{document}
+                   
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+./test.tex:14: Paragraph ended before \@firstoftwo was complete.
+<to be read again> 
+                   \par 
+l.14 \end{document}
+                   
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ... \reserved@a {#2}\def \reserved@b 
+                                                  {#3}\futurelet \@let@token...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ...t \reserved@d =#1\def \reserved@a 
+                                                  {#2}\def \reserved@b {#3}\...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \@newline doesn't match its definition.
+\@ifnextchar ...eserved@d =#1\def \reserved@a {#2}
+                                                  \def \reserved@b {#3}\futu...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@ifnextchar ... \reserved@a {#2}\def \reserved@b 
+                                                  {#3}\futurelet \@let@token...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\@gnewline ...\@nolnerr \else \unskip \reserved@e 
+                                                  {\reserved@f #1}\nobreak \...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\@gnewline ...se \unskip \reserved@e {\reserved@f 
+                                                  #1}\nobreak \hfil \break \fi 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Argument of \@argdef has an extra }.
+<inserted text> 
+                \par 
+l.14 \end{document}
+                   
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+./test.tex:14: Paragraph ended before \@argdef was complete.
+<to be read again> 
+                   \par 
+l.14 \end{document}
+                   
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...e \@unused   \def \MessageBreak 
+                                                   
+ \set@display@protect \e...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                    #4  \errhelp \@err@     ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \let \@err@               ...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                  \@empty \def \MessageBreak...
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...     \@empty \def \MessageBreak 
+                                                   
+#1 \def   \errmessage  #...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\GenericError  ...y \def \MessageBreak  
+#1 \def  
+                                                   \errmessage  #2.
+
+#3
+Type...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Undefined control sequence.
+\GenericError  ...                                
+                                                     \endgroup 
+l.14 \end{document}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...ate \write \@unused \def \MessageBreak 
+                                                  \let \protect \edef Your c...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...t it. \errhelp \let \def \MessageBreak 
+                                                  \def \errmessage LaTeX Err...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+<write> ...et \def \MessageBreak \def \errmessage 
+                                                  LaTeX Error: Can be used o...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+./test.tex:14: Use of \def doesn't match its definition.
+\@checkend #1->\def \reserved@a 
+                                {#1}\ifx \reserved@a \@currenvir \else \@bad...
+l.14 \end{document}
+                   
+If you say, e.g., `\def\a1{...}', then you must always
+put `1' after `\a', since control sequence names are
+made up of letters only. The macro here has not been
+followed by the required stuff, so I'm ignoring it.
+
+Runaway text?
+\let \protect \edef Your command was ignored.\MessageBreak Type I <co\ETC.
+./test.tex:14: Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.14 \end{document}
+                   
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+Runaway text?
+\let \protect \edef Your command was ignored.\MessageBreak Type I <co\ETC.
+./test.tex:14: Forbidden control sequence found while scanning text of \write.
+<inserted text> 
+                }
+l.14 \end{document}
+                   
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
+
+\let \protect \edef Your command was ignored.\MessageBreak Type I <command> <re
+turn> to replace it with another command,\MessageBreak or <return> to continue 
+without it. \errhelp \let LaTeX Error: Can be used only in preamble. \par See t
+he LaTeX manual or LaTeX Companion for explanation. Type H <return> for immedia
+te help \endgroup {\par }\@let@token \let \edef document{document}\edef { on in
+put line 10}\protect \begingroup \immediate \write \@unused \let \protect \edef
+ Your command was ignored.\MessageBreak Type I <command> <return> to replace it
+ with another command,\MessageBreak or <return> to continue without it. \errhel
+p \let LaTeX Error: Can be used only in preamble. \par See the LaTeX manual or 
+LaTeX Companion for explanation. Type H <return> for immediate help \endgroup {
+abstractname}\protect \begingroup \immediate \write \@unused \let \protect \ede
+f Your command was ignored.\MessageBreak Type I <command> <return> to replace i
+t with another command,\MessageBreak or <return> to continue without it. \errhe
+lp \let LaTeX Error: Command \protect \let \relax \let \relax \let \reserved@d 
+=*{\par }{\let \reserved@d =[{{\unskip {\relax }\penalty \@M \hfil \penalty -\@
+M }\futurelet \@let@token \let \edef document{abstractname}\protect \begingroup
+ \immediate \write \@unused    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup \par }\futurelet \@let@token \
+let \edef document{abstractname}\protect \begingroup \immediate \write \@unused
+    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup \edef document{abstractname}\p
+rotect \begingroup \immediate \write \@unused    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup ef document{document}\edef { o
+n input line 10}\protect \begingroup \immediate \write \@unused \let \protect \
+edef Your command was ignored.\MessageBreak Type I <command> <return> to replac
+e it with another command,\MessageBreak or <return> to continue without it. \er
+rhelp \let LaTeX Error: Can be used only in preamble. \par See the LaTeX manual
+ or LaTeX Companion for explanation. Type H <return> for immediate help \endgro
+up already defined.\MessageBreak Or name \end. {.}\endgroup .. illegal, see p.1
+92 of the manual. \par See the LaTeX manual or LaTeX Companion for explanation.
+ Type H <return> for immediate help \endgroup \edef document{document}\edef { o
+n input line 10}\protect \begingroup \immediate \write \@unused \let \protect \
+edef Your command was ignored.\MessageBreak Type I <command> <return> to replac
+e it with another command,\MessageBreak or <return> to continue without it. \er
+rhelp \let LaTeX Error: Can be used only in preamble. \par See the LaTeX manual
+ or LaTeX Companion for explanation. Type H <return> for immediate help \endgro
+up {abstractname}\protect \begingroup \immediate \write \@unused \let \protect 
+\edef Your command was ignored.\MessageBreak Type I <command> <return> to repla
+ce it with another command,\MessageBreak or <return> to continue without it. \e
+rrhelp \let LaTeX Error: Command \protect \let \relax \let \relax \let \reserve
+d@d =*{\par }{\let \reserved@d =[{{\unskip {\relax }\penalty \@M \hfil \penalty
+ -\@M }\futurelet \@let@token \let \edef document{abstractname}\protect \beging
+roup \immediate \write \@unused    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup \par }\futurelet \@let@token \
+let \edef document{abstractname}\protect \begingroup \immediate \write \@unused
+    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup \edef document{abstractname}\p
+rotect \begingroup \immediate \write \@unused    
+ \let \protect \edef  Your command was ignored.\MessageBreak Type  I <command> 
+<return>  to replace it with another command,\MessageBreak or  <return>  to con
+tinue without it.  \errhelp \let  
+                 \errmessage  LaTeX Error: Command \document already defined.\M
+essageBreak Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help   \endgroup ef document{document}\edef { o
+n input line 10}\protect \begingroup \immediate \write \@unused \let \protect \
+edef Your command was ignored.\MessageBreak Type I <command> <return> to replac
+e it with another command,\MessageBreak or <return> to continue without it. \er
+rhelp \let LaTeX Error: Can be used only in preamble. \par See the LaTeX manual
+ or LaTeX Companion for explanation. Type H <return> for immediate help \endgro
+up already defined.\MessageBreak Or name \end. {.}\endgroup .. illegal, see p.1
+92 of the manual. \par See the LaTeX manual or LaTeX Companion for explanation.
+ Type H <return> for immediate help \endgroup {M. A. Moshier} } } 
+ )
+(\end occurred inside a group at level 1)
+
+### semi simple group (level 1) entered at line 14 (\begingroup)
+### bottom level 
+Here is how much of TeX's memory you used:
+ 205 strings out of 493315
+ 2169 string characters out of 6137904
+ 52158 words of memory out of 5000000
+ 3743 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 23i,4n,17p,239b,107s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb>
+Output written on test.pdf (1 page, 11604 bytes).
+PDF statistics:
+ 12 PDF objects out of 1000 (max. 8388607)
+ 7 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
