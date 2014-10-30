@@ -1,8 +1,52 @@
-% For line brakes in tables
-\usepackage{tabularx}
-% For the split environment
-\usepackage{amsmath}
-% For tabs in verbatim
-\usepackage{moreverb}
-% Means you don't have to put \\ to start a new line.
-\usepackage[parfill]{parskip}
+% Font choices: Euler for math; Palatino for rm; Helvetica for ss; Courier for tt
+
+\typeout{PACKAGES!!!! \format}
+\usepackage{etoolbox}
+\usepackage[dvipsnames]{xcolor}
+
+\renewcommand{\rmdefault}{ppl} % rm
+\linespread{1.05}        % Palatino needs more leading
+\usepackage[scaled]{helvet} % ss
+\usepackage{courier} % tt
+\usepackage{euler} % math
+\normalfont
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+
+
+\ifdefstring{\format}{print}{
+	\usepackage[letterpaper,
+		left=2cm,
+		top=1.5cm,
+		right=5cm,
+		bottom=2cm,
+		marginparwidth=4cm,
+		marginparsep=3mm]{geometry}
+
+}
+{}
+\ifdefstring{\format}{ipad}{
+	\usepackage[paperwidth=9in,
+		paperheight=6in,
+        left=3mm,% right=3mm,
+        top=1mm,
+		bottom=1mm,
+		right=3cm]{geometry}
+}
+{}
+\ifdefstring{\format}{kindle}{
+	\usepackage[papersize={3.6in,4.8in},
+		hmargin=0.1in,
+		vmargin={0.1in,0.1in}]{geometry}
+
+}
+{}
+
+% Symbols
+\usepackage{latexsym,amssymb,amsmath,eucal,times,stmaryrd,bbold}
+
+% Must have tikz
+\usepackage{tikz}
+\usepackage{hyperref}
+\input(bubble.sty)

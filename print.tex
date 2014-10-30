@@ -1,14 +1,16 @@
-\def\printable{}
-\documentclass[twoside]{memoir}
-\usepackage[letterpaper]{geometry}
+\def\topic{SetsLectures}
+\def\format{print}
 
-\input{packages.tex}
+\documentclass[9pt]{memoir}
 
-\input{meta.tex}
+\input{packages}
 
-\input{defs.tex}
+\input{meta}
 
-\input{style.tex}
+
+%\input{defs.tex}
+
+%\input{style.tex}
 
 \newlength\drop
 \newcommand*{\mytitle}{
@@ -16,39 +18,48 @@
 		\drop=0.1\textheight
 		\fboxsep 0.5\baselineskip
 		\sffamily
-		\centering{
-			\textcolor{Dark}{\Large Lecture Notes}\par
+		{\centering
+			{\Large \Course}\par
 			\vspace{0.3\drop}
-			\textcolor{Dark}{\large on}\par
+			{\Large Lecture Notes}\par
 			\vspace{0.3\drop}
-			\textcolor{Dark}{\Large \Topic}\par
+			{\Large on}\par
+			\vspace{0.3\drop}
+			{\Large \Topic}\par
 			\vspace{0.9\drop}
-			\textcolor{Dark}{\large for}\par
-			\textcolor{Dark}{\Large DISCRETE}\par
-			\vspace{0.4\drop}
-			\textcolor{Dark}{\Large MATHEMATICS}\par
-			\vspace{0.4\drop}
-			\textcolor{Medium}{\large \Author}\par
-			\vspace{0.9\drop}
-		
-			\Overview
-
-			\vspace{0.4\drop}
-
-			\footnotesize \Date
+			{\large \Author}\par
+			\vspace{0.3\drop}
+			{\Date}\par
+			\vspace{1\drop}
 		}
+		\vfill
+		{\Overview}\par
+		\vfill
+	{\small Version: \Version\ (\today) Format: \format}
 	\endgroup
 }
 
+%\newcommand{\setTopic}[1]{\def\Topic{#1}}
+%\newcommand{\Date}{October 2014}
+%\newcommand{\Overview}{We will study sets and functions}
 
-\begin{document}
+%\setTopic{Sets and Functions}
+
+\begin{document}	
 \pagestyle{empty} 
 \mytitle
 \clearpage
 \pagestyle{simple}
 \tableofcontents
 \clearpage
-\input{body.tex}
+
+\input{\topic.tex}
+
+%\newwrite\metafile
+%\immediate\openout\metafile=meta.tex
+%\immediate\write\metafile{\noexpand\providecommand{\noexpand\Author}{M. A. M.}}
+%\closeout\metafile
+
 \end{document}
 
 % \part{Introduction}

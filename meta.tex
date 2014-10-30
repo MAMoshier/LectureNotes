@@ -1,10 +1,23 @@
-% Set the info about the notes
-\newcommand{\coursename}{COURSE NAME}
-\newcommand{\coursecode}{COURSE CODE}
-\newcommand{\courseinfo}{\input{course_info.tex}}
-% Set the author and title
-\newcommand{\Author}{Todd Davies} 
-\newcommand{\Title}{TITLE}
-% Meta
-\author{\Author}
-\title{\Title}
+\IfFileExists{\topic.meta.tex}{\input{\topic.meta.tex}}{}
+
+\newcommand{\setAuthor}[1]{\immediate\write\metafile{\noexpand\def\noexpand\Author{#1}}}
+\newcommand{\setTopic}[1]{\immediate\write\metafile{\noexpand\def\noexpand\Topic{#1}}}
+\newcommand{\setCourse}[1]{\immediate\write\metafile{\noexpand\def\noexpand\Course{#1}}}
+\newcommand{\setDate}[1]{\immediate\write\metafile{\noexpand\def\noexpand\Date{#1}}}
+\newcommand{\setVersion}[1]{\immediate\write\metafile{\noexpand\def\noexpand\Version{#1}}}
+\newcommand{\setOverview}[1]{\immediate\write\metafile{\noexpand\long\noexpand\def\noexpand\Overview{#1}}}
+
+
+\AtEndPreamble{\newwrite\metafile\immediate\openout\metafile=\topic.meta.tex}
+\AfterEndDocument{
+%\immediate\write\metafile{\noexpand\providecommand{\noexpand\Author}{M. A. M.}}
+\closeout\metafile
+}
+
+\providecommand {\Author }{M. A. Moshier}
+\providecommand{\Topic}{Stuff}
+\providecommand{\Course}{Discrete Mathematics}
+\providecommand{\Date}{\today}
+\providecommand{\Version}{0:0.0}
+\providecommand{\Overview}{}
+

@@ -1,0 +1,117 @@
+\makeatletter
+\newcommand{\maketitlestyle}[2]{
+\tikzstyle{style@#1} = %
+  [fill=#2, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip]%
+}
+\makeatother
+
+\newcommand{\makebubble}[3]{
+	\maketitlestyle{#1}{#3}
+	\global\newcounter{#1Cnt}[chapter]
+	\makeatletter
+	\mdfdefinestyle{bstyle@#1}{%
+  		outerlinewidth=0.1em,%
+  	  	leftmargin=1em,rightmargin=1em,%
+		middlelinewidth=0.2em,roundcorner=5pt,%linecolor=\myColor,%
+		splittopskip=2\baselineskip,
+		splitbottomskip=1\baselineskip,
+		innertopmargin=1\baselineskip,
+		innerbottommargin=1\baselineskip,
+		skipabove={\dimexpr0.5\baselineskip+\topskip\relax},
+		skipbelow={1em},
+		needspace=3\baselineskip,
+		frametitlefont=\sffamily\bfseries,
+		singleextra={%
+			\node[style@#1,xshift=1cm] at (P-|O) %
+         	{\mdf@frametitlefont{#2}};
+  		},
+		firstextra={%
+			\node[style@#1,xshift=1cm] at (P-|O) %
+			{~\mdf@frametitlefont{#2}~};
+		},
+		middleextra={%
+			\node[style@#1,xshift=1cm] at (P-|O) %
+			{~\mdf@frametitlefont{#2~(cont.)}~};
+		},
+		secondextra={%
+		node[style@#1,xshift=1cm] at (P-|O) %
+        {~\mdf@frametitlefont{#2~(cont.)}~};
+		},
+	}
+
+	\newenvironment{#1Bubble}[1][\unskip]{\begin{mdframed}[style=bstyle@#1,  linecolor=#3, backgroundcolor=#3!20]}{\end{mdframed}}
+	\makeatother
+}
+
+
+%\newcounter{defnCnt}[chapter]
+
+%\newcounter{axiomCnt}[chapter]
+
+%\newcounter{factCnt}[chapter]
+
+%\newcounter{usageCnt}[chapter]
+
+%\newcounter{lemmaCnt}[chapter]
+
+%\newcounter{thmCnt}[chapter]
+
+%\newcounter{exampleCnt}[chapter]
+
+\newcommand{\newbubble}[3]{
+	\makebubble{#1}{#2}{#3}
+	\newenvironment{#1}{\begin{#1Bubble}}{\end{#1Bubble}}
+}
+
+\newcommand{\newlecbubble}[3]{
+	\makebubble{#1}{#2~\thesection}{#3}
+	\newenvironment{#1}[1][\noexpand\unskip]{\begin{#1Bubble}[#1]}{\end{#1Bubble}}
+}
+
+
+
+\makebubble{exercises}{Exercises~\thesection}{BrickRed}
+\newenvironment{exercises}{\begin{exercisesBubble}\tightlists\enumerate}{\endenumerate\defaultlists\end{exercisesBubble}}
+
+\makebubble{goals}{Goals}{OliveGreen}
+\newenvironment{goals}{\begin{goalsBubble}}{\end{goalsBubble}}
+
+\makebubble{defn}{Definition~\thedefnCnt}{SeaGreen}
+\renewcommand{\thedefnCnt}{\thechapter.\arabic{defnCnt}}
+\newenvironment{defn}{\refstepcounter{defnCnt}\begin{defnBubble}}{\end{defnBubble}}
+
+\makebubble{axiom}{Axiom~\theaxiomCnt}{MidnightBlue}
+\renewcommand{\theaxiomCnt}{\thechapter.\arabic{axiomCnt}}
+\newenvironment{axiom}{\refstepcounter{axiomCnt}\begin{axiomBubble}}{\end{axiomBubble}}
+
+\makebubble{fact}{Proposition~\thefactCnt}{Periwinkle}
+\renewcommand{\thefactCnt}{\thechapter.\arabic{factCnt}}
+\newenvironment{fact}{\refstepcounter{factCnt}\begin{factBubble}}{\end{factBubble}}
+
+\makebubble{laws}{Laws}{Periwinkle}
+\newenvironment{laws}{\begin{lawsBubble}}{\end{lawsBubble}}
+
+\makebubble{usage}{Usage~Note~\theusageCnt}{BurntOrange}
+\renewcommand{\theusageCnt}{\thechapter.\arabic{usageCnt}}
+\newenvironment{usage}{\refstepcounter{usageCnt}\begin{usageBubble}}{\end{usageBubble}}
+
+\makebubble{lemma}{Lemma~\thelemmaCnt}{Periwinkle}
+\renewcommand{\thelemmaCnt}{\thechapter.\arabic{lemmaCnt}}
+\newenvironment{lemma}{\refstepcounter{lemmaCnt}\begin{lemmaBubble}}{\end{lemmaBubble}}
+
+\makebubble{thm}{Theorem~\thethmCnt}{Periwinkle}
+\renewcommand{\thethmCnt}{\thechapter.\arabic{thmCnt}}
+\newenvironment{thm}{\refstepcounter{thmCnt}\begin{thmBubble}}{\end{thmBubble}}
+
+\makebubble{challenge}{Challenge~\thechallengeCnt}{BrickRed}
+\renewcommand{\thechallengeCnt}{\thechapter.\arabic{challengeCnt}}
+\newenvironment{challenge}{\begin{challengeBubble}}{\end{challengeBubble}}
+
+\makebubble{example}{Example~\theexampleCnt}{Mahogany}%{}
+\renewcommand{\theexampleCnt}{\thechapter.\arabic{exampleCnt}}
+\newenvironment{example}{\refstepcounter{exampleCnt}\begin{exampleBubble}}{\end{exampleBubble}}
+
+\makebubble{code}{Algorithm~\thecodeCnt}{Blue}
+\renewcommand{\thecodeCnt}{\thechapter.\arabic{codeCnt}}
+\newenvironment{code}{\refstepcounter{codeCnt}\begin{codeBubble}}%
+  {\end{codeBubble}}

@@ -1,0 +1,10 @@
+\documentclass{article}
+\usepackage{ifthen}
+\begin{document}
+
+\ifthenelse{\equal{\detokenize{test}}{\jobname}}{
+good
+}{
+bad: ``\jobname"
+}
+\end{document}
