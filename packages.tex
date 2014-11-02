@@ -13,9 +13,32 @@
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 
-
+% set up for different media
+\newtoggle{printformatting}
+\newtoggle{ipadformatting}
+\newtoggle{kindleformatting}
 
 \ifdefstring{\format}{print}{
+	\toggletrue{printformatting}
+	\togglefalse{ipadformatting}
+	\togglefalse{kindleformatting}
+}
+{}
+
+\ifdefstring{\format}{ipad}{
+	\togglefalse{printformatting}
+	\toggletrue{ipadformatting}
+	\togglefalse{kindleformatting}
+}
+{}
+\ifdefstring{\format}{kindle}{
+	\togglefalse{printformatting}
+	\togglefalse{ipadformatting}
+	\toggletrue{kindleformatting}
+}
+{}
+
+\iftoggle{printformatting}{
 	\usepackage[letterpaper,
 		left=2cm,
 		top=1.5cm,
@@ -26,7 +49,7 @@
 
 }
 {}
-\ifdefstring{\format}{ipad}{
+\iftoggle{ipadformatting}{
 	\usepackage[paperwidth=9in,
 		paperheight=6in,
         left=3mm,% right=3mm,
@@ -35,7 +58,7 @@
 		right=3cm]{geometry}
 }
 {}
-\ifdefstring{\format}{kindle}{
+\iftoggle{kindleformatting}{
 	\usepackage[papersize={3.6in,4.8in},
 		hmargin=0.1in,
 		vmargin={0.1in,0.1in}]{geometry}
@@ -49,4 +72,5 @@
 % Must have tikz
 \usepackage{tikz}
 \usepackage{hyperref}
-\input(bubble.sty)
+\usepackage{multicol}
+\input{bubble.sty}

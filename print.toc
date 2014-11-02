@@ -1,1 +1,8 @@
-\contentsline {chapter}{Contents}{2}
+\contentsline {chapter}{Contents}{2}{section*.1}
+\contentsline {chapter}{\chapternumberline {1}Sets}{3}{chapter.1}
+\contentsline {chapter}{\chapternumberline {2}Functions}{9}{chapter.2}
+\contentsline {chapter}{\chapternumberline {3}Building Sets and Functions}{13}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Elements, Pointers and Constant Functions}{14}{section.3.2}
+\contentsline {section}{\numberline {3.3}Solution Sets, Subsets, Characteristic Functions}{16}{section.3.3}
+\contentsline {section}{\numberline {3.4}Product Sets and Functions of Two Variables}{16}{section.3.4}

@@ -1,0 +1,21 @@
+\def\NN{\mathbb N}
+\def\RR{\mathbb R}
+\def\CC{\mathbb C}
+\def\QQ{\mathbb Q}
+\def\ZZ{\mathbb Z}
+\def\One{\mathbb 1}
+\def\Two{\mathbb 2}
+
+\newcommand{\printbreak}{\iftoggle{printformatting}{\newpage}{}}
+\newcommand{\ipadbreak}{\iftoggle{ipadformatting}{\newpage}{}}
+\newcommand{\kindlebreak}{\iftoggle{kindleformatting}{\newpage}{}}
+
+\newlength{\proofsep}
+\setlength{\proofsep}{1.5\baselineskip}
+
+\newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}
+
+\newcommand{\fromto}[3]{#1\mathord{:}#2\to#3}
+\newcommand{\id}{\textsf{id}}
+
+\newcommand{\st}{\,\mid\,}
