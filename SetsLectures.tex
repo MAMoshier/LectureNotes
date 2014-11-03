@@ -122,6 +122,20 @@ The study of finite sets is surprisingly complex, and comprises a large part of
 the branch of mathematics called \emph{combinatorics}. We will touch on some basics
 of combinatorics later in the course. 
 
+Various infinite sets of numbers also exist. All of these are indeed sets (that is, their existence follows from general principles
+of set theory), but we will not try to justify that explicitly, except for the set of natural numbers.
+
+\begin{defn}
+	The following sets are denoted by special symbols:
+	\begin{align*}
+		\NN &= \text{the set of natural numbers}
+		\ZZ &= \text{the set of integers}\\
+		\QQ &= \text{the set of rational numbers}\\
+		\RR &= \text{the set of real numbers}\\
+		\CC &= \text{the set of complex numbers}
+	\end{align*}
+\end{defn}
+
 \printbreak
 
 \begin{exercises}
@@ -315,7 +329,7 @@ We begin by introducing the vocabulary of functions.
 
 \begin{signature}
 	\begin{itemize}
-	\item For a set $A$ and a set $B$, there are some things called 
+	\item For a set $A$ and a set $B$, there are things called 
 	\emph{functions from $A$ to $B$}, with a function $f$ from $A$ to $B$ 
 	being writing $\fromto fAB$ or $A\stackrel{f}{\to} B$. 
 	
@@ -327,20 +341,37 @@ We begin by introducing the vocabulary of functions.
 	\end{itemize}
 \end{signature}
 
-Often, a function $\fromto fAB$ is \emph{defined} by a rule, just as your are familiar in other parts of mathematics. There are two fundamental (trivial) types of rules that can be used to build functions.
+A functions may sometimes also be called a \emph{map}, a \emph{transformation}, or an \emph{operation}. 
+As we will see, however, \emph{operation} is somewhat misleading. 
+
+Often, a function $\fromto fAB$ is \emph{defined} by a rule, just as they are familiar in other parts of mathematics. 
+We typically, write such rules by giving the function a name (very often $f$) and spelling out the rule at the same time.
+So we write things like
+\[f(x)=x^2 + 4x + 2\]
+to define a function $\fromto f\RR\RR$ (recall that $\RR$ is the set of real numbers).
+But sometimes it is useful to have a rule without giving it a name.
+To do that, we use the ``maps to'' arrow $\mapsto$.
+So we might define the same function $f$ by saying that \emph{$f$ is given by the rule $x\mapsto x^2 + 4x + 2$}. 
+We will not go so far as to write $f = (x\mapsto x^2+4x+2)$ because this more easily understood by writing $f(x)=x^2+4x+2$.
+The rule $x\mapsto x^2  4x + 2$ is the same as the rule $y\mapsto y^2 + 4y + 2$. 
+The variable only serves as a place holder, so its particular name does not matter.
+
+There are two fundamental (trivial) types of rules that can be used to build functions.
 
 \begin{axiom}
 	\begin{itemize}
-		\item For any set $A$, there is a function $\fromto {\id_A}AA$ defined by the rule $\id_A(x)=x$. This is called the \emph{identity} function on $A$
-		\item For any two functions $\fromto fAB$ and $\fromto gBC$, there is a function $\fromto {g\circ f}AC$ defined by the rule $(g\circ f)(x)=g(f(x))$.
-		      This is called the composition of $g$ and $f$ (or sometimes ``$g$ following $f$'').
+		\item For any set $A$, there is a function $\fromto {\id_A}AA$ defined by the rule $x\mapsto x$.
+		This is called the \emph{identity} function on $A$
+		\item For any two functions $\fromto fAB$ and $\fromto gBC$, there is a function $\fromto {g\circ f}AC$ defined by the rule $x\mapsto g(f(x))$.
+		This is called the composition of $g$ and $f$ (or sometimes ``$g$ following $f$'').
 	\end{itemize}
 \end{axiom}
 
-Other words for function are \emph{map}, \emph{transformation} and \emph{operation}.
-We will discuss, however, why ``operation'' can be misleading.
 
-Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the codomain of $f$. Also, be careful about definitions like $f(x)=1/x$. This does not define a function on the real numbers because $f(0)$ is undefined. In other words, to be a function, $f$ must determine an element of the codomain for each element of the domain.
+Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the codomain of $f$.
+Also, be careful about definitions like $f(x)=1/x$.
+This does not define a function on the real numbers because $f(0)$ is undefined.
+In other words, to be a function, $f$ must determine an element of the codomain for each element of the domain.
 
 To depict a function on small sets, we can use the simple internal diagrams of the last section. For example,
 \[
@@ -381,7 +412,8 @@ To depict a function on small sets, we can use the simple internal diagrams of t
 \]
 depicts a function from the set $\{a,b,c,d\}$ to the set $\{1,2,3,4\}$.
 
-  Composition can be illustrated using internal diagrams. For example,
+Composition can be illustrated using internal diagrams.
+For example,
   \[
     \begin{tikzpicture}[
       >=stealth,
@@ -525,8 +557,12 @@ depicts a function from the set $\{a,b,c,d\}$ to the set $\{1,2,3,4\}$.
       \end{tikzpicture}
 	  \end{enumerate}
 	  \end{multicols}
-		\item Let $A = \{1,2,3\}$. Let $B=\{a,b,c,e\}$ and let $C = \{\bot,\top\}$. Depict some functions $\fromto fAB$, $\fromto gBC$, and $g\circ f$. 
-		\item Think about how you might depict a function $\fromto hAA$ using only one picture of the set $A$. Describe what you would do, and provide an example.  
+		\item Let $A = \{1,2,3\}$. Let $B=\{a,b,c,e\}$ and let $C = \{\bot,\top\}$.
+		Depict some functions $\fromto fAB$, $\fromto gBC$, and $g\circ f$. 
+		\item Think about how you might depict a function $\fromto hAA$ using only one picture of the set $A$.
+		Describe what you would do, and provide an example.
+		\item Suppose $\fromto f\RR\RR$ is given by the rule $x\mapsto x^2$, suppose $\fromto g\RR\RR$ is given
+		by the rule $x\mapsto x-1$. Write rules for $f\circ g$ and $g\circ f$ without using the symbols $f$ and $g$. Explain whether or not it is the case that $f\circ g = g\circ f$.
 	\end{enumerate}
 \end{exercises}
 
@@ -534,23 +570,21 @@ depicts a function from the set $\{a,b,c,d\}$ to the set $\{1,2,3,4\}$.
 
 Just like sets, we need a way to say when two functions are equal.
 Let $\NN$ denote the set of natural numbers. 
-Then define $\fromto f\NN\NN$ by the rule
+Then define $\fromto f\NN\NN$ by
 \[f(n) = n^2 +  2n + 1.\]
-Likewise, define $\fromto g\NN\NN$ by the rule
+Likewise, define $\fromto g\NN\NN$ by
 \[g(n) = (n+1)^2.\]
-Evidently, for each $n\in\NN$, it is true that $f(n) = g(n)$. So even though $f$ and $g$ are defined by different
-\emph{operations}, the two functions yield the same results. As with sets, this leads to
-an axiom for equality of functions.
+Evidently, for each $n\in\NN$, it is true that $f(n) = g(n)$.
+So even though $f$ and $g$ are defined by different \emph{operations}, the two functions yield the same results.
+As with sets, this leads to an axiom for equality of functions.
 
 \begin{axiom}[\textbf{The Axiom of Function Extensionality}]
 	For functions $\fromto fAB$ and $\fromto gAB$, if it is the case that $f(x)=g(x)$ for all $x\in A$, then $f=g$.
 	Note that equality of functions only makes sense when the two functions share the same domain and the same codomain.
 \end{axiom}
 
-If we not concerned about the detailed internals sets, but only with
-how functions interact, then function can be depicted very simply as $A
-\stackrel{f}{\longrightarrow} B$. So a composition of functions can be
-depicted as in
+If we not concerned about the detailed internals sets, but only with how functions interact, then function can be depicted very simply as $A\stackrel{f}{\longrightarrow} B$.
+So a composition of functions can be depicted as in
 \[
 \tikzset{>=stealth}
 \begin{tikzpicture}[every node/.style={midway}]
@@ -563,8 +597,8 @@ depicted as in
 \draw[->,red] (A) -- (C) node[anchor=north east] {$g\circ f$};
 \end{tikzpicture}
 \]
-We do not really need to draw $g\circ f$ as a separate arrow because 
-the \emph{path} from $A$ to $B$ to $C$ is already implicitly a depiction of $g\circ f$. So the simpler diagram 
+We do not really need to draw $g\circ f$ as a separate arrow because the \emph{path} from $A$ to $B$ to $C$ is already implicitly a depiction of $g\circ f$.
+So the simpler diagram 
 \[
 \tikzset{>=stealth}
 \begin{tikzpicture}[every node/.style={midway}]
@@ -593,9 +627,8 @@ Now a diagram such as this
 \end{tikzpicture}
 \]
 depicts two composite functions $g\circ f$ and $k\circ h$, but $g\circ f$ and $k\circ k$ may not be equal.
-We say that
-the diagram \emph{commutes} or that it is a \emph{commutative diagram}
-if $g\circ f = k\circ h$. In other words, saying that a certain diagram commutes \emph{is} an assertion that certain functions are equal.
+We say that the diagram \emph{commutes} or that it is a \emph{commutative diagram} if $g\circ f = k\circ h$.
+In other words, saying that a certain diagram commutes \emph{is} an assertion that certain functions are equal.
 
 
 \begin{exercises}
@@ -607,13 +640,12 @@ if $g\circ f = k\circ h$. In other words, saying that a certain diagram commutes
   \item $f(n) =  n^2 + 5n + 6$ and $g(n) = (n+3)(n+2)$
   \item $f(n) = n^4 - 10n^3 + 35n^2 + 50n + 24$ and $g(n) = 24$
   \end{enumerate}
-\item Let $\RR$ denote the set of all real numbers. Let $f(x) = \tan(x)$. Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
-\item Suppose the following functions exist: $\fromto fAB$, $\fromto
-  gBC$, $\fromto aAD$, $\fromto bCD$.  Draw a commutative diagram
-  asserting that $b\circ g\circ f = a$.
-\item Suppose the following functions exist: $\fromto fCA$, $\fromto gCB$,
-$\fromto hCP$, $\fromto pPA$ and $\fromto qPB$. Draw a commutative diagram
-asserting that $f=p\circ h$ and $g=q\circ h$.
+\item Let $\RR$ denote the set of all real numbers. Let $f(x) = \tan(x)$.
+Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
+\item Suppose the following functions exist: $\fromto fAB$, $\fromto gBC$, $\fromto aAD$, $\fromto bCD$. 
+  Draw a commutative diagram asserting that $b\circ g\circ f = a$.
+\item Suppose the following functions exist: $\fromto fCA$, $\fromto gCB$, $\fromto hCP$, $\fromto pPA$ and $\fromto qPB$.
+ Draw a commutative diagram asserting that $f=p\circ h$ and $g=q\circ h$.
 \end{enumerate}
 \end{exercises}
 
@@ -644,9 +676,16 @@ asserting that $f=p\circ h$ and $g=q\circ h$.
 \section{Introduction}
 
 So far, we have been able to think mainly about finite sets and a few informally defined functions on, say, the real numbers or the natural numbers.
-To fill out out understanding of sets, we need to be able to build sets for specific purposes. Two finite sets will play a particularly important role. The first, which we denote by $\One$, is  set with one element; the second, which we denote by $\Two$, is a set with two elements. It does not matter at all \emph{what} elements are in these because, as we will soon see, any two sets of the same size are interchangible. What `interchangible' means is discussed later. What `same size' means is obvious for finite sets, but not at all obvious for infinite ones. We discuss the general situation later as well.
+To fill out out understanding of sets, we need to be able to build sets for specific purposes.
+Two finite sets will play a particularly important role.
+The first, which we denote by $\One$, is  set with one element; the second, which we denote by $\Two$, is a set with two elements.
+It does not matter at all \emph{what} elements are in these because, as we will soon see, any two sets of the same size are interchangible.
+What `interchangible' means is discussed later.
+What `same size' means is obvious for finite sets, but not at all obvious for infinite ones.
+We discuss the general situation later as well.
 
-For the time being, we merely need to agree on a fixed set with one element and a fixed set with two elements. The particular choices I make here will be clearer as we put them to use.
+For the time being, we merely need to agree on a fixed set with one element and a fixed set with two elements.
+The particular choices I make here will be clearer as we put them to use.
 
 \begin{defn}
 	Let $\bullet$, $\bot$ and $\top$ be fixed sybmols. Then define
@@ -654,27 +693,16 @@ For the time being, we merely need to agree on a fixed set with one element and 
 		\One &= \{\bullet\}\\
 		\Two &= \{\bot,\top\}
 	\end{align*} 
-	The single element of $\One$ is intended to look like a generic point in an internal diagram. The element $\top$ is meant to remind you of the letter `T'
-	(short for `True') and $\bot$ is meant to be the opposite of $\top$ (that is, 'False').
+	The single element of $\One$ is intended to look like a generic point in an internal diagram.
+	The element $\top$ is meant to remind you of the letter `T' (short for `True') and $\bot$ is meant to be the opposite of $\top$ (that is, 'False').
 \end{defn}
 
-Although we will not define any of the following except $\NN$ explicitly, it is useful also to have names for various sets of numbers.
-
-\begin{defn}
-	The following sets are denoted by special symbols:
-	\begin{align*}
-		\NN &= \text{the set of natural numbers}
-		\ZZ &= \text{the set of integers}\\
-		\QQ &= \text{the set of rational numbers}\\
-		\RR &= \text{the set of real numbers}\\
-		\CC &= \text{the set of complex numbers}
-	\end{align*}
-\end{defn}
 
 \section{Elements, Pointers and Constant Functions}
 
-Suppose we are told that $\fromto p\One A$ is a function. Since $\bullet\in\One$, this function determines 
-an element of $A$, namely $p(\bullet)$. A picture of the situation might be this:
+Suppose we are told that $\fromto p\One A$ is a function.
+Since $\bullet\in\One$, this function determines an element of $A$, namely $p(\bullet)$.
+A picture of the situation might be this:
 \[
   \begin{tikzpicture}[
     >=stealth,
@@ -707,106 +735,135 @@ an element of $A$, namely $p(\bullet)$. A picture of the situation might be this
     \draw[projection] (p) -- (a3);
   \end{tikzpicture}
 \]
-Since $\One$ has only a single element, it can ``point'' only to a single element of $A$. So we might refer to a function
-$\One\to A$ as a \emph{pointer} into $A$. Each pointer determines an element of $A$. And conversely, it shuold be
+Since $\One$ has only a single element, it can ``point'' only to a single element of $A$.
+So we might refer to a function $\One\to A$ as a \emph{pointer} into $A$.
+Each pointer determines an element of $A$. And conversely, it should be
 possible to point to any element of $A$. This leads to our first axiom guaranteeing that certain functions exist.
 
 \begin{axiom}
 	For any set $A$, and any $a\in A$, there is a pointer $\fromto {\hat a}\One A$ so that $\hat{a}(\bullet)=a$.
 \end{axiom}
 
-Looking at functions in the other direction, if $\fromto fA\One$ and $\fromto gA\One$ are functions, then $f(a)=\bullet=g(a)$
-is true for every $a\in A$. So $f=g$ by extensionality. In other words, there is at most one function from $A$ to $\One$.
-But the $f(x)=\bullet$ is just about as trivial a rule as possible. This leads to another axiom.
+This principle justifies the drawing of internal diagrams for pointers because it means that any such diagram does indeed depict an actual function. 
+Other principles that we will discuss later justify our use of internal diagrams for all finite sets.
+We could specify $\hat{a}$ by the rule $x\mapsto a$.
+That is, since $\bullet$ is an element of $\One$, $\hat{a}(\bullet)=a$.
+And since $\bullet$ is the only element of $\One$, $\hat{a}{x}=a$ is true for \emph{every} element of $\One$.
+
+Suppose $\fromto fA\One$ and $\fromto gA\One$ are functions, that is, their \emph{codomain} is $\One$ instead their \emph{domain}. 
+Then $f(a)=g(a)$ is true for every $a\in A$ because $\bullet$ is the only possible value for $f(a)$ and $g(a)$. 
+So $f=g$ by extensionality.
+In other words, there is at most one function from $A$ to $\One$.
+But the rule $x\mapsto \bullet$ is as simple a rule as one can imagine. 
+This leads to another axiom.
 
 \begin{defn}
 	A set $T$ is \emph{terminal} if it is the case that for any set $A$ there is exactly one function from $A$ to $T$.
 \end{defn}
 
 \begin{axiom}
-	The set $\One$ is a terminal set. We denote the unique function from $A$ to $\One$ by $\fromto \diamond_A{A}\One$.
-	Note that the rule defining $\diamond_A$ is 
-	\[\diamond_A(x)=\bullet.\]
+	The set $\One$ is a terminal set. 
+	We denote the unique function from $A$ to $\One$ by $\fromto {\Diamond_A}{A}\One$.
 \end{axiom} 
 
-Using $\diamond_A$ and $\hat{b}$ for an eleent $b\in B$, we can now define constant functions. That is $\hat{b}\circ\diamond_A$
-is a function from $A$ to $B$ defined by $(\hat{b}\circ\diamond_A)(x) = \hat{b}(\diamond_A(x))= \hat{b}(\bullet) = b$, Simplifying, this is the function sending any element of $A$ to the same result ($b$). 
+The rule defining $\Diamond_A$ must be
+	\[x\mapsto\bullet\]
+because no other rule is possible. 
+
+Using $\Diamond_A$ and $\hat{b}$ for an element $b\in B$, we can now define constant functions. 
+That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ defined by 
+\[(\hat{b}\circ\Diamond_A)(x) = \hat{b}(\Diamond_A(x))= \hat{b}(\bullet) = b.\] 
+In short, this is the function sending any element of $A$ to the constant result $b$. 
 
 \begin{exercises}
 	\begin{enumerate}
 		\item Show that for any pointer $\fromto p\One A$, it is the case that $\widehat{p(\bullet)}=p$.
+		\item Show that any set with exactly one element is a terminal set.
 		\item Suppose that $\fromto fAB$ is a function. Show that for every $a\in A$, $\widehat{f(a)} = f\circ \hat{a}$.
-		\item Show that any set with exactly one element is a terminal set. [This is the sense in which it did not matter
-		how we choose the element of $\One$.]
 	\end{enumerate}
 \end{exercises}
 
 \section{Solution Sets, Subsets, Characteristic Functions}
 
-Suppose we are given two functions that are ``parallel'': $\fromto fAB$ and $\fromto gAB$. Then for some value $a\in A$,
-it might be the case that $f(a)=g(a)$. We could call such a value a \emph{particular solution}. It might be the case that there are no particular solutions.
-For example, there are no natural numbers $n$ such that $n+1 = n$. On the other hand, there might be many particular solutions. 
-For example, let $f(x)=x^3$ and let $g(x)= 6x^2 - 11x + 6$ both as functions on the natural numbers. Then it is easy to check that $1$, $2$ and $3$ 
-solve the equation. In fact, these three are the only particular solutions. We generalize
-as follows.
+Suppose we are given two functions that are ``parallel'': $\fromto fAB$ and $\fromto gAB$.
+Then for some value $a\in A$, it might be the case that $f(a)=g(a)$.
+We could call such a value a \emph{particular solution to the equation $f(x)=g(x)$}. 
+It might be the case that there are no particular solutions.
+For example, there are no natural numbers $n$ such that $n+1 = n$. 
+On the other hand, there might be many particular solutions. 
+For example, let $f(x)=x^3$ and let $g(x)= 6x^2 - 11x + 6$ both as functions on the natural numbers.
+Then it is easy to check that $1$, $2$ and $3$ solve the equation.
+In fact, these three are the only particular solutions.
+We generalize as follows.
 
 \begin{defn} 
-	For functions $\fromto fAB$ and $\fromto gAB$, a \emph{solution}
-is a function $\fromto sCA$ so that $f\circ s = g\circ s$. Thus for example, if $a\in A$ is a particular
-solution then the pointer $\hat a$ is a solution. 
+	For two functions $A\doublerightarrow{f}{g} B$, a \emph{solution} is a function $\fromto sCA$ so that 
+	\[f\circ s = g\circ s.\]
+	Thus for example, if $a\in A$ is a particular solution then the pointer $\hat a$ is a solution. 
 
-	For functions $\fromto fAB$ and $\fromto gAB$, an \emph{equalizer} is solution $\fromto eEA$
-	and so that for any solution $\fromto sCA$, there is exactly one function $\fromto hCE$ 
-	so that $e\circ h = k$.
+	For functions $\fromto fAB$ and $\fromto gAB$, an \emph{equalizer} is solution $\fromto eEA$ so that for any solution $\fromto sCA$, there is exactly one function $\fromto hCE$ so that \[e\circ h = k.\]
 \end{defn}
 
 \begin{axiom}
-	For functions $\fromto fAB$ and $\fromto gAB$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by
-	$\{x\in A\st f(x) = g(x)\}$. Furthermore, the function $\fromto i{\{x\in A\st f(x)=g(x)\}}A$ defined by the rule $i(x) = x$ (called 
-	an \emph{inclusion map}) is an equalizer for $f$ and $g$.
+	For functions $\fromto fAB$ and $\fromto gAB$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 
+	The function $\fromto i{\{x\in A\st f(x)=g(x)\}}A$ given by the rule $x\mapsto x$ (called an \emph{inclusion map}) is an equalizer for $f$ and $g$.
 \end{axiom}
 
-This axiom tells us two things. First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$
-for functions $\fromto {f,g}AB$, and picking out the particular solutions. Second, a subset formed in this way
-``embeds'' in the given set $A$ by its inclusion map. It would be good to know that any subset of $A$ can be described
-as an equalizer of some pair of functions. This is where $\Two$ plays a role.
+This axiom tells us two things.
+First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$ for any two functions $\fromto {f,g}AB$, and picking out the particular solutions.
+Second, a subset formed in this way ``embeds'' in the given set $A$ by its inclusion map.
+Notice that the rule for the inclusion map is the same as the rule for an identity map. 
+The difference is only that, here, the domain is a subset of the codomain.
 
-Suppose $c\in C$ and $\fromto fAC$ is a function, then we can form the equalizer of $f$ and the constant function
-$\hat{c}\circ\diamond_A$. This is more easily written we $\{x\in A\st f(x)=c\}$. We may also abbreviate this as $f^{-1}(c)$. 
+Suppose $c\in C$ and $\fromto fAC$ is a function, then we can form the equalizer of $f$ and the constant function $\hat{c}\circ\Diamond_A$.
+This is more easily written we $\{x\in A\st f(x)=c\}$. Since it common to pick out sets like this, special notation is in order.
+
+\begin{defn}\label{def:inverse-image}
+	For a function $\fromto fAC$, and a value $c\in C$, 
+	\[f^{-1}(c) = \{x\in A\st f(x)=c\}.\] 
+	In this case, $f^{-1}(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
+\end{defn}
+
+Evidently, in Definition \ref{def:inverse-image}, the set $f^{-1}(c)$ is a subset of $A$. It would be good to know that any subset of $A$ can be described as an inverse image.
+This is where $\Two$ plays a role.
 
 \begin{defn}
-	A \emph{subset classifier} is a set $S$ with an element $t\in S$ so that for any sets $B$ and $A$
-	where $B\subseteq A$, there is exactly one function $\fromto kTA$ so that $B = \{x\in A\st k(x)=t\}.$
+	A \emph{pointed set} is a set $A$ with a fixed distinguished element $a_0\in A$.
+	A \emph{subset classifier} is a set pointed set $S$ with element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kTA$ so that $B = k^{-1}(t)$.
+	That is, $B$ is uniquely defined as an inverse image of $t$ with respect to a function into $T$.
 \end{defn}
 
 \begin{axiom}
-	The set $\Two$ with the distiguished element $\top$ is a subset classifier. For subset $B\subseteq A$,
-	the function corresponding to $B$, called the \emph{characteristic
-	function of $B$}, is denoted by $\kappa_B$. In other words, $\kappa_B$ is the unique function
-	for which $B = \{x\in A\st k(x)=\top\}$.
+	The set $\Two$ with the distiguished element $\top$ is a subset classifier.
+	For subset $B\subseteq A$, the function corresponding to $B$, called the \emph{characteristic function of $B$}, is denoted by $\kappa_B$.
+	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^{-1}(\top)$.
 \end{axiom}
 
 For $B\subseteq A$, the characteristic function is defined by the rule
-\[\kappa_B(x) = \begin{cases}
-	\top &\text{ if } x\in B\\
-	\bot &\text{ otherwise}
-\end{cases}
+\[
+x \mapsto
+	\begin{cases}
+		\top &\text{ if } x\in B\\
+		\bot &\text{ otherwise}
+	\end{cases}
 \]
 
 \section{Product Sets and Functions of Two Variables}
 
-We should be able to deal with functions, such as a function defined by the rule $f(x,y) = x+y$. To account for functions of two or more arguments, we take our cue from Descartes. He studied the plane in terms of a coordinate system consisting of the so-called $x$-axis and $y$-axis. Once we have decided where to place the axes, a pair $(2,3)$ determines 
-a point on the plane, and any point in the plane $p$ determines a pair. So Descartes realized that we might as well just say that the plane actually \emph{is} the collection of 
-all pairs of real numbers. What makes this work is that points in the plane \emph{project} onto the two axes. Products
-of sets generalize this idea.
+We should be able to deal with functions of more than one argument, such as a function $f(x,y) = x+y$.
+To account for such functions, we take our cue from Descartes.
+He studied the plane in terms of a coordinate system consisting of the so-called $x$-axis and $y$-axis.
+Once we have decided where to place the axes, a pair $(2,3)$ determines a point on the plane, and any point in the plane $p$ determines a pair.
+So Descartes realized that we might as well just say that the plane actually \emph{is} the collection of all pairs of real numbers.
+What makes this work is that points in the plane \emph{project} onto the two axes.
+Products of sets generalize this idea.
 
 \begin{defn}
-For sets $A$ and $B$, a \emph{table} consists of two functions $\fromto fCA$ and $gCB$. Note that the two functions
-have the same domain. We may call the two functions \emph{legs}.
+For sets $A$ and $B$, a \emph{table} consists of two functions $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$.
+Note that the two functions have the same domain. We may call the two functions \emph{legs}.
 
-For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $\fromto pPA$ and $\fromto qPB$ so that
-for any table $\fromto fCA$ and $\fromto gCB$, there is exactly one function $\fromto hCP$ for which
-$f = p\circ h$ and $g= q\circ h$. For a product, the functions $p$ and $q$ are called the \emph{projections}.
+For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $\fromto pPA$ and $\fromto qPB$ so that for any table $\fromto fCA$ and $\fromto gCB$, there is exactly one function $\fromto hCP$ for which $f = p\circ h$ and $g= q\circ h$. 
+For a product, the functions $p$ and $q$ are called the \emph{projections}.
 \end{defn}
 
 \begin{axiom}
@@ -822,7 +879,7 @@ the rule $\langle f,g\rangle(x)=(f(x),g(x))$.
 Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$. We can now form a single function
 from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$. Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
 
-\section{Function Sets and Partial Evaluation}
+\section{Function Sets, Partial Evaluation and $\lambda$ Notation}
 
 A function from $A$ to $B$ might depend on a parameter from $C$. 
 For example, the function $\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
@@ -835,7 +892,8 @@ describes the same behavior as $f$, but it makes the parameter explicit. This le
 	
 	Suppse $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
 	Then we can form another parametric function with parameters in $C$ by composition: $f\circ (k\times \id_A)$.
-	In this setting, we may refer to $k$ as a \emph{change of parameters}. 
+	In this setting, we may refer to $k$ as a \emph{change of parameters} function because $k$ transforms
+	the parametric function with parameters in $D$ into a parametric function with parameters in $C$. Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$. 
 	
 	An \emph{evaluation map} for $A$ and $B$ is a parameteric function $\fromto a{F\times A}B$, so that for any 
 	parametric function $\fromto g{C\times A}B$ there is exactly one change of parameters $\fromto hCF$ so that
@@ -844,30 +902,84 @@ describes the same behavior as $f$, but it makes the parameter explicit. This le
 
 \begin{axiom}
 	For sets $A$ and $B$, the collection of all functions from $A$ to $B$, denoted by $B^A$, is a set. Moreover,
-	there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $\alpha(f,x) = f(x)$.
+	there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
+	The unique change of parameters function corresponding to $\fromto f{C\times A}B$ does not have a completely standard name. Some mathematicians honor the twentieth century logician names Haskell Curry by refering to this as `currying'. For these lectures, we follow that tradition and write $\curry[f]$ 
+	for the unique function satisfiying $f = \alpha\circ (\curry[f] \times \id_A)$.
 \end{axiom}
 
-Suppose $\fromto f{C\times A}B$ is a parametric function. The axiom says that there must be a unique change of parameters
-function from $C$ to $B^A$. That is, $h(c)$ must be a function from $A$ to $B$ so that $\alpha(h(c),a) = f(c,a)$
-for every $c\in C$ and every $a\in A$. But $\alpha$ just evaluates a given function at a given element, so $\alpha(h(c),a)=h(c)(a)$. This tells us what $h(c)$ is. Namely, $h(c)$ is the function defined by the rule $h(c)(x) = f(c,x)$.
+Consider a rule $x\mapsto E$ where $E$ is some expression involving $x$. For example,
+in the rule $x\mapsto x^2$ the $E$ is the expression $x^2$. If $E$ is interpreted as belonging
+to $B$ whenever $x$ belongs to $A$, then the rule $x\mapsto E$ determines a function from $A$
+to $B$. The logician Alonzo Church proposed to write $\lambda x.E$ to denote the function
+from $A$ to $B$ given by the rule $x\mapsto E$. The technicalities of how to make this idea rigorous are rather involved. But for our purposes, we can use the notation informally. So for example, $\lambda x.x^2$
+can be used to denote the function from $\RR$ to $\RR$ given by $x\mapsto x^2$. Of course, the
+same expression also denotes a function from $\ZZ$ to $\ZZ$, $\QQ$ to $\QQ$ and so on. So we should
+exercise care. Generally, the domain (the set over which $x$ ranges) and the codomain (the set over which 
+$E$ ranges) need to be specified to interpret $\lambda x.E$ correctly.
 
-\section{Powersets}
+Suppose $\fromto f{C\times A}B$ is a parametric function. 
+Then the unique function $\curry[f]$ must satisfy $\alpha(\curry[f](c),a) = f(c,a)$. 
+But the definition of $\alpha$ means that $\curry[f]$ is the function given by the rule 
+$x\mapsto \lambda y.f(x,y)$. So $\curry[f](x)$ is a function from $A$ to $B$ given by the rule
+$y\mapsto f(x,y)$.
+
+\section{Powersets and Relations}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$. So the elements of $\Two^A$ correspond
-to subsets of $A$, and vice versa. 
+to subsets of $A$, and vice versa. For technical reasons, it makes sense also to suppose that the actual collection of subsets of a set also form an exponential.
 
+\begin{axiom}
+	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, the parametric function $\fromto \ni{\powerset(A)\times A}\Two$ defined by 
+	\[\ni(B,x) = \begin{cases}
+		\top, &\text{ if } x\in B\\
+		\bot &\text{otherwise}
+	\end{cases}
+	\]
+	is an evaluation map. 
+\end{axiom}
 
+The axiom (with the definition of the term \emph{evaluation map}) means that any $\fromto k{C\times A}\Two$ determines a function $\fromto hC{\powerset(A)}$ satisfying $a\in h(c)$ if and only if $k(c,a)=\top$.
+But this same $k$ also determines a subset of $C\times A$ by $\{(c,a)\in C\times A\st k(c,a)=\top\}$. So evidently functions $C\to\powerset(A)$, 
+functions $(C\times A)\to \Two$, functions $C\to \Two^A$ and subsets of $C\times A$ are all essentially the same things.
 
+\section{When are Two Sets Essentially the Same}
 
+In most of the constructions so far, we have defined some sort of gadget (an equalizer, a product, an exponent) be virtue of how it relates to other, more general but similar gadgets (solutions, tables, parametric functions).
+In each case, the definition requires that there is exactly one function that relates the general gadget 
+to the special one.  
 
+\chapter{The Set of Natural Numbers}
 
+\begin{goals}
+	
+\end{goals}
 
+\section{Introduction}
 
+We have used $\NN$ informally to denote the set of natural numbers. It is time that we make the structure 
+of the natural numbers explicit,  and investigate what role the natural numbers play in our theory of sets and functions
 
+ As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number, $0$ and (ii) for each natural number $n$
+there is a next one, $n^\nxt$. To put the successor in the language of sets and functions, we can 
+say that successor is a function $\fromto \succ\NN\NN$ given by the rule $n\mapsto n^\nxt$.
+So $\NN$ is not only a set. It comes with functions $\One\stackrel{\hat{0}}{\longrightarrow}\NN\stackrel{\succ}{\longrightarrow}\NN$.
 
+Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longrightarrow}A$ is a similar structure.
+Then apparently, we can define a function $\fromto f\NN{A}$ so that $f(0)=b$, $f(1)=r(b)$, $f(2)=r(r(b))$,
+and so on. In general, $f(n)$ is determined by repeatedly applying $r$ to $b$ a total of $n$ times.
+We can make this precise as follows.
 
+\begin{defn}
+	A \emph{succession} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$.
+	
+	A \emph{countably infinite set} is a succession $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ so that for any other succession
+	$\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$, there is exactly one
+	function $\fromto f\NN C$ so that $f(z)=b$ and $f\circ s = r\circ f$.
+\end{defn}
 
+\begin{axiom}
+	The collection of natural numbers is a set, denoted by $\NN$. Moreover, $\One\stackrel{\hat{0}}{\longrightarrow}\NN\stackrel{\succ}{\longrightarrow}\NN$.
+makes $\NN$ a countably infinite set.
+\end{axiom}
 
-
-
- 
+In some settings, a countably infinite set is called a \emph{natural numbers object}. In other settings, the phrase ``countably infinite'' is used to refer to a set that is ``the same size as $\NN$.'' In the latter setting, $\NN$ is regarded as being a fixed ``standard of measure'', sort of like marks on a platinum-iridium bar sitting in a temperature controlled vault in Paris used to be \emph{the} standard meter.\footnote{Meter was originally defined to be 1 ten millionth of the distance from the equator to the north pole along a great circle passing through Paris. It is now defined in a way that can be measures very accurately in a laboratory: it is the distance travelled by light in vacuum during a time interval of 1/299 792 458 of a second measured by a cesium-133 atomic clock. Everyone has one of those.}

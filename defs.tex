@@ -12,10 +12,33 @@
 
 \newlength{\proofsep}
 \setlength{\proofsep}{1.5\baselineskip}
-
 \newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}
 
-\newcommand{\fromto}[3]{#1\mathord{:}#2\to#3}
 \newcommand{\id}{\textsf{id}}
 
 \newcommand{\st}{\,\mid\,}
+
+\newcommand{\iso}{\simeq}
+
+\newcommand{\fromto}[3]{{#1}\colon{#2}\to{#3}}
+\newcommand{\powerset}{{\mathcal{P}}}
+
+\makeatletter
+\newcommand*{\doublerightarrow}[2]{\mathrel{
+  \settowidth{\@tempdima}{$\scriptstyle#1$}
+  \settowidth{\@tempdimb}{$\scriptstyle#2$}
+  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+  \mathop{\vcenter{
+    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+    \rightarrowfill\cr\noalign{\kern-.2ex}
+    \rightarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+\newcommand*{\doubleleftarrow}[2]{\mathrel{
+  \settowidth{\@tempdima}{$\scriptstyle#1$}
+  \settowidth{\@tempdimb}{$\scriptstyle#2$}
+  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+  \mathop{\vcenter{
+    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+    \leftarrowfill\cr\noalign{\kern.5ex}
+    \leftarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+\makeatother
+
