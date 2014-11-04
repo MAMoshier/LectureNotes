@@ -944,9 +944,116 @@ functions $(C\times A)\to \Two$, functions $C\to \Two^A$ and subsets of $C\times
 
 \section{When are Two Sets Essentially the Same}
 
-In most of the constructions so far, we have defined some sort of gadget (an equalizer, a product, an exponent) be virtue of how it relates to other, more general but similar gadgets (solutions, tables, parametric functions).
-In each case, the definition requires that there is exactly one function that relates the general gadget 
-to the special one.  
+Most of the constructions so far, follow a pattern. 
+We define some sort of gadget (a terminal object, an equalizer, a product, an exponent) by virtue of how it relates to other similar gadgets (solutions, tables, parametric functions).
+In each case, the definition requires that there is exactly one function that relates the general gadget  to the special one. 
+Then a corresponding principle asserts that a particular example can be constructed: $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$ and $B^A$.  The way we have used $\Two$ as a subset classifier does not quite follow this pattern, but it very close. Namely, we define ``subset classifier'' in terms of the existence of unique functions for some purpose. Then the corresponding principle says that $\top\in \Two$ is such a thing.
+
+There is some ``obvious'' sense in which $B\times A$ and $A\times B$ are essentially the same. 
+After all, the only difference between them is the order in which we choose to write pairs: $(a,b)$ or $(b,a)$. 
+So even though $A\times B$ and $B\times A$ are not generally \emph{equal}, we would like to say they are
+essentially the same.
+Similarly, there is nothing special about $\One$, except that it as a single element. 
+So $\{0\}$, $\{\emptyset\}$ or any other singleton is a terminal set, hence essentially the same as $\One$.
+ 
+We would rather have a precise, technical meaning when we say two sets are essentially the same. The key idea
+is that we may think of a function $\fromto fAB$ as a systematic way to ``substitute'' elements of $B$ 
+for elements of $A$. Two sets are essentially the same if their elements can be substituted back and forth
+with no resulting change.
+
+\begin{defn}
+	An \emph{isomorphism} is a function $\fromto fAB$ so that there is some function $\fromto gBA$ 
+	satisfying $\id_A = g\circ f$ and $\id_B = f\circ g$. In that case, the set $A$ is said to be \emph{isomorphic to $B$}. The function $g$ is called an \emph{inverse of $f$}.
+\end{defn}
+
+Some basic facts are handy.
+
+\begin{lemma}
+	The following are true:
+	\begin{enumerate}
+		\item If $\fromto fAB$ is an isomorphism and $\fromto gBA$ is an inverse of $f$, then $g$ is an isomorphism	and $f$ is an inverse of $g$.
+		\item If $\fromto gBA$ and $\fromto {g'}BA$ are inverses of $\fromto fAB$, then $g=g'$.
+		\item If $\fromto fAB$ and $\fromto gBC$ are isomorphisms, then so is $g\circ f$.
+		\item For any set $A$, the function $\id_A$ is an isomorphism.
+		\begin{proof}
+			The first claim is obvious since the two defining conditions $g\circ f=\id_A$ 
+			and $f\circ g=\id_B$ are interchangible. For the second claim, suppose $g\circ f = \id_A = g'\circ f$
+			and $f\circ g = \id_B = f\circ g'$. Then
+			\begin{align*}
+				g &= g\circ \id_B\\
+				  &= g\circ (f\circ g')\\
+				  &= (g\circ f)\circ g'\\
+				  &= \id_A\circ g'\\
+				  &= g
+			\end{align*}
+			For third claim suppose suppose $\fromto hBA$ is an inverse of $f$ and $\fromto kCB$ is
+			an inverse of $g$, then $(h\circ k)\circ (g\circ f) = \id_A$ and $(g\circ f)\circ(h\circ k)=\id_B$. So $h\circ k$ is inverse of $g\circ f$. The fourth claim is trivial as $\id_A$ is its own inverse.
+		\end{proof}
+\end{lemma}
+
+From this, we can define what it means for sets $A$ and $B$ to be \emph{isomorphic}.
+
+\begin{defn}
+	Sets $A$ and $B$ are \emph{isomorphic}, written $A\simeq B$ if there is an isomorphism $\fromto fAB$.
+\end{defn}
+
+The lemma indicates that $A\simeq A$ is always true, that $A\simeq B$ implies $B\simeq A$, and that $A\simeq B$ and $B\simeq C$ implies $A\simeq C$. 
+We say that $\simeq$ is an \emph{equivalence} on sets.
+It  captures what we mean be saying two sets are essentially the same. 
+Also, when $f$ is an isomorphism, there is exactly one inverse. 
+Although the notation can be confused with other usages (like inverse image), when $f$ has an inverse it is typically denoted by $f{-1}$.
+
+Returning to the definitions of this lecture, all of them are characterized \emph{up to isomorphism}, meaning
+that is a terminal set, an equalizer of $f$ and $g$, a product of $A$ and $B$, an exponent of $A$ over $B$, or a subset classifier if and only if it is isomorphic the $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$, $B^A$ or $\Two$, respectively. We make that more explicit in the following lemma.
+
+\begin{lemma}
+	The following are all true:
+	\begin{enumerate}
+		\item A set $C$ is a terminal set if and only if $C\simeq \One$.
+		\item For functions $A\doublerightarrow{f}{g} B$:
+			\begin{itemize} 
+				\item If $\fromto eEA$ is an equalizer, then $E\simeq \{x\in A\st f(x)=g(x)\}$. 
+				\item If $\fromto hE\{x\in A\st f(x)=g(x)\}$ is an isomorphism, then $\fromto {(i\circ h)}EA$ is an equalizer.
+			\end{itemize}
+		\item For sets $A$ and $B$:
+			 \begin{itemize}
+				 \item If $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product, then $P\simeq A\times B$. 
+				 \item If $\fromto hP{A\times B}$ is an isomorphism, then $A\stackrel{\pi_0\circ h}{longleftarrow} P \stackrel{\pi_1\circ h}{\longrightarrow}B$ is a product.
+				 \end{itemize}
+		\item If $t\in S$ is a subset classifier, then $S\simeq \Two$ and the isomorphism sends $t$ to $\top$.
+		If $\fromto hC\Two$ is an isomorphism, then $h^{-1}(\top)in C$ is a subseet classifier.
+		\item For sets $A$ and $B$:
+		\begin{itemize} 
+			\item If $\fromto a{F\times A}B$ is an evaluation map, then $F\simeq B^A$.
+			\item If $\fromto hF{B^A}$ is an isomorphism, then $\fromto \beta{F\times A}B$ is an evaluation map
+		given by $\beta(x,y) = \alpha(h(x),y)$.
+		\end{itemize}
+	\end{enumerate}
+	\begin{proof}
+		The proofs for all five of these follow a similar pattern. We prove the claim for products
+		and leave the others as exercises. 
+		
+		Suppose $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product of $A$ and $B$.
+		Then $\langle p,q\rangle$ is a function from $P$ to $A\times B$ satisying $p=\pi_0\circ \langle p,q\rangle$ and $q = \pi_1\circ \langle p,q\rangle$. But since $P$ is a product, there is also a function
+		$\fromto h{A\times B}P$ so that $\pi_0 = p\circ h$ and $\pi_1\circ h$. Now we can compute
+		$p\circ h\circ \langle p,q\rangle = \pi_0\circ \langle p,q\rangle = p$
+		and likewise $q\circ h\circ \langle p,q\rangle = q$. But since $p\circ \id_P = p$
+		and $q\circ \id_P = q$, $h\circ \langle p,q\rangle = \id_B$. Form a similar calculation,
+		$\langle p,q\rangle\circ h = \id_{A\times B}$. Hence $h$ is an isomorphism with inverse $\langle p,q\rangle$.
+		
+		On the other hand suppose $\fromto hP{A\times B}$ is an isomorphism. Then let $p = \pi_0\circ h$ and $q = \pi_1\circ h$, so $A\stackrel{p}{\longleftarrow} P \stackrel{q}B$ is a table. Consider any table
+		$A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$. Then $h^{-1}\circ \langle f,g\rangle$ is a function from $C$ to $P$ satisfying
+		$p\circ h^{-1} \circ \rangle f,g\langle$ = \pi_0\circ \langle f,g\rangle = f$
+		and $q\circ h^{-1} \circ \rangle f,g\langle$ = \pi_1\circ \langle f,g\rangle = g$.
+		Moreover, if $p \circ m = f$ and $q\circ m = g$, then 
+		\begin{align*}
+			h^{-1} \langle f,g\rangle &= h^{-1}\circ \langle p\circ m, q\circ m\rangle\\
+			 &= h^{-1}\circ h\circ m\\
+			 &= m
+		\end{align*}
+		So $h^{-1}\circ\langle f,g\rangle$ is the unique function satsifying $p\circ h^{-1}\circ \langle f,g\rangle = f$ and $q\circ h^{-1}\circ \langle f,g\rangle = g$.  
+	\end{proof}
+\end{lemma}
 
 \chapter{The Set of Natural Numbers}
 
