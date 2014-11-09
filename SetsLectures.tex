@@ -1166,19 +1166,35 @@ An epimorphism is also said to be \emph{right-cancellable}.
 	\end{enumerate}
 \end{example}
 
-Suppose $\fromto gBC$ is a monomorphism. Then it clearly is also an injection. 
-That is, suppose $g$ is a monomorphism and that $g(b_0)=g(b_1)$. We already know
-that $\widehat{g(b_0)} = g\circ \widehat{b_0}$. So $g\circ \widehat{b_0} = g\circ \widehat{b_1}$. Because $g$ cancels on the left, $\widehat{b_0} = \widehat{b_1}$.
-But this implies that $b_0=b_1$. The converse of this is also true.
+Suppose $\fromto gBC$ is a monomorphism. 
+Then it clearly is also an injection. 
+That is, suppose $g$ is a monomorphism and that $g(b_0)=g(b_1)$. 
+We already know that $\widehat{g(b_0)} = g\circ \widehat{b_0}$.
+So $g\circ \widehat{b_0} = g\circ \widehat{b_1}$.
+Because $g$ cancels on the left, $\widehat{b_0} = \widehat{b_1}$.
+But this implies that $b_0=b_1$.
+The converse of this is also true.
 
 \begin{lemma}
 	A function $\fromto gBC$ is a monomorphism if and only if it is an injection.
 	\begin{proof}
-		The previous paragraph proves that every monomorphism is an injection. To prove the converse, assume that $g$ is an injection. That is, $g(b_0)=g(b_1)$ implies $b_0=b_1$.
-		For two functions $\fromto {f_0,f_1}AB$, suppose $g\circ f_0=g\circ f_1$. For any $x\inA$, then $g(f_0(x)) = g(f_1(x))$. So $f_0(x)=f_1(x)$. Hence by the Principle of Function Extensionality, $f_0=f_1$.
+		The previous paragraph proves that every monomorphism is an injection. To prove the converse, assume that $g$ is an injection. 
+		That is, $g(b_0)=g(b_1)$ implies $b_0=b_1$.
+		For two functions $\fromto {f_0,f_1}AB$, suppose $g\circ f_0=g\circ f_1$. 
+		For any $x\in A$, then $g(f_0(x)) = g(f_1(x))$. So $f_0(x)=f_1(x)$. Hence by the Principle of Function Extensionality, $f_0=f_1$.
 	\end{proof}
 \end{lemma}
 
+As simple as it is, this is a valuable result because it provides an internal characterization (injections deal directly with elements) for an external property (monomorphisms deal with composition). Epimorphisms are also defined externally, but we do not yet have an internal characterization. Taking a closer look at injectivity gives a clue.
+Recall that a function $\fromto gBC$ is an injection if and only if
+\begin{itemize}
+	\item for any $y\in C$ there is \emph{at most one} $x\in B$ for which $g(x)=y$.
+\end{itemize}
+This suggests a sort of ``dual'' definition. To make the connection clear, we repeat the definition of injections.
+
+\begin{defn}
+	A function $\fromto gBC$ is
+\end{defn}
 
 %\section{What Can Primitive Recursion Do?}
 %
