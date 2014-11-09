@@ -1,10 +1,17 @@
 \contentsline {chapter}{Contents}{2}{section*.1}
 \contentsline {chapter}{\chapternumberline {1}Sets}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}Set Basics}{4}{section.1.1}
+\contentsline {section}{\numberline {1.2}Subsets and Extensionality}{6}{section.1.2}
 \contentsline {chapter}{\chapternumberline {2}Functions}{9}{chapter.2}
-\contentsline {chapter}{\chapternumberline {3}Building Sets and Functions}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Introduction}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}Elements, Pointers and Constant Functions}{14}{section.3.2}
-\contentsline {section}{\numberline {3.3}Solution Sets, Subsets, Characteristic Functions}{15}{section.3.3}
-\contentsline {section}{\numberline {3.4}Product Sets and Functions of Two Variables}{16}{section.3.4}
-\contentsline {section}{\numberline {3.5}Function Sets and Partial Evaluation}{16}{section.3.5}
-\contentsline {section}{\numberline {3.6}Powersets and Relations}{17}{section.3.6}
+\contentsline {section}{\numberline {2.1}Internal Diagrams}{10}{section.2.1}
+\contentsline {section}{\numberline {2.2}Extensionality}{12}{section.2.2}
+\contentsline {chapter}{\chapternumberline {3}Building Sets and Functions}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Elements, Pointers and Constant Functions}{16}{section.3.1}
+\contentsline {section}{\numberline {3.2}Solution Sets, Subsets, Characteristic Functions}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Product Sets and Functions of Two Variables}{18}{section.3.3}
+\contentsline {section}{\numberline {3.4}Function Sets, Partial Evaluation}{19}{section.3.4}
+\contentsline {section}{\numberline {3.5}Powersets}{21}{section.3.5}
+\contentsline {chapter}{\chapternumberline {4}The Set of Natural Numbers}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sequences and Successions}{24}{section.4.1}
+\contentsline {section}{\numberline {4.2}Primitive Recursion}{24}{section.4.2}
+\contentsline {chapter}{\chapternumberline {5}Monomophisms, Epimorphisms and Isomorphisms}{27}{chapter.5}

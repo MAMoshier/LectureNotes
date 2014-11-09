@@ -1,10 +1,17 @@
 \BOOKMARK [0][-]{section*.1}{Contents}{}% 1
 \BOOKMARK [0][-]{chapter.1}{Sets}{}% 2
-\BOOKMARK [0][-]{chapter.2}{Functions}{}% 3
-\BOOKMARK [0][-]{chapter.3}{Building Sets and Functions}{}% 4
-\BOOKMARK [1][-]{section.3.1}{Introduction}{chapter.3}% 5
-\BOOKMARK [1][-]{section.3.2}{Elements, Pointers and Constant Functions}{chapter.3}% 6
-\BOOKMARK [1][-]{section.3.3}{Solution Sets, Subsets, Characteristic Functions}{chapter.3}% 7
-\BOOKMARK [1][-]{section.3.4}{Product Sets and Functions of Two Variables}{chapter.3}% 8
-\BOOKMARK [1][-]{section.3.5}{Function Sets and Partial Evaluation}{chapter.3}% 9
-\BOOKMARK [1][-]{section.3.6}{Powersets and Relations}{chapter.3}% 10
+\BOOKMARK [1][-]{section.1.1}{Set Basics}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Subsets and Extensionality}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Functions}{}% 5
+\BOOKMARK [1][-]{section.2.1}{Internal Diagrams}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Extensionality}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{Building Sets and Functions}{}% 8
+\BOOKMARK [1][-]{section.3.1}{Elements, Pointers and Constant Functions}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{Solution Sets, Subsets, Characteristic Functions}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.3}{Product Sets and Functions of Two Variables}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.4}{Function Sets, Partial Evaluation}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.5}{Powersets}{chapter.3}% 13
+\BOOKMARK [0][-]{chapter.4}{The Set of Natural Numbers}{}% 14
+\BOOKMARK [1][-]{section.4.1}{Sequences and Successions}{chapter.4}% 15
+\BOOKMARK [1][-]{section.4.2}{Primitive Recursion}{chapter.4}% 16
+\BOOKMARK [0][-]{chapter.5}{Monomophisms, Epimorphisms and Isomorphisms}{}% 17
