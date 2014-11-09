@@ -33,16 +33,14 @@ In these lectures, we build up the Category of Sets and Functions, so that we ca
 \end{itemize}
 \end{goals}
 
-\section*{Introduction}
-
 \emph{Sets} are the mathematician's way of thinking about \emph{collections} of objects. Examples will be the set of natural numbers, the set of pairs of natural numbers, the set of lists of natural numbers, and so on.
 \emph{Functions} are the mathematicians way of thinking about operations, such as successor, addition, summation, and so on.
 
 Mathematicians also use functions to model attributes of the things in a collection, like ``the color of'', ``the mass of'', ``the location of'', ``the father of'', ``the favorite book of the person to the left of'' and so on.
 There is little sense in saying these are ``operations'', but they have a similar behavior. For each potential
 object $x$ of the right sort (a wooden building block, for example), \emph{the color of $x$} is a specific color. Similarly,
-any specific natural number $n$, ``the successor of $n$'' is another specific natural number. So ``the color of'' is a function
-from the set of wooden bulding blocks to the set of colors; ``the successor of''
+for a natural number $n$, ``the successor of $n$'' is another specific natural number. So ``the color of'' is a function
+from the set of wooden building blocks to the set of colors; ``the successor of''
 is a function from the set of natural numbers to set of natural numbers. Likewise, addition constitutes a function from the set of 
 pairs of natural numbers to the set of natural numbers. In English we might say ``the sum of $m$ and $n$'', but we usually write $m+n$. 
 Either way, any pair of natural numbers has a sum. So ``the sum of'' is an attribute of pairs of natural numbers, just like ``the color of'' is an attribute of wooden building blocks.
@@ -62,12 +60,13 @@ To understand sets and functions as they are used in every day mathematics, we n
 	\item What do we mean by saying that two functions are equal?
 \end{itemize}
 The answers to these leads to some basic principles for reasoning about sets and functions. 
-In addition, we ways to construct sets and functions with specific behaviors. 
-These lead to further principles of set and function construction.
+Other principles allow us to construct sets and functions with specific behaviors. 
+We could be more formal and present these principles as \emph{axioms}, but the word ``axiom''
+has a special connotation in mathematics that we do not need here. Nevertheless, everything we say in these lectures could be presented in terms of formal axioms.  
 
-\section*{Sets}
+\section{Set Basics}
 
-A set is a collection of things that are ``in'' the set. All other things are ``not in'' the set. 
+A set consists of things that are ``in'' the set. All other things are ``not in'' the set. 
 For example, later we will see that the natural numbers constitute a set $\NN$. 
 So $0$ is in $\NN$, $1$ is in $\NN$, and so on, but $\frac{1}2$ is not in $\NN$.
 We make this precise and introduce notation for the idea.
@@ -94,7 +93,7 @@ Basic Vocabulary \ref{sig:SetSignature} describes how we can talk about sets and
 We will remedy that in the next sections.
 Our first remedy is to make room for finite sets.
 
-\begin{axiom}[Finite Sets] For any list $L  = [a_0,\ldots, a_{n-1}]$, there is a set, denoted by $\{a_0,\ldots,a_{n-1}\}$, so
+\begin{principle}[Finite Sets] For any list $L  = [a_0,\ldots, a_{n-1}]$, there is a set, denoted by $\{a_0,\ldots,a_{n-1}\}$, so
   that $x\in \{a_0,\ldots, a_{n-1}\}$ if and only if $x=a_i$ for some
   $i<n$.  More precisely,
   \begin{itemize}
@@ -102,7 +101,9 @@ Our first remedy is to make room for finite sets.
   \item $x\in \{a_0,\ldots,a_n\}$ if and only if $x=a_0$ or $x\in
     \{a_1,\ldots,a_n\}$.
   \end{itemize}
-\end{axiom}
+\end{principle}
+
+\printbreak
 
 \begin{example}
 Here are some examples of sets built from finite lists:
@@ -128,7 +129,7 @@ of set theory), but we will not try to justify that explicitly, except for the s
 \begin{defn}
 	The following sets are denoted by special symbols:
 	\begin{align*}
-		\NN &= \text{the set of natural numbers}
+		\NN &= \text{the set of natural numbers}\\
 		\ZZ &= \text{the set of integers}\\
 		\QQ &= \text{the set of rational numbers}\\
 		\RR &= \text{the set of real numbers}\\
@@ -136,7 +137,6 @@ of set theory), but we will not try to justify that explicitly, except for the s
 	\end{align*}
 \end{defn}
 
-\printbreak
 
 \begin{exercises}
 	\begin{enumerate}
@@ -158,10 +158,10 @@ of set theory), but we will not try to justify that explicitly, except for the s
   \end{enumerate}
 \end{exercises}
 
-\section*{Subsets}
+\section{Subsets and Extensionality}
 
 Sets are meant to be bare collections. For a set $A$, some things are in $A$, some are not. And that's all we can say.
-Unlike a list, a set has no ``initial'' element of a set.
+Unlike a list, a set has no ``initial'' element.
 For example, the set $\{1,2,3\}$ should be the same as the set $\{2,3,1\}$, because both have the same elements. This is an important difference between
 lists and sets: $[1,2,3]$ and $[2,3,1]$ are \emph{not} the same lists because order matters in lists. 
 To make this precise, we need to be clear about when sets are equal. To do this, we introduce an important definition.
@@ -197,7 +197,7 @@ Saying $A\subseteq B$ is exactly the same as saying that for any $x$, if $x\in A
 \begin{exercises}
 	For each of the following pairs of sets, determine whether or
   not the first is a subset of the second. Explain your answer.
-  \begin{enumerate}
+  \begin{enumerate}[series=exercises]
   \item $\{0,1\}$ and $\{1,0\}$
   \item $\{a,b,c,d\}$ and $\{a,b,d,e,c\}$
   \item $\{\}$ and $\{\{\}\}$
@@ -205,10 +205,8 @@ Saying $A\subseteq B$ is exactly the same as saying that for any $x$, if $x\in A
   \end{enumerate}
 \end{exercises}
 
-\section*{Equal Sets}
 
-We can summarize two
-useful properties of $\subseteq$ as follows.
+We can summarize two useful properties of $\subseteq$ as follows.
 \begin{itemize}
 	\item{}[Reflexivity]  For any set $A$, $A \subseteq A$. We say $\subseteq$ is \emph{reflexive}.
 	\item{}[Transitivity] For any sets $A$, $B$ and $C$,
@@ -221,24 +219,27 @@ The relation $\leq$ is also \emph{anti-symmetric}, meaning that if $m\leq n$ and
 Suppose $A\subseteq B$ and $B\subseteq A$. Then, by definition $A$ and $B$ have the exact same elements.  By our understanding of sets as collections,
 $A$ and $B$ must be equal. So we state this as another axiom.
 
-\begin{axiom}\label{ax:set-extensionality}
+\begin{principle}\label{ax:set-extensionality}
 [\textbf{The Axiom of Set Extensionality}]
 For sets $A$ and $B$, if $A\subseteq B$ and $B\subseteq A$, then $A=B$. In other words, $\subseteq$ is anti-symmetric.
-\end{axiom}
+\end{principle}
 
 Based on this, we can already establish a useful fact: there is exactly one empty set. To set the tone for what follows, we make this a formal claim.
 
 \begin{lemma}
-	There is exacty one empty set.
+	There is exactly one empty set.
 \begin{proof}
 	We have already noted that the set built from an empty list $\{\,\}$ has no elements. So there is at least one empty set.
 	
-	Suppose $E$ is a set with no elements. Then $E\subseteq \{\,\}$ because every element of $E$ (there are none) is an element of $\{\,\}$. Similarly, $\{\,\}\subseteq E$ because every element of $\{\,\}$ (again, there are none) is an elemen of $E$. So by Axiom~\ref{ax:set-extensionality} $E = \{\,\}$.
+	Suppose $E$ is a set with no elements.
+	Then $E\subseteq \{\,\}$ because every element of $E$ (there are none) is an element of $\{\,\}$. 
+	Similarly, $\{\,\}\subseteq E$ because every element of $\{\,\}$ (again, there are none) is an element of $E$. 
+	So by Principle~\ref{ax:set-extensionality} $E = \{\,\}$.
 \end{proof}
 \end{lemma}
 
 \begin{defn}
-  The set $\{\}$ is also denoted by $\emptyset$. This is a universally accepted symbol for the empty set.
+  The set $\{\}$ is also denoted by $\emptyset$.
 \end{defn}
 
 Set extensionality makes precise the idea that a set by itself does
@@ -284,7 +285,7 @@ matter of drawing a smaller boundary around some of the elements as in the follo
 
 \begin{exercises}
 Draw depictions of the following sets
-  \begin{enumerate}
+  \begin{enumerate}[resume=exercises]
   \item $\{1,4,5,2,3\}$
   \item $\{1,2,3,\ldots, 23\}$
   \item $\{a,b,c,d,e\}$ and $\{c,e,f,g\}$ on the same diagram
@@ -313,31 +314,26 @@ Draw depictions of the following sets
 \end{itemize}
 \end{goals}
 
-\emph{Functions}
-(perhaps in your calculus courses) are often talked about as \emph{operations}. 
-For example, \[f(x) = x^2-1\]
-can be seen as an operation that transforms a number $x$ into its
-square. But it can also be seen as an attribute (the ``square of
-$x$''). The ``operational'' view is informal, and often useful. As we will see,
-though, it gets an important aspect of functions wrong because
-two entirely different operations may define the same function.
+\emph{Functions} (perhaps in your calculus courses) are often talked about as \emph{operations}. 
+For example, 
+\[f(x) = x^2-1\]
+can be seen as an operation that transforms a number $x$ into its square.
+But it can also be seen as an attribute (the ``square of $x$'').
+The ``operational'' view is informal, and often useful.
+As we will see, though, it gets an important aspect of functions wrong because two entirely different operations may define the same function.
 
 Informally, a function ``takes'' an argument from a given set as input and ``produces'' an output in a given set.
-So the function $f$ defined by $f(x)=x^2 + 2x + 1$ might ``take'' the natural number $2$
-and ``produce'' the natural number $10$. That is, $f(3)=3^2 + 1 = 10$. 
+So the function $f$ defined by $f(x)=x^2 + 2x + 1$ might ``take'' the natural number $2$ and ``produce'' the natural number $10$. 
+That is, $f(3)=3^2 + 1 = 10$. 
 We begin by introducing the vocabulary of functions.
 
 \begin{signature}
 	\begin{itemize}
-	\item For a set $A$ and a set $B$, there are things called 
-	\emph{functions from $A$ to $B$}, with a function $f$ from $A$ to $B$ 
-	being writing $\fromto fAB$ or $A\stackrel{f}{\to} B$. 
+	\item For a set $A$ and a set $B$, there are things called \emph{functions from $A$ to $B$}, with a function $f$ from $A$ to $B$ being writing $\fromto fAB$ or $A\stackrel{f}{\to} B$. 
+
+	\item For $\fromto fAB$, the set $A$ is called the \emph{domain} of $f$ and $B$ is called the \emph{codomain} of $f$.
 	
-	\item For $\fromto fAB$, the set $A$ is called the \emph{domain} of $f$
-	and $B$ is called the \emph{codomain} of $f$.
-	
-	\item For any function $\fromto fAB$ and every element $a\in A$, $f$ and $a$ determine an element of $B$,
-	written $f(a)$, and read ``$f$ of $a$''.
+	\item For any function $\fromto fAB$ and every element $a\in A$, $f$ and $a$ determine an element of $B$, written $f(a)$, and read ``$f$ of $a$''.
 	\end{itemize}
 \end{signature}
 
@@ -367,11 +363,17 @@ There are two fundamental (trivial) types of rules that can be used to build fun
 	\end{itemize}
 \end{axiom}
 
-
 Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the codomain of $f$.
 Also, be careful about definitions like $f(x)=1/x$.
 This does not define a function on the real numbers because $f(0)$ is undefined.
 In other words, to be a function, $f$ must determine an element of the codomain for each element of the domain.
+
+\begin{exercises}
+Suppose $\fromto fAB$, $\fromto gBC$ and $\fromto hCD$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
+from $A$ to $D$. Do you think they are equal? Explain your answer in a few clearly written sentences.	
+\end{exercises}
+
+\section{Internal Diagrams}
 
 To depict a function on small sets, we can use the simple internal diagrams of the last section. For example,
 \[
@@ -566,7 +568,7 @@ For example,
 	\end{enumerate}
 \end{exercises}
 
-\section*{Equal Functions and External Diagrams}
+\section{Extensionality}
 
 Just like sets, we need a way to say when two functions are equal.
 Let $\NN$ denote the set of natural numbers. 
@@ -657,11 +659,11 @@ Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
 	\item Characterize and define
 		 \begin{itemize}
 			 \item Pointer and constant functions
-		 	\item The set of natural numbers
-			\item Products of sets
-			\item Exponents of sets
 			\item Solution sets
 			\item Characteristic functions
+			%		 	\item The set of natural numbers
+			\item Products of sets
+			\item Exponents of sets
 		 \end{itemize}
 	\item Introduce the idea of a \emph{universal} construction.
 	\end{itemize}
@@ -673,22 +675,21 @@ Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
 	\end{itemize}
 \end{goals}
 
-\section{Introduction}
-
 So far, we have been able to think mainly about finite sets and a few informally defined functions on, say, the real numbers or the natural numbers.
-To fill out out understanding of sets, we need to be able to build sets for specific purposes.
-Two finite sets will play a particularly important role.
+To fill out our understanding of sets, we need to be able to build sets for specific purposes.
+
+Two finite sets will play particularly important roles.
 The first, which we denote by $\One$, is  set with one element; the second, which we denote by $\Two$, is a set with two elements.
-It does not matter at all \emph{what} elements are in these because, as we will soon see, any two sets of the same size are interchangible.
-What `interchangible' means is discussed later.
-What `same size' means is obvious for finite sets, but not at all obvious for infinite ones.
+It does not matter at all \emph{what} elements are in these because, as we will soon see, any two sets of the same size are interchangeable.
+What `interchangeable' means is discussed later.
+What `same size' means is obvious for finite sets, but not at all apparent for infinite ones.
 We discuss the general situation later as well.
 
 For the time being, we merely need to agree on a fixed set with one element and a fixed set with two elements.
 The particular choices I make here will be clearer as we put them to use.
 
 \begin{defn}
-	Let $\bullet$, $\bot$ and $\top$ be fixed sybmols. Then define
+	Let $\bullet$, $\bot$ and $\top$ be fixed symbols. Then define
 	\begin{align*}
 		\One &= \{\bullet\}\\
 		\Two &= \{\bot,\top\}
@@ -737,38 +738,43 @@ A picture of the situation might be this:
 \]
 Since $\One$ has only a single element, it can ``point'' only to a single element of $A$.
 So we might refer to a function $\One\to A$ as a \emph{pointer} into $A$.
-Each pointer determines an element of $A$. And conversely, it should be
-possible to point to any element of $A$. This leads to our first axiom guaranteeing that certain functions exist.
+Each pointer determines an element of $A$. 
+And conversely, it should be possible to point to any element of $A$. 
+This leads to our first axiom guaranteeing that certain functions exist.
 
-\begin{axiom}
+\begin{principle}\label{ax:pointers}
 	For any set $A$, and any $a\in A$, there is a pointer $\fromto {\hat a}\One A$ so that $\hat{a}(\bullet)=a$.
-\end{axiom}
+\end{principle}
 
-This principle justifies the drawing of internal diagrams for pointers because it means that any such diagram does indeed depict an actual function. 
+In effect, this principle claims that elements of a set $A$ and functions $\One\to A$ are interchangible: from $a\in A$ we get $\fromto {\hat{a}}\One A$; from $\fromto p\One A$.
+we get $p(\bullet)$. 
+
+This principle also justifies the drawing of internal diagrams for pointers because it means that any such diagram does depict an actual function. 
 Other principles that we will discuss later justify our use of internal diagrams for all finite sets.
-We could specify $\hat{a}$ by the rule $x\mapsto a$.
+
+We can specify $\hat{a}$ by the rule $x\mapsto a$.
 That is, since $\bullet$ is an element of $\One$, $\hat{a}(\bullet)=a$.
 And since $\bullet$ is the only element of $\One$, $\hat{a}{x}=a$ is true for \emph{every} element of $\One$.
 
 Suppose $\fromto fA\One$ and $\fromto gA\One$ are functions, that is, their \emph{codomain} is $\One$ instead their \emph{domain}. 
 Then $f(a)=g(a)$ is true for every $a\in A$ because $\bullet$ is the only possible value for $f(a)$ and $g(a)$. 
-So $f=g$ by extensionality.
+So $f=g$ by the Principle of Function Extensionality.
 In other words, there is at most one function from $A$ to $\One$.
 But the rule $x\mapsto \bullet$ is as simple a rule as one can imagine. 
 This leads to another axiom.
 
-\begin{defn}
+\begin{defn}\label{def:terminal}
 	A set $T$ is \emph{terminal} if it is the case that for any set $A$ there is exactly one function from $A$ to $T$.
 \end{defn}
 
 \begin{axiom}
 	The set $\One$ is a terminal set. 
 	We denote the unique function from $A$ to $\One$ by $\fromto {\Diamond_A}{A}\One$.
-\end{axiom} 
-
-The rule defining $\Diamond_A$ must be
+	
+	The rule defining $\Diamond_A$ must be
 	\[x\mapsto\bullet\]
-because no other rule is possible. 
+	because no other rule is possible. 
+\end{axiom}
 
 Using $\Diamond_A$ and $\hat{b}$ for an element $b\in B$, we can now define constant functions. 
 That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ defined by 
@@ -787,7 +793,7 @@ In short, this is the function sending any element of $A$ to the constant result
 
 Suppose we are given two functions that are ``parallel'': $\fromto fAB$ and $\fromto gAB$.
 Then for some value $a\in A$, it might be the case that $f(a)=g(a)$.
-We could call such a value a \emph{particular solution to the equation $f(x)=g(x)$}. 
+We may call such a value a \emph{particular solution to the equation $f(x)=g(x)$}. 
 It might be the case that there are no particular solutions.
 For example, there are no natural numbers $n$ such that $n+1 = n$. 
 On the other hand, there might be many particular solutions. 
@@ -796,7 +802,7 @@ Then it is easy to check that $1$, $2$ and $3$ solve the equation.
 In fact, these three are the only particular solutions.
 We generalize as follows.
 
-\begin{defn} 
+\begin{defn}\label{def:equalizer} 
 	For two functions $A\doublerightarrow{f}{g} B$, a \emph{solution} is a function $\fromto sCA$ so that 
 	\[f\circ s = g\circ s.\]
 	Thus for example, if $a\in A$ is a particular solution then the pointer $\hat a$ is a solution. 
@@ -804,16 +810,20 @@ We generalize as follows.
 	For functions $\fromto fAB$ and $\fromto gAB$, an \emph{equalizer} is solution $\fromto eEA$ so that for any solution $\fromto sCA$, there is exactly one function $\fromto hCE$ so that \[e\circ h = k.\]
 \end{defn}
 
-\begin{axiom}
-	For functions $\fromto fAB$ and $\fromto gAB$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 
+\begin{principle}
+	For functions $\fromto fAB$ and $\fromto gAB$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 	
 	The function $\fromto i{\{x\in A\st f(x)=g(x)\}}A$ given by the rule $x\mapsto x$ (called an \emph{inclusion map}) is an equalizer for $f$ and $g$.
-\end{axiom}
+	
+	If $\fromto sCA$ is a solution of  $f(x)=g(x)$, that is, $f\circ s = g\circ s$,
+	then the function $\fromto {\check s}C{\{x\in A\st f(x)=g(x)\}}$ given by the rule $x\mapsto s(x)$
+	is the unique function for which $s = i\circ \check s$. 
+\end{principle}
 
-This axiom tells us two things.
-First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$ for any two functions $\fromto {f,g}AB$, and picking out the particular solutions.
-Second, a subset formed in this way ``embeds'' in the given set $A$ by its inclusion map.
-Notice that the rule for the inclusion map is the same as the rule for an identity map. 
-The difference is only that, here, the domain is a subset of the codomain.
+This axiom tells us three main things.
+First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$ for any two functions $A\doublerightarrow{f}{g}B$, and picking out the particular solutions.
+Second, a subset formed in this way ``embeds'' in the given set $A$ by its inclusion map $i$.
+Third, for any solution $s$, the function into the set of particular solutions is defined
+by the same rule as $s$.
 
 Suppose $c\in C$ and $\fromto fAC$ is a function, then we can form the equalizer of $f$ and the constant function $\hat{c}\circ\Diamond_A$.
 This is more easily written we $\{x\in A\st f(x)=c\}$. Since it common to pick out sets like this, special notation is in order.
@@ -825,19 +835,17 @@ This is more easily written we $\{x\in A\st f(x)=c\}$. Since it common to pick o
 \end{defn}
 
 Evidently, in Definition \ref{def:inverse-image}, the set $f^{-1}(c)$ is a subset of $A$. It would be good to know that any subset of $A$ can be described as an inverse image.
-This is where $\Two$ plays a role.
+This is where the set $\Two$ plays a role.
 
-\begin{defn}
-	A \emph{pointed set} is a set $A$ with a fixed distinguished element $a_0\in A$.
-	A \emph{subset classifier} is a set pointed set $S$ with element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kTA$ so that $B = k^{-1}(t)$.
-	That is, $B$ is uniquely defined as an inverse image of $t$ with respect to a function into $T$.
+\begin{defn}\label{def:subset-classifier}
+	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kTA$ for which $B = k^{-1}(t)$.
+	That is, $B$ is uniquely defined as the inverse image of $t$ with respect to a function into $T$.
 \end{defn}
 
-\begin{axiom}
-	The set $\Two$ with the distiguished element $\top$ is a subset classifier.
+\begin{principle}\label{ax:subset-char}
+	The set $\Two$ with the distinguished element $\top$ is a subset classifier.
 	For subset $B\subseteq A$, the function corresponding to $B$, called the \emph{characteristic function of $B$}, is denoted by $\kappa_B$.
 	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^{-1}(\top)$.
-\end{axiom}
 
 For $B\subseteq A$, the characteristic function is defined by the rule
 \[
@@ -847,13 +855,31 @@ x \mapsto
 		\bot &\text{ otherwise}
 	\end{cases}
 \]
+\end{principle}
+
+Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $\One\to A$
+are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $A$ and 
+the functions $A\to\Two$ are interchangeable.
+
+\begin{exercises}
+	\begin{enumerate}
+	\item Draw a depiction of $A=\{a,b,c,d,e,f,g\}$ and its subset $B=\{a,c,e,g\}$ in the same internal diagram. Now depict the characteristic map for $B$ as a subset of $A$.
+	
+	\item Define two functions $\NN\doublerightarrow{f}{g}\NN$ so that the set of particular solutions fo $f(x)=g(x)$ is $\{1,5\}$. 
+	
+	\item Consider the functions $\fromto f\RR\RR$ defined by $f(x) = \sin(x) + \cos(x)$, and $\fromto s\NN\RR$ defined by $s(n) = 2\pi n^2$. 
+	Is $s$ a solution for the equation $f(x) = -1$? 
+	What is the set of all particular solutions?
+	\end{enumerate}
+		
+\end{exercises}
 
 \section{Product Sets and Functions of Two Variables}
 
 We should be able to deal with functions of more than one argument, such as a function $f(x,y) = x+y$.
 To account for such functions, we take our cue from Descartes.
 He studied the plane in terms of a coordinate system consisting of the so-called $x$-axis and $y$-axis.
-Once we have decided where to place the axes, a pair $(2,3)$ determines a point on the plane, and any point in the plane $p$ determines a pair.
+Once we have decided where to place the axes (as long as they do not run in parallel), a pair $(2,3)$ determines a point on the plane, and any point $p$ in the plane determines a pair.
 So Descartes realized that we might as well just say that the plane actually \emph{is} the collection of all pairs of real numbers.
 What makes this work is that points in the plane \emph{project} onto the two axes.
 Products of sets generalize this idea.
@@ -862,37 +888,45 @@ Products of sets generalize this idea.
 For sets $A$ and $B$, a \emph{table} consists of two functions $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$.
 Note that the two functions have the same domain. We may call the two functions \emph{legs}.
 
-For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $\fromto pPA$ and $\fromto qPB$ so that for any table $\fromto fCA$ and $\fromto gCB$, there is exactly one function $\fromto hCP$ for which $f = p\circ h$ and $g= q\circ h$. 
+For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $A\stackrel{p}{\longleftarrow} P\stackrel{q}{\longrightarrow}B$ so that for any table $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$ there is exactly one function $\fromto hCP$ for which $f = p\circ h$ and $g= q\circ h$. 
 For a product, the functions $p$ and $q$ are called the \emph{projections}.
 \end{defn}
 
-\begin{axiom}
+\begin{principle}\label{ax:products}
 	For sets $A$ and $B$, the collection of all pairs $(a,b)$ where $a\in A$ and $b\in B$ is a set, denoted by $A\times B$. 
 	The functions $\fromto {\pi_0}{A\times B}A$ and $\fromto {\pi_1}{A\times B}B$ defined by the rules $\pi_0(a,b)=a$
 	and $\pi_1(a,b)=b$ are projections. For $\fromto fCA$ and $\fromto gCB$, the unique function required by
 	the product may be denoted by $\langle f,g\rangle$.
-\end{axiom}
 
-For $\fromto fCA$ and $\fromto gCB$, the function $\fromto {\langle f,g\rangle}C{A\times B}$ is defined by 
-the rule $\langle f,g\rangle(x)=(f(x),g(x))$.
+	For $\fromto fCA$ and $\fromto gCB$, the function $\fromto {\langle f,g\rangle}C{A\times B}$ is defined by the rule $\langle f,g\rangle(x)=(f(x),g(x))$.
+\end{principle}
 
 Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$. We can now form a single function
 from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$. Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
 
-\section{Function Sets, Partial Evaluation and $\lambda$ Notation}
+\begin{exercises}
+	\begin{enumerate}
+		\item For the sets $A = \{a,b,c\}$ and $B = \{1,2,3,4\}$, calculate $A\times B$ and $B\times A$
+		\item What is $\emptyset \times A$? 
+		\item Calculate $\{4,a,0\}\times \Two$.
+		\item Describe in plain English what are the elements of $\NN\times \NN$.
+		\item Suppose $A$ is a finite set with $m$ elements and $B$ is a finite set with $n$ elements. How many elements are in $A\times B$? Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
+	\end{enumerate}
+\end{exercises}
+
+\section{Function Sets, Partial Evaluation}
 
 A function from $A$ to $B$ might depend on a parameter from $C$. 
 For example, the function $\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
-There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$. Evidently, $g$
-describes the same behavior as $f$, but it makes the parameter explicit. This leads to the following definition.
+There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$. Evidently, $g$ describes the same behavior as $f$, but it makes the parameter explicit. This leads to the following definition.
 
 \begin{defn}
 	For sets $A$ and $B$, a \emph{parametric function from $A$ to $B$} is a function $\fromto g{C\times A}B$ for some set $C$.
-	The set $C$ is the \emph{set of parameters}.
+	The set $C$ may be called the \emph{set of parameters}.
 	
 	Suppse $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
 	Then we can form another parametric function with parameters in $C$ by composition: $f\circ (k\times \id_A)$.
-	In this setting, we may refer to $k$ as a \emph{change of parameters} function because $k$ transforms
+	We may refer to $k$ as a \emph{change of parameters} function because $k$ transforms
 	the parametric function with parameters in $D$ into a parametric function with parameters in $C$. Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$. 
 	
 	An \emph{evaluation map} for $A$ and $B$ is a parameteric function $\fromto a{F\times A}B$, so that for any 
@@ -905,30 +939,18 @@ describes the same behavior as $f$, but it makes the parameter explicit. This le
 	there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
 	The unique change of parameters function corresponding to $\fromto f{C\times A}B$ does not have a completely standard name. Some mathematicians honor the twentieth century logician names Haskell Curry by refering to this as `currying'. For these lectures, we follow that tradition and write $\curry[f]$ 
 	for the unique function satisfiying $f = \alpha\circ (\curry[f] \times \id_A)$.
+	
+	Calculating how $\fromto {\curry[f]}C{B^A}$ must behave, we see that $\curry[f](c)$
+	is the function from $A$ to $B$ given by the rule $x\mapsto f(c,x)$. So for any $c\in C$
+	and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
 \end{axiom}
 
-Consider a rule $x\mapsto E$ where $E$ is some expression involving $x$. For example,
-in the rule $x\mapsto x^2$ the $E$ is the expression $x^2$. If $E$ is interpreted as belonging
-to $B$ whenever $x$ belongs to $A$, then the rule $x\mapsto E$ determines a function from $A$
-to $B$. The logician Alonzo Church proposed to write $\lambda x.E$ to denote the function
-from $A$ to $B$ given by the rule $x\mapsto E$. The technicalities of how to make this idea rigorous are rather involved. But for our purposes, we can use the notation informally. So for example, $\lambda x.x^2$
-can be used to denote the function from $\RR$ to $\RR$ given by $x\mapsto x^2$. Of course, the
-same expression also denotes a function from $\ZZ$ to $\ZZ$, $\QQ$ to $\QQ$ and so on. So we should
-exercise care. Generally, the domain (the set over which $x$ ranges) and the codomain (the set over which 
-$E$ ranges) need to be specified to interpret $\lambda x.E$ correctly.
-
-Suppose $\fromto f{C\times A}B$ is a parametric function. 
-Then the unique function $\curry[f]$ must satisfy $\alpha(\curry[f](c),a) = f(c,a)$. 
-But the definition of $\alpha$ means that $\curry[f]$ is the function given by the rule 
-$x\mapsto \lambda y.f(x,y)$. So $\curry[f](x)$ is a function from $A$ to $B$ given by the rule
-$y\mapsto f(x,y)$.
-
-\section{Powersets and Relations}
+\section{Powersets}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$. So the elements of $\Two^A$ correspond
 to subsets of $A$, and vice versa. For technical reasons, it makes sense also to suppose that the actual collection of subsets of a set also form an exponential.
 
-\begin{axiom}
+\begin{principle}\label{ax:powerset}
 	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, the parametric function $\fromto \ni{\powerset(A)\times A}\Two$ defined by 
 	\[\ni(B,x) = \begin{cases}
 		\top, &\text{ if } x\in B\\
@@ -936,157 +958,374 @@ to subsets of $A$, and vice versa. For technical reasons, it makes sense also to
 	\end{cases}
 	\]
 	is an evaluation map. 
-\end{axiom}
+	
+	For a function $\fromto f{C\times A}\Two$, then the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$ determines a function from $C$ to $\powerset(A)$. 
+\end{principle}
 
-The axiom (with the definition of the term \emph{evaluation map}) means that any $\fromto k{C\times A}\Two$ determines a function $\fromto hC{\powerset(A)}$ satisfying $a\in h(c)$ if and only if $k(c,a)=\top$.
-But this same $k$ also determines a subset of $C\times A$ by $\{(c,a)\in C\times A\st k(c,a)=\top\}$. So evidently functions $C\to\powerset(A)$, 
-functions $(C\times A)\to \Two$, functions $C\to \Two^A$ and subsets of $C\times A$ are all essentially the same things.
+This principle means that any function $\fromto k{C\times A}\Two$ determines a function $\fromto hC{\powerset(A)}$ satisfying $a\in h(c)$ if and only if $k(c,a)=\top$.
+But this same $k$ also determines a subset of $C\times A$ by $k^{-1}(\top)$.
+So evidently functions $C\to\powerset(A)$, functions $(C\times A)\to \Two$, functions $C\to \Two^A$ and subsets of $C\times A$ are all interchangeable.
+In Lecture \ref{lec:relations} we will discuss this interchange more thoroughly.
 
-\section{When are Two Sets Essentially the Same}
-
-Most of the constructions so far, follow a pattern. 
-We define some sort of gadget (a terminal object, an equalizer, a product, an exponent) by virtue of how it relates to other similar gadgets (solutions, tables, parametric functions).
-In each case, the definition requires that there is exactly one function that relates the general gadget  to the special one. 
-Then a corresponding principle asserts that a particular example can be constructed: $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$ and $B^A$.  The way we have used $\Two$ as a subset classifier does not quite follow this pattern, but it very close. Namely, we define ``subset classifier'' in terms of the existence of unique functions for some purpose. Then the corresponding principle says that $\top\in \Two$ is such a thing.
-
-There is some ``obvious'' sense in which $B\times A$ and $A\times B$ are essentially the same. 
-After all, the only difference between them is the order in which we choose to write pairs: $(a,b)$ or $(b,a)$. 
-So even though $A\times B$ and $B\times A$ are not generally \emph{equal}, we would like to say they are
-essentially the same.
-Similarly, there is nothing special about $\One$, except that it as a single element. 
-So $\{0\}$, $\{\emptyset\}$ or any other singleton is a terminal set, hence essentially the same as $\One$.
- 
-We would rather have a precise, technical meaning when we say two sets are essentially the same. The key idea
-is that we may think of a function $\fromto fAB$ as a systematic way to ``substitute'' elements of $B$ 
-for elements of $A$. Two sets are essentially the same if their elements can be substituted back and forth
-with no resulting change.
-
-\begin{defn}
-	An \emph{isomorphism} is a function $\fromto fAB$ so that there is some function $\fromto gBA$ 
-	satisfying $\id_A = g\circ f$ and $\id_B = f\circ g$. In that case, the set $A$ is said to be \emph{isomorphic to $B$}. The function $g$ is called an \emph{inverse of $f$}.
-\end{defn}
-
-Some basic facts are handy.
-
-\begin{lemma}
-	The following are true:
+\begin{exercises}
 	\begin{enumerate}
-		\item If $\fromto fAB$ is an isomorphism and $\fromto gBA$ is an inverse of $f$, then $g$ is an isomorphism	and $f$ is an inverse of $g$.
-		\item If $\fromto gBA$ and $\fromto {g'}BA$ are inverses of $\fromto fAB$, then $g=g'$.
-		\item If $\fromto fAB$ and $\fromto gBC$ are isomorphisms, then so is $g\circ f$.
-		\item For any set $A$, the function $\id_A$ is an isomorphism.
-		\begin{proof}
-			The first claim is obvious since the two defining conditions $g\circ f=\id_A$ 
-			and $f\circ g=\id_B$ are interchangible. For the second claim, suppose $g\circ f = \id_A = g'\circ f$
-			and $f\circ g = \id_B = f\circ g'$. Then
-			\begin{align*}
-				g &= g\circ \id_B\\
-				  &= g\circ (f\circ g')\\
-				  &= (g\circ f)\circ g'\\
-				  &= \id_A\circ g'\\
-				  &= g
-			\end{align*}
-			For third claim suppose suppose $\fromto hBA$ is an inverse of $f$ and $\fromto kCB$ is
-			an inverse of $g$, then $(h\circ k)\circ (g\circ f) = \id_A$ and $(g\circ f)\circ(h\circ k)=\id_B$. So $h\circ k$ is inverse of $g\circ f$. The fourth claim is trivial as $\id_A$ is its own inverse.
-		\end{proof}
-\end{lemma}
-
-From this, we can define what it means for sets $A$ and $B$ to be \emph{isomorphic}.
-
-\begin{defn}
-	Sets $A$ and $B$ are \emph{isomorphic}, written $A\simeq B$ if there is an isomorphism $\fromto fAB$.
-\end{defn}
-
-The lemma indicates that $A\simeq A$ is always true, that $A\simeq B$ implies $B\simeq A$, and that $A\simeq B$ and $B\simeq C$ implies $A\simeq C$. 
-We say that $\simeq$ is an \emph{equivalence} on sets.
-It  captures what we mean be saying two sets are essentially the same. 
-Also, when $f$ is an isomorphism, there is exactly one inverse. 
-Although the notation can be confused with other usages (like inverse image), when $f$ has an inverse it is typically denoted by $f{-1}$.
-
-Returning to the definitions of this lecture, all of them are characterized \emph{up to isomorphism}, meaning
-that is a terminal set, an equalizer of $f$ and $g$, a product of $A$ and $B$, an exponent of $A$ over $B$, or a subset classifier if and only if it is isomorphic the $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$, $B^A$ or $\Two$, respectively. We make that more explicit in the following lemma.
-
-\begin{lemma}
-	The following are all true:
-	\begin{enumerate}
-		\item A set $C$ is a terminal set if and only if $C\simeq \One$.
-		\item For functions $A\doublerightarrow{f}{g} B$:
-			\begin{itemize} 
-				\item If $\fromto eEA$ is an equalizer, then $E\simeq \{x\in A\st f(x)=g(x)\}$. 
-				\item If $\fromto hE\{x\in A\st f(x)=g(x)\}$ is an isomorphism, then $\fromto {(i\circ h)}EA$ is an equalizer.
-			\end{itemize}
-		\item For sets $A$ and $B$:
-			 \begin{itemize}
-				 \item If $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product, then $P\simeq A\times B$. 
-				 \item If $\fromto hP{A\times B}$ is an isomorphism, then $A\stackrel{\pi_0\circ h}{longleftarrow} P \stackrel{\pi_1\circ h}{\longrightarrow}B$ is a product.
-				 \end{itemize}
-		\item If $t\in S$ is a subset classifier, then $S\simeq \Two$ and the isomorphism sends $t$ to $\top$.
-		If $\fromto hC\Two$ is an isomorphism, then $h^{-1}(\top)in C$ is a subseet classifier.
-		\item For sets $A$ and $B$:
-		\begin{itemize} 
-			\item If $\fromto a{F\times A}B$ is an evaluation map, then $F\simeq B^A$.
-			\item If $\fromto hF{B^A}$ is an isomorphism, then $\fromto \beta{F\times A}B$ is an evaluation map
-		given by $\beta(x,y) = \alpha(h(x),y)$.
-		\end{itemize}
+		\item Write out $\powerset(\{a,b,c\})$
+		\item Write out $\powerset(\emptyset)$
+		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
+		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
+		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
+		\item I claim that $\{\emptyset\}\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
 	\end{enumerate}
-	\begin{proof}
-		The proofs for all five of these follow a similar pattern. We prove the claim for products
-		and leave the others as exercises. 
-		
-		Suppose $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product of $A$ and $B$.
-		Then $\langle p,q\rangle$ is a function from $P$ to $A\times B$ satisying $p=\pi_0\circ \langle p,q\rangle$ and $q = \pi_1\circ \langle p,q\rangle$. But since $P$ is a product, there is also a function
-		$\fromto h{A\times B}P$ so that $\pi_0 = p\circ h$ and $\pi_1\circ h$. Now we can compute
-		$p\circ h\circ \langle p,q\rangle = \pi_0\circ \langle p,q\rangle = p$
-		and likewise $q\circ h\circ \langle p,q\rangle = q$. But since $p\circ \id_P = p$
-		and $q\circ \id_P = q$, $h\circ \langle p,q\rangle = \id_B$. Form a similar calculation,
-		$\langle p,q\rangle\circ h = \id_{A\times B}$. Hence $h$ is an isomorphism with inverse $\langle p,q\rangle$.
-		
-		On the other hand suppose $\fromto hP{A\times B}$ is an isomorphism. Then let $p = \pi_0\circ h$ and $q = \pi_1\circ h$, so $A\stackrel{p}{\longleftarrow} P \stackrel{q}B$ is a table. Consider any table
-		$A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$. Then $h^{-1}\circ \langle f,g\rangle$ is a function from $C$ to $P$ satisfying
-		$p\circ h^{-1} \circ \rangle f,g\langle$ = \pi_0\circ \langle f,g\rangle = f$
-		and $q\circ h^{-1} \circ \rangle f,g\langle$ = \pi_1\circ \langle f,g\rangle = g$.
-		Moreover, if $p \circ m = f$ and $q\circ m = g$, then 
-		\begin{align*}
-			h^{-1} \langle f,g\rangle &= h^{-1}\circ \langle p\circ m, q\circ m\rangle\\
-			 &= h^{-1}\circ h\circ m\\
-			 &= m
-		\end{align*}
-		So $h^{-1}\circ\langle f,g\rangle$ is the unique function satsifying $p\circ h^{-1}\circ \langle f,g\rangle = f$ and $q\circ h^{-1}\circ \langle f,g\rangle = g$.  
-	\end{proof}
-\end{lemma}
+\end{exercises}
 
 \chapter{The Set of Natural Numbers}
 
 \begin{goals}
-	
+\noindent\textbf{Lecture:}
+\begin{itemize}
+	\item Re-introduce the natural numbers as a set
+	\item Introduce sequences and recursively defined sequences
+	\item Relate recursion to proofs by induction
+\end{itemize}
+
+\noindent\textbf{Study:}
+\begin{itemize}
+	\item Be able to define simple functions by recursion
+	\item Be able to prove explain how induction and recursion are related
+\end{itemize}
 \end{goals}
 
-\section{Introduction}
+We have used $\NN$ informally to denote the set of natural numbers. 
+It is time that we make the structure of the natural numbers explicit, and investigate what role the natural numbers play in our theory of sets and functions
 
-We have used $\NN$ informally to denote the set of natural numbers. It is time that we make the structure 
-of the natural numbers explicit,  and investigate what role the natural numbers play in our theory of sets and functions
+Natural numbers provide a precise picture of counting and of putting things in an order: first, second, third, and so on. Now that we have sets and functions as can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots. When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead, but the point is still that $a$ itself is a function.
 
- As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number, $0$ and (ii) for each natural number $n$
-there is a next one, $n^\nxt$. To put the successor in the language of sets and functions, we can 
-say that successor is a function $\fromto \succ\NN\NN$ given by the rule $n\mapsto n^\nxt$.
-So $\NN$ is not only a set. It comes with functions $\One\stackrel{\hat{0}}{\longrightarrow}\NN\stackrel{\succ}{\longrightarrow}\NN$.
+Much of what we will discuss in this lecture will have feel of computer programming about it. This is because there is a sense in which natural numbers are the main objects of calculation. We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves. In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it by recursion. For example,
+\begin{align*}
+	4!  &= 4 \cdot 3! \\
+		&= 4 \cdot (3 \cdot 2!)\\
+		&= 4 \cdot (3 \cdot (2 \cdot 1!))\\
+		&= 4 \cdot (3 \cdot (2 \cdot (1 \cdot 0!)))\\
+		&= 4 \cdot (3 \cdot (2 \cdot (1 \cdot 1)))
+		&= 24
+\end{align*}
+We will actually think of $\NN$ as being something like ``the simplest set on which we can use recursion''.
 
-Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longrightarrow}A$ is a similar structure.
-Then apparently, we can define a function $\fromto f\NN{A}$ so that $f(0)=b$, $f(1)=r(b)$, $f(2)=r(r(b))$,
-and so on. In general, $f(n)$ is determined by repeatedly applying $r$ to $b$ a total of $n$ times.
-We can make this precise as follows.
+It is quite common to think about a sequence in which $a_{n+1}$ is functionally related to $a_n$. For example, in the sequence $1, 2, 4, 8,\ldots$, each successive entry is double its predecessor. The initial entry is $1$. Indeed,
+if we know just those two facts -- the initial entry is $1$, and each subsequent entry is double its predecessor -- then we know how the entire sequence behaves. Also, we know how to calculate the $n^{\text{th}}$ entry, by recursion just like factorial.
+
+The most basic sequence, of course, is $0$, $1$, $2$, \ldots. 
+Its initial entry is $0$ and each subsequent entry is the successor of its predecessor. 
+That really is about as basic as it gets. 
+So we can think of this sequence as a sort of prototype for all others, including sequences in other sets. 
+It turns out that this will characterize the set of natural numbers. And it will lead to a fairly general scheme for defining recursive functions.
+
+\section{Sequences and Successions}
+
+Let us make the informal word \emph{sequence} official.
 
 \begin{defn}
-	A \emph{succession} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$.
-	
-	A \emph{countably infinite set} is a succession $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ so that for any other succession
-	$\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$, there is exactly one
-	function $\fromto f\NN C$ so that $f(z)=b$ and $f\circ s = r\circ f$.
+	A \emph{sequence in $A$} is a function $\fromto a\NN A$. For a sequence $a$, we may write $a_k$ instead of $a(k)$, but these mean exactly the same thing.
 \end{defn}
 
-\begin{axiom}
-	The collection of natural numbers is a set, denoted by $\NN$. Moreover, $\One\stackrel{\hat{0}}{\longrightarrow}\NN\stackrel{\succ}{\longrightarrow}\NN$.
-makes $\NN$ a countably infinite set.
-\end{axiom}
+As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number $0$ and (ii) for each natural number $n$ there is a next one, $n^\nxt$. 
+To put the successor in the language of sets and functions, we can stipulate that successor is a function $\fromto \suc\NN\NN$ given by the rule $n\mapsto n^\nxt$.
+So $\NN$ is not only a set. 
+It comes with functions $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longrightarrow} \NN$.
 
-In some settings, a countably infinite set is called a \emph{natural numbers object}. In other settings, the phrase ``countably infinite'' is used to refer to a set that is ``the same size as $\NN$.'' In the latter setting, $\NN$ is regarded as being a fixed ``standard of measure'', sort of like marks on a platinum-iridium bar sitting in a temperature controlled vault in Paris used to be \emph{the} standard meter.\footnote{Meter was originally defined to be 1 ten millionth of the distance from the equator to the north pole along a great circle passing through Paris. It is now defined in a way that can be measures very accurately in a laboratory: it is the distance travelled by light in vacuum during a time interval of 1/299 792 458 of a second measured by a cesium-133 atomic clock. Everyone has one of those.}
+Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longrightarrow}A$ is a similar structure.
+Then we ought to be able to define a sequence in$A$, i.e., a function $\fromto a\NN{A}$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
+In general, $a_k$ should be determined by starting with $b$ and repeatedly applying $r$ a total of $k$ times. 
+
+\begin{defn}\label{def:nno}
+	A \emph{simple recurrence} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$.
+	
+	A \emph{countably infinite set} is a simple recurrence $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ so that for any other simple recurrence $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$, there is exactly one function $\fromto fNC$ so that $f\circ \hat{z} =\hat b$ and $f\circ s = r\circ f$.
+	
+	Simple recurrences go by lots of other names in the literature. You will recognize them later when you see them.
+\end{defn}
+
+The principle we are interested in here is that simple recurrences determine sequences. In the next section, we discuss why we have called these ``simple''.
+
+\begin{principle}\label{ax:nat-numbers}
+	The collection of natural numbers is a set, denoted by $\NN$.
+	Moreover, $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longrightarrow} \NN$.
+	makes $\NN$ a countably infinite set.
+	
+	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} C \stackrel{r}{\longrightarrow} C$, the corresponding unique sequence in $C$
+	may be denoted by $\rec[b,r]$. So $\fromto {\rec[b,r]}\NN A$ is defined by
+	\begin{align*}
+	\rec[b,r](0) &= b\\
+	\rec[b,r](n^\nxt) &= r(\rec[b,r](n))
+	\end{align*}
+\end{principle}
+
+Thus every simple recurrence in $C$ determines a sequence in $C$. 
+On the other hand, it is not the case that every sequence is determined by a simple recurrence. 
+Take for example, the sequence $0,1,0,2,0,3,\ldots$. 
+This can not be defined by giving an initial entry ($0$) and specifying successive entries based only on the predecessors. 
+After all, the entries $1$, $2$, $3$ and so on all have the same preceding entry.
+
+\section{Primitive Recursion}
+
+Evidently, addition, multiplication, factorial, and other familiar functions should be definable using Principle \ref{ax:nat-numbers}. 
+But there are problems to overcome: Addition is not a sequence, at least not in an obvious way. And factorial is not obviously definable by a simple recurrence
+because we would need a function $\fromto r\NN\NN$ so that $n^\nxt! = r(n!)$
+for all $n$. What that function might be is not at all clear. If, in place of $r$, we could use a function that depends on $n$ as well as on $n!$, we could define factorial recursively the usual way.
+ 
+Although addition is not a sequence, it is is a parametric function $\fromto + {\NN\times \NN}\NN$ (where the first $\NN$ is treated as the parameter set).
+If we could some how extend simple recursion to parametric functions, then addition would also be definable (by adapting the definition we gave in earlier lectures).
+
+Putting things together, we consider a scheme that generalizes simple recursion to permit (i) dependence on $n$ at each stage of the recursion and (ii) dependence on a parameter.
+
+\begin{defn}
+	A \emph{primitive recurrence in $A$ (with parameters in $C$)} consists of two  functions $C\stackrel{b}{\longrightarrow} A\stackrel{r}{\longleftarrow}\NN\times C\times A$.
+	
+	A \emph{parametric sequence in $A$ with parameters in $C$} is a function
+	$\fromto a{C\times \NN}A$. For a parametric sequence, we might write $a_c(n)$
+	instead of $a(c,n)$. 
+\end{defn}
+
+\begin{lemma}
+	Any primitive recurrence $C \stackrel{b}{\longrightarrow} A \stackrel{r}{\longleftarrow} C\times \NN \times A$, there is a unique
+	function $\fromto f{C\times \NN}A$ satisfying: 
+	\begin{align*}
+		f(c,0) &= b(c)\\
+		f(c,k^\nxt) &= r(c,k,f(c,k))
+	\end{align*}
+
+	\begin{proof}	\end{proof}
+\end{lemma}
+
+\newcommand{\pred}{\mathord{\textsf{pred}}}
+
+The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^\nxt) = n$.
+
+\begin{exercises}
+\begin{enumerate}
+	\item For a given function $f$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
+	\item Find a primitive recurrence that defines the function from $\NN\times \NN$ to $\NN$ given by the rule $(m,n)\mapsto m^n$.
+	\item Define the operation of \emph{monus} $m\stackrel{.}{-} n$ to be $m-n$ when $m \geq n$ and to be $0$ otherwise by  a primitive recurrence.
+\end{enumerate}
+\end{exercises}
+
+\chapter{Monomophisms, Epimorphisms and Isomorphisms}
+
+\begin{goals}
+	\noindent\textbf{Lecture}
+	\begin{itemize}
+		\item Introduce special kinds of functions: monomorphism, epimorphism, injection, surjection.
+		\item Investigate the relations between these.
+	\end{itemize}
+	
+	\noindent\textbf{Study}
+	\begin{itemize}
+		\item Learn to recognize injections and surjections by internal behavior
+		\item Be able to illustrate simple, small examples of injections, non-injections, surjections, non-surjections.
+	\end{itemize}
+\end{goals}
+
+Recall that we required that if a natural number has a predecessor, it has exactly one. 
+We wrote that as an axiom: $m^\nxt = n^\nxt$ implies $m=n$.
+Putting this in terms of functions: $\suc(m) = \suc(n)$ implies $m=n$.
+
+Also, recall that we proved, using this axiom, that addition is \emph{cancellative}: $m+p = n+p$
+implies $m=n$, and that multiplication by a positive natural number is cancellative:
+$m\cdot p^\nxt = n\cdot p^\nxt = m=n$.
+
+The general pattern of these examples is that if two expression that differ only by $m$ and $n$ are equal, then $m=n$. This leads to some definitions.
+
+\begin{defn}
+	For a function $\fromto gBC$, say that
+	\begin{itemize}
+		\item $g$ is an \emph{injection} if it is the case that $g(x)=g(y)$ implies $x=y$ for every $x,y\in A$;
+		\item $g$ is a \emph{monomorphism} if for every $\fromto {f_0,f_1}AB$, $g\circ f_0=g\circ f_1$ implies $f_0=f_1$; and
+		\item $g$ is an \emph{epimorphism} if for every $\fromto {h_0,h_1}CD$,
+		it is the case that $h_0\circ g = h_1\circ g$ implies $h_0=h_1$.
+	\end{itemize}  
+\end{defn}
+
+So an injection is a function with the property that application is cancellative.
+A monomorphism is a function with the property that composition on the left is cancellative. 
+An epimorphism is a function with property that composition on the right is cancellative.
+
+An injection is also said to be \emph{injective} or \emph{one-to-one}.
+A monomorphism is also said to be \emph{left-cancellable}. 
+An epimorphism is also said to be \emph{right-cancellable}.
+
+\printbreak
+\begin{example}
+	\begin{enumerate}
+		\item Consider the function $\fromto f\NN\NN$ defined as $f(n) = 2\cdot n  + 2$.
+		Suppose $f(m)=f(n)$, then $2\cdot m + 2=2\cdot n+ 2$. 
+		But addition is cancellative, so $2\cdot m=2\cdot n$. 
+		And multiplication by a positive natural number is cancellative, $m=n$.
+		Thus $f$ is an injection.
+		\item Consider $\fromto g\RR\RR$ defined as $f(x) = x^2$. 
+		This is not injective because $f(1)=f(-1)$, but $1\neq -1$. 
+	\end{enumerate}
+\end{example}
+
+Suppose $\fromto gBC$ is a monomorphism. Then it clearly is also an injection. 
+That is, suppose $g$ is a monomorphism and that $g(b_0)=g(b_1)$. We already know
+that $\widehat{g(b_0)} = g\circ \widehat{b_0}$. So $g\circ \widehat{b_0} = g\circ \widehat{b_1}$. Because $g$ cancels on the left, $\widehat{b_0} = \widehat{b_1}$.
+But this implies that $b_0=b_1$. The converse of this is also true.
+
+\begin{lemma}
+	A function $\fromto gBC$ is a monomorphism if and only if it is an injection.
+	\begin{proof}
+		The previous paragraph proves that every monomorphism is an injection. To prove the converse, assume that $g$ is an injection. That is, $g(b_0)=g(b_1)$ implies $b_0=b_1$.
+		For two functions $\fromto {f_0,f_1}AB$, suppose $g\circ f_0=g\circ f_1$. For any $x\inA$, then $g(f_0(x)) = g(f_1(x))$. So $f_0(x)=f_1(x)$. Hence by the Principle of Function Extensionality, $f_0=f_1$.
+	\end{proof}
+\end{lemma}
+
+
+%\section{What Can Primitive Recursion Do?}
+%
+%Strictly, we are over-using the term \emph{primitive recurrence}. \emph{Primitive recursive} functions are meant to capture a class of ``obviously'' computable number theoretic functions. One mechanism of computation is primitive recursion. Specifically, we declare the functions $\fromto {\hat 0}\One\NN$, $\fromto\suc\NN\NN$, $\fromto {\Diamond_{\NN^k}}{\NN^k}\One$ and 
+%projections $\fromto {\pi^k_i\NN^k}\NN$ for $i<k$ to be \emph{primitive recursive}. If $\fromto f{\NN^k}{\NN^m}$ and $\fromto g{\NN^k}{\NN^n}$ are primitive recusive, then $\rangle f,g\langle$ is primitive recursive. If $\fromto f{\NN^m}{\NN^n}$ and $\fromto g{\NN^n}{\NN^p}$ are primitive recursive, then $g\circ f$ is primitive recursive. And if $\fromto b{\NN^m}\NN$
+%and $\fromto r{\NN^{m+2}}\NN$ are primitive recursive, then $\fromto {PR[b,r]}{\NN^{k+1}}\NN$
+%is primitive recursive, where $PR[b,r]$ is defined by the equations 
+%\begin{align*} 
+%PR[b,r](x_0,\ldots, x_{k-1},0) &= b(x_0,\ldots,x_{k-1})\\
+%PR[b,r](x_0,\ldots, x_{k-1},n^\nxt) &= r(x_0,\ldots,x_{k-1}, x_k, PR[b,r](x_0,\ldots. x_{k-1},n))
+%\end{align*}
+%No other functions are primitive recursive. The idea is that the basic functions: $\hat 0$ and so on, are obviously computable. Also functions built from obviously computable functions by composition, $\langle\ \rangle$ and primitive recurrences are also obviously computable.
+
+
+%\section{When are Two Sets Essentially the Same}
+%
+%Most of the constructions so far, follow a pattern. 
+%We define some sort of gadget (a terminal object, an equalizer, a product, an exponent) by virtue of how it relates to other similar gadgets (solutions, tables, parametric functions).
+%In each case, the definition requires that there is exactly one function that relates the general gadget  to the special one. 
+%Then a corresponding principle asserts that a particular example can be constructed: $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$ and $B^A$.  The way we have used $\Two$ as a subset classifier does not quite follow this pattern, but it very close. Namely, we define ``subset classifier'' in terms of the existence of unique functions for some purpose. Then the corresponding principle says that $\top\in \Two$ is such a thing.
+%
+%There is some ``obvious'' sense in which $B\times A$ and $A\times B$ are essentially the same. 
+%After all, the only difference between them is the order in which we choose to write pairs: $(a,b)$ or $(b,a)$. 
+%So even though $A\times B$ and $B\times A$ are not generally \emph{equal}, we would like to say they are
+%essentially the same.
+%Similarly, there is nothing special about $\One$, except that it as a single element. 
+%So $\{0\}$, $\{\emptyset\}$ or any other singleton is a terminal set, hence essentially the same as $\One$.
+%
+%We would rather have a precise, technical meaning when we say two sets are essentially the same. The key idea
+%is that we may think of a function $\fromto fAB$ as a systematic way to ``substitute'' elements of $B$ 
+%for elements of $A$. Two sets are essentially the same if their elements can be substituted back and forth
+%with no resulting change.
+%
+%\begin{defn}
+%	An \emph{isomorphism} is a function $\fromto fAB$ so that there is some function $\fromto gBA$ 
+%	satisfying $\id_A = g\circ f$ and $\id_B = f\circ g$. In that case, the set $A$ is said to be \emph{isomorphic to $B$}. The function $g$ is called an \emph{inverse of $f$}.
+%\end{defn}
+%
+%Some basic facts are handy.
+%
+%\begin{lemma}
+%	The following are true:
+%	\begin{enumerate}
+%		\item If $\fromto fAB$ is an isomorphism and $\fromto gBA$ is an inverse of $f$, then $g$ is an isomorphism	and $f$ is an inverse of $g$.
+%		\item If $\fromto gBA$ and $\fromto {g'}BA$ are inverses of $\fromto fAB$, then $g=g'$.
+%		\item If $\fromto fAB$ and $\fromto gBC$ are isomorphisms, then so is $g\circ f$.
+%		\item For any set $A$, the function $\id_A$ is an isomorphism.
+%	\end{enumerate}
+%	\begin{proof}
+%		The first claim is obvious since the two defining conditions $g\circ f=\id_A$ 
+%		and $f\circ g=\id_B$ are interchangible. For the second claim, suppose $g\circ f = \id_A = g'\circ f$
+%		and $f\circ g = \id_B = f\circ g'$. Then
+%		\begin{align*}
+%		g &= g\circ \id_B\\
+%		&= g\circ (f\circ g')\\
+%		&= (g\circ f)\circ g'\\
+%		&= \id_A\circ g'\\
+%		&= g
+%		\end{align*}
+%		For third claim suppose suppose $\fromto hBA$ is an inverse of $f$ and $\fromto kCB$ is
+%		an inverse of $g$, then $(h\circ k)\circ (g\circ f) = \id_A$ and $(g\circ f)\circ(h\circ k)=\id_B$. So $h\circ k$ is inverse of $g\circ f$. The fourth claim is trivial as $\id_A$ is its own inverse.
+%	\end{proof}
+%\end{lemma}
+%
+%From this, we can define what it means for sets $A$ and $B$ to be \emph{isomorphic}.
+%
+%\begin{defn}
+%	Sets $A$ and $B$ are \emph{isomorphic}, written $A\simeq B$ if there is an isomorphism $\fromto fAB$.
+%\end{defn}
+%
+%The lemma indicates that $A\simeq A$ is always true, that $A\simeq B$ implies $B\simeq A$, and that $A\simeq B$ and $B\simeq C$ implies $A\simeq C$. 
+%We say that $\simeq$ is an \emph{equivalence} on sets.
+%It  captures what we mean be saying two sets are essentially the same. 
+%Also, when $f$ is an isomorphism, there is exactly one inverse. 
+%Although the notation can be confused with other usages (like inverse image), when $f$ has an inverse it is typically denoted by $f{-1}$.
+%
+%Returning to the definitions of this lecture, all of them are characterized \emph{up to isomorphism}, meaning
+%that is a terminal set, an equalizer of $f$ and $g$, a product of $A$ and $B$, an exponent of $A$ over $B$, or a subset classifier if and only if it is isomorphic the $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$, $B^A$ or $\Two$, respectively. We make that more explicit in the following lemma.
+%
+%\begin{lemma}
+%	The following are all true:
+%	\begin{enumerate}
+%		\item A set $C$ is a terminal set if and only if $C\simeq \One$.
+%		\item For functions $A\doublerightarrow{f}{g} B$:
+%		\begin{itemize} 
+%			\item If $\fromto eEA$ is an equalizer, then $E\simeq \{x\in A\st f(x)=g(x)\}$. 
+%			\item If $\fromto hE\{x\in A\st f(x)=g(x)\}$ is an isomorphism, then $\fromto {(i\circ h)}EA$ is an equalizer.
+%		\end{itemize}
+%		\item For sets $A$ and $B$:
+%		\begin{itemize}
+%			\item If $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product, then $P\simeq A\times B$. 
+%			\item If $\fromto hP{A\times B}$ is an isomorphism, then $A\stackrel{\pi_0\circ h}{longleftarrow} P \stackrel{\pi_1\circ h}{\longrightarrow}B$ is a product.
+%		\end{itemize}
+%		\item If $t\in S$ is a subset classifier, then $S\simeq \Two$ and the isomorphism sends $t$ to $\top$.
+%		If $\fromto hC\Two$ is an isomorphism, then $h^{-1}(\top)in C$ is a subseet classifier.
+%		\item For sets $A$ and $B$:
+%		\begin{itemize} 
+%			\item If $\fromto a{F\times A}B$ is an evaluation map, then $F\simeq B^A$.
+%			\item If $\fromto hF{B^A}$ is an isomorphism, then $\fromto \beta{F\times A}B$ is an evaluation map
+%			given by $\beta(x,y) = \alpha(h(x),y)$.
+%		\end{itemize}
+%	\end{enumerate}
+%	\begin{proof}
+%		The proofs for all five of these follow a similar pattern. We prove the claim for products
+%		and leave the others as exercises. 
+%		
+%		Suppose $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product of $A$ and $B$.
+%		Then $\langle p,q\rangle$ is a function from $P$ to $A\times B$ satisying $p=\pi_0\circ \langle p,q\rangle$ and $q = \pi_1\circ \langle p,q\rangle$. But since $P$ is a product, there is also a function
+%		$\fromto h{A\times B}P$ so that $\pi_0 = p\circ h$ and $\pi_1\circ h$. Now we can compute
+%		$p\circ h\circ \langle p,q\rangle = \pi_0\circ \langle p,q\rangle = p$
+%		and likewise $q\circ h\circ \langle p,q\rangle = q$. But since $p\circ \id_P = p$
+%		and $q\circ \id_P = q$, $h\circ \langle p,q\rangle = \id_B$. Form a similar calculation,
+%		$\langle p,q\rangle\circ h = \id_{A\times B}$. Hence $h$ is an isomorphism with inverse $\langle p,q\rangle$.
+%		
+%		On the other hand suppose $\fromto hP{A\times B}$ is an isomorphism. Then let $p = \pi_0\circ h$ and $q = \pi_1\circ h$, so $A\stackrel{p}{\longleftarrow} P \stackrel{q}B$ is a table. Consider any table
+%		$A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$. Then $h^{-1}\circ \langle f,g\rangle$ is a function from $C$ to $P$ satisfying
+%		$p\circ h^{-1} \circ \rangle f,g\langle = \pi_0\circ \langle f,g\rangle = f$
+%		and $q\circ h^{-1} \circ \rangle f,g\langle = \pi_1\circ \langle f,g\rangle = g$.
+%		Moreover, if $p \circ m = f$ and $q\circ m = g$, then 
+%		\begin{align*}
+%		h^{-1} \langle f,g\rangle &= h^{-1}\circ \langle p\circ m, q\circ m\rangle\\
+%		&= h^{-1}\circ h\circ m\\
+%		&= m
+%		\end{align*}
+%		So $h^{-1}\circ\langle f,g\rangle$ is the unique function satisfying $p\circ h^{-1}\circ \langle f,g\rangle = f$ and $q\circ h^{-1}\circ \langle f,g\rangle = g$.  
+%	\end{proof}
+%\end{lemma}
+%
+%In some settings, a countably infinite set is called a \emph{natural numbers object}. In other settings, the phrase ``countably infinite'' is used to refer to a set that is ``the same size as $\NN$.'' In the latter setting, $\NN$ is regarded as being a fixed ``standard of measure'', sort of like marks on a platinum-iridium bar sitting in a temperature controlled vault in Paris used to be \emph{the} standard meter.\footnote{Meter was originally defined to be 1 ten millionth of the distance from the equator to the north pole along a great circle passing through Paris. It is now defined in a way that can be measures very accurately in a laboratory: it is the distance travelled by light in vacuum during a time interval of 1/299 792 458 of a second measured by a cesium-133 atomic clock. Everyone has one of those.}
+%
+%
+%For any set $A$, the simple rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. But we have a lot of ways now of constructing functions, so it would be better (more \emph{elegant}) to construct this function using the principles we already have, rather than just stipulate another principle.
+%
+%Define $\Delta_A = \{(x,y)\in A\times A\st x=y\}$. 
+%If one thinks of $A\times A$ as laid out in a square grid, then $\Delta_A$ lies along the diagonal, hence it is usually called the \emph{diagonal set for $A$}.
+%Let $\fromto {\kappa_{\Delta_A}}{A\times A}\Two$ be the corresponding characteristic function. That is,
+%\[
+%\kappa_{\Delta_A}(x,y) = \begin{cases}
+%\top & \text{if $x=y$}\\
+%\bot & text{otherwise}
+%\end{cases}
+%\]
+%Then Principle \ref{ax:powerset} applied to $\kappa_{\Delta_A}$ means that there is a unique function $\fromto sA{\powerset(A)}$ satisfying the odd looking equation $\ni(s(x),y) = \top$ if and only if $x=y$. But the formula $\ni(s(x),y)$ is $\top$ if and only if $y\in s(x)$. So $y\in s(x)$ if and only if $y=x$. 
+%In other words, $s$ is given by the rule $x\mapsto \{x\}$. We call this the \emph{singleton insertion map}. Usually, we don't usually give this an explicit name (like $s$), instead we may write it as $\{-\}$ if we need to,'
+%
+%
+%
+%On $\Two$, the characteristic function of $\{\bot}$ is the function sending $\bot$ to $\top$
+%and $\top$ to $\bot$. So it swaps ``true'' with ``false''. 
+%
