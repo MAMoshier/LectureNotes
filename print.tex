@@ -122,310 +122,310 @@
 
 %\end{document}
 
-\chapter{Integers, Rationals and Reals}
-
-\section{The Integers}
-
-Integers solve an accounting problem that natural numbers can not: how
-to deal with assets \emph{and liabilities}.  They allow us to account
-for Bob having $10$ dollars in his pocket and at the same time owing
- $15$. At that moment, Bob has, in effect, $-5$ dollars. But $-5$ is
-meaningless if all we have are natural numbers. 
-
-Imagine that we have a good understanding of counting, but have never
-thought about negative numbers. How could we invent the idea of an
-integer.  First, let us describe Bob's situation in more detail by
-writing $10\dotminus 15$. That is, Bob has $10$ in assets and owes
-$15$ in liabilities. We can not use the standard minus sign because we
-are not describing an \emph{operation} (subtraction) that produces
-$-5$. Instead we are describing a \emph{situation} (a balance) involving two
-natural numbers: an asset and a liability.  Now suppose another guy,
-Weaver, has $24$ dollars in his pocket, but he owes $29$.  So we
-describe Weaver's situation as $24\dotminus 29$. Evidently, Bob and
-Weaver are in the same situation as far as their \emph{balance} is
-concerned as they both owe $5$ more than they have. We invent integers 
-to deal with exactly this abstract accounting of ``balance''. 
-
-\begin{axiom}
-  \emph{Integers} are objects satisfying the following three conditions:
-  \begin{itemize}
-  \item For any two natural numbers, $m$ and $n$, there is an integer
-    that we may call the \emph{difference of $m$ and $n$}. For the
-    purposes of this discussion, we write this as $m\dotminus n$.
-  \item There are no other integers. That is, every integer equals
-    $m\dotminus n$ for some natural numbers $m$ and $n$.
-  \item Equality of integers is determined by the condition:
-    $m\dotminus n = p\dotminus q$ if and only if $m+q = p+n$.
-  \item Every natural number is an integer. In particular, $m = m\dotminus 0$.
-  \end{itemize}
-\end{axiom}
-
-
-In this axiom, we include a criterion for when two abstract objects are equal.
-This raises a question. Namely, is it even possible to have objects for which
-equality matches the criterion. At the very least, the criterion for equality
-($m\dotminus n = p \dotminus q$ if and only if $m+q = p+n$) should meet three
-minimal ``sanity conditions'':
-\begin{itemize}
-\item $i=i$ should be true for every integer.
-\item $i=j$ should imply that $j=i$.
-\item $i=j$ and $j=k$ should imply $i=k$
-\end{itemize}
-
-Suppose $i = m\dotminus n$ for some natural numbers $m$ and $n$. So 
-$i = i$ means the same thing as $m + n = m+n$. This is obviously
-true. Suppose $j = p\dotminus q$ for some natural numbers $p$ and $q$.
-So $i = j$ means $m+q = p+n$ and $j=i$ means $p+n = m+q$.  Clearly, if
-$i=j$ then $j=i$. Finally, suppose $k=r\dotminus s$ for some natural
-numbers $r$ and $s$. Hence, $i=j$ and $j=k$ means $m+q = p + n$ and
-$p+s = r+q$.  Addition yields $(m+q)+(p+s) = (p+n)+(r+q)$. Rearranging
-this by commutativity and associativity, $(m+s)+(p+q) = (r+n)+(p+q)$.
-Since addition of natural numbers is cancellative, $m+s = r+n$, which
-shows that $i=k$.
-
-So far, it looks like we must write something like $m\dotminus n$
-whenever we want to talk about an integer.  Surely, that is more cumbersome 
-than necessary, since most folks are perfectly happy writing the
-integer $-5$ instead of, say, $10\dotminus 15$. The notation $m\dotminus n$
-is intended just for our temporary use while we sort out just what 
-an integer is. For the rest of the course, we would prefer to use
-standard notation, which still needs some justification.
-In our balance notation, the integer positive $5$ can be written as $5\dotminus 0$,
-while negative $5$ can be written as $0\dotminus 5$. We can show that
-this is a completely general fact. 
-
-\begin{lemma}
-  For each integer $i$, there is a unique natural number $a$
-  for which $i = a\dotminus 0$ or $i = 0\dotminus a$.
-\end{lemma}
-\begin{proof}
-  Every integer $i$ equals $m\dotminus n$ for some $m$ and $n$, according
-  to our axioms.  By induction on $m$, we will show that for every
-  $n$, it is true that $m\dotminus n = 0\dotminus a$ or $m\dotminus n
-  = a\dotminus 0$ for some suitably chosen natural number $a$.
-  \begin{description}
-  \item[Basis] For $m=0$, the result is trivial as we can take $a=n$.
-  \item[Inductive hypothesis] Suppose that for some fixed $k$ the
-    following is true: for all $n$, there is a natural number $a$
-    such that $k\dotminus n = 0\dotminus
-    a$ or $k\dotminus n = a\dotminus 0$.
-  \item[Inductive Step] Our task is to prove that for all $n$, $k^\nxt
-    \dotminus n = 0 \dotminus a$ or $k^\nxt \dotminus n = a \dotminus
-    0$ for some $a$. There are two cases to consider: either $n = 0$
-    or $n = p^\nxt$ for some natural number $p$.  In the first case,
-    the result is trivial as we can take $a = k^\nxt$.  In the second
-    case, $k^\nxt \dotminus p^\nxt = k\dotminus p$ (because $k^\nxt +
-    p = k + p^\nxt$).  So by the inductive hypothesis, 
-    $k^\nxt\dotminus p^\nxt = 0\dotminus a$ or $k^\nxt\dotminus p^\nxt =
-    a\dotminus 0$ for some $a$.
-  \end{description}
-
-  Finally, we need to show that the choice of $a$ is not
-  arbitrary. Suppose $i$ is an integer, and that $i = 0\dotminus a_0$
-  and $i = 0\dotminus a_1$. This means that $0+a_0 = n$ and $0 + a_1 =
-  n$.  So $a_0 = a_1$. Suppose $i =
-  a_0 \dotminus 0$ and $i=a_1\dotminus 0$. Then similar argument shows
-  that $a_0=a_1$. Finally, suppose $i = a_0\dotminus 0$ and $i =
-  0\setminus a_1$.  This means that $a_0 + a_1 = 0 + 0$. So 
-  $a_0 = a_1 = 0$ (remember that $a_0$ and $a_1$ are natural numbers).
-\end{proof}
-
-This result justifies our abandonment of the tedious balance notation
-$m\dotminus n$ in favor of just two forms: $a \dotminus 0$ and $0\dotminus a$.
-Even better, we can write ${}^+a$ as an abbreviation for $a\dotminus 0$ and ${}^-a$ as
-an abbreviation for $0\setminus a$.
-A positive integer gets the plus sign in front. Of course,
-that is not really since we have also assumed that $m = m\dotminus 0$. 
-So we will only write ${}^+a$ to emphasize that we are considering $a$
-as an integer, not only as a natural number.
-
-The unique natural number $a$ determined by an integer $i$ is 
-called the \emph{absolute value} of $i$, and is written as $|i|$.  For
-any $m\neq 0$, ${}^+m \neq {}^-m$. So for any integer other than $0$,
-the \emph{sign} ($+$ or $-$) is also determined. In other words, each
-integer is exactly one of three types: zero, positive or negative.
-
-Define the \emph{signum} of an integer $i$ to be the integer
-${}^\pm0$, ${}^+1$ or ${}^-1$ according to whether $i$ is zero,
-positive or negative. The signum is written as $\sgn(i)$.
-
-Addition on integers can be defined in the obvious way. The important
-features of the definition are:
-\begin{itemize}
-\item Addition on integers agrees with addition on natural numbers: ${}^+
-  m + {}^+n = {}^+(m+n)$.
-\item Addition on integers is associative: $i+(j+k) = (i+j)+k$.
-\item Addition on integers is commutative: $i+j = j+i$.
-\item The identity for addition is $0$: $i+0 = i$.
-\item Positive and negative integers cancel: ${}^+m + {}^-m = 0$.
-\end{itemize}
-
-Recalling the idea of balances, addition has an obvious meaning.
-Namely, we should add assets and add liabilities. So $(m\dotminus n) + (p\dotminus q)$
-should equal $(m+p)\dotminus(n+q)$.
-
-Exercises to show $+$ works.
-
-To define multiplication, we begin by insisting on two requirements:
-\begin{itemize}
-\item Multiplication on integers agrees with multiplication on natural numbers: ${}^+m\cdot {}^+n = {}^+(mn)$.
-\item Multiplication is commutative. 
-\item Multiplication of integers distributes over addition.
-\end{itemize}
-
-It turns out that there is exactly one operation on integers that satisfies these two requirements.
-The following exercises establish this. 
-
-Using the facts we have, we first prove the familiar facts about multiplication: negative times positive is negative,
-and so on.
-First, fill in the steps to show that $0 = {}^+m\cdot{}^-n + {}^+(mn)$. 
-\begin{align*}
-  {}^+m\cdot {}^-n &= {}^+m\cdot {}^-n + 0\\
-    &= {}^+m\cdot {}^-n + {}^+m\cdot 0\\
-    &= {}^+m\cdot {}^-n + {}^+m\cdot ({}^+n + {}^-n)\\
-    &= \\
-    &= \\
-    &= \\
-    &= {}^-(mn)
-\end{align*}
-From this, show that ${}^+m{}^-n = {}^-(mn)$. 
-This shows why a positive times a negative is negative.
-Because we expect commutativity, a negative times a positive is negative.
-Now, we can also prove that a negative times a negative is positive.
-\begin{align*}
-  0 &= \\
-    &= \\
-    &= {}^-m\cdot {}^-n + {}^-m\cdot {}^+n\\
-    &= {}^-m\cdot {}^-n + {}^-(mn)
-\end{align*}
-
-\section{The Rationals}
-
-Rational numbers are analogous to integers except that multiplication is used in place of addition.
-That is, for any two integers $i$ and $j$ with $j\neq 0$, there is a rational number $\frac{i}{j}$.
-There are no other rational numbers. And $\frac{i}{j} = \frac{k}{\ell}$ holds if and only if 
-$i\cdot\ell = k\cdot j$. For an integer $i$, $\frac{i}{{}^+1}$ is the corresponding rational number.
-We extend multiplication of integers to rationals by requiring that $\frac{i}{1} \cdot \frac{j}{1} = \frac{ij}{1}$.
-We also require reciprocals to behave: $\frac{i}{j}\cdot \frac{j}{i} = \frac{1}{1}$.
-
-From this, we can define multiplication as \[\frac{i}{j} \cdot \frac{k}{\ell} = \frac{ik}{j\ell}\]
-As we all know, $\frac{i}{j} + \frac{k}{\ell} \neq \frac{i+k}{j + \ell}$, but why not? 
-After all, that is a very simple, easy to remember rule. Why does that operation not 
-match up with what we mean by ``addition''? 
-
-\begin{exercise}
-In a paragraph or so (you may include displayed equations and equality chains), 
-explain why the rule $\frac{i}{j} + \frac{k}{\ell} = \frac{i\ell + kj}{j\ell}$ makes more
-sense than the rule $\frac{i}{j} + \frac{k}{\ell} = \frac{i + k}{j + \ell}$. 
-\end{exercise}
-
-We do not go into detail confirming that arithmetic operations work as intended for rational numbers because, for the most part,
-the confirmations are similar to what we needed for integers.
-
-From now on, we will use the familiar laws of arithmetic without further comment. The point is that rational numbers
-are built from natural numbers in a way that ensures they behave well for the four basic arithmetic operations. 
-
-
-\section{Floor and Ceiling}
-
-There is a trivial operation that takes 
- an integer $i$ and simply treats it as a real. To make this 
-clearer, for this discussion let us give this a name: for now, we write $r(i)$ when we want to think of 
-an integer $i$ as a real number. Of course, $i$ and $r(i)$ are the same number.
-It is only a matter of emphasizing it as an element of $\ZZ$
-or of $\RR$.
-
-Evidently, $\fromto r\ZZ\RR$ is a one-to-one, but not onto function. As we know, there are onto, but not one-to-one functions
-from $\fromto f\RR\ZZ$ that act as left inverses of $r$: $f(r(n)) = n$ for all integers $n$. But because both $\RR$ and $\ZZ$
-have a natural order $\leq$, we can actually pick out a natural left inverse. Namely, for any real number $x$,
-let the \emph{floor} of $x$ be the largest integer that is less than or equal to $x$. We typically write the floor of $x$
-as $\lfloor x\rfloor$. So for any integer $n$ and any real number $x$, $r(n) \leq x$ is a sensible comparison to make because
-$r(n)$ and $x$ are both real numbers. Also $n\leq \lfloor x\rfloor$ is a sensible comparison to make because
-$n$ and $\lfloor x\rfloor$ are both integers. Our definition of $\lfloor\ \rfloor$ means that
-\[ r(n)\leq x \qquad \mbox{if and only if}\qquad n\leq \lfloor x\rfloor.\]
-For example, $\lfloor 5.2\rfloor = 5$ as $5$ is the largest integer that is less than or equal to $5.2$. 
-It is tempting to think about $\lfloor x\rfloor$ simply removes the ``decimal'' part of $x$, but this is wrong for 
-negative numbers: $\lfloor -5.2\rfloor = -6$ because $-6$ is less than or equal to $-5.2$, but $-5$ is not.
-
-[Put a graphic here.]
-
-To avoid clutter, let us agree to use the variables $m$, $n$ and $p$ to denote integers and $x$, $y$ and $z$ to denote reals.
-Also, we can suppress the inclusion function $r$. So rather than writing $x+r(m)$ we just write $x+m$. 
-
-First, it should be clear that $\lfloor x + m\rfloor = \lfloor x\rfloor + m$. We can prove this quite easily:
-$\lfloor x\rfloor + m \leq n$ if and only if $x+m \leq n$ if and only if $\lfloor x+m\rfloor \leq n$. 
-Also $\lfloor x\rfloor \leq x < \lfloor x\rfloor + 1$. Because $\lfloor x\rfloor \leq \lfloor x\rfloor$,
-$\lfloor x\rfloor \leq x$. And because $x+1\nleq x$, $\lfloor x\rfloor + 1 = \lfloor x+1\rfloor \nleq x$.
-Since real numbers are totally ordered, $x< \lfloor x\rfloor + 1$.
-
-Writing $\lceil x\rceil$ for $-\lfloor -x\rfloor$. We note that $-x\leq y$ if and only if $-y \leq x$. So
-$m\leq \lceil x\rceil$ if and only if $\lfloor -x \rfloor \leq -m$ if and only if $-x\leq -m$ if and only if
-$m\leq x$.
-
-Here are some basic facts that are useful for floor and ceiling:
-
-\begin{itemize}
-\item $\lfloor\lfloor x\rfloor\rfloor = \lfloor x\rfloor = \lceil\lfloor x \rfloor\rceil$
-\item If $x$ and $y$ are positive, then 
-\[\lfloor x\rfloor\cdot \lfloor y\rfloor 
-    \leq \lfloor x\cdot y\rfloor
-    <    \lfloor x\rfloor \cdot \lfloor y\rfloor + \lfloor x\rfloor + \lfloor y\rfloor + 1\]
-\end{itemize}
-
-First, $\lfloor x\rfloor \cdot \lfloor y\rfloor \leq x\cdot y$. So $\lfloor x\rfloor \cdot \lfloor y\rfloor \leq \lfloor x\cdot y\rfloor$.
-Also, $\lfloor x\cdot y\rfloor \leq x\cdot y< (\lfloor x\rfloor + 1)(\lfloor y\rfloor + 1)$.
-
-$\lfloor x^2\rfloor \leq x^2 < \lfloor x\rfloor^2 + \lfloor x\rfloor$ because $x^2 = \lfloor x\rfloor^2 + 2x\{x\} + \{x\}^2$. 
- 
-
-\subsection{Rounding in General}
-
-Most of us were taught to \emph{round} a real number by taking the ``nearest'' integer. So $1.2$ rounds to $1$ and $1.6$ rounds to $2$.
-In cases like $1.5$, we round up to $2$, but the reason may seem a little arbitrary. Actually, the thinking is that when we write $1.5$
-we probably really mean that we are simply writing the first $2$ digits of a longer decimal expansion. So $1.5$ might really be $1.500001$.
-In that case, it should definitely round up. Anyway, this is the agreed-upon convention.
-
-To round a real number to the nearest integer, we simply take $\lfloor x+1/2\rfloor$. Rewriting, this is $\lfloor (2x+1)/2\rfloor$.
-The result is that a number with fractional part less than $1/2$ rounds down and a number with fractional part greater than or equal to $1/2$ rounds up.
-
-Suppose we wish to truncate a real number to a multiple of $10$ instead of to an integer. So $123.45$ would truncate to $120$.
-The procedure is simple:  first, divide by $10$, then round, then multiply by $10$. So the formula $10\lfloor x/10\rfloor$ does the job.
-In fact, for any positive real $c$, $c\lfloor x/c\rfloor$ truncates $x$ to a multiple of $c$.  
-
-\begin{exercise}
-  Calculate $c\lfloor x/c\rfloor$ where $c = 1/4$ for the following values of $x$: $3.1$, $5.25$, $-1.1$, $109230$. Show every step.
-\end{exercise}
-
-Suppose, for some reason, we wanted to ``round'' real numbers to that anything with fractional part below $1/3$ rounds down and
-anything with fractional part greater than or equal to $1/3$ rounds up. So $2.33$ would round down to $2$, whereas $2.34$ would round up to $3$. Let us call this ``rounding at $1/3$''. Notice that the conventional rounding (rounding at $1/2$)
-is defined by $\lfloor (2x+1)/2\rfloor$, which involves two constants: $2$ appears in the denominator
-and as a factor next to $x$ in the numerator; $1$ appears in the numerator. So we might consider all formulas of the form $\lfloor (dx + k)/d\rfloor$,
-where $d$ is a positive natural number and $k$ is a natural number so that $0\leq k < d$.
-
-\chapter{Lists}
-
-\chapter{Sets and functions}
-
-\chapter{Some Number Theory}
-
-\chapter{Some Combinatorics}
-
-\chapter{Some Sums and Differences}
-
-\chapter{Polynomials}
-
-\chapter{Recurrences}
-
-
-\part{Everyday Recipes}
-
-\part{Formal Dining}
-
-%\include{codes}
-%\include{Intro}
-%\include{NumbersNotes}
-%\include{FiniteSets}
-\end{document}
+%\chapter{Integers, Rationals and Reals}
+%
+%\section{The Integers}
+%
+%Integers solve an accounting problem that natural numbers can not: how
+%to deal with assets \emph{and liabilities}.  They allow us to account
+%for Bob having $10$ dollars in his pocket and at the same time owing
+% $15$. At that moment, Bob has, in effect, $-5$ dollars. But $-5$ is
+%meaningless if all we have are natural numbers. 
+%
+%Imagine that we have a good understanding of counting, but have never
+%thought about negative numbers. How could we invent the idea of an
+%integer.  First, let us describe Bob's situation in more detail by
+%writing $10\dotminus 15$. That is, Bob has $10$ in assets and owes
+%$15$ in liabilities. We can not use the standard minus sign because we
+%are not describing an \emph{operation} (subtraction) that produces
+%$-5$. Instead we are describing a \emph{situation} (a balance) involving two
+%natural numbers: an asset and a liability.  Now suppose another guy,
+%Weaver, has $24$ dollars in his pocket, but he owes $29$.  So we
+%describe Weaver's situation as $24\dotminus 29$. Evidently, Bob and
+%Weaver are in the same situation as far as their \emph{balance} is
+%concerned as they both owe $5$ more than they have. We invent integers 
+%to deal with exactly this abstract accounting of ``balance''. 
+%
+%\begin{axiom}
+%  \emph{Integers} are objects satisfying the following three conditions:
+%  \begin{itemize}
+%  \item For any two natural numbers, $m$ and $n$, there is an integer
+%    that we may call the \emph{difference of $m$ and $n$}. For the
+%    purposes of this discussion, we write this as $m\dotminus n$.
+%  \item There are no other integers. That is, every integer equals
+%    $m\dotminus n$ for some natural numbers $m$ and $n$.
+%  \item Equality of integers is determined by the condition:
+%    $m\dotminus n = p\dotminus q$ if and only if $m+q = p+n$.
+%  \item Every natural number is an integer. In particular, $m = m\dotminus 0$.
+%  \end{itemize}
+%\end{axiom}
+%
+%
+%In this axiom, we include a criterion for when two abstract objects are equal.
+%This raises a question. Namely, is it even possible to have objects for which
+%equality matches the criterion. At the very least, the criterion for equality
+%($m\dotminus n = p \dotminus q$ if and only if $m+q = p+n$) should meet three
+%minimal ``sanity conditions'':
+%\begin{itemize}
+%\item $i=i$ should be true for every integer.
+%\item $i=j$ should imply that $j=i$.
+%\item $i=j$ and $j=k$ should imply $i=k$
+%\end{itemize}
+%
+%Suppose $i = m\dotminus n$ for some natural numbers $m$ and $n$. So 
+%$i = i$ means the same thing as $m + n = m+n$. This is obviously
+%true. Suppose $j = p\dotminus q$ for some natural numbers $p$ and $q$.
+%So $i = j$ means $m+q = p+n$ and $j=i$ means $p+n = m+q$.  Clearly, if
+%$i=j$ then $j=i$. Finally, suppose $k=r\dotminus s$ for some natural
+%numbers $r$ and $s$. Hence, $i=j$ and $j=k$ means $m+q = p + n$ and
+%$p+s = r+q$.  Addition yields $(m+q)+(p+s) = (p+n)+(r+q)$. Rearranging
+%this by commutativity and associativity, $(m+s)+(p+q) = (r+n)+(p+q)$.
+%Since addition of natural numbers is cancellative, $m+s = r+n$, which
+%shows that $i=k$.
+%
+%So far, it looks like we must write something like $m\dotminus n$
+%whenever we want to talk about an integer.  Surely, that is more cumbersome 
+%than necessary, since most folks are perfectly happy writing the
+%integer $-5$ instead of, say, $10\dotminus 15$. The notation $m\dotminus n$
+%is intended just for our temporary use while we sort out just what 
+%an integer is. For the rest of the course, we would prefer to use
+%standard notation, which still needs some justification.
+%In our balance notation, the integer positive $5$ can be written as $5\dotminus 0$,
+%while negative $5$ can be written as $0\dotminus 5$. We can show that
+%this is a completely general fact. 
+%
+%\begin{lemma}
+%  For each integer $i$, there is a unique natural number $a$
+%  for which $i = a\dotminus 0$ or $i = 0\dotminus a$.
+%\end{lemma}
+%\begin{proof}
+%  Every integer $i$ equals $m\dotminus n$ for some $m$ and $n$, according
+%  to our axioms.  By induction on $m$, we will show that for every
+%  $n$, it is true that $m\dotminus n = 0\dotminus a$ or $m\dotminus n
+%  = a\dotminus 0$ for some suitably chosen natural number $a$.
+%  \begin{description}
+%  \item[Basis] For $m=0$, the result is trivial as we can take $a=n$.
+%  \item[Inductive hypothesis] Suppose that for some fixed $k$ the
+%    following is true: for all $n$, there is a natural number $a$
+%    such that $k\dotminus n = 0\dotminus
+%    a$ or $k\dotminus n = a\dotminus 0$.
+%  \item[Inductive Step] Our task is to prove that for all $n$, $k^\nxt
+%    \dotminus n = 0 \dotminus a$ or $k^\nxt \dotminus n = a \dotminus
+%    0$ for some $a$. There are two cases to consider: either $n = 0$
+%    or $n = p^\nxt$ for some natural number $p$.  In the first case,
+%    the result is trivial as we can take $a = k^\nxt$.  In the second
+%    case, $k^\nxt \dotminus p^\nxt = k\dotminus p$ (because $k^\nxt +
+%    p = k + p^\nxt$).  So by the inductive hypothesis, 
+%    $k^\nxt\dotminus p^\nxt = 0\dotminus a$ or $k^\nxt\dotminus p^\nxt =
+%    a\dotminus 0$ for some $a$.
+%  \end{description}
+%
+%  Finally, we need to show that the choice of $a$ is not
+%  arbitrary. Suppose $i$ is an integer, and that $i = 0\dotminus a_0$
+%  and $i = 0\dotminus a_1$. This means that $0+a_0 = n$ and $0 + a_1 =
+%  n$.  So $a_0 = a_1$. Suppose $i =
+%  a_0 \dotminus 0$ and $i=a_1\dotminus 0$. Then similar argument shows
+%  that $a_0=a_1$. Finally, suppose $i = a_0\dotminus 0$ and $i =
+%  0\setminus a_1$.  This means that $a_0 + a_1 = 0 + 0$. So 
+%  $a_0 = a_1 = 0$ (remember that $a_0$ and $a_1$ are natural numbers).
+%\end{proof}
+%
+%This result justifies our abandonment of the tedious balance notation
+%$m\dotminus n$ in favor of just two forms: $a \dotminus 0$ and $0\dotminus a$.
+%Even better, we can write ${}^+a$ as an abbreviation for $a\dotminus 0$ and ${}^-a$ as
+%an abbreviation for $0\setminus a$.
+%A positive integer gets the plus sign in front. Of course,
+%that is not really since we have also assumed that $m = m\dotminus 0$. 
+%So we will only write ${}^+a$ to emphasize that we are considering $a$
+%as an integer, not only as a natural number.
+%
+%The unique natural number $a$ determined by an integer $i$ is 
+%called the \emph{absolute value} of $i$, and is written as $|i|$.  For
+%any $m\neq 0$, ${}^+m \neq {}^-m$. So for any integer other than $0$,
+%the \emph{sign} ($+$ or $-$) is also determined. In other words, each
+%integer is exactly one of three types: zero, positive or negative.
+%
+%Define the \emph{signum} of an integer $i$ to be the integer
+%${}^\pm0$, ${}^+1$ or ${}^-1$ according to whether $i$ is zero,
+%positive or negative. The signum is written as $\sgn(i)$.
+%
+%Addition on integers can be defined in the obvious way. The important
+%features of the definition are:
+%\begin{itemize}
+%\item Addition on integers agrees with addition on natural numbers: ${}^+
+%  m + {}^+n = {}^+(m+n)$.
+%\item Addition on integers is associative: $i+(j+k) = (i+j)+k$.
+%\item Addition on integers is commutative: $i+j = j+i$.
+%\item The identity for addition is $0$: $i+0 = i$.
+%\item Positive and negative integers cancel: ${}^+m + {}^-m = 0$.
+%\end{itemize}
+%
+%Recalling the idea of balances, addition has an obvious meaning.
+%Namely, we should add assets and add liabilities. So $(m\dotminus n) + (p\dotminus q)$
+%should equal $(m+p)\dotminus(n+q)$.
+%
+%Exercises to show $+$ works.
+%
+%To define multiplication, we begin by insisting on two requirements:
+%\begin{itemize}
+%\item Multiplication on integers agrees with multiplication on natural numbers: ${}^+m\cdot {}^+n = {}^+(mn)$.
+%\item Multiplication is commutative. 
+%\item Multiplication of integers distributes over addition.
+%\end{itemize}
+%
+%It turns out that there is exactly one operation on integers that satisfies these two requirements.
+%The following exercises establish this. 
+%
+%Using the facts we have, we first prove the familiar facts about multiplication: negative times positive is negative,
+%and so on.
+%First, fill in the steps to show that $0 = {}^+m\cdot{}^-n + {}^+(mn)$. 
+%\begin{align*}
+%  {}^+m\cdot {}^-n &= {}^+m\cdot {}^-n + 0\\
+%    &= {}^+m\cdot {}^-n + {}^+m\cdot 0\\
+%    &= {}^+m\cdot {}^-n + {}^+m\cdot ({}^+n + {}^-n)\\
+%    &= \\
+%    &= \\
+%    &= \\
+%    &= {}^-(mn)
+%\end{align*}
+%From this, show that ${}^+m{}^-n = {}^-(mn)$. 
+%This shows why a positive times a negative is negative.
+%Because we expect commutativity, a negative times a positive is negative.
+%Now, we can also prove that a negative times a negative is positive.
+%\begin{align*}
+%  0 &= \\
+%    &= \\
+%    &= {}^-m\cdot {}^-n + {}^-m\cdot {}^+n\\
+%    &= {}^-m\cdot {}^-n + {}^-(mn)
+%\end{align*}
+%
+%\section{The Rationals}
+%
+%Rational numbers are analogous to integers except that multiplication is used in place of addition.
+%That is, for any two integers $i$ and $j$ with $j\neq 0$, there is a rational number $\frac{i}{j}$.
+%There are no other rational numbers. And $\frac{i}{j} = \frac{k}{\ell}$ holds if and only if 
+%$i\cdot\ell = k\cdot j$. For an integer $i$, $\frac{i}{{}^+1}$ is the corresponding rational number.
+%We extend multiplication of integers to rationals by requiring that $\frac{i}{1} \cdot \frac{j}{1} = \frac{ij}{1}$.
+%We also require reciprocals to behave: $\frac{i}{j}\cdot \frac{j}{i} = \frac{1}{1}$.
+%
+%From this, we can define multiplication as \[\frac{i}{j} \cdot \frac{k}{\ell} = \frac{ik}{j\ell}\]
+%As we all know, $\frac{i}{j} + \frac{k}{\ell} \neq \frac{i+k}{j + \ell}$, but why not? 
+%After all, that is a very simple, easy to remember rule. Why does that operation not 
+%match up with what we mean by ``addition''? 
+%
+%\begin{exercise}
+%In a paragraph or so (you may include displayed equations and equality chains), 
+%explain why the rule $\frac{i}{j} + \frac{k}{\ell} = \frac{i\ell + kj}{j\ell}$ makes more
+%sense than the rule $\frac{i}{j} + \frac{k}{\ell} = \frac{i + k}{j + \ell}$. 
+%\end{exercise}
+%
+%We do not go into detail confirming that arithmetic operations work as intended for rational numbers because, for the most part,
+%the confirmations are similar to what we needed for integers.
+%
+%From now on, we will use the familiar laws of arithmetic without further comment. The point is that rational numbers
+%are built from natural numbers in a way that ensures they behave well for the four basic arithmetic operations. 
+%
+%
+%\section{Floor and Ceiling}
+%
+%There is a trivial operation that takes 
+% an integer $i$ and simply treats it as a real. To make this 
+%clearer, for this discussion let us give this a name: for now, we write $r(i)$ when we want to think of 
+%an integer $i$ as a real number. Of course, $i$ and $r(i)$ are the same number.
+%It is only a matter of emphasizing it as an element of $\ZZ$
+%or of $\RR$.
+%
+%Evidently, $\fromto r\ZZ\RR$ is a one-to-one, but not onto function. As we know, there are onto, but not one-to-one functions
+%from $\fromto f\RR\ZZ$ that act as left inverses of $r$: $f(r(n)) = n$ for all integers $n$. But because both $\RR$ and $\ZZ$
+%have a natural order $\leq$, we can actually pick out a natural left inverse. Namely, for any real number $x$,
+%let the \emph{floor} of $x$ be the largest integer that is less than or equal to $x$. We typically write the floor of $x$
+%as $\lfloor x\rfloor$. So for any integer $n$ and any real number $x$, $r(n) \leq x$ is a sensible comparison to make because
+%$r(n)$ and $x$ are both real numbers. Also $n\leq \lfloor x\rfloor$ is a sensible comparison to make because
+%$n$ and $\lfloor x\rfloor$ are both integers. Our definition of $\lfloor\ \rfloor$ means that
+%\[ r(n)\leq x \qquad \mbox{if and only if}\qquad n\leq \lfloor x\rfloor.\]
+%For example, $\lfloor 5.2\rfloor = 5$ as $5$ is the largest integer that is less than or equal to $5.2$. 
+%It is tempting to think about $\lfloor x\rfloor$ simply removes the ``decimal'' part of $x$, but this is wrong for 
+%negative numbers: $\lfloor -5.2\rfloor = -6$ because $-6$ is less than or equal to $-5.2$, but $-5$ is not.
+%
+%[Put a graphic here.]
+%
+%To avoid clutter, let us agree to use the variables $m$, $n$ and $p$ to denote integers and $x$, $y$ and $z$ to denote reals.
+%Also, we can suppress the inclusion function $r$. So rather than writing $x+r(m)$ we just write $x+m$. 
+%
+%First, it should be clear that $\lfloor x + m\rfloor = \lfloor x\rfloor + m$. We can prove this quite easily:
+%$\lfloor x\rfloor + m \leq n$ if and only if $x+m \leq n$ if and only if $\lfloor x+m\rfloor \leq n$. 
+%Also $\lfloor x\rfloor \leq x < \lfloor x\rfloor + 1$. Because $\lfloor x\rfloor \leq \lfloor x\rfloor$,
+%$\lfloor x\rfloor \leq x$. And because $x+1\nleq x$, $\lfloor x\rfloor + 1 = \lfloor x+1\rfloor \nleq x$.
+%Since real numbers are totally ordered, $x< \lfloor x\rfloor + 1$.
+%
+%Writing $\lceil x\rceil$ for $-\lfloor -x\rfloor$. We note that $-x\leq y$ if and only if $-y \leq x$. So
+%$m\leq \lceil x\rceil$ if and only if $\lfloor -x \rfloor \leq -m$ if and only if $-x\leq -m$ if and only if
+%$m\leq x$.
+%
+%Here are some basic facts that are useful for floor and ceiling:
+%
+%\begin{itemize}
+%\item $\lfloor\lfloor x\rfloor\rfloor = \lfloor x\rfloor = \lceil\lfloor x \rfloor\rceil$
+%\item If $x$ and $y$ are positive, then 
+%\[\lfloor x\rfloor\cdot \lfloor y\rfloor 
+%    \leq \lfloor x\cdot y\rfloor
+%    <    \lfloor x\rfloor \cdot \lfloor y\rfloor + \lfloor x\rfloor + \lfloor y\rfloor + 1\]
+%\end{itemize}
+%
+%First, $\lfloor x\rfloor \cdot \lfloor y\rfloor \leq x\cdot y$. So $\lfloor x\rfloor \cdot \lfloor y\rfloor \leq \lfloor x\cdot y\rfloor$.
+%Also, $\lfloor x\cdot y\rfloor \leq x\cdot y< (\lfloor x\rfloor + 1)(\lfloor y\rfloor + 1)$.
+%
+%$\lfloor x^2\rfloor \leq x^2 < \lfloor x\rfloor^2 + \lfloor x\rfloor$ because $x^2 = \lfloor x\rfloor^2 + 2x\{x\} + \{x\}^2$. 
+% 
+%
+%\subsection{Rounding in General}
+%
+%Most of us were taught to \emph{round} a real number by taking the ``nearest'' integer. So $1.2$ rounds to $1$ and $1.6$ rounds to $2$.
+%In cases like $1.5$, we round up to $2$, but the reason may seem a little arbitrary. Actually, the thinking is that when we write $1.5$
+%we probably really mean that we are simply writing the first $2$ digits of a longer decimal expansion. So $1.5$ might really be $1.500001$.
+%In that case, it should definitely round up. Anyway, this is the agreed-upon convention.
+%
+%To round a real number to the nearest integer, we simply take $\lfloor x+1/2\rfloor$. Rewriting, this is $\lfloor (2x+1)/2\rfloor$.
+%The result is that a number with fractional part less than $1/2$ rounds down and a number with fractional part greater than or equal to $1/2$ rounds up.
+%
+%Suppose we wish to truncate a real number to a multiple of $10$ instead of to an integer. So $123.45$ would truncate to $120$.
+%The procedure is simple:  first, divide by $10$, then round, then multiply by $10$. So the formula $10\lfloor x/10\rfloor$ does the job.
+%In fact, for any positive real $c$, $c\lfloor x/c\rfloor$ truncates $x$ to a multiple of $c$.  
+%
+%\begin{exercise}
+%  Calculate $c\lfloor x/c\rfloor$ where $c = 1/4$ for the following values of $x$: $3.1$, $5.25$, $-1.1$, $109230$. Show every step.
+%\end{exercise}
+%
+%Suppose, for some reason, we wanted to ``round'' real numbers to that anything with fractional part below $1/3$ rounds down and
+%anything with fractional part greater than or equal to $1/3$ rounds up. So $2.33$ would round down to $2$, whereas $2.34$ would round up to $3$. Let us call this ``rounding at $1/3$''. Notice that the conventional rounding (rounding at $1/2$)
+%is defined by $\lfloor (2x+1)/2\rfloor$, which involves two constants: $2$ appears in the denominator
+%and as a factor next to $x$ in the numerator; $1$ appears in the numerator. So we might consider all formulas of the form $\lfloor (dx + k)/d\rfloor$,
+%where $d$ is a positive natural number and $k$ is a natural number so that $0\leq k < d$.
+%
+%\chapter{Lists}
+%
+%\chapter{Sets and functions}
+%
+%\chapter{Some Number Theory}
+%
+%\chapter{Some Combinatorics}
+%
+%\chapter{Some Sums and Differences}
+%
+%\chapter{Polynomials}
+%
+%\chapter{Recurrences}
+%
+%
+%\part{Everyday Recipes}
+%
+%\part{Formal Dining}
+%
+%%\include{codes}
+%%\include{Intro}
+%%\include{NumbersNotes}
+%%\include{FiniteSets}
+%\end{document}
 
 %%% Local Variables: 
 %%% mode: latex
