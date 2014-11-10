@@ -651,7 +651,7 @@ Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
 \end{enumerate}
 \end{exercises}
 
-\chapter{Building Sets and Functions}
+\chapter{Basic Building Blocks}
 
 \begin{goals}
 	\noindent\textbf{Lecture}
@@ -945,27 +945,31 @@ There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \
 	and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
 \end{axiom}
 
-\section{Powersets}
+\chapter{Powersets}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$. So the elements of $\Two^A$ correspond
-to subsets of $A$, and vice versa. For technical reasons, it makes sense also to suppose that the actual collection of subsets of a set also form an exponential.
+to subsets of $A$, and vice versa. It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set, called the \emph{powerset of $A$}.
+This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
-	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, the parametric function $\fromto \ni{\powerset(A)\times A}\Two$ defined by 
+	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto \ni{\powerset(A)\times A}\Two$ defined by 
 	\[\ni(B,x) = \begin{cases}
 		\top, &\text{ if } x\in B\\
 		\bot &\text{otherwise}
 	\end{cases}
 	\]
-	is an evaluation map. 
+	The function $\ni$ is an evaluation map. 
 	
-	For a function $\fromto f{C\times A}\Two$, then the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$ determines a function from $C$ to $\powerset(A)$. 
+	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$.
 \end{principle}
 
-This principle means that any function $\fromto k{C\times A}\Two$ determines a function $\fromto hC{\powerset(A)}$ satisfying $a\in h(c)$ if and only if $k(c,a)=\top$.
-But this same $k$ also determines a subset of $C\times A$ by $k^{-1}(\top)$.
-So evidently functions $C\to\powerset(A)$, functions $(C\times A)\to \Two$, functions $C\to \Two^A$ and subsets of $C\times A$ are all interchangeable.
-In Lecture \ref{lec:relations} we will discuss this interchange more thoroughly.
+The powerset of $A$ carries additional structure that arises from the structure of $\Two$. Namely, define the function $\fromto \neg\Two\Two$
+by $\neg\top = \bot$ and $\neg\bot = \top$. This is indeed a definable function because it is the characteristic function of the subset $\{\bot\}\subseteq \Two$.
+
+ 
+For example, clearly it is possible for two elements (that is, two subsets of $A$) to be related by $\subseteq$. The set $\emptyset\in\powerset(A)$ is the smallest element with respect to $\subseteq$: $\emptyset\subseteq X$ for any $X\in\powerset(A)$. Dually, $A$ is the largest: $X\subseteq A$ 
+for any $X\in\powerset(A)$.
+
 
 \begin{exercises}
 	\begin{enumerate}
@@ -978,7 +982,7 @@ In Lecture \ref{lec:relations} we will discuss this interchange more thoroughly.
 	\end{enumerate}
 \end{exercises}
 
-\chapter{The Set of Natural Numbers}
+\chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
 \begin{goals}
 \noindent\textbf{Lecture:}
@@ -1138,7 +1142,7 @@ The general pattern of these examples is that if two expression that differ only
 \begin{defn}
 	For a function $\fromto gBC$, say that
 	\begin{itemize}
-		\item $g$ is an \emph{injection} if it is the case that $g(x)=g(y)$ implies $x=y$ for every $x,y\in A$;
+		\item $g$ is an \emph{injection} if it is the case that $g(x_0)=g(x_1)$ implies $x_0=x_1$ for every $x_0,x_1\in B$;
 		\item $g$ is a \emph{monomorphism} if for every $\fromto {f_0,f_1}AB$, $g\circ f_0=g\circ f_1$ implies $f_0=f_1$; and
 		\item $g$ is an \emph{epimorphism} if for every $\fromto {h_0,h_1}CD$,
 		it is the case that $h_0\circ g = h_1\circ g$ implies $h_0=h_1$.
@@ -1193,8 +1197,119 @@ Recall that a function $\fromto gBC$ is an injection if and only if
 This suggests a sort of ``dual'' definition. To make the connection clear, we repeat the definition of injections.
 
 \begin{defn}
-	A function $\fromto gBC$ is
+	For a function $\fromto gBC$, say that
+	\begin{itemize}
+		\item $g$ is an \emph{injection} if for every $y\in C$, there is \emph{at most one} $x\in B$ for which $g(x)=y$;
+		\item $g$ is a \emph{surjection} if for every $y\in C$, there is \emph{at least one} $x\in B$ for which $g(x)=y$;
+		\item $g$ is a \emph{bijection} if it is both an injection and a surjection. That is, for every $y\in C$, there is \emph{exactly one} $x\in B$ for which $g(x)=y$. 
+	\end{itemize}  
 \end{defn}
+
+We already know that injections and monomorphisms are the same things. We can hope that surjections and epimorphisms are also the same. Indeed.
+
+\begin{lemma}
+	A function $\fromto gBC$ is an surjection if and only if it is an epimorphism.
+	\begin{proof}
+		Assume that $g$ is a surjection. 
+		Suppose $\fromto {h_0,h_1}BD$ are functions for which $h_0\circ g = h_1\circ g$. 
+		For $y\in C$, choose an $x\in B$ for which $g(x)=y$.
+		This can be done because $g$ is a surjection.
+		So $h_0(y) = h_0(g(x)) = h_1(g(x)) = h_1(y)$.
+		So $h_0(y) = h_1(y)$ for every $y\in C$, so $h_0=h_1$.
+		Thus $g$ is an epimorphism.
+		
+		Assume that $g$ is not a surjection.
+		We will prove that it is not an epimorphism.
+		Supposing that $g$ is not a surjection means there is an element $c\in C$ so that $g(x)\neq c$ for all $x\in B$. 
+		Consider the functions $\fromto {h_0}C\Two$ defined by $h_0(y)=\top$ and $\fromto {h_1}C\Two$ defined by $h_1(y) = \top$ if $y=c$ and $h_1(y)=\bot$ otherwise.
+		For every $x\in B$, $h_0(g(x)) = \top = h_1(g(x))$. So $h_0\circ g = h_1\circ g$, but obviously $h_0(c)\neq h_1(c)$. So $h_0\neq h_1$.  
+	\end{proof}
+\end{lemma}
+
+\begin{exercises}
+	Prove that for any set $A$, $\id_A$ is a monomorphism.
+	Prove that if $\fromto fAB$ and $\fromto gBC$ are monomorphisms, then $g\circ f$ is a monomorphism.
+	Formulate and prove analogous claims for epimorphisms.
+\end{exercises}
+
+The choice we made to define $\Two$ to be the set $\{\bot,\top\}$ instead of, say,
+$\{0,1\}$ or $\{\emptyset, \{emptyset\}\}$ or any other two element set, seems accidental. In some sense, any two element set would have done to job of defining a subset classifier. Similarly, $\One$ just needs to be a singleton, not $\{\bullet\}$ specifically. Likewise, we defined the product $A\times B$ 
+to consist of pairs $(x,y)$ where $x\in A$ and $y\in B$, but we could just as well have defined it to consist of pairs $(y,x)$. The specific order in which we put the pairs is not important, so long as we about what we are doing.
+
+In some sense, certain sets are ``essentially the same'' as other sets. The idea is captured in sets and functions by the idea of an isomorphism.
+
+\begin{defn}
+	A function $\fromto fAB$ is an \emph{isomorphism} if there is a function
+	$\fromto gBA$ so that $g\circ f = \id_A$ and $f\circ g= \id_B$. 
+	When such a function $g$ exists, it is called an \emph{inverse} of $f$ and is usually written as $f^{-1}$. 
+	If an isomorphism exists from $A$ to $B$, we say that $A$ and $B$ are \emph{isomorphic}.
+\end{defn}
+
+Clearly, if $f$ is an isomorphism, then so is $f^{-1}$. 
+So if $A$ is isomorphic to $B$, then $B$ is isomorphic to $A$. 
+That's a good thing, for otherwise ``isomorphic'' would be a strange word to use here, since it ought to mean ``same shape'' based on its Greek etymology. 
+
+Moreover, a function  can only have at most one inverse, because if $g$ and $h$ are both inverses of $f$,
+then \[g = \id_A\circ g = h\circ f\circ g = h\circ \id_B = h.\]
+
+Suppose $\fromto gBC$ is an isomorphism.
+It is easy to check that it is both a monomorphism and an epimorphism. 
+That is, if $g\circ f_0 = g\circ f_1$, then \[f_0 = g^{-1}\circ g\circ f_0 = g^{-1}\circ g\circ f_1 = f_1.\] 
+So $g$ is a monomorphism.
+The proof that it is an epimorphism is left as a (very easy) exercise. 
+Since we know that monomorphisms are the same things as one-to-one functions and epimorphisms are the same things as onto functions, we now know that isomorphisms are one-to-one, onto functions.
+The converse is also true, but the proof is a bit technical, requiring some ideas discussed later in these notes.
+We give only an informal sketch of the proof here.
+
+\begin{lemma}
+	Every bijection has an inverse, and is therefore an isomorphism.
+	
+	\begin{proof}
+		Suppose $\fromto fAB$ is bijection. Then for each $y\in B$ there is exactly one $x\in A$ for which $f(x)=y$. Consequently, we may define $f^{-1}$ by the condition that $f^{-1}(y)=x$ if and only if $f(x)=y$. 
+	\end{proof}
+\end{lemma}
+
+Isomorphisms are related to all of the constructions of Lectures \ref{lec:constructions} and \ref{lec:natural-numbers}. 
+In particular, all terminal objects are isomorphic to each other, all equalizers of two functions are isomorphic to each other, and so on. 
+We illustrate the general idea with products and countably infinite sets. 
+
+\begin{lemma}
+	For any sets $A$ and $B$, if $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ and
+	$A\stackrel{p'}{\longleftarrow}P'\stackrel{q'}{\longrightarrow}B$
+	are both products, then $P$ and $P'$ are isomorphic.
+	
+	\begin{proof}
+		By definition of products, there are unique functions $\fromto fP{P'}$
+		and $\fromto g{P'}P$ so that $p'\circ f = p$, $q'\circ f=q$, 
+		$p\circ g = p'$ and $q\circ g = q'$. So $p\circ g\circ f = p$
+		and $q\circ g\circ f = q$. But $\id_P$ also satisfies $p\circ \id_P = p$
+		and $q\circ \id_P = q$. Since $p$ and $q$ are the projections of a product,
+		$g\circ f = \id_P$. For the same reason, $f\circ g = \id_{P'}$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	If $\One\stackrel{z}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ and $\One\stackrel{z'}{\longrightarrow}N'\stackrel{s'}{\longrightarrow}N'$ are countably infinite sets, then $N$ and $N'$ are isomorphic. 
+	
+	\begin{proof}
+		By definition of countably infinite sets, there ar unique functions $\fromto fN{N'}$ and $\fromto g{N'}N$ so that $z'= f\circ z$, $s'\circ f=f\circ s$, $z=g\circ z'$ and $s\circ g=g\circ s'$.
+		So $z = (g\circ f)\circ z$ and $s\circ (g\circ f) = (g\circ f)\circ s$.
+		Since $\id_N$ satisfies the same equations, $g\circ f = \id_N$. For the same reason, $f\circ g = \id_{N'}$.
+	\end{proof}
+\end{lemma}
+
+The problem of judging which sets are the \emph{same size} seems easy enough when we look at finite sets. But consider, for example, how to compare $\NN$ and $\NN\times \NN$. These are both infinite sets, but are they the same size?
+Cantor realized that isomorphisms are the key to understanding this. That is,
+he, in effect, \emph{defined} two sets to be the same size if they are isomorphic.
+This gives us a precise criterion for comparing sets by their size. We introduce the idea formally.
+
+\begin{defn}
+	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are isomorphic.
+\end{defn}
+
+Thus ``equipotent'' and ``isomorphic'' mean the same thing. The usage differs mainly in terms of emphasis. When we are mainly interested in comparing sets by size, we use the word ``''equipotent''. 
+
+%TODO Show that $\NN\times \NN\sim\NN$
 
 %\section{What Can Primitive Recursion Do?}
 %
