@@ -963,12 +963,37 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$.
 \end{principle}
 
-The powerset of $A$ carries additional structure that arises from the structure of $\Two$. Namely, define the function $\fromto \neg\Two\Two$
-by $\neg\top = \bot$ and $\neg\bot = \top$. This is indeed a definable function because it is the characteristic function of the subset $\{\bot\}\subseteq \Two$.
+\section{The Basic Structure of $\powerset(A)$}
 
- 
-For example, clearly it is possible for two elements (that is, two subsets of $A$) to be related by $\subseteq$. The set $\emptyset\in\powerset(A)$ is the smallest element with respect to $\subseteq$: $\emptyset\subseteq X$ for any $X\in\powerset(A)$. Dually, $A$ is the largest: $X\subseteq A$ 
-for any $X\in\powerset(A)$.
+The rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. Let us see how that works precisely.
+
+Define $\Delta_A = \{(x_0,x_1)\in A\times A\st x_0=x_1\}$. This is the equalizer for the equation $\pi_0(\overline x)=\pi_1(\overline x)$.
+If one thinks of $A\times A$ as laid out in a square grid, then $\Delta_A$ lies along the diagonal, hence it is usually called the \emph{diagonal set for $A$}.
+Let $\fromto {\kappa_{\Delta_A}}{A\times A}\Two$ be the corresponding characteristic function. That is,
+\[
+\kappa_{\Delta_A}(x,y) = \begin{cases}
+\top & \text{if $x=y$}\\
+\bot & text{otherwise}
+\end{cases}
+\]
+Then Principle \ref{ax:powerset} applied to $\kappa_{\Delta_A}$ means that there is a unique function $\fromto sA{\powerset(A)}$ satisfying the odd looking equation 
+\[
+\ni(s(x),y) = \begin{cases}
+		\top & \text{if $y\in s(x)$}\\
+		\bot &\text{otherwise}
+	\end{cases}
+\]
+But $y\in s(x)$ if and only if $(x,y)\in\Delta_A$ if and only if $y=x$. 
+In other words, $s(x)$ is indeed just the singleton $\{x\}$. We call this the \emph{singleton insertion map}. Usually, we don't give this an explicit name (like $s$), instead we may write it as $\{-\}$ if we need to.
+
+So $\fromto {\{-\}}A{\powerset(A)}$ is a function for any $A$. 
+
+Suppose $\fromto fAB$ is a function and $X\subseteq A$. Then the \emph{forward image} if $X$ is the set $\{y\in B\st \text{$f(x)=y$ for some $x\in X$}\}$.
+\begin{defn}
+	A \emph{complete semilattice} is a function $\fromto \bigvee{\powerset(C)}C$
+	satisfying $\bigvee\circ \{-\} = \id_S$ and $\bigvee(\bigvee\mathcal X)$
+\end{defn}
+
 
 
 \begin{exercises}
