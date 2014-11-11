@@ -964,8 +964,34 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$.
 \end{principle}
 
-This principle shows that $\Two^A$ and $\powerset(A)$ are essentially the same.
-So, in a sense, to understand the structure of $\powerset(A)$, it is enough to understand characteristic functions $A\to\Two$. In particular, we will concentrate on how to \emph{define} subsets of $A$. Definition 
+We have used the notation $\{x\in A\st f(x)=g(x)\}$ to mean the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. We slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$ is an simpler thing to write that
+$\{x\in A\st f(x) = \hat{b}(\Diamond_A(x))\}$, but they mean the same. 
+Life would be easier if we could sort out a more general system for defining subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
+
+As it happens, all of these examples are honest specifications of subsets. 
+The fact that two of them use English is not practical problem, as long as what we write is unambiguous. On the other hand, $\{x\in \RR\st \text{$x$ is nearly $0$}\}$
+is probably not a good specification (unless we make the meaning of ``nearly $0$'' precise). So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. Nevertheless, it is also helpful to have in mind some formal aspects of this notation.
+
+In  
+
+
+
+\section{Inner Logic}
+
+For starters, we define certain operations on $\Two$.
+
+\begin{defn}
+	Define the following functions:
+	\begin{itemize}
+		\item $\fromto {\mathord{wedge}}{\Two\times\Two}\Two$ to be the characteristic function of the subset $\{(\top,\top)\}\subseteq \Two\times \Two$,
+		\item $\fromto {\mathord{\vee}}{\Two\times \Two}\Two$ to be he characteristic function of the subset $\{(\bot,\top), (\top,\bot),(\top\top)\}\subseteq\Two\times \Two$,
+		\item $\fromto {\mathord{\neg}}\Two\Two$ to be the characteristic function of the subset $\{\bot\}\subseteq\Two$,
+	\end{itemize}
+\end{defn}
+
+Using these, suppose $U$ is a set and $A,B\subseteq U$. Then 
+the characteristic functions $\kappa_A$ and $\kappa_B$ can be combined to 
+a single function $\wedge\circ\langle \kappa_A,\kappa_B\rangle$. 
 
 
 \section{The Basic Structure of Powersets}
