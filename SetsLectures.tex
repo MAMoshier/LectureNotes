@@ -945,6 +945,7 @@ There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \
 	and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
 \end{axiom}
 
+
 \chapter{Powersets}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$. So the elements of $\Two^A$ correspond
@@ -963,8 +964,65 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$.
 \end{principle}
 
-\section{The Basic Structure of $\powerset(A)$}
+This principle shows that $\Two^A$ and $\powerset(A)$ are essentially the same.
+So, in a sense, to understand the structure of $\powerset(A)$, it is enough to understand characteristic functions $A\to\Two$. In particular, we will concentrate on how to \emph{define} subsets of $A$. Definition 
 
+
+\section{The Basic Structure of Powersets}
+
+The elements of $\powerset(U)$ for a set $U$ (thinking for now of $U$ as our
+``universe'' of discourse) are subsets of $U$.
+So they may be related to each other by $\subseteq$. 
+Thus $\powerset(U)$ can be regarded as a set with additional structure. 
+How that structure behaves is important for characterizing how we may use powersets. The structure we consider here can be de
+
+It is easy to confirm that $\subseteq$ has three useful properties:
+\begin{itemize}
+	\item{}[Reflexivity] $X\subseteq X$ is always true.
+	\item{}[Transitivity] $X\subseteq Y$ and $Y\subseteq Z$ implies $X\subseteq Z$.
+	\item{}[Antisymmetry] $X\subseteq Y$ and $Y\subseteq X$ implies $X=Y$.
+\end{itemize}
+
+\begin{defn}
+	A set $P$ with a reflexive, transitive, anti-symmetric relation $\sqsubseteq$ is said to be a \emph{partially ordered set} or \emph{poset} for short. the relation $\sqsubseteq$ is called a \emph{partial order on $P$}. 
+\end{defn}
+
+So we have confirmed that $\powerset(U)$ is a poset with partial order $\subseteq$.
+
+Most of the useful structure of powersets arise from the interplay between
+subsets and characteristic functions. The main idea stems from the idea of ``inverse images''.
+
+\begin{defn}
+	Suppose $\fromto fAB$. Define $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ as follows. For any $Y\subseteq B$, we have the characteristic function $\fromto {\kappa_Y}B\Two$. 
+	Composing with $f$ yields a characteristic function on $A$. So we may form the
+	equalizer 
+	\[ f^{-1}(Y) = \{x\st A\st f(x)\in Y\}.\] 
+\end{defn}
+Note that this notation clashes slightly with our earlier usage where we wrote $f^{1}(y)$ for an element $y\in B$. But in fact, this is innocuous because 
+$f^{-1}(\{y\})$ according to this definition is equal to $f^{-1}(y)$ from the earlier definition.
+	
+is a characteristic of a subset of $A$. 
+Suppose $U$ is a set (think of this temporarily as our ``universe''). 
+Then $\powerset(U)$ comes equipped with structure that is useful to know.
+
+\begin{defn}
+For $A\subseteq U$ and $B\subseteq U$, 
+ \begin{itemize}
+ 	\item let $A\cap B = \{y\in U\st \text{$y\in A$  and $y\in B$}\}$;
+ 	\item let $A\cup B = \{y\in U \st \text{$y\in A$ or $y\in B$}\}$;
+ 	\item let $\sim A = \{y\in U\st y\notin A\}$.
+ \end{itemize}
+\end{defn}
+
+
+
+On the set $\Two$, the functions $\hat{\top}$ and $\hat{\bot}$
+pick out the two elements. For a set $A$, the constant function $x\mapsto \top$
+is the characteristic function of $A\subseteq A$, while the function $x\mapsto \bot$ is the characteristic function of $\emptyset\subseteq A$. 
+
+Subsets of a set $A$ can be merged together to form a single subset. 
+For example, if $X,Y\subseteq A$, then we let $X\cup Y$ be the subset
+so that $x\in X\cup Y$ if and only if $x\in X$ 
 The rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. Let us see how that works precisely.
 
 Define $\Delta_A = \{(x_0,x_1)\in A\times A\st x_0=x_1\}$. This is the equalizer for the equation $\pi_0(\overline x)=\pi_1(\overline x)$.
@@ -988,13 +1046,7 @@ In other words, $s(x)$ is indeed just the singleton $\{x\}$. We call this the \e
 
 So $\fromto {\{-\}}A{\powerset(A)}$ is a function for any $A$. 
 
-Suppose $\fromto fAB$ is a function and $X\subseteq A$. Then the \emph{forward image} if $X$ is the set $\{y\in B\st \text{$f(x)=y$ for some $x\in X$}\}$.
-\begin{defn}
-	A \emph{complete semilattice} is a function $\fromto \bigvee{\powerset(C)}C$
-	satisfying $\bigvee\circ \{-\} = \id_S$ and $\bigvee(\bigvee\mathcal X)$
-\end{defn}
-
-
+Suppose that $X\subseteq A$ and $Y\subseteq A$. Then it makes sense to form the subset of $A$ consisting of all elements that $X$ and $Y$ have in common. This 
 
 \begin{exercises}
 	\begin{enumerate}
