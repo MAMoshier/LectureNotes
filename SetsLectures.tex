@@ -811,7 +811,7 @@ We generalize as follows.
 \end{defn}
 
 \begin{principle}
-	For functions $\fromto fAB$ and $\fromto gAB$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 	
+	For functions $A\doublerightarrow{f}{g} B$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 	
 	The function $\fromto i{\{x\in A\st f(x)=g(x)\}}A$ given by the rule $x\mapsto x$ (called an \emph{inclusion map}) is an equalizer for $f$ and $g$.
 	
 	If $\fromto sCA$ is a solution of  $f(x)=g(x)$, that is, $f\circ s = g\circ s$,
@@ -822,11 +822,11 @@ We generalize as follows.
 This axiom tells us three main things.
 First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$ for any two functions $A\doublerightarrow{f}{g}B$, and picking out the particular solutions.
 Second, a subset formed in this way ``embeds'' in the given set $A$ by its inclusion map $i$.
-Third, for any solution $s$, the function into the set of particular solutions is defined
-by the same rule as $s$.
+Third, for any solution $s$, the function into the set of particular solutions is defined by the same rule as $s$.
 
 Suppose $c\in C$ and $\fromto fAC$ is a function, then we can form the equalizer of $f$ and the constant function $\hat{c}\circ\Diamond_A$.
-This is more easily written we $\{x\in A\st f(x)=c\}$. Since it common to pick out sets like this, special notation is in order.
+This is more easily written we $\{x\in A\st f(x)=c\}$.
+Since it common to pick out sets like this, special notation is in order.
 
 \begin{defn}\label{def:inverse-image}
 	For a function $\fromto fAC$, and a value $c\in C$, 
@@ -834,11 +834,12 @@ This is more easily written we $\{x\in A\st f(x)=c\}$. Since it common to pick o
 	In this case, $f^{-1}(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
 \end{defn}
 
-Evidently, in Definition \ref{def:inverse-image}, the set $f^{-1}(c)$ is a subset of $A$. It would be good to know that any subset of $A$ can be described as an inverse image.
+Evidently, in Definition \ref{def:inverse-image}, the set $f^{-1}(c)$ is a subset of $A$.
+It would be good to know that any subset of $A$ can be described as an inverse image.
 This is where the set $\Two$ plays a role.
 
 \begin{defn}\label{def:subset-classifier}
-	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kTA$ for which $B = k^{-1}(t)$.
+	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kAT$ for which $B = k^{-1}(t)$.
 	That is, $B$ is uniquely defined as the inverse image of $t$ with respect to a function into $T$.
 \end{defn}
 
@@ -847,19 +848,17 @@ This is where the set $\Two$ plays a role.
 	For subset $B\subseteq A$, the function corresponding to $B$, called the \emph{characteristic function of $B$}, is denoted by $\kappa_B$.
 	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^{-1}(\top)$.
 
-For $B\subseteq A$, the characteristic function is defined by the rule
-\[
-x \mapsto
-	\begin{cases}
-		\top &\text{ if } x\in B\\
-		\bot &\text{ otherwise}
-	\end{cases}
-\]
+	For $B\subseteq A$, the characteristic function is defined by the rule
+	\[
+	x \mapsto
+		\begin{cases}
+			\top &\text{ if } x\in B\\
+			\bot &\text{ otherwise}
+		\end{cases}
+	\]
 \end{principle}
 
-Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $\One\to A$
-are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $A$ and 
-the functions $A\to\Two$ are interchangeable.
+Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $\One\to A$ are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $A$ and the functions $A\to\Two$ are interchangeable.
 
 \begin{exercises}
 	\begin{enumerate}
@@ -901,8 +900,10 @@ For a product, the functions $p$ and $q$ are called the \emph{projections}.
 	For $\fromto fCA$ and $\fromto gCB$, the function $\fromto {\langle f,g\rangle}C{A\times B}$ is defined by the rule $\langle f,g\rangle(x)=(f(x),g(x))$.
 \end{principle}
 
-Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$. We can now form a single function
-from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$. Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
+Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$. 
+We can now form a single function from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. 
+That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$.
+Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
 
 \begin{exercises}
 	\begin{enumerate}
@@ -910,46 +911,51 @@ from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. That
 		\item What is $\emptyset \times A$? 
 		\item Calculate $\{4,a,0\}\times \Two$.
 		\item Describe in plain English what are the elements of $\NN\times \NN$.
-		\item Suppose $A$ is a finite set with $m$ elements and $B$ is a finite set with $n$ elements. How many elements are in $A\times B$? Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
+		\item Suppose $A$ is a finite set with $m$ elements and $B$ is a finite set with $n$ elements.
+		How many elements are in $A\times B$?
+		Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
 	\end{enumerate}
 \end{exercises}
 
-\section{Function Sets, Partial Evaluation}
+\section{Function Sets}
 
 A function from $A$ to $B$ might depend on a parameter from $C$. 
 For example, the function $\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
-There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$. Evidently, $g$ describes the same behavior as $f$, but it makes the parameter explicit. This leads to the following definition.
+There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$.
+Evidently, $g$ describes the same behavior as $f$, but it makes the parameter explicit.
+This leads to the following definition.
 
 \begin{defn}
 	For sets $A$ and $B$, a \emph{parametric function from $A$ to $B$} is a function $\fromto g{C\times A}B$ for some set $C$.
 	The set $C$ may be called the \emph{set of parameters}.
 	
-	Suppse $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
+	Suppose $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
 	Then we can form another parametric function with parameters in $C$ by composition: $f\circ (k\times \id_A)$.
-	We may refer to $k$ as a \emph{change of parameters} function because $k$ transforms
-	the parametric function with parameters in $D$ into a parametric function with parameters in $C$. Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$. 
+	We may refer to $k$ as a \emph{change of parameters} function because $k$ transforms the parametric function with parameters in $D$ into a parametric function with parameters in $C$. 
+	Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$. 
 	
-	An \emph{evaluation map} for $A$ and $B$ is a parameteric function $\fromto a{F\times A}B$, so that for any 
+	An \emph{evaluation map} for $A$ and $B$ is a parametric function $\fromto a{F\times A}B$, so that for any 
 	parametric function $\fromto g{C\times A}B$ there is exactly one change of parameters $\fromto hCF$ so that
 	$g = a\circ (h\times \id_A)$. In that case, $F$ is called a \emph{function set} or an \emph{exponential}.
 \end{defn}
 
-\begin{axiom}
-	For sets $A$ and $B$, the collection of all functions from $A$ to $B$, denoted by $B^A$, is a set. Moreover,
-	there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
-	The unique change of parameters function corresponding to $\fromto f{C\times A}B$ does not have a completely standard name. Some mathematicians honor the twentieth century logician names Haskell Curry by refering to this as `currying'. For these lectures, we follow that tradition and write $\curry[f]$ 
-	for the unique function satisfiying $f = \alpha\circ (\curry[f] \times \id_A)$.
+\begin{principle}
+	For sets $A$ and $B$, the collection of all functions from $A$ to $B$, denoted by $B^A$, is a set.
+	Moreover, there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
+	The unique change of parameters function corresponding to $\fromto f{C\times A}B$ does not have a completely standard name.
+	Some mathematicians honor the twentieth century logician names Haskell Curry by referring to this as `currying'.
+	For these lectures, we follow that tradition and write $\curry[f]$ for the unique function satisfying $f = \alpha\circ (\curry[f] \times \id_A)$.
 	
-	Calculating how $\fromto {\curry[f]}C{B^A}$ must behave, we see that $\curry[f](c)$
-	is the function from $A$ to $B$ given by the rule $x\mapsto f(c,x)$. So for any $c\in C$
-	and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
-\end{axiom}
+	Calculating how $\fromto {\curry[f]}C{B^A}$ must behave, we see that $\curry[f](c)$ is the function from $A$ to $B$ given by the rule $x\mapsto f(c,x)$.
+	So for any $c\in C$ and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
+\end{principle}
 
 
 \chapter{Powersets}
 
-The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$. So the elements of $\Two^A$ correspond
-to subsets of $A$, and vice versa. It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set, called the \emph{powerset of $A$}.
+The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
+So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
+It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set, called the \emph{powerset of $A$}.
 This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
@@ -961,33 +967,38 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	\]
 	The function $\ni$ is an evaluation map. 
 	
-	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(c,a)=\top\}$.
+	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(x,a)=\top\}$.
 \end{principle}
+
+Suppose $U$ is a set then $\powerset(U)$ has more useful structure. In particular,
+it is what is known as a \emph{complete atomic Boolean algebra}. We will develop this idea here. 
+
+\begin{defn}
+	Suppose $U$ is a set and $\fromto AI\powerset(U)$ is a function. Writing $A_i$,
+	instead of $A(i)$ for $i\in I$, then we can $A_i\subseteq U$. We will refer to $A$ as a \emph{family of subsets of $U$}, and write it as $\{A_i\}_{i\in I}$.
+	
+	An \emph{upper bound} of the family $\{A_i\}_{i\in I}$ is a subset $B\subseteq U$ so that $A_k\subseteq B$ holds for each $k\in I$. The \emph{union} of the family, written as $\bigcup_{i\in I}A_i$, satisfies
+	\begin{itemize}
+		\item $\bigcup_{i\in I}A_i$ is an upper bound of $\{A_i\}_{i\in I}$; and 
+		\item if $C$ is an upper bound of $\{A_i\}_{i\in }$, thenn $\bigcup_{i\in I}A_i\subseteq C$. 
+	\end{itemize}
+\end{defn}
+
+It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
+says that the union of a family of subsets of $U$ exists.
+ 
 
 We have used the notation $\{x\in A\st f(x)=g(x)\}$ to mean the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. We slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$ is an simpler thing to write that
 $\{x\in A\st f(x) = \hat{b}(\Diamond_A(x))\}$, but they mean the same. 
 Life would be easier if we could sort out a more general system for defining subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
 
 As it happens, all of these examples are honest specifications of subsets. 
-The fact that two of them use English is not practical problem, as long as what we write is unambiguous. On the other hand, $\{x\in \RR\st \text{$x$ is nearly $0$}\}$
-is probably not a good specification (unless we make the meaning of ``nearly $0$'' precise). So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. Nevertheless, it is also helpful to have in mind some formal aspects of this notation.
+The fact that two of them use English is not a problem, as long as what we write is unambiguous. On the other hand, $\{x\in \RR\st \text{$x$ is nearly $0$}\}$
+is probably not a good specification, unless we make the meaning of ``nearly $0$'' precise. So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. Nevertheless, it is also helpful to have in mind some formal aspects of this notation. This will lead us to consider \emph{logic} in later lectures. Before looking that, we define 
 
-In  
-
-
-
-\section{Inner Logic}
-
-For starters, we define certain operations on $\Two$.
-
-\begin{defn}
-	Define the following functions:
-	\begin{itemize}
-		\item $\fromto {\mathord{wedge}}{\Two\times\Two}\Two$ to be the characteristic function of the subset $\{(\top,\top)\}\subseteq \Two\times \Two$,
-		\item $\fromto {\mathord{\vee}}{\Two\times \Two}\Two$ to be he characteristic function of the subset $\{(\bot,\top), (\top,\bot),(\top\top)\}\subseteq\Two\times \Two$,
-		\item $\fromto {\mathord{\neg}}\Two\Two$ to be the characteristic function of the subset $\{\bot\}\subseteq\Two$,
-	\end{itemize}
-\end{defn}
+Suppose $A$ is a set and $X\subseteq A$, $Y\subseteq A$ are subsets of $A$. Then
+the set $\{x\in A\st \text{$x\in X$ and $x\in Y$}\}$ is a new subset of $A$. This is called the \emph{intersection} if $X$ and $Y$, and is denoted by $X\cap Y$.
+Thus $\powerset(A)$ is equipped with an operation $\fromto \mathord{\cap}{\powerset(A)^2}{\powerset(A)}$, but we write $X\cap Y$ instead of $\mathord{\cap}(X,Y)$.
 
 Using these, suppose $U$ is a set and $A,B\subseteq U$. Then 
 the characteristic functions $\kappa_A$ and $\kappa_B$ can be combined to 
