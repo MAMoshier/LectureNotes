@@ -970,19 +970,41 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(x,a)=\top\}$.
 \end{principle}
 
-Suppose $U$ is a set then $\powerset(U)$ has more useful structure. In particular,
-it is what is known as a \emph{complete atomic Boolean algebra}. We will develop this idea here. 
+For any set $U$, the powerset $\powerset(U)$ has useful structure. It is a \emph{partially ordered set} with respect to $\subseteq$. This means that 
+$\subseteq$ satisfies three conditions:
+\begin{description}
+	\item[Reflexivity] $A\subseteq A$ holds for any $A\in \powerset(U)$;
+	\item[Transitivity] If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$ for any $A,B,C\in\powerset(U)$;
+	\item[Anti-symmetry] If $A\subseteq B$ and $B\subseteq A$, then $A=B$. 
+\end{description}
 
+More specifically, $\powerset(U)$ is a \emph{complete atomic Boolean algebra}.
+First, completeness we need the following definition:
 \begin{defn}
-	Suppose $U$ is a set and $\fromto AI\powerset(U)$ is a function. Writing $A_i$,
-	instead of $A(i)$ for $i\in I$, then we can $A_i\subseteq U$. We will refer to $A$ as a \emph{family of subsets of $U$}, and write it as $\{A_i\}_{i\in I}$.
+	Suppose $X$ is a set and $\leq$ is a reflexive, transitive, anti-symmetric relation on $X$. [Think of $\powerset(U)$ together with $\subseteq$]. 
+	Let $\fromto aIX$ be a function. Writing $a_i$,
+	instead of $a(i)$, then we refer to $a$ as an \emph{(indexed) family of elements of $X$}, and write it as $\{a_i\}_{i\in I}$.
 	
-	An \emph{upper bound} of the family $\{A_i\}_{i\in I}$ is a subset $B\subseteq U$ so that $A_k\subseteq B$ holds for each $k\in I$. The \emph{union} of the family, written as $\bigcup_{i\in I}A_i$, satisfies
+	An \emph{upper bound} of a family $\{a_i\}_{i\in I}$ is an element $x\in X$
+	so that $a_k\leq x$ holds for each $k\in I$. A \emph{least upper bound} of the family, written as $\bigvee_{i\in I}a_i$ is an element of $X$ so that
 	\begin{itemize}
-		\item $\bigcup_{i\in I}A_i$ is an upper bound of $\{A_i\}_{i\in I}$; and 
-		\item if $C$ is an upper bound of $\{A_i\}_{i\in }$, thenn $\bigcup_{i\in I}A_i\subseteq C$. 
+		\item $\bigvee_{i\in I}a_i$ is an upper bound of $\{a_i\}_{i\in I}$; and 
+		\item if $c$ is an upper bound of $\{a_i\}_{i\in }$, then $\bigvee_{i\in I}a_i\leq c$. 
 	\end{itemize}
 \end{defn}
+
+So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist. For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all. On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound. This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
+
+\begin{lemma}
+	Every family $\{A_i\}_{i\in I}$ of subseteq of $U$ has a least upper bound in $\powerset(U)$. This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written as $\bigcup_{i\in I}A_i$.
+	
+	\begin{proof}
+		We give the idea of the proof without all details. 
+		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. Define 
+		\[\bigcup_{i\in I}A_i = \{x\in U\st \text{for some $i\in I$, $x\in A_i$}\}.\]
+		
+	\end{proof}
+\end{lemma}
 
 It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
 says that the union of a family of subsets of $U$ exists.
