@@ -951,7 +951,7 @@ This leads to the following definition.
 \end{principle}
 
 
-\chapter{Powersets}
+\chapter{Powersets and Internal Logic}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
 So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
@@ -969,6 +969,7 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 	
 	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(x,a)=\top\}$.
 \end{principle}
+
 
 For any set $U$, the powerset $\powerset(U)$ has useful structure. It is a \emph{partially ordered set} with respect to $\subseteq$. This means that 
 $\subseteq$ satisfies three conditions:
@@ -993,31 +994,87 @@ First, completeness we need the following definition:
 	\end{itemize}
 \end{defn}
 
-So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist. For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all. On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound. This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
+So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist.
+For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all.
+On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound.
+This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
 
 \begin{lemma}
-	Every family $\{A_i\}_{i\in I}$ of subseteq of $U$ has a least upper bound in $\powerset(U)$. This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written as $\bigcup_{i\in I}A_i$.
+	Every family $\{A_i\}_{i\in I}$ of subset of $U$ has a least upper bound in $\powerset(U)$.
+	This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written $\bigcup_{i\in I}A_i$.
 	
 	\begin{proof}
-		We give the idea of the proof without all details. 
-		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. Define 
+		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. 
+		Define 
 		\[\bigcup_{i\in I}A_i = \{x\in U\st \text{for some $i\in I$, $x\in A_i$}\}.\]
+		For $k\in I$, suppose $x\in A_k$.
+		Then by definition $x\in \bigcup_{i\in I}A_i$.
+		So $A_k\subseteq \bigcup_{i\in I}A_i$.
+		In other words, $\bigcup_{i\in I}A_i$ is an upper bound of the family $\{A_i\}_{i\in I}$.
 		
-	\end{proof}
+		Suppose $A_k\subseteq C$ for each $k\in I$.
+		If $x\in\bigcup_{i\in I}A_i$, then by definition, $x\in A_k$ for some $k\in I$.
+		So $x\in C$.
+		This shows that $\bigcup_{i\in I}A_i\subseteq C$.
+		
+		The proof is not quite complete because we have not shown that
+		our definition of $\bigcup_{i\in I}A_i$ is a real definition.
+ 	\end{proof}
 \end{lemma}
 
+A set $\{(i,x)\in I\times U\st \ni(A_i,x)=\top\}$
 It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
 says that the union of a family of subsets of $U$ exists.
  
 
-We have used the notation $\{x\in A\st f(x)=g(x)\}$ to mean the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. We slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$ is an simpler thing to write that
-$\{x\in A\st f(x) = \hat{b}(\Diamond_A(x))\}$, but they mean the same. 
+We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to mean the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
+We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$. 
 Life would be easier if we could sort out a more general system for defining subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
 
 As it happens, all of these examples are honest specifications of subsets. 
-The fact that two of them use English is not a problem, as long as what we write is unambiguous. On the other hand, $\{x\in \RR\st \text{$x$ is nearly $0$}\}$
-is probably not a good specification, unless we make the meaning of ``nearly $0$'' precise. So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. Nevertheless, it is also helpful to have in mind some formal aspects of this notation. This will lead us to consider \emph{logic} in later lectures. Before looking that, we define 
+The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
+In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
+So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
+Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
+$\{x\in U\st \ldots x \ldots\}$ makes sense.
 
+
+
+
+Suppose $\fromto fUV$ is a function and $B\subseteq V$. Then $\{x\in U\st f(x)\in B\}$ defines a subset of $U$.
+
+Suppose $\fromto fAB$ and $\fromto gCB$ are functions, then $\{(x,y)\in A\times B\st f(x)=g(y)\}$ defines a subset of $A\times B$.
+
+If $\{x\in A\st P(x)\}$ defines a subset of $A$, then $\{(x,y)\in A\times B\st P(x)\}$ defines a subset of $A\times B$. 
+
+If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
+then $\{x\in A\st P(x)\wedge Q(x)\}$.
+
+If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
+then $\{x\in A\st P(x)\to Q(x)\}$.
+
+If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
+then $\{x\in A\st P(x)\vee Q(x)\}$.
+
+$\{x\in A\st \ff \}$ defines a subset of $A$.
+
+$\{x\in A\st \tt\}$ defines a subset of $A$.
+
+If $\{(x,y)\in A\times B\st P(x,y)\}$ defines a subset of $A\times B$,
+then $\{y\in B \st \exists x\in A.P(x,y)\}$ defines a subset of $B$.
+
+If $\{(x,y)\in A\times B\st P(x,y)\}$ defined a subset of $A\times B$,
+then $\{y\in B \st \forall x\in A.P(x,y)\}$ defines a subset of $B$.
+
+
+
+
+
+
+We have noted that for any subset $A\subseteq U$, 
+$\{x\in U\st \kappa_A(x)=\top\} = A$. 
+
+Suppose $\fromto f{X\times Y}\Two$ is a function, then so is $\exists x.
 Suppose $A$ is a set and $X\subseteq A$, $Y\subseteq A$ are subsets of $A$. Then
 the set $\{x\in A\st \text{$x\in X$ and $x\in Y$}\}$ is a new subset of $A$. This is called the \emph{intersection} if $X$ and $Y$, and is denoted by $X\cap Y$.
 Thus $\powerset(A)$ is equipped with an operation $\fromto \mathord{\cap}{\powerset(A)^2}{\powerset(A)}$, but we write $X\cap Y$ instead of $\mathord{\cap}(X,Y)$.
