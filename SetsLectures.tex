@@ -955,22 +955,96 @@ This leads to the following definition.
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
 So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
-It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set, called the \emph{powerset of $A$}.
+It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set.
 This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
-	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto \ni{\powerset(A)\times A}\Two$ defined by 
-	\[\ni(B,x) = \begin{cases}
+	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
+	\[\ni_A(B,x) = \begin{cases}
 		\top, &\text{ if } x\in B\\
 		\bot &\text{otherwise}
 	\end{cases}
 	\]
-	The function $\ni$ is an evaluation map. 
-	
-	For any function $\fromto f{C\times A}\Two$, the unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni\circ \overline{f} \times \id_A$ is given by the rule $x\mapsto \{a\in A\st f(x,a)=\top\}$.
+	The function $\ni_A$ is an evaluation map, meaning that 
+	for any function $\fromto f{C\times A}\Two$, there is a unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni_A\circ (\overline{f} \times \id_A)$. The function $\overline f$ 
+	is given by the rule $c\mapsto \{x\in A\st f(c,x)=\top\}$.
 \end{principle}
 
+For a function $\fromto fAB$, $\ni_B\circ (\id_{\powerset(B)}\times f)$ is a function from $\powerset(B)\times A$ to $\Two$. So there is a unique function
+from $\powerset(B)$ to $\powerset(A)$ determined by it. 
 
+\begin{defn}
+	For $\fromto fAB$, let $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ denote
+	the unique function for which $\ni_B\circ (\id_{\powerset(B)}\times f) = \ni_A\circ(f^{-1}\times \id_A)$. In simpler terms, $f^{-1}$ satsifies
+\[x\in f^{-1}(Y) \text{if and only if } f(x)\in Y\]
+for every $Y\subseteq B$.  So $f^{-1}$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
+\end{defn}
+
+This notation does not clash much with our usage of $f^{-1}(b)$ because 
+$f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
+
+\section{Specifying Subsets}
+
+We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to specify the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
+We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$, and inverse images of subsets: $\{x\in A\st f(x)\in Y\}$. 
+Life would be easier if we had a more general system for specifying subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
+
+As it happens, all of these examples are honest specifications of subsets. 
+The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
+In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
+So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
+Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
+$\{x\in U\st \ldots x \ldots\}$ makes sense.
+
+First, we need to understand what is means for a variable to \emph{appear free} in an expression.
+In $\{x\in A \st f(x)=g(x)\}$ the variable \emph{appears bound}.
+This means, roughly, that the meaning of the expression does not depend on a value for $x$, so we are not ``free'' to interpret $x$.
+In contrast, $f$ and $g$ appear free in the same expression because the meaning of the expression depends on the meanings of $f$ and $g$.
+We are ``free'' to choose what they mean.
+Similarly, in the English phrase, ``$m + n = n + m$ for all natural numbers $m$ and $n$'' the variables $m$ and $n$ are bound.
+But in the phrase ``$m+k = n$ for some $k$'' the variables $m$ and $n$ are free and the variable $k$ is bound.
+An important feature of bound variables is that we may rename them without changing the meaning, so long as we do so systematically.
+For example, ``$m+j=n$'' for some $j$'' means exactly the same as ``$m+k=n''$ for some $k$''.
+But we can't just swap $m$ for some other variable without changing the meaning. 
+
+In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
+We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
+
+\begin{vocabulary}
+	In the following, let $X$ and $W$ be sets. Let $P(x)$, $Q(x)$, $R(w,x)$ be expressions and $A,B\subseteq X$, $C\subseteq X\times X$ so that
+	\begin{itemize}
+		\item $A = \{x\in X\st P(x)\}$,
+		\item $B = \{x\in X\st Q(x)\}$, and
+		\item $C = \{(w,x)\in W\times X\st R(w,x)\}$.
+	\end{itemize}
+Then the following sets are definable. 
+\begin{itemize}
+\item $W\times A = \{(w,x)\in W\times X\st P(x)\}$. In fact, this is the same 
+as $\pi_1^{-1}(A)$.  
+
+\item $A\cap B = \{x\in X\st \text{$P(x)$ and $Q(x)$}\}$. We may abbreviate ``$P(x)$ and $Q(x)$'' by writing ``$P(x)\wedge Q(x)$''. 
+
+\item $A\Rightarrow B = \{x\in X\st \text{$P(x)$ implies $Q(x)$}\}$. We may abbreviate ``$P(x)$ implies $Q(x)$'' by writing ``$P(x)\to Q(x)$''.
+
+\item $A\cup B = \{x\in X\st \text{$P(x)$ or $Q(x)$}\}$. We may abbreviate ``$P(x)$ or $Q(x)$'' by writing ``$P(x)\vee Q(x)$''.
+	
+\item $\emptyset = \{x\in X\st \text{false} \}$. This defines $\emptyset$ as a subset of $A$. We may abbreviate ``false'' by writing $\textsf{F}$.
+	
+\item $X = \{x\in X\st \text{true}\}$ defines $X$ as a subset of $X$. We may abbreviate ``true'' by writing $\textsf{T}$.
+	
+\item $\{x\in X \st \text{for some $w\in W$, $P(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $P(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
+	
+\item $\{x\in X \st \text{for every $w\in W$, $P(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $P(w,x)$'' by writing ``$\forall w\in W, P(w,x)$''.
+\end{itemize}
+\end{vocabulary}
+
+All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
+The point now is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
+
+\section{The structure of $\powerset(U)$}
+  
+  
+  
 For any set $U$, the powerset $\powerset(U)$ has useful structure. It is a \emph{partially ordered set} with respect to $\subseteq$. This means that 
 $\subseteq$ satisfies three conditions:
 \begin{description}
@@ -979,8 +1053,69 @@ $\subseteq$ satisfies three conditions:
 	\item[Anti-symmetry] If $A\subseteq B$ and $B\subseteq A$, then $A=B$. 
 \end{description}
 
-More specifically, $\powerset(U)$ is a \emph{complete atomic Boolean algebra}.
-First, completeness we need the following definition:
+More specifically, $\powerset(U)$ is known as a \emph{complete atomic Boolean algebra}. In an important sense, this is \emph{the} structure of a powerset. So we
+should take some time to understand it. 
+
+\begin{lemma}
+	For a set $U$ and subsets $A$ and $B$,
+	\begin{itemize}
+		$A\cap B\subseteq A$ and $A\cap B \subseteq B$;
+		if $C\subseteq A$ and $C\subseteq B$, then $C\subseteq A\cap B$.
+	\end{itemize}
+	
+	\begin{proof}
+		If $x\in A\cap B$, then by definition $x\in A$ and $x\in B$.
+		Suppose $C\subseteq A$ and $C\subseteq AB$, and consider some $x\in C$.
+		Then $x\in A$ and $x\in B$, so by definition $x\in A\cap B$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For a set $U$ and subsets $A$ and $B$,
+	\begin{itemize}
+		$A\subseteq A\cup B$ and $B\subseteq A\cup B$;
+		if $A\subseteq C$ and $B\subseteq C$, then $A\cup B\subseteq C$.
+	\end{itemize}
+	
+	\begin{proof}
+		Exercise.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For set $U$ and subseteq $A$ and $B$,
+	\[A\cap B\subseteq C \text{if and only if} A\subseteq B\Rightarrow C\]
+	
+	\begin{proof}
+		Exercise.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and $A\subseteq X$,
+	$\{x\in X\st \exists w\in W.P(w,x)\} \subseteq A$ if and only if 
+	$\{(w,x)\in W\times X\st P(w,x)\} \subseteq \pi_1^{-1}(A)$. 
+	 
+	\begin{proof}
+		Suppose $\{x\in X\st \exists w\in W.P(w,x)\}\subseteq A$. Consider $(w,x)\in W\times X$ for which $P(w,x)$. Then $x\in A$. So $(w,x)\in \pi_1^{-1}(A)$. 
+		
+		For the reserve inclusion, suppose $\{(w,x)\in W\times X\st P(x,y)\}\subseteq \pi_1^{-1}(A)$. Consider $x\in X$ for which $P(w,x)$ holds for some $w\in W$. Then $(w,x)\in \pi^{-1}(A)$. So $x\in A$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+		For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and $A\subseteq X$,
+		$A\subseteq \{x\in X\st \forall w\in W.P(w,x)\}$ if and only if 
+		$\pi_1^{-1}(A)\subseteq \{(w,x)\in W\times X\st P(w,x)\}$.
+		
+		\begin{proof}
+			An exercise.
+		\end{proof} 
+		
+\end{lemma}
+
+
+First, for completeness we need the following definition:
 \begin{defn}
 	Suppose $X$ is a set and $\leq$ is a reflexive, transitive, anti-symmetric relation on $X$. [Think of $\powerset(U)$ together with $\subseteq$]. 
 	Let $\fromto aIX$ be a function. Writing $a_i$,
@@ -1026,62 +1161,6 @@ A set $\{(i,x)\in I\times U\st \ni(A_i,x)=\top\}$
 It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
 says that the union of a family of subsets of $U$ exists.
  
-
-We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to mean the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
-We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$. 
-Life would be easier if we could sort out a more general system for defining subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
-
-As it happens, all of these examples are honest specifications of subsets. 
-The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
-In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
-So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
-Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
-$\{x\in U\st \ldots x \ldots\}$ makes sense.
-
-
-
-
-Suppose $\fromto fUV$ is a function and $B\subseteq V$. Then $\{x\in U\st f(x)\in B\}$ defines a subset of $U$.
-
-Suppose $\fromto fAB$ and $\fromto gCB$ are functions, then $\{(x,y)\in A\times B\st f(x)=g(y)\}$ defines a subset of $A\times B$.
-
-If $\{x\in A\st P(x)\}$ defines a subset of $A$, then $\{(x,y)\in A\times B\st P(x)\}$ defines a subset of $A\times B$. 
-
-If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
-then $\{x\in A\st P(x)\wedge Q(x)\}$.
-
-If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
-then $\{x\in A\st P(x)\to Q(x)\}$.
-
-If $\{x\in A\st P(x)\}$ and $\{x\in A\st Q(x)\}$ define subsets of $A$,
-then $\{x\in A\st P(x)\vee Q(x)\}$.
-
-$\{x\in A\st \ff \}$ defines a subset of $A$.
-
-$\{x\in A\st \tt\}$ defines a subset of $A$.
-
-If $\{(x,y)\in A\times B\st P(x,y)\}$ defines a subset of $A\times B$,
-then $\{y\in B \st \exists x\in A.P(x,y)\}$ defines a subset of $B$.
-
-If $\{(x,y)\in A\times B\st P(x,y)\}$ defined a subset of $A\times B$,
-then $\{y\in B \st \forall x\in A.P(x,y)\}$ defines a subset of $B$.
-
-
-
-
-
-
-We have noted that for any subset $A\subseteq U$, 
-$\{x\in U\st \kappa_A(x)=\top\} = A$. 
-
-Suppose $\fromto f{X\times Y}\Two$ is a function, then so is $\exists x.
-Suppose $A$ is a set and $X\subseteq A$, $Y\subseteq A$ are subsets of $A$. Then
-the set $\{x\in A\st \text{$x\in X$ and $x\in Y$}\}$ is a new subset of $A$. This is called the \emph{intersection} if $X$ and $Y$, and is denoted by $X\cap Y$.
-Thus $\powerset(A)$ is equipped with an operation $\fromto \mathord{\cap}{\powerset(A)^2}{\powerset(A)}$, but we write $X\cap Y$ instead of $\mathord{\cap}(X,Y)$.
-
-Using these, suppose $U$ is a set and $A,B\subseteq U$. Then 
-the characteristic functions $\kappa_A$ and $\kappa_B$ can be combined to 
-a single function $\wedge\circ\langle \kappa_A,\kappa_B\rangle$. 
 
 
 \section{The Basic Structure of Powersets}
