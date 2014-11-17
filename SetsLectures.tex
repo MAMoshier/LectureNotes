@@ -1032,24 +1032,25 @@ as $\pi_1^{-1}(A)$.
 	
 \item $X = \{x\in X\st \text{true}\}$ defines $X$ as a subset of $X$. We may abbreviate ``true'' by writing $\textsf{T}$.
 	
-\item $\{x\in X \st \text{for some $w\in W$, $P(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $P(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
+\item $\{x\in X \st \text{for some $w\in W$, $R(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $R(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
 	
-\item $\{x\in X \st \text{for every $w\in W$, $P(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $P(w,x)$'' by writing ``$\forall w\in W, P(w,x)$''.
+\item $\{x\in X \st \text{for every $w\in W$, $R(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $R(w,x)$'' by writing ``$\forall w\in W, R(w,x)$''.
 
 \item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
 \end{itemize}
 \end{vocabulary}
 
 All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
-The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets. Also note that $A^*$ is the same thing as $A\Rightarrow\emptyset$ because $x\in A^*$ 
-means that $x\in X$ and $x\notin A$. But $x\in A\Rightarrow \emptyset$ 
-means $x\in AX$ and \emph{if $x\in A$, then $x\in\emptyset$}. The only elements
-of $X$ that can satisfy the latter condition are those that are not in $A$.
+The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
+Also note that $A^*$ is the same thing as $A\Rightarrow\emptyset$ because $x\in A^*$ means that $x\in X$ and $x\notin A$.
+But $x\in A\Rightarrow \emptyset$ means $x\in AX$ and \emph{if $x\in A$, then $x\in\emptyset$}.
+The only elements of $X$ that can satisfy the latter condition are those that are not in $A$.
 
-\section{The structure of $\powerset(U)$}
+\section{The structure of Powersets}
   
-For any set $U$, the powerset $\powerset(U)$ has useful structure. It is a \emph{partially ordered set} with respect to $\subseteq$. This means that 
-$\subseteq$ satisfies three conditions:
+For any set $U$, the powerset $\powerset(U)$ has useful structure.
+It is a \emph{partially ordered set} with respect to $\subseteq$.
+This means that $\subseteq$ satisfies three conditions:
 \begin{description}
 	\item[Reflexivity] $A\subseteq A$ holds for any $A\in \powerset(U)$;
 	\item[Transitivity] If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$ for any $A,B,C\in\powerset(U)$;
@@ -1197,11 +1198,43 @@ First, for completeness we need the following definition:
 	for every $k\in I$. 
 \end{defn}
 
-In $\powerset(X)$, let $\{A_i\}_{i\in I}$ be a family of subsets. Then consider the set $\bigcup_{i\in I}A_i $ defined by $\{x\in X\st \exists i\in I. x\in A_i\}$. Then $A_k\subseteq \bigcup_{i\in I}A_i$ for every $k\in I$. Furthermore,
-suppose $A_k\subseteq C$ is true for each $k\in I$. Then $x\in \bigcup_{i\in I}A_i$, there is some $k\in I$ so that $x\in A_k$. Hence $x\in C$. This shows that $\bigcup_{i\in I}_A_i$ is the leat upper bound of the family $\{A_i\}_{i\in I}$. So every family of subsets of $X$ has a least upper bound. This is what we mean by saying that $\powerset(X)$ is \emph{complete}.
+In $\powerset(X)$, let $\{A_i\}_{i\in I}$ be a family of subsets.
+Then consider the set $\bigcup_{i\in I}A_i $ defined by $\{x\in X\st \exists i\in I. x\in A_i\}$. Then $A_k\subseteq \bigcup_{i\in I}A_i$ for every $k\in I$
+Furthermore, suppose $A_k\subseteq C$ is true for each $k\in I$.
+Then $x\in \bigcup_{i\in I}A_i$, there is some $k\in I$ so that $x\in A_k$.
+Hence $x\in C$.
+This shows that $\bigcup_{i\in I}A_i$ is the least upper bound of the family $\{A_i\}_{i\in I}$.
+So every family of subsets of $X$ has a least upper bound.
+This is what we mean by saying that $\powerset(X)$ is \emph{complete}.
 
-All together $\powerset(X)$ is a complete atomic Boolean algebra. 
+All together $\powerset(X)$ is a complete atomic Boolean algebra. Moreover,
+for any $\fromto fXY$, 
+$f^{-1}$ preserves even the complete structure.
+
+\begin{lemma}
+	For function $\fromto fXY$, let $P(w,y)$ be an expression defining
+	$\{(w,y)\in W\times Y\st P(w,y)\}$. For any function $\fromto fXY$,
+	\begin{align*}
+		f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\}) &= \{x\in X\st \exists w\in W, P(w,f(x)\}\\
+		f^{-1}(\{y\in Y\st \forall w\in W, P(w,y)\}) &= \{x\in X\st \forall w\in W, P(w,f(x)\}\\
+	\end{align*}
+	
+	\begin{proof}
+		This is essentially by definition. That is, $x\in f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\})$ if and only if $f(x)\in \{y\in Y\st \exists w\in W,P(w,y)\}$. So $P(w,f(x))$ holds for some $w\in W$. In other words, 
+		$x\in \{x\in X\st \exists w\in W,P(w,f(x))\}$.
+		For the $\forall$ case, the proof is similar.
+	\end{proof} 
+\end{lemma}
  
+It is slightly beyond the scope of these lectures, but in fact, if $P$ is
+a complete atomic Boolean algebra, then letting $A(P)$ denote the set of atoms of $P$, one can show that the function $\fromto \alpha {P\times A(P)}\Two$ defined 
+by \[\alpha(p,a) = \begin{cases}
+\top & \text{if $x\leq p$}\\
+\bot & \text{otherwise}
+\end{cases}
+\]
+is an evaluation map. So $P$ and $\powerset(A(P))$ have the same structure. 
+
 So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist.
 For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all.
 On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound.
@@ -1345,11 +1378,11 @@ Suppose that $X\subseteq A$ and $Y\subseteq A$. Then it makes sense to form the 
 \end{goals}
 
 We have used $\NN$ informally to denote the set of natural numbers. 
-It is time that we make the structure of the natural numbers explicit, and investigate what role the natural numbers play in our theory of sets and functions
+It is time that we make the structure of the $\NN$ explicit within our theory of sets and functions.
 
 Natural numbers provide a precise picture of counting and of putting things in an order: first, second, third, and so on. Now that we have sets and functions as can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots. When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead, but the point is still that $a$ itself is a function.
 
-Much of what we will discuss in this lecture will have feel of computer programming about it. This is because there is a sense in which natural numbers are the main objects of calculation. We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves. In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it by recursion. For example,
+Much of what we will discuss in this lecture will have about it the feel of computer programming. This is because there is a sense in which natural numbers are the main objects of calculation. We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves. In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it. For example,
 \begin{align*}
 	4!  &= 4 \cdot 3! \\
 		&= 4 \cdot (3 \cdot 2!)\\
@@ -1360,13 +1393,15 @@ Much of what we will discuss in this lecture will have feel of computer programm
 \end{align*}
 We will actually think of $\NN$ as being something like ``the simplest set on which we can use recursion''.
 
-It is quite common to think about a sequence in which $a_{n+1}$ is functionally related to $a_n$. For example, in the sequence $1, 2, 4, 8,\ldots$, each successive entry is double its predecessor. The initial entry is $1$. Indeed,
-if we know just those two facts -- the initial entry is $1$, and each subsequent entry is double its predecessor -- then we know how the entire sequence behaves. Also, we know how to calculate the $n^{\text{th}}$ entry, by recursion just like factorial.
+It is quite common to think about a sequence in which $a_{n+1}$ is functionally related to $a_n$. 
+For example, in the sequence $1, 2, 4, 8,\ldots$, each successive entry is double its predecessor. 
+The initial entry is $1$. 
+Indeed, if we know just those two facts -- the initial entry is $1$, and each subsequent entry is double its predecessor -- then we know how the entire sequence behaves.
+Also, we know how to calculate the $n^{\text{th}}$ entry, by recursion just like factorial.
 
 The most basic sequence, of course, is $0$, $1$, $2$, \ldots. 
 Its initial entry is $0$ and each subsequent entry is the successor of its predecessor. 
-That really is about as basic as it gets. 
-So we can think of this sequence as a sort of prototype for all others, including sequences in other sets. 
+So we think of this sequence as a sort of prototype for all others, including sequences in other sets. 
 It turns out that this will characterize the set of natural numbers. And it will lead to a fairly general scheme for defining recursive functions.
 
 \section{Sequences and Successions}
@@ -1375,15 +1410,16 @@ Let us make the informal word \emph{sequence} official.
 
 \begin{defn}
 	A \emph{sequence in $A$} is a function $\fromto a\NN A$. For a sequence $a$, we may write $a_k$ instead of $a(k)$, but these mean exactly the same thing.
+	So a sequence in $A$ is the same thing as a family $\{a_k\}_{k\in\NN}$ of elements of $A$ indexed by $\NN$.
 \end{defn}
 
 As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number $0$ and (ii) for each natural number $n$ there is a next one, $n^\nxt$. 
-To put the successor in the language of sets and functions, we can stipulate that successor is a function $\fromto \suc\NN\NN$ given by the rule $n\mapsto n^\nxt$.
+To discuss successor in the language of sets and functions, we can stipulate that successor is a function $\fromto \suc\NN\NN$ given by the rule $n\mapsto n^\nxt$.
 So $\NN$ is not only a set. 
 It comes with functions $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longrightarrow} \NN$.
 
 Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longrightarrow}A$ is a similar structure.
-Then we ought to be able to define a sequence in$A$, i.e., a function $\fromto a\NN{A}$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
+Then we ought to be able to define a sequence in $A$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
 In general, $a_k$ should be determined by starting with $b$ and repeatedly applying $r$ a total of $k$ times. 
 
 \begin{defn}\label{def:nno}
@@ -1404,13 +1440,13 @@ The principle we are interested in here is that simple recurrences determine seq
 	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} C \stackrel{r}{\longrightarrow} C$, the corresponding unique sequence in $C$
 	may be denoted by $\rec[b,r]$. So $\fromto {\rec[b,r]}\NN A$ is defined by
 	\begin{align*}
-	\rec[b,r](0) &= b\\
-	\rec[b,r](n^\nxt) &= r(\rec[b,r](n))
+	\rec[b,r]_0 &= b\\
+	\rec[b,r]_{n^\nxt} &= r(\rec[b,r]_n)
 	\end{align*}
 \end{principle}
 
 Thus every simple recurrence in $C$ determines a sequence in $C$. 
-On the other hand, it is not the case that every sequence is determined by a simple recurrence. 
+On the other hand, it is not the case that every sequence is determined by a simple recurrence.
 Take for example, the sequence $0,1,0,2,0,3,\ldots$. 
 This can not be defined by giving an initial entry ($0$) and specifying successive entries based only on the predecessors. 
 After all, the entries $1$, $2$, $3$ and so on all have the same preceding entry.
@@ -1420,18 +1456,15 @@ After all, the entries $1$, $2$, $3$ and so on all have the same preceding entry
 Evidently, addition, multiplication, factorial, and other familiar functions should be definable using Principle \ref{ax:nat-numbers}. 
 But there are problems to overcome: Addition is not a sequence, at least not in an obvious way. And factorial is not obviously definable by a simple recurrence
 because we would need a function $\fromto r\NN\NN$ so that $n^\nxt! = r(n!)$
-for all $n$. What that function might be is not at all clear. If, in place of $r$, we could use a function that depends on $n$ as well as on $n!$, we could define factorial recursively the usual way.
- 
-Although addition is not a sequence, it is is a parametric function $\fromto + {\NN\times \NN}\NN$ (where the first $\NN$ is treated as the parameter set).
-If we could some how extend simple recursion to parametric functions, then addition would also be definable (by adapting the definition we gave in earlier lectures).
+for all $n$. If, in place of $r$, we could use a function that depends on $n$ as well as on $n!$, we could define factorial recursively the usual way.
 
-Putting things together, we consider a scheme that generalizes simple recursion to permit (i) dependence on $n$ at each stage of the recursion and (ii) dependence on a parameter.
+Putting things together, we consider a scheme that generalizes simple recursion to permit (i) dependence on $n$ at each stage of the recursion and (ii) dependence on a parameter not explicitly involved in the recursion.
 
 \begin{defn}
 	A \emph{primitive recurrence in $A$ (with parameters in $C$)} consists of two  functions $C\stackrel{b}{\longrightarrow} A\stackrel{r}{\longleftarrow}\NN\times C\times A$.
 	
 	A \emph{parametric sequence in $A$ with parameters in $C$} is a function
-	$\fromto a{C\times \NN}A$. For a parametric sequence, we might write $a_c(n)$
+	$\fromto a{C\times \NN}A$. For a parametric sequence, we might write $a_{c,n}$
 	instead of $a(c,n)$. 
 \end{defn}
 
@@ -1439,16 +1472,19 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 	Any primitive recurrence $C \stackrel{b}{\longrightarrow} A \stackrel{r}{\longleftarrow} C\times \NN \times A$, there is a unique
 	function $\fromto f{C\times \NN}A$ satisfying: 
 	\begin{align*}
-		f(c,0) &= b(c)\\
-		f(c,k^\nxt) &= r(c,k,f(c,k))
+		f_{c,0} &= b(c)\\
+		f_{c,k^\nxt} &= r(c,k,f_{c,k})
 	\end{align*}
 
-	\begin{proof}	\end{proof}
+	\begin{proof}
+		The proof of this is intricate enough that we do not have room to complete it here. 
+		An original proof can be found in \cite{freyd66}.
+	\end{proof}
 \end{lemma}
 
 \newcommand{\pred}{\mathord{\textsf{pred}}}
 
-The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^\nxt) = n$.
+The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^\nxt) = n$. 
 
 \begin{exercises}
 \begin{enumerate}
@@ -1614,7 +1650,7 @@ We give only an informal sketch of the proof here.
 	\end{proof}
 \end{lemma}
 
-Isomorphisms are related to all of the constructions of Lectures \ref{lec:constructions} and \ref{lec:natural-numbers}. 
+Isomorphisms are related to the constructions of Lectures \ref{lec:constructions} and \ref{lec:natural-numbers}. 
 In particular, all terminal objects are isomorphic to each other, all equalizers of two functions are isomorphic to each other, and so on. 
 We illustrate the general idea with products and countably infinite sets. 
 
@@ -1652,9 +1688,55 @@ This gives us a precise criterion for comparing sets by their size. We introduce
 	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are isomorphic.
 \end{defn}
 
-Thus ``equipotent'' and ``isomorphic'' mean the same thing. The usage differs mainly in terms of emphasis. When we are mainly interested in comparing sets by size, we use the word ``''equipotent''. 
+Thus ``equipotent'' and ``isomorphic'' mean the same thing.
+The usage differs mainly in terms of emphasis.
+When we are mainly interested in comparing sets by size, we use the word ``''equipotent''. 
 
-%TODO Show that $\NN\times \NN\sim\NN$
+\begin{example}
+	The set $\NN\times \NN$ is countably infinite.
+	
+	Define $\fromto a{\NN\times \NN}\NN$ by $a(m,n) = (m+n)(m+n+1)/2 + n$. 
+	Also define $\fromto s{\NN\times \NN}{\NN\times \NN}$ by
+	$s(0,n) = (n^\nxt,0)$ and $s(m^\nxt,n) = (m,n^\nxt)$.
+	Thus $(0,0)$ and $s$ defines a simple recurrence in $\NN\times \NN$,
+	so $\rec[(0,0),s]$ is a sequence in $\NN\times \NN$. 
+	
+	By induction on $k$, $a(\rec[(0,0),s](k)) = k$. 
+	[Basis]  $a(\rec[(0,0,s)(0)])=a(0,0) = 0$
+	[Inductive Hypothesis] Suppose $a(\rec[(0,0),s](k)) = k$ for some $k$. 
+	[IS] Suppose $\rec[(0,0),s](k^\nxt) = s(\rec[(0,0),s](k)) = (n^\nxt,0)$. Then $\rec[(0,0),s](k) = (0,n)$. By the inductive hypothesis, $a(0,n)=k$. That is,
+	$n(n+1)/2+n = k$. Some simple algebra shows that $a(n^\nxt,0)= k^\nxt$.
+	
+	Suppose $\rec[(0,0),s](k^\nxt) = s(\rec[(0,0),s](k)) = (m,n^\nxt)$.
+	Then $\rec[(0,0),s](k) = (m^\nxt,n)$.
+	Again, by the inductive hypothesis, $a(m^\nxt,n)=k$ and algebra shows 
+	that $a(m,n^\nxt) = k^\nxt$.
+	
+	Now by induction on $m+n$, $\rec[(0,0),s](a(m,n)) = (m,n)$.
+	The basis is trivial. 
+	Assume that $\rec[(0,0),s](a(m,n)) = (m,n)$ for any $m$ and $n$ for which $m+n=p$. 
+	For the inductive step, suppose $m+n=p^\nxt$. 
+	Now by induction on $n$, the result follows. 
+	That is if $m+0 = p&^\nxt$,
+	then $a(m^\nxt,0)= (m+2)(m+1)/2 = (m(m+1)/2 + m)^nxt = a(0,m)^\nxt$. Since $0+m=p$,
+	$\rec[(0,0),s](a(0,m)) = (0,m)$. If $m+j^\nxt = p^\nxt$, then $m+j = p$. 
+	
+%TODO Finish the proof.  
+\end{example}
+
+\begin{lemma}
+	If $A$ and $B$ are countable, then so is $A\times B$.
+	If $A$ and $B$ are countable, then so is $A\cup B$.
+	If $I$ is countable and for each $i\in I$, $A_i$ is countable, then $\bigcup_{i\in I}A_i$ is countable.
+	
+	\begin{proof}
+		The assumption that $I$ is countable means there is a surjection $\fromto f\NN I$. Likewise, the assumption that each $A_i$ is countable means there is a surjection $\fromto {g_i}\NN{A_i}$ for each $i\in I$. It suffices now to show that there is a surjection fromt $\NN\times \NN$ to $\bigcup_{i\in I}A_i$.
+		
+		Let $\fromto h{\NN\times \NN}\bigcup_{i\in I}A_i$ y defined by $h(m,n) = g_{f(m}(n)$. For $x\in \bigcup_{i\in I}A_i$, $x\in  A_k$ for some $k\in I$. Since $g_k$ is a surjection, $x = g_k(n)$ for some $n\in\NN$. 
+		But likewise, $f$ is a surjection, so $k = f(m)$ for some $m\in\NN$. 
+		Hence $x = g_{f(m)}(n) = h(m,n)$.
+	\end{proof}
+\end{lemma}
 
 %\section{What Can Primitive Recursion Do?}
 %
