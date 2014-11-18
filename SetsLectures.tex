@@ -980,7 +980,22 @@ This leads to the following definition.
 
 \subsection*{$\lambda$ Notation}
 
+When we describe a function by  rule like $x\mapsto x^2$, it is usually convenient to give the function a name.
+So we might write $f(x) = x^2$.
+But sometimes, it is also convenient to have a notation for a function without giving it an explicit name. 
+The logician Alonzo Church \cite{church} proposed a simple notation to describe functions. 
+He wrote things like $\lambda x.x^2$ to describe the function that squares its input. 
+The Greek letter $\lambda$ is used merely as a marker to introduce a function. 
+It does not mean anything special. 
+We could make the $\lambda$ notation formal, but for our purposes we do not need that.
 
+\begin{example}
+	Suppose $\fromto fAB$ and $\fromto gBC$. Then $g\circ f$ is the function
+	$\lambda x.g(f(x))$.  So $f\in B^A$ and $g\in C^B$ determine $g\circ f\in C^A$.
+	Thus $\circ$ can be regarded (locally) as a function $B^A\times C^B\to C^A$.
+	It is defined by $\lambda(f,g).\lambda x.g(f(x))$.
+\end{example}
+ 
 
 \begin{exercises}
 	\begin{enumerate}
@@ -990,7 +1005,7 @@ This leads to the following definition.
 				\item draw internal diagrams corresponding to each element of $A^B$ (there are nine of them).
 			\end{enumerate}
 		\item Consider the function $\fromto f{\NN\to\NN}\NN$ defined by
-		      $f(m,n) = m^n$. What function is $\curry[f](3)$?
+		      $f(m,n) = m^n$. What function is $\curry[f](3)$? Use $\lambda$ notation to describe it.
 	\end{enumerate}	
 \end{exercises}
 
