@@ -1222,15 +1222,19 @@ The structure of this set is similar to $\NN$.
 \end{principle}
 
 \begin{example}
-	$\One \stackrel{\hat 0}{\longrightarrow} \NN \stackrel{+}{\longleftarrow} \NN\times \NN$ determine a function $s$ from lists of natural numbers to natural numbers. The function satifies $s([\,])= 0$ and $s(n:L)= n + s(L)$.
-	So $s$ returns the sum of the entries of a list. Earlier, we wrote this as $\sum L$.
+	$\One \stackrel{\hat 0}{\longrightarrow} \NN \stackrel{+}{\longleftarrow} \NN\times \NN$ determine a function $\rec[\hat 0, +]$ from $\List(\NN)$. The function satifies $\rec[\hat 0,+]([\,])= 0$ and $\rec[\hat 0,+](n:L)= n + s(L)$.
+	So $\rec[0,+]$ returns the sum of items of a list natural numbers.
+	Earlier, we wrote this as $\sum L$.
 \end{example}
 
 
 \begin{exercises}
 	\begin{enumerate}
-		\item For a function $\fromto fAB$, define the function
+		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defined the function
 			$fromto {\map[f]}{\List[A]}{\List[B]}$ so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
+		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do it, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$ recurrence to define a function $\frmoto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) Now define $L\star M$ to be $c(L)(M)$.
+		\item Write a scheme for ``$A$-primitive recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
+		write equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to C$. 
 	\end{enumerate}
 \end{exercises}
 
