@@ -767,14 +767,14 @@ This leads to another axiom.
 	A set $T$ is \emph{terminal} if it is the case that for any set $A$ there is exactly one function from $A$ to $T$.
 \end{defn}
 
-\begin{axiom}
+\begin{principle}
 	The set $\One$ is a terminal set. 
 	We denote the unique function from $A$ to $\One$ by $\fromto {\Diamond_A}{A}\One$.
 	
 	The rule defining $\Diamond_A$ must be
 	\[x\mapsto\bullet\]
 	because no other rule is possible. 
-\end{axiom}
+\end{principle}
 
 Using $\Diamond_A$ and $\hat{b}$ for an element $b\in B$, we can now define constant functions. 
 That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ defined by 
@@ -788,6 +788,32 @@ In short, this is the function sending any element of $A$ to the constant result
 		\item Suppose that $\fromto fAB$ is a function. Show that for every $a\in A$, $\widehat{f(a)} = f\circ \hat{a}$.
 	\end{enumerate}
 \end{exercises}
+
+\section{The Empty Set}
+
+For trivial reasons, there is at most one function from $\emptyset$ to $A$,
+for any set $A$. That is,  if $\fromto {f,g}\emptyset A$ are functions, then
+for each $x\in\emptyset$, $f(x)=g(x)$ because there are none. Hence by Principle \ref{ax:FunctionExtensionality}, $f=g$. The empty ``rule'' that tells us nothing does actually specify a function from $\emptyset$ to $A$. So $\emptyset$ 
+is the \emph{initial} set, i.e., for any set $A$, there is exactly one function from $\emptyset$ to $A$.
+
+\begin{defn}
+	An \emph{initial set} is a set $I$ so that for any set $A$, there is exactly one function from $I$ to $A$.
+\end{defn}
+
+\begin{principle}
+	The emptyset $\emptyset$ is an initial set.
+\end{principle}
+
+Notice that a function $A\to\emptyset$ is impossible unless $A$ is also empty.
+So it follows that $\emptyset$ is the only initial set. 
+
+\begin{exercises}
+	\begin{enumerate}
+		\item How many functions are there from $\emptyset$ to $\{a,b,c,d\}$
+		\item How many functions are there from $\{a,b,c,d\}$ to $emptyset$.
+	\end{enumerate}
+\end{exercises}
+
 
 \section{Solution Sets, Subsets, Characteristic Functions}
 
@@ -873,27 +899,28 @@ Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $
 		
 \end{exercises}
 
-\section{Product Sets and Functions of Two Variables}
+\section{Product Sets and Functions of Two Arguments}
 
 We should be able to deal with functions of more than one argument, such as a function $f(x,y) = x+y$.
-To account for such functions, we take our cue from Descartes.
-He studied the plane in terms of a coordinate system consisting of the so-called $x$-axis and $y$-axis.
-Once we have decided where to place the axes (as long as they do not run in parallel), a pair $(2,3)$ determines a point on the plane, and any point $p$ in the plane determines a pair.
+To account for these, we take our cue from Descartes.
+
+Descartes studied the geometric plane in terms of a coordinate system consisting of the so-called $x$-axis and $y$-axis (what we call cartesian coordinates in his honor).
+Once we have decided where to place the axes (as long as they do not run in parallel), a pair such as $(2,3)$ determines a point on the plane, and any point $p$ in the plane determines a pair.
 So Descartes realized that we might as well just say that the plane actually \emph{is} the collection of all pairs of real numbers.
-What makes this work is that points in the plane \emph{project} onto the two axes.
+What makes this work is that points in the plane \emph{project} onto the two axes in a universal way.
 Products of sets generalize this idea.
 
 \begin{defn}
 For sets $A$ and $B$, a \emph{table} consists of two functions $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$.
-Note that the two functions have the same domain. We may call the two functions \emph{legs}.
+Note that the two functions have the same domain. We may call the two functions \emph{legs} of the table.
 
 For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $A\stackrel{p}{\longleftarrow} P\stackrel{q}{\longrightarrow}B$ so that for any table $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$ there is exactly one function $\fromto hCP$ for which $f = p\circ h$ and $g= q\circ h$. 
-For a product, the functions $p$ and $q$ are called the \emph{projections}.
+For a product, the legs $p$ and $q$ are called the \emph{projections}.
 \end{defn}
 
 \begin{principle}\label{ax:products}
 	For sets $A$ and $B$, the collection of all pairs $(a,b)$ where $a\in A$ and $b\in B$ is a set, denoted by $A\times B$. 
-	The functions $\fromto {\pi_0}{A\times B}A$ and $\fromto {\pi_1}{A\times B}B$ defined by the rules $\pi_0(a,b)=a$
+	The functions $\fromto {\pi_0}{A\times B}A$ and $\fromto {\pi_1}{A\times B}B$ defined by $\pi_0(a,b)=a$
 	and $\pi_1(a,b)=b$ are projections. For $\fromto fCA$ and $\fromto gCB$, the unique function required by
 	the product may be denoted by $\langle f,g\rangle$.
 
@@ -904,6 +931,7 @@ Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$.
 We can now form a single function from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. 
 That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$.
 Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
+So $f\times g$ acts on a pair $(x,y)$ by applying $f$ to $x$ and unrelatedly applying $g$ to $y$. 
 
 \begin{exercises}
 	\begin{enumerate}
@@ -941,14 +969,18 @@ This leads to the following definition.
 
 \begin{principle}
 	For sets $A$ and $B$, the collection of all functions from $A$ to $B$, denoted by $B^A$, is a set.
-	Moreover, there is an evaluation map $\fromto \alpha{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
+	Moreover, there is an evaluation map $\fromto \appl{B^A\times A}B$ defined by the rule $(f,x) \mapsto f(x)$.
 	The unique change of parameters function corresponding to $\fromto f{C\times A}B$ does not have a completely standard name.
 	Some mathematicians honor the twentieth century logician names Haskell Curry by referring to this as `currying'.
-	For these lectures, we follow that tradition and write $\curry[f]$ for the unique function satisfying $f = \alpha\circ (\curry[f] \times \id_A)$.
+	For these lectures, we follow that tradition and write $\curry[f]$ for the unique function satisfying $f = \appl\circ (\curry[f] \times \id_A)$.
 	
 	Calculating how $\fromto {\curry[f]}C{B^A}$ must behave, we see that $\curry[f](c)$ is the function from $A$ to $B$ given by the rule $x\mapsto f(c,x)$.
 	So for any $c\in C$ and $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
 \end{principle}
+
+\subsection*{$\lambda$ Notation}
+
+
 
 \begin{exercises}
 	\begin{enumerate}
@@ -961,6 +993,27 @@ This leads to the following definition.
 		      $f(m,n) = m^n$. What function is $\curry[f](3)$?
 	\end{enumerate}	
 \end{exercises}
+
+\section{Universal Constructions}
+
+Consider the product $A\times B$ again.
+It possesses functions 
+$A\stackrel{\pi_0}{\longleftarrow}A\times B\stackrel{\pi_1}{\longrightarrow}B$. For any other similar arrangement
+$A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$, there is a unique function $C\stackrel{\langle f,g\rangle}{\longrightarrow}{A\times B}$ making the diagram
+
+commute.
+
+An equalizer ($\{x\in A\st f(x)=g(x)\}$), a terminal object ($\One$) and an exponential ($B^A$) are also characterized by some special functions so that any similarly arranged functions determine a unique function making a suitable diagram commute. Go back and reread the definitions of equalizers, terminal objects, products and exponentials to see that they all have this family resemblance. They are called \emph{universal constructions}. So the inclusion $\{x\in A\st f(x)=g(x)\}\to A$ is universal for solving the equation $f=g$; $A\stackrel{\pi_0}{\longleftarrow}A\times B\stackrel{\pi_1}{\longrightarrow}B$ is universal for mapping into $A$ and $B$;
+$B^A\times A\stackrel{\appl}B$ is the universal parametric function from $A$ to $B$. The principes of this lecture spell out that there are sets and functions 
+with the desired universal properties.
+
+\begin{exercises}
+	\begin{enumerate}
+		\item Explain how $\One\stackrel{\hat{\top}}{\longrightarrow}\Two$ is universal. [There is not a set answer to this. I want you to think about how $\Two$ fits into a bigger picture.]
+	\end{enumerate}
+\end{exercises}
+
+
 
 \chapter{Powersets and Internal Logic}
 
@@ -1728,7 +1781,7 @@ When we are mainly interested in comparing sets by size, we use the word ``''equ
 	Assume that $\rec[(0,0),s](a(m,n)) = (m,n)$ for any $m$ and $n$ for which $m+n=p$. 
 	For the inductive step, suppose $m+n=p^\nxt$. 
 	Now by induction on $n$, the result follows. 
-	That is if $m+0 = p&^\nxt$,
+	That is if $m+0 = p^\nxt$,
 	then $a(m^\nxt,0)= (m+2)(m+1)/2 = (m(m+1)/2 + m)^nxt = a(0,m)^\nxt$. Since $0+m=p$,
 	$\rec[(0,0),s](a(0,m)) = (0,m)$. If $m+j^\nxt = p^\nxt$, then $m+j = p$. 
 	
