@@ -1019,435 +1019,25 @@ $A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$, there is a uniqu
 \tikzset{>=stealth}
 \begin{tikzpicture}[every node/.style={midway}]
 \matrix[column sep={4em,between origins},row sep={2em}] at (0,0)
-{ 						& \node(T) {$T$}; 	& \\
-	\node(A)   {$A$}; 	& \node(P) {$P$}; 	& \node(B) {$B$}; \\};
-%\draw[->] (T) -- (A) node[anchor=north]  {$f$};
-%\draw[->] (T) -- (B) node[anchor=north]  {$g$};
-%\draw[->] (T) -- (P) node[anchor=east] {$\lange f,g \rangle$};
-%\draw[->] (P) -- (A) node[anchor=south] {$\pi_0$};
-%\draw[->] (P) -- (B) node[anchor=south] {$\pi_1$};
+{ 					&	& \node(T) {$T$}; &	& \\
+	\\
+	\node(A)   {$A$}; &	& \node(P) {$P$}; &	& \node(B) {$B$}; \\};
+\draw[->] (T) -- (A) node[anchor=south east]  {$f$};
+\draw[->] (T) -- (B) node[anchor=south west]  {$g$};
+\draw[->] (T) -- (P) node[anchor=north east] {$\langle f,g \rangle$};
+\draw[->] (P) -- (A) node[anchor=north] {$\pi_0$};
+\draw[->] (P) -- (B) node[anchor=north] {$\pi_1$};
 \end{tikzpicture}
 \]
 commute.
 
 An equalizer ($\{x\in A\st f(x)=g(x)\}$), a terminal object ($\One$) and an exponential ($B^A$) are also characterized by some special functions so that any similarly arranged functions determine a unique function making a suitable diagram commute. Go back and reread the definitions of equalizers, terminal objects, products and exponentials to see that they all have this family resemblance. They are called \emph{universal constructions}. So the inclusion $\{x\in A\st f(x)=g(x)\}\to A$ is universal for solving the equation $f=g$; $A\stackrel{\pi_0}{\longleftarrow}A\times B\stackrel{\pi_1}{\longrightarrow}B$ is universal for mapping into $A$ and $B$;
-$B^A\times A\stackrel{\appl}B$ is the universal parametric function from $A$ to $B$. The principes of this lecture spell out that there are sets and functions 
+$B^A\times A\stackrel{\appl}B$ is the universal parametric function from $A$ to $B$. The principles of this lecture spell out that there are sets and functions 
 with the desired universal properties.
 
 \begin{exercises}
 	\begin{enumerate}
 		\item Explain how $\One\stackrel{\hat{\top}}{\longrightarrow}\Two$ is universal. [There is not a set answer to this. I want you to think about how $\Two$ fits into a bigger picture.]
-	\end{enumerate}
-\end{exercises}
-
-
-
-\chapter{Powersets and Internal Logic}
-
-The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
-So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
-It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set.
-This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
-
-\begin{principle}\label{ax:powerset}
-	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
-	\[\ni_A(B,x) = \begin{cases}
-		\top, &\text{ if } x\in B\\
-		\bot &\text{otherwise}
-	\end{cases}
-	\]
-	The function $\ni_A$ is an evaluation map, meaning that 
-	for any function $\fromto f{C\times A}\Two$, there is a unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni_A\circ (\overline{f} \times \id_A)$. The function $\overline f$ 
-	is given by the rule $c\mapsto \{x\in A\st f(c,x)=\top\}$.
-\end{principle}
-
-For a function $\fromto fAB$, $\ni_B\circ (\id_{\powerset(B)}\times f)$ is a function from $\powerset(B)\times A$ to $\Two$. So there is a unique function
-from $\powerset(B)$ to $\powerset(A)$ determined by it. 
-
-\begin{defn}
-	For $\fromto fAB$, let $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ denote
-	the unique function for which $\ni_B\circ (\id_{\powerset(B)}\times f) = \ni_A\circ(f^{-1}\times \id_A)$. In simpler terms, $f^{-1}$ satsifies
-\[x\in f^{-1}(Y) \text{if and only if } f(x)\in Y\]
-for every $Y\subseteq B$.  So $f^{-1}$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
-\end{defn}
-
-This notation does not clash much with our usage of $f^{-1}(b)$ because 
-$f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
-
-\section{Specifying Subsets}
-
-We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to specify the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
-We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$, and inverse images of subsets: $\{x\in A\st f(x)\in Y\}$. 
-Life would be easier if we had a more general system for specifying subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
-
-As it happens, all of these examples are honest specifications of subsets. 
-The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
-In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
-So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
-Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
-$\{x\in U\st \ldots x \ldots\}$ makes sense.
-
-First, we need to understand what is means for a variable to \emph{appear free} in an expression.
-In $\{x\in A \st f(x)=g(x)\}$ the variable \emph{appears bound}.
-This means, roughly, that the meaning of the expression does not depend on a value for $x$, so we are not ``free'' to interpret $x$.
-In contrast, $f$ and $g$ appear free in the same expression because the meaning of the expression depends on the meanings of $f$ and $g$.
-We are ``free'' to choose what they mean.
-Similarly, in the English phrase, ``$m + n = n + m$ for all natural numbers $m$ and $n$'' the variables $m$ and $n$ are bound.
-But in the phrase ``$m+k = n$ for some $k$'' the variables $m$ and $n$ are free and the variable $k$ is bound.
-An important feature of bound variables is that we may rename them without changing the meaning, so long as we do so systematically.
-For example, ``$m+j=n$'' for some $j$'' means exactly the same as ``$m+k=n''$ for some $k$''.
-But we can't just swap $m$ for some other variable without changing the meaning. 
-
-In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
-We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
-
-\begin{vocabulary}
-	In the following, let $X$ and $W$ be sets. Let $P(x)$, $Q(x)$, $R(w,x)$ be expressions and $A,B\subseteq X$, $C\subseteq X\times X$ so that
-	\begin{itemize}
-		\item $A = \{x\in X\st P(x)\}$,
-		\item $B = \{x\in X\st Q(x)\}$, and
-		\item $C = \{(w,x)\in W\times X\st R(w,x)\}$.
-	\end{itemize}
-Then the following sets are definable. 
-\begin{itemize}
-\item $W\times A = \{(w,x)\in W\times X\st P(x)\}$. In fact, this is the same 
-as $\pi_1^{-1}(A)$.  
-
-\item $A\cap B = \{x\in X\st \text{$P(x)$ and $Q(x)$}\}$. We may abbreviate ``$P(x)$ and $Q(x)$'' by writing ``$P(x)\wedge Q(x)$''. 
-
-\item $A\Rightarrow B = \{x\in X\st \text{$P(x)$ implies $Q(x)$}\}$. We may abbreviate ``$P(x)$ implies $Q(x)$'' by writing ``$P(x)\to Q(x)$''.
-
-\item $A\cup B = \{x\in X\st \text{$P(x)$ or $Q(x)$}\}$. We may abbreviate ``$P(x)$ or $Q(x)$'' by writing ``$P(x)\vee Q(x)$''.
-	
-\item $\emptyset = \{x\in X\st \text{false} \}$. This defines $\emptyset$ as a subset of $A$. We may abbreviate ``false'' by writing $\textsf{F}$.
-	
-\item $X = \{x\in X\st \text{true}\}$ defines $X$ as a subset of $X$. We may abbreviate ``true'' by writing $\textsf{T}$.
-	
-\item $\{x\in X \st \text{for some $w\in W$, $R(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $R(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
-	
-\item $\{x\in X \st \text{for every $w\in W$, $R(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $R(w,x)$'' by writing ``$\forall w\in W, R(w,x)$''.
-
-\item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
-\end{itemize}
-\end{vocabulary}
-
-All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
-The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
-Also note that $A^*$ is the same thing as $A\Rightarrow\emptyset$ because $x\in A^*$ means that $x\in X$ and $x\notin A$.
-But $x\in A\Rightarrow \emptyset$ means $x\in AX$ and \emph{if $x\in A$, then $x\in\emptyset$}.
-The only elements of $X$ that can satisfy the latter condition are those that are not in $A$.
-
-\section{The structure of Powersets}
-  
-For any set $U$, the powerset $\powerset(U)$ has useful structure.
-It is a \emph{partially ordered set} with respect to $\subseteq$.
-This means that $\subseteq$ satisfies three conditions:
-\begin{description}
-	\item[Reflexivity] $A\subseteq A$ holds for any $A\in \powerset(U)$;
-	\item[Transitivity] If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$ for any $A,B,C\in\powerset(U)$;
-	\item[Anti-symmetry] If $A\subseteq B$ and $B\subseteq A$, then $A=B$. 
-\end{description}
-
-More specifically, $\powerset(U)$ is known as a \emph{complete atomic Boolean algebra}. In an important sense, this is \emph{the} structure of a powerset. So we
-should take some time to understand it. First, let us consider how the basic
-constructions of the previous section behave.
-
-\begin{lemma}
-	For a set $U$ and subsets $A$, $B$ and $C$,
-\[\text{$C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.}\]
-	
-	\begin{proof}
-		Suppose $C\subseteq A\cap B$.
-		Since $x\in A\cap B$ implies, by definition,
-		that $x\in A$ and $x\in B$, obviously $C\subseteq A$ and $C\subseteq B$.
-		
-		Suppose $C\subseteq A$ and $C\subseteq AB$, and consider some $x\in C$.
-		Then $x\in A$ and $x\in B$, so by definition $x\in A\cap B$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	For a set $U$ and subsets $A$, $B$ and $C$,
-	\[\text{$A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.}\]
-	
-	\begin{proof}
-		Exercise.
-	\end{proof}
-\end{lemma}
-
-From these, it is easy to see that $\cap$ and $\cup$ are commutative, associative
-and idempotent. That is,
-
-$A\cap B = B\cap A$
-$A\cap (B\cap C) = (A\cap B)\cap C$
-$A\cap A = A$
-
-A binary operation that satisfies these three laws is called a \emph{semilattice} operation. But actually $\cap$ and $\cup$ interact by another law.
-$A\cap (B\cup A) = (A\cap B)\cup A$
-
-Any structure with two operations that satisfy all of these laws is called a \emph{lattice}. So $\powerset(X)$ with the operations $\cap$ and $\cup$ is a lattice. If the two operations have identities $A\cap X = A$ and $a\cup \emptyset = A$, then it is a \emph{bounded lattice}. 
-
-So in fact, $\powerset(X)$ with $\cap$, $\cup$, $X$ and $\emptyset$ forms a bounded lattice. Next, we consider how $\Rightarrow$ provides additional information.
-
-\begin{lemma}
-	For set $X$ and subsets $A$, $B$ and $C$,
-	\[\text{$A\cap B\subseteq C$ if and only if $A\subseteq B\Rightarrow C$}\]
-	
-	\begin{proof}
-		Suppose $A\cap B\subseteq C$. Consider $x\in A$. 
-		For such an $x$, it i true that $x\in B$ implies $x\in C$.
-		So $x\in B\Rightarrow C$.
-		
-		Suppose $A\subseteq B\Rightarrow C$.
-		Consider $x\in A\cap B$. 
-		Then $x\in A$. So $x\in B\Rightarrow C$.
-		But also $x\in B$. So $x\in C$. 		
-	\end{proof}
-\end{lemma}
-
-This law, sometimes called the Law of Residuation, specifies exactly how $\cap$ an $\Rightarrow$ interact. A bounded lattice with an operation that satisies the Law of Residuation is called a \emph{Heyting algebra}. So we have not shown that $\powerset(X)$ is a Heyting algebra. A useful fact about Heyting algebras is that, even though residuation does not explicitly mention $\cup$, it implies that law of distribution.
-
-\begin{lemma}
-	For set $X$ and subsets $A$, $B$, and $C$,
-	\[A\cap (B\cup C) = (A\cap B) \cup (A\cap C)\]
-	
-	\begin{proof}
-		In any lattice $(A\cap B)\cup (A\cap C)\subseteq A\cap (B\cup C)$. [Prove this as an exercise.]
-		So the equality only requires we prove the other inclusion.
-		
-		By the Law of Residuation, $A\cap (B\cup C)\subseteq (A\cap B)\cup (A\cap C)$ holds if and only if $B\cup C\subseteq A\Rightarrow (A\cap B)\cup (A\cap C)$ holds. But by Law of Union, the latter holds if and only if both $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ and $C\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ hold. And finally, by the Law of Residuation again, $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ holds if and only if $A\cap B\subseteq (A\cap B)\cup (A\cap C)$ holds, and likewise for $C$. But $A\cap B$ is indeed contained in $(A\cap B)\cup (A\cap C)$ and similarly $A\cap C$ is indeed contained in $(A\cap B)\cup (A\cap C)$. 
-	\end{proof}
-\end{lemma}
-
-Notice that the proof does not explicitly mention elements of $X$. It only uses the algebraic properties of $\cap$, $\cup$ and $\Rightarrow$. So we have actually proved that every Heyting algebra satisfies the Law of Distribution.
-
-\begin{lemma}
-	For set $X$ and subset $A\subseteq X$, $A^{**} = A$.
-	
-	\begin{proof}
-		Exercise.
-	\end{proof}
-\end{lemma}
-
-A Heyting algebra satisfying this additional law is called a Boolean algebra (historically, this is backwards. Boolean algebras were named before Heyting algebras). So $\powerset(X)$ is a Boolean algebra.
-
-\begin{lemma}
-	For any function $\fromto fXY$, the function $\fromto {f^{-1}}{\powerset(Y)}{\powerset(X)}$ satisfies
-	\begin{itemize}
-		\item $f^{-1}(\emptyset) = \emptyset$
-		\item $f^{-1}(A\cup B) = f^{-1}(A)\cup f^{-1}(B)$
-		\item $f^{-1}(Y) = X$
-		\item $f^{-1}(A\cap B) = f^{-1}(A) \cap f^{-1}(B)$
-		\item $f^{-1}(A^*) = f^{-1}(A)^*$
-	\end{itemize}
-\end{lemma}
-
-So not only is $\powerset(X)$ always a Boolean algebra, but $f^{-1}$ is a function that \emph{preserves} the relevant operations that give $\powerset(X)$ that structure.
-
-An element $x$ of a Boolean algebra is \emph{atomic} if whenever $x = y\vee z$,
-either $y=x$ or $z=x$. In $\powerset(X)$, the atoms are singleton subsets $\{x\}$
-for $x\in X$. In $\powerset(X)$, there are a lot of atoms. Specifically, 
-every $A\in\powerset(X)$ is either $\emptyset$ or has at least one atom $\{x\}\subseteq A$. It is possible to have a Boolean algebra with no atoms, but this is a property that all powersets have.
-
-Summarizing so far $\powerset(X)$ is an atomic Boolean algebra, and $f^{-1}$ preserves Boolean structure. Since $f^{-1}(\{x\})$ is not necessarily a singleton,
-$f^{-1}$ does not generally preserve atoms.
-
-Finally, we need to understand completeness.
-
-\begin{lemma}
-	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and $A\subseteq X$,
-	\[\text{$\{x\in X\st \exists w\in W.P(w,x)\} \subseteq A$ if and only if $\{(w,x)\in W\times X\st P(w,x)\} \subseteq \pi_1^{-1}(A)$.}\] 
-	 
-	\begin{proof}
-		Suppose $\{x\in X\st \exists w\in W.P(w,x)\}\subseteq A$.
-		Consider $(w,x)\in W\times X$ for which $P(w,x)$.
-		Then $x\in A$. So $(w,x)\in \pi_1^{-1}(A)$. 
-		
-		For the reserve inclusion, suppose $\{(w,x)\in W\times X\st P(x,y)\}\subseteq \pi_1^{-1}(A)$.
-		Consider $x\in X$ for which $P(w,x)$ holds for some $w\in W$.
-		Then $(w,x)\in \pi^{-1}(A)$.
-		So $x\in A$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-		For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and subset $A\subseteq X$,
-		\[\text{$A\subseteq \{x\in X\st \forall w\in W.P(w,x)\}$ if and only if 
-		$\pi_1^{-1}(A)\subseteq \{(w,x)\in W\times X\st P(w,x)\}$.}\]
-		
-		\begin{proof}
-			Exercise.
-		\end{proof} 	
-\end{lemma}
-
-First, for completeness we need the following definition:
-\begin{defn}
-	Let $\fromto aIA$ be a function. Writing $a_i$,
-	instead of $a(i)$, then we refer to $a$ as an \emph{(indexed) family of elements of $A$}, and write it as $\{a_i\}_{i\in I}$. This notation is just a way to denote a function that emphasizes its role as a way to pick out elements of $A$.
-	
-	If $(P,\leq)$ is a partially ordered set and $\{a_i\}_{i\in I}$ is an indexed family in $P$. An element $u\in P$ is a \emph{least upper bound} of $\{a_i\}_{i\in I}$ if for every $p\in P$, $u\leq p$ if and only if $a_k\leq p$ 
-	for every $k\in I$. 
-\end{defn}
-
-In $\powerset(X)$, let $\{A_i\}_{i\in I}$ be a family of subsets.
-Then consider the set $\bigcup_{i\in I}A_i $ defined by $\{x\in X\st \exists i\in I. x\in A_i\}$. Then $A_k\subseteq \bigcup_{i\in I}A_i$ for every $k\in I$
-Furthermore, suppose $A_k\subseteq C$ is true for each $k\in I$.
-Then $x\in \bigcup_{i\in I}A_i$, there is some $k\in I$ so that $x\in A_k$.
-Hence $x\in C$.
-This shows that $\bigcup_{i\in I}A_i$ is the least upper bound of the family $\{A_i\}_{i\in I}$.
-So every family of subsets of $X$ has a least upper bound.
-This is what we mean by saying that $\powerset(X)$ is \emph{complete}.
-
-All together $\powerset(X)$ is a complete atomic Boolean algebra. Moreover,
-for any $\fromto fXY$, 
-$f^{-1}$ preserves even the complete structure.
-
-\begin{lemma}
-	For function $\fromto fXY$, let $P(w,y)$ be an expression defining
-	$\{(w,y)\in W\times Y\st P(w,y)\}$. For any function $\fromto fXY$,
-	\begin{align*}
-		f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\}) &= \{x\in X\st \exists w\in W, P(w,f(x)\}\\
-		f^{-1}(\{y\in Y\st \forall w\in W, P(w,y)\}) &= \{x\in X\st \forall w\in W, P(w,f(x)\}\\
-	\end{align*}
-	
-	\begin{proof}
-		This is essentially by definition. That is, $x\in f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\})$ if and only if $f(x)\in \{y\in Y\st \exists w\in W,P(w,y)\}$. So $P(w,f(x))$ holds for some $w\in W$. In other words, 
-		$x\in \{x\in X\st \exists w\in W,P(w,f(x))\}$.
-		For the $\forall$ case, the proof is similar.
-	\end{proof} 
-\end{lemma}
- 
-It is slightly beyond the scope of these lectures, but in fact, if $P$ is
-a complete atomic Boolean algebra, then letting $A(P)$ denote the set of atoms of $P$, one can show that the function $\fromto \alpha {P\times A(P)}\Two$ defined 
-by \[\alpha(p,a) = \begin{cases}
-\top & \text{if $x\leq p$}\\
-\bot & \text{otherwise}
-\end{cases}
-\]
-is an evaluation map. So $P$ and $\powerset(A(P))$ have the same structure. 
-
-So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist.
-For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all.
-On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound.
-This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
-
-\begin{lemma}
-	Every family $\{A_i\}_{i\in I}$ of subset of $U$ has a least upper bound in $\powerset(U)$.
-	This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written $\bigcup_{i\in I}A_i$.
-	
-	\begin{proof}
-		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. 
-		Define 
-		\[\bigcup_{i\in I}A_i = \{x\in U\st \text{for some $i\in I$, $x\in A_i$}\}.\]
-		For $k\in I$, suppose $x\in A_k$.
-		Then by definition $x\in \bigcup_{i\in I}A_i$.
-		So $A_k\subseteq \bigcup_{i\in I}A_i$.
-		In other words, $\bigcup_{i\in I}A_i$ is an upper bound of the family $\{A_i\}_{i\in I}$.
-		
-		Suppose $A_k\subseteq C$ for each $k\in I$.
-		If $x\in\bigcup_{i\in I}A_i$, then by definition, $x\in A_k$ for some $k\in I$.
-		So $x\in C$.
-		This shows that $\bigcup_{i\in I}A_i\subseteq C$.
-		
-		The proof is not quite complete because we have not shown that
-		our definition of $\bigcup_{i\in I}A_i$ is a real definition.
- 	\end{proof}
-\end{lemma}
-
-A set $\{(i,x)\in I\times U\st \ni(A_i,x)=\top\}$
-It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
-says that the union of a family of subsets of $U$ exists.
- 
-
-
-\section{The Basic Structure of Powersets}
-
-The elements of $\powerset(U)$ for a set $U$ (thinking for now of $U$ as our
-``universe'' of discourse) are subsets of $U$.
-So they may be related to each other by $\subseteq$. 
-Thus $\powerset(U)$ can be regarded as a set with additional structure. 
-How that structure behaves is important for characterizing how we may use powersets. The structure we consider here can be de
-
-It is easy to confirm that $\subseteq$ has three useful properties:
-\begin{itemize}
-	\item{}[Reflexivity] $X\subseteq X$ is always true.
-	\item{}[Transitivity] $X\subseteq Y$ and $Y\subseteq Z$ implies $X\subseteq Z$.
-	\item{}[Antisymmetry] $X\subseteq Y$ and $Y\subseteq X$ implies $X=Y$.
-\end{itemize}
-
-\begin{defn}
-	A set $P$ with a reflexive, transitive, anti-symmetric relation $\sqsubseteq$ is said to be a \emph{partially ordered set} or \emph{poset} for short. the relation $\sqsubseteq$ is called a \emph{partial order on $P$}. 
-\end{defn}
-
-So we have confirmed that $\powerset(U)$ is a poset with partial order $\subseteq$.
-
-Most of the useful structure of powersets arise from the interplay between
-subsets and characteristic functions. The main idea stems from the idea of ``inverse images''.
-
-\begin{defn}
-	Suppose $\fromto fAB$. Define $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ as follows. For any $Y\subseteq B$, we have the characteristic function $\fromto {\kappa_Y}B\Two$. 
-	Composing with $f$ yields a characteristic function on $A$. So we may form the
-	equalizer 
-	\[ f^{-1}(Y) = \{x\st A\st f(x)\in Y\}.\] 
-\end{defn}
-Note that this notation clashes slightly with our earlier usage where we wrote $f^{1}(y)$ for an element $y\in B$. But in fact, this is innocuous because 
-$f^{-1}(\{y\})$ according to this definition is equal to $f^{-1}(y)$ from the earlier definition.
-	
-is a characteristic of a subset of $A$. 
-Suppose $U$ is a set (think of this temporarily as our ``universe''). 
-Then $\powerset(U)$ comes equipped with structure that is useful to know.
-
-\begin{defn}
-For $A\subseteq U$ and $B\subseteq U$, 
- \begin{itemize}
- 	\item let $A\cap B = \{y\in U\st \text{$y\in A$  and $y\in B$}\}$;
- 	\item let $A\cup B = \{y\in U \st \text{$y\in A$ or $y\in B$}\}$;
- 	\item let $\sim A = \{y\in U\st y\notin A\}$.
- \end{itemize}
-\end{defn}
-
-
-
-On the set $\Two$, the functions $\hat{\top}$ and $\hat{\bot}$
-pick out the two elements. For a set $A$, the constant function $x\mapsto \top$
-is the characteristic function of $A\subseteq A$, while the function $x\mapsto \bot$ is the characteristic function of $\emptyset\subseteq A$. 
-
-Subsets of a set $A$ can be merged together to form a single subset. 
-For example, if $X,Y\subseteq A$, then we let $X\cup Y$ be the subset
-so that $x\in X\cup Y$ if and only if $x\in X$ 
-The rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. Let us see how that works precisely.
-
-Define $\Delta_A = \{(x_0,x_1)\in A\times A\st x_0=x_1\}$. This is the equalizer for the equation $\pi_0(\overline x)=\pi_1(\overline x)$.
-If one thinks of $A\times A$ as laid out in a square grid, then $\Delta_A$ lies along the diagonal, hence it is usually called the \emph{diagonal set for $A$}.
-Let $\fromto {\kappa_{\Delta_A}}{A\times A}\Two$ be the corresponding characteristic function. That is,
-\[
-\kappa_{\Delta_A}(x,y) = \begin{cases}
-\top & \text{if $x=y$}\\
-\bot & text{otherwise}
-\end{cases}
-\]
-Then Principle \ref{ax:powerset} applied to $\kappa_{\Delta_A}$ means that there is a unique function $\fromto sA{\powerset(A)}$ satisfying the odd looking equation 
-\[
-\ni(s(x),y) = \begin{cases}
-		\top & \text{if $y\in s(x)$}\\
-		\bot &\text{otherwise}
-	\end{cases}
-\]
-But $y\in s(x)$ if and only if $(x,y)\in\Delta_A$ if and only if $y=x$. 
-In other words, $s(x)$ is indeed just the singleton $\{x\}$. We call this the \emph{singleton insertion map}. Usually, we don't give this an explicit name (like $s$), instead we may write it as $\{-\}$ if we need to.
-
-So $\fromto {\{-\}}A{\powerset(A)}$ is a function for any $A$. 
-
-Suppose that $X\subseteq A$ and $Y\subseteq A$. Then it makes sense to form the subset of $A$ consisting of all elements that $X$ and $Y$ have in common. This 
-
-\begin{exercises}
-	\begin{enumerate}
-		\item Write out $\powerset(\{a,b,c\})$
-		\item Write out $\powerset(\emptyset)$
-		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
-		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
-		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
-		\item I claim that $\{\emptyset\}\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
 	\end{enumerate}
 \end{exercises}
 
@@ -1471,9 +1061,15 @@ Suppose that $X\subseteq A$ and $Y\subseteq A$. Then it makes sense to form the 
 We have used $\NN$ informally to denote the set of natural numbers. 
 It is time that we make the structure of the $\NN$ explicit within our theory of sets and functions.
 
-Natural numbers provide a precise picture of counting and of putting things in an order: first, second, third, and so on. Now that we have sets and functions as can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots. When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead, but the point is still that $a$ itself is a function.
+Natural numbers provide a precise picture of counting and of putting things in an order: first, second, third, and so on.
+Now that we have sets and functions as can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots.
+When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead, but the point is still that $a$ itself is a function.
 
-Much of what we will discuss in this lecture will have about it the feel of computer programming. This is because there is a sense in which natural numbers are the main objects of calculation. We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves. In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it. For example,
+Much of what we will discuss in this lecture will have about it the feel of computer programming.
+This is because there is a sense in which natural numbers are the main objects of calculation.
+We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves.
+In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it.
+For example,
 \begin{align*}
 	4!  &= 4 \cdot 3! \\
 		&= 4 \cdot (3 \cdot 2!)\\
@@ -1583,6 +1179,415 @@ The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^
 	\item Find a primitive recurrence that defines the function from $\NN\times \NN$ to $\NN$ given by the rule $(m,n)\mapsto m^n$.
 	\item Define the operation of \emph{monus} $m\stackrel{.}{-} n$ to be $m-n$ when $m \geq n$ and to be $0$ otherwise by  a primitive recurrence.
 \end{enumerate}
+\end{exercises}
+
+\chapter{Powersets and Internal Logic}
+
+The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
+So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
+It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set.
+This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
+
+\begin{principle}\label{ax:powerset}
+	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
+	\[\ni_A(B,x) = \begin{cases}
+	\top, &\text{ if } x\in B\\
+	\bot &\text{otherwise}
+	\end{cases}
+	\]
+	The function $\ni_A$ is an evaluation map, meaning that 
+	for any function $\fromto f{C\times A}\Two$, there is a unique function $\fromto {\overline{f}}C{\powerset(A)}$ for which $f = \ni_A\circ (\overline{f} \times \id_A)$. The function $\overline f$ 
+	is given by the rule $c\mapsto \{x\in A\st f(c,x)=\top\}$.
+\end{principle}
+
+For a function $\fromto fAB$, $\ni_B\circ (\id_{\powerset(B)}\times f)$ is a function from $\powerset(B)\times A$ to $\Two$. So there is a unique function
+from $\powerset(B)$ to $\powerset(A)$ determined by it. 
+
+\begin{defn}
+	For $\fromto fAB$, let $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ denote
+	the unique function for which $\ni_B\circ (\id_{\powerset(B)}\times f) = \ni_A\circ(f^{-1}\times \id_A)$. In simpler terms, $f^{-1}$ satsifies
+	\[x\in f^{-1}(Y) \text{if and only if } f(x)\in Y\]
+	for every $Y\subseteq B$.  So $f^{-1}$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
+\end{defn}
+
+This notation does not clash much with our usage of $f^{-1}(b)$ because 
+$f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
+
+\section{Specifying Subsets}
+
+We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to specify the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
+We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$, and inverse images of subsets: $\{x\in A\st f(x)\in Y\}$. 
+Life would be easier if we had a more general system for specifying subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
+
+As it happens, all of these examples are honest specifications of subsets. 
+The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
+In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
+So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
+Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
+$\{x\in U\st \ldots x \ldots\}$ makes sense.
+
+First, we need to understand what is means for a variable to \emph{appear free} in an expression.
+In $\{x\in A \st f(x)=g(x)\}$ the variable \emph{appears bound}.
+This means, roughly, that the meaning of the expression does not depend on a value for $x$, so we are not ``free'' to interpret $x$.
+In contrast, $f$ and $g$ appear free in the same expression because the meaning of the expression depends on the meanings of $f$ and $g$.
+We are ``free'' to choose what they mean.
+Similarly, in the English phrase, ``$m + n = n + m$ for all natural numbers $m$ and $n$'' the variables $m$ and $n$ are bound.
+But in the phrase ``$m+k = n$ for some $k$'' the variables $m$ and $n$ are free and the variable $k$ is bound.
+An important feature of bound variables is that we may rename them without changing the meaning, so long as we do so systematically.
+For example, ``$m+j=n$'' for some $j$'' means exactly the same as ``$m+k=n''$ for some $k$''.
+But we can't just swap $m$ for some other variable without changing the meaning. 
+
+In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
+We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
+
+\begin{vocabulary}
+	In the following, let $X$ and $W$ be sets. Let $P(x)$, $Q(x)$, $R(w,x)$ be expressions and $A,B\subseteq X$, $C\subseteq X\times X$ so that
+	\begin{itemize}
+		\item $A = \{x\in X\st P(x)\}$,
+		\item $B = \{x\in X\st Q(x)\}$, and
+		\item $C = \{(w,x)\in W\times X\st R(w,x)\}$.
+	\end{itemize}
+	Then the following sets are definable. 
+	\begin{itemize}
+		\item $W\times A = \{(w,x)\in W\times X\st P(x)\}$. In fact, this is the same 
+		as $\pi_1^{-1}(A)$.  
+		
+		\item $A\cap B = \{x\in X\st \text{$P(x)$ and $Q(x)$}\}$. We may abbreviate ``$P(x)$ and $Q(x)$'' by writing ``$P(x)\wedge Q(x)$''. 
+		
+		\item $A\Rightarrow B = \{x\in X\st \text{$P(x)$ implies $Q(x)$}\}$. We may abbreviate ``$P(x)$ implies $Q(x)$'' by writing ``$P(x)\to Q(x)$''.
+		
+		\item $A\cup B = \{x\in X\st \text{$P(x)$ or $Q(x)$}\}$. We may abbreviate ``$P(x)$ or $Q(x)$'' by writing ``$P(x)\vee Q(x)$''.
+		
+		\item $\emptyset = \{x\in X\st \text{false} \}$. This defines $\emptyset$ as a subset of $A$. We may abbreviate ``false'' by writing $\textsf{F}$.
+		
+		\item $X = \{x\in X\st \text{true}\}$ defines $X$ as a subset of $X$. We may abbreviate ``true'' by writing $\textsf{T}$.
+		
+		\item $\{x\in X \st \text{for some $w\in W$, $R(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $R(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
+		
+		\item $\{x\in X \st \text{for every $w\in W$, $R(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $R(w,x)$'' by writing ``$\forall w\in W, R(w,x)$''.
+		
+		\item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
+	\end{itemize}
+\end{vocabulary}
+
+All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
+The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
+Also note that $A^*$ is the same thing as $A\Rightarrow\emptyset$ because $x\in A^*$ means that $x\in X$ and $x\notin A$.
+But $x\in A\Rightarrow \emptyset$ means $x\in AX$ and \emph{if $x\in A$, then $x\in\emptyset$}.
+The only elements of $X$ that can satisfy the latter condition are those that are not in $A$.
+
+\section{The structure of Powersets}
+
+For any set $U$, the powerset $\powerset(U)$ has useful structure.
+It is a \emph{partially ordered set} with respect to $\subseteq$.
+This means that $\subseteq$ satisfies three conditions:
+\begin{description}
+	\item[Reflexivity] $A\subseteq A$ holds for any $A\in \powerset(U)$;
+	\item[Transitivity] If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$ for any $A,B,C\in\powerset(U)$;
+	\item[Anti-symmetry] If $A\subseteq B$ and $B\subseteq A$, then $A=B$. 
+\end{description}
+
+More specifically, $\powerset(U)$ is known as a \emph{complete atomic Boolean algebra}. In an important sense, this is \emph{the} structure of a powerset. So we
+should take some time to understand it. First, let us consider how the basic
+constructions of the previous section behave.
+
+\begin{lemma}
+	For a set $U$ and subsets $A$, $B$ and $C$,
+	\[\text{$C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.}\]
+	
+	\begin{proof}
+		Suppose $C\subseteq A\cap B$.
+		Since $x\in A\cap B$ implies, by definition,
+		that $x\in A$ and $x\in B$, obviously $C\subseteq A$ and $C\subseteq B$.
+		
+		Suppose $C\subseteq A$ and $C\subseteq AB$, and consider some $x\in C$.
+		Then $x\in A$ and $x\in B$, so by definition $x\in A\cap B$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For a set $U$ and subsets $A$, $B$ and $C$,
+	\[\text{$A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.}\]
+	
+	\begin{proof}
+		Exercise.
+	\end{proof}
+\end{lemma}
+
+From these, it is easy to see that $\cap$ and $\cup$ are commutative, associative
+and idempotent. That is,
+
+$A\cap B = B\cap A$
+$A\cap (B\cap C) = (A\cap B)\cap C$
+$A\cap A = A$
+
+A binary operation that satisfies these three laws is called a \emph{semilattice} operation. But actually $\cap$ and $\cup$ interact by another law.
+$A\cap (B\cup A) = (A\cap B)\cup A$
+
+Any structure with two operations that satisfy all of these laws is called a \emph{lattice}. So $\powerset(X)$ with the operations $\cap$ and $\cup$ is a lattice. If the two operations have identities $A\cap X = A$ and $a\cup \emptyset = A$, then it is a \emph{bounded lattice}. 
+
+So in fact, $\powerset(X)$ with $\cap$, $\cup$, $X$ and $\emptyset$ forms a bounded lattice. Next, we consider how $\Rightarrow$ provides additional information.
+
+\begin{lemma}
+	For set $X$ and subsets $A$, $B$ and $C$,
+	\[\text{$A\cap B\subseteq C$ if and only if $A\subseteq B\Rightarrow C$}\]
+	
+	\begin{proof}
+		Suppose $A\cap B\subseteq C$. Consider $x\in A$. 
+		For such an $x$, it i true that $x\in B$ implies $x\in C$.
+		So $x\in B\Rightarrow C$.
+		
+		Suppose $A\subseteq B\Rightarrow C$.
+		Consider $x\in A\cap B$. 
+		Then $x\in A$. So $x\in B\Rightarrow C$.
+		But also $x\in B$. So $x\in C$. 		
+	\end{proof}
+\end{lemma}
+
+This law, sometimes called the Law of Residuation, specifies exactly how $\cap$ an $\Rightarrow$ interact. A bounded lattice with an operation that satisies the Law of Residuation is called a \emph{Heyting algebra}. So we have not shown that $\powerset(X)$ is a Heyting algebra. A useful fact about Heyting algebras is that, even though residuation does not explicitly mention $\cup$, it implies that law of distribution.
+
+\begin{lemma}
+	For set $X$ and subsets $A$, $B$, and $C$,
+	\[A\cap (B\cup C) = (A\cap B) \cup (A\cap C)\]
+	
+	\begin{proof}
+		In any lattice $(A\cap B)\cup (A\cap C)\subseteq A\cap (B\cup C)$. [Prove this as an exercise.]
+		So the equality only requires we prove the other inclusion.
+		
+		By the Law of Residuation, $A\cap (B\cup C)\subseteq (A\cap B)\cup (A\cap C)$ holds if and only if $B\cup C\subseteq A\Rightarrow (A\cap B)\cup (A\cap C)$ holds. But by Law of Union, the latter holds if and only if both $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ and $C\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ hold. And finally, by the Law of Residuation again, $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ holds if and only if $A\cap B\subseteq (A\cap B)\cup (A\cap C)$ holds, and likewise for $C$. But $A\cap B$ is indeed contained in $(A\cap B)\cup (A\cap C)$ and similarly $A\cap C$ is indeed contained in $(A\cap B)\cup (A\cap C)$. 
+	\end{proof}
+\end{lemma}
+
+Notice that the proof does not explicitly mention elements of $X$. It only uses the algebraic properties of $\cap$, $\cup$ and $\Rightarrow$. So we have actually proved that every Heyting algebra satisfies the Law of Distribution.
+
+\begin{lemma}
+	For set $X$ and subset $A\subseteq X$, $A^{**} = A$.
+	
+	\begin{proof}
+		Exercise.
+	\end{proof}
+\end{lemma}
+
+A Heyting algebra satisfying this additional law is called a Boolean algebra (historically, this is backwards. Boolean algebras were named before Heyting algebras). So $\powerset(X)$ is a Boolean algebra.
+
+\begin{lemma}
+	For any function $\fromto fXY$, the function $\fromto {f^{-1}}{\powerset(Y)}{\powerset(X)}$ satisfies
+	\begin{itemize}
+		\item $f^{-1}(\emptyset) = \emptyset$
+		\item $f^{-1}(A\cup B) = f^{-1}(A)\cup f^{-1}(B)$
+		\item $f^{-1}(Y) = X$
+		\item $f^{-1}(A\cap B) = f^{-1}(A) \cap f^{-1}(B)$
+		\item $f^{-1}(A^*) = f^{-1}(A)^*$
+	\end{itemize}
+\end{lemma}
+
+So not only is $\powerset(X)$ always a Boolean algebra, but $f^{-1}$ is a function that \emph{preserves} the relevant operations that give $\powerset(X)$ that structure.
+
+An element $x$ of a Boolean algebra is \emph{atomic} if whenever $x = y\vee z$,
+either $y=x$ or $z=x$. In $\powerset(X)$, the atoms are singleton subsets $\{x\}$
+for $x\in X$. In $\powerset(X)$, there are a lot of atoms. Specifically, 
+every $A\in\powerset(X)$ is either $\emptyset$ or has at least one atom $\{x\}\subseteq A$. It is possible to have a Boolean algebra with no atoms, but this is a property that all powersets have.
+
+Summarizing so far $\powerset(X)$ is an atomic Boolean algebra, and $f^{-1}$ preserves Boolean structure. Since $f^{-1}(\{x\})$ is not necessarily a singleton,
+$f^{-1}$ does not generally preserve atoms.
+
+Finally, we need to understand completeness.
+
+\begin{lemma}
+	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and $A\subseteq X$,
+	\[\text{$\{x\in X\st \exists w\in W.P(w,x)\} \subseteq A$ if and only if $\{(w,x)\in W\times X\st P(w,x)\} \subseteq \pi_1^{-1}(A)$.}\] 
+	
+	\begin{proof}
+		Suppose $\{x\in X\st \exists w\in W.P(w,x)\}\subseteq A$.
+		Consider $(w,x)\in W\times X$ for which $P(w,x)$.
+		Then $x\in A$. So $(w,x)\in \pi_1^{-1}(A)$. 
+		
+		For the reserve inclusion, suppose $\{(w,x)\in W\times X\st P(x,y)\}\subseteq \pi_1^{-1}(A)$.
+		Consider $x\in X$ for which $P(w,x)$ holds for some $w\in W$.
+		Then $(w,x)\in \pi^{-1}(A)$.
+		So $x\in A$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and subset $A\subseteq X$,
+	\[\text{$A\subseteq \{x\in X\st \forall w\in W.P(w,x)\}$ if and only if 
+		$\pi_1^{-1}(A)\subseteq \{(w,x)\in W\times X\st P(w,x)\}$.}\]
+	
+	\begin{proof}
+		Exercise.
+	\end{proof} 	
+\end{lemma}
+
+First, for completeness we need the following definition:
+\begin{defn}
+	Let $\fromto aIA$ be a function. Writing $a_i$,
+	instead of $a(i)$, then we refer to $a$ as an \emph{(indexed) family of elements of $A$}, and write it as $\{a_i\}_{i\in I}$. This notation is just a way to denote a function that emphasizes its role as a way to pick out elements of $A$.
+	
+	If $(P,\leq)$ is a partially ordered set and $\{a_i\}_{i\in I}$ is an indexed family in $P$. An element $u\in P$ is a \emph{least upper bound} of $\{a_i\}_{i\in I}$ if for every $p\in P$, $u\leq p$ if and only if $a_k\leq p$ 
+	for every $k\in I$. 
+\end{defn}
+
+In $\powerset(X)$, let $\{A_i\}_{i\in I}$ be a family of subsets.
+Then consider the set $\bigcup_{i\in I}A_i $ defined by $\{x\in X\st \exists i\in I. x\in A_i\}$. Then $A_k\subseteq \bigcup_{i\in I}A_i$ for every $k\in I$
+Furthermore, suppose $A_k\subseteq C$ is true for each $k\in I$.
+Then $x\in \bigcup_{i\in I}A_i$, there is some $k\in I$ so that $x\in A_k$.
+Hence $x\in C$.
+This shows that $\bigcup_{i\in I}A_i$ is the least upper bound of the family $\{A_i\}_{i\in I}$.
+So every family of subsets of $X$ has a least upper bound.
+This is what we mean by saying that $\powerset(X)$ is \emph{complete}.
+
+All together $\powerset(X)$ is a complete atomic Boolean algebra. Moreover,
+for any $\fromto fXY$, 
+$f^{-1}$ preserves even the complete structure.
+
+\begin{lemma}
+	For function $\fromto fXY$, let $P(w,y)$ be an expression defining
+	$\{(w,y)\in W\times Y\st P(w,y)\}$. For any function $\fromto fXY$,
+	\begin{align*}
+	f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\}) &= \{x\in X\st \exists w\in W, P(w,f(x)\}\\
+	f^{-1}(\{y\in Y\st \forall w\in W, P(w,y)\}) &= \{x\in X\st \forall w\in W, P(w,f(x)\}\\
+	\end{align*}
+	
+	\begin{proof}
+		This is essentially by definition. That is, $x\in f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\})$ if and only if $f(x)\in \{y\in Y\st \exists w\in W,P(w,y)\}$. So $P(w,f(x))$ holds for some $w\in W$. In other words, 
+		$x\in \{x\in X\st \exists w\in W,P(w,f(x))\}$.
+		For the $\forall$ case, the proof is similar.
+	\end{proof} 
+\end{lemma}
+
+It is slightly beyond the scope of these lectures, but in fact, if $P$ is
+a complete atomic Boolean algebra, then letting $A(P)$ denote the set of atoms of $P$, one can show that the function $\fromto \alpha {P\times A(P)}\Two$ defined 
+by \[\alpha(p,a) = \begin{cases}
+\top & \text{if $x\leq p$}\\
+\bot & \text{otherwise}
+\end{cases}
+\]
+is an evaluation map. So $P$ and $\powerset(A(P))$ have the same structure. 
+
+So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist.
+For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all.
+On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound.
+This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
+
+\begin{lemma}
+	Every family $\{A_i\}_{i\in I}$ of subset of $U$ has a least upper bound in $\powerset(U)$.
+	This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written $\bigcup_{i\in I}A_i$.
+	
+	\begin{proof}
+		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. 
+		Define 
+		\[\bigcup_{i\in I}A_i = \{x\in U\st \text{for some $i\in I$, $x\in A_i$}\}.\]
+		For $k\in I$, suppose $x\in A_k$.
+		Then by definition $x\in \bigcup_{i\in I}A_i$.
+		So $A_k\subseteq \bigcup_{i\in I}A_i$.
+		In other words, $\bigcup_{i\in I}A_i$ is an upper bound of the family $\{A_i\}_{i\in I}$.
+		
+		Suppose $A_k\subseteq C$ for each $k\in I$.
+		If $x\in\bigcup_{i\in I}A_i$, then by definition, $x\in A_k$ for some $k\in I$.
+		So $x\in C$.
+		This shows that $\bigcup_{i\in I}A_i\subseteq C$.
+		
+		The proof is not quite complete because we have not shown that
+		our definition of $\bigcup_{i\in I}A_i$ is a real definition.
+	\end{proof}
+\end{lemma}
+
+A set $\{(i,x)\in I\times U\st \ni(A_i,x)=\top\}$
+It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
+says that the union of a family of subsets of $U$ exists.
+
+
+
+\section{The Basic Structure of Powersets}
+
+The elements of $\powerset(U)$ for a set $U$ (thinking for now of $U$ as our
+``universe'' of discourse) are subsets of $U$.
+So they may be related to each other by $\subseteq$. 
+Thus $\powerset(U)$ can be regarded as a set with additional structure. 
+How that structure behaves is important for characterizing how we may use powersets. The structure we consider here can be de
+
+It is easy to confirm that $\subseteq$ has three useful properties:
+\begin{itemize}
+	\item{}[Reflexivity] $X\subseteq X$ is always true.
+	\item{}[Transitivity] $X\subseteq Y$ and $Y\subseteq Z$ implies $X\subseteq Z$.
+	\item{}[Antisymmetry] $X\subseteq Y$ and $Y\subseteq X$ implies $X=Y$.
+\end{itemize}
+
+\begin{defn}
+	A set $P$ with a reflexive, transitive, anti-symmetric relation $\sqsubseteq$ is said to be a \emph{partially ordered set} or \emph{poset} for short. the relation $\sqsubseteq$ is called a \emph{partial order on $P$}. 
+\end{defn}
+
+So we have confirmed that $\powerset(U)$ is a poset with partial order $\subseteq$.
+
+Most of the useful structure of powersets arise from the interplay between
+subsets and characteristic functions. The main idea stems from the idea of ``inverse images''.
+
+\begin{defn}
+	Suppose $\fromto fAB$. Define $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ as follows. For any $Y\subseteq B$, we have the characteristic function $\fromto {\kappa_Y}B\Two$. 
+	Composing with $f$ yields a characteristic function on $A$. So we may form the
+	equalizer 
+	\[ f^{-1}(Y) = \{x\st A\st f(x)\in Y\}.\] 
+\end{defn}
+Note that this notation clashes slightly with our earlier usage where we wrote $f^{1}(y)$ for an element $y\in B$. But in fact, this is innocuous because 
+$f^{-1}(\{y\})$ according to this definition is equal to $f^{-1}(y)$ from the earlier definition.
+
+is a characteristic of a subset of $A$. 
+Suppose $U$ is a set (think of this temporarily as our ``universe''). 
+Then $\powerset(U)$ comes equipped with structure that is useful to know.
+
+\begin{defn}
+	For $A\subseteq U$ and $B\subseteq U$, 
+	\begin{itemize}
+		\item let $A\cap B = \{y\in U\st \text{$y\in A$  and $y\in B$}\}$;
+		\item let $A\cup B = \{y\in U \st \text{$y\in A$ or $y\in B$}\}$;
+		\item let $\sim A = \{y\in U\st y\notin A\}$.
+	\end{itemize}
+\end{defn}
+
+
+
+On the set $\Two$, the functions $\hat{\top}$ and $\hat{\bot}$
+pick out the two elements. For a set $A$, the constant function $x\mapsto \top$
+is the characteristic function of $A\subseteq A$, while the function $x\mapsto \bot$ is the characteristic function of $\emptyset\subseteq A$. 
+
+Subsets of a set $A$ can be merged together to form a single subset. 
+For example, if $X,Y\subseteq A$, then we let $X\cup Y$ be the subset
+so that $x\in X\cup Y$ if and only if $x\in X$ 
+The rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. Let us see how that works precisely.
+
+Define $\Delta_A = \{(x_0,x_1)\in A\times A\st x_0=x_1\}$. This is the equalizer for the equation $\pi_0(\overline x)=\pi_1(\overline x)$.
+If one thinks of $A\times A$ as laid out in a square grid, then $\Delta_A$ lies along the diagonal, hence it is usually called the \emph{diagonal set for $A$}.
+Let $\fromto {\kappa_{\Delta_A}}{A\times A}\Two$ be the corresponding characteristic function. That is,
+\[
+\kappa_{\Delta_A}(x,y) = \begin{cases}
+\top & \text{if $x=y$}\\
+\bot & text{otherwise}
+\end{cases}
+\]
+Then Principle \ref{ax:powerset} applied to $\kappa_{\Delta_A}$ means that there is a unique function $\fromto sA{\powerset(A)}$ satisfying the odd looking equation 
+\[
+\ni(s(x),y) = \begin{cases}
+\top & \text{if $y\in s(x)$}\\
+\bot &\text{otherwise}
+\end{cases}
+\]
+But $y\in s(x)$ if and only if $(x,y)\in\Delta_A$ if and only if $y=x$. 
+In other words, $s(x)$ is indeed just the singleton $\{x\}$. We call this the \emph{singleton insertion map}. Usually, we don't give this an explicit name (like $s$), instead we may write it as $\{-\}$ if we need to.
+
+So $\fromto {\{-\}}A{\powerset(A)}$ is a function for any $A$. 
+
+Suppose that $X\subseteq A$ and $Y\subseteq A$. Then it makes sense to form the subset of $A$ consisting of all elements that $X$ and $Y$ have in common. This 
+
+\begin{exercises}
+	\begin{enumerate}
+		\item Write out $\powerset(\{a,b,c\})$
+		\item Write out $\powerset(\emptyset)$
+		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
+		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
+		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
+		\item I claim that $\{\emptyset\}\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
+	\end{enumerate}
 \end{exercises}
 
 \chapter{Monomophisms, Epimorphisms and Isomorphisms}
