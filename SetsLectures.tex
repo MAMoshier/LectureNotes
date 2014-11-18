@@ -1232,7 +1232,7 @@ The structure of this set is similar to $\NN$.
 	\begin{enumerate}
 		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defined the function
 			$fromto {\map[f]}{\List[A]}{\List[B]}$ so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
-		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do it, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$ recurrence to define a function $\frmoto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) Now define $L\star M$ to be $c(L)(M)$.
+		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do it, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$ recurrence to define a function $\fromto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) Now define $L\star M$ to be $c(L)(M)$.
 		\item Write a scheme for ``$A$-primitive recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
 		write equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to C$. 
 	\end{enumerate}
