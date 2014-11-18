@@ -1015,7 +1015,20 @@ Consider the product $A\times B$ again.
 It possesses functions 
 $A\stackrel{\pi_0}{\longleftarrow}A\times B\stackrel{\pi_1}{\longrightarrow}B$. For any other similar arrangement
 $A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$, there is a unique function $C\stackrel{\langle f,g\rangle}{\longrightarrow}{A\times B}$ making the diagram
-
+\[
+\tikzset{>=stealth}
+\begin{tikzpicture}[every node/.style={midway}]
+\matrix[column sep={4em,between origins},
+row sep={2em}] at (0,0) {};
+%{ & \node(T)   {$T$}  ; & \\
+%	\node(A)   {$A$}  ; & \node(P) {$P$}; & \node(B) {$B$} \\};
+%\draw[->] (T) -- (A) node[anchor=north]  {$f$};
+%\draw[->] (T) -- (B) node[anchor=north]  {$g$};
+%\draw[->] (T) -- (P) node[anchor=east] {$\lange f,g \rangle$};
+%\draw[->] (P) -- (A) node[anchor=south] {$\pi_0$};
+%\draw[->] (P) -- (B) node[anchor=south] {$\pi_1$};
+\end{tikzpicture}
+\]
 commute.
 
 An equalizer ($\{x\in A\st f(x)=g(x)\}$), a terminal object ($\One$) and an exponential ($B^A$) are also characterized by some special functions so that any similarly arranged functions determine a unique function making a suitable diagram commute. Go back and reread the definitions of equalizers, terminal objects, products and exponentials to see that they all have this family resemblance. They are called \emph{universal constructions}. So the inclusion $\{x\in A\st f(x)=g(x)\}\to A$ is universal for solving the equation $f=g$; $A\stackrel{\pi_0}{\longleftarrow}A\times B\stackrel{\pi_1}{\longrightarrow}B$ is universal for mapping into $A$ and $B$;
