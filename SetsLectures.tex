@@ -933,6 +933,10 @@ That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$.
 Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
 So $f\times g$ acts on a pair $(x,y)$ by applying $f$ to $x$ and unrelatedly applying $g$ to $y$. 
 
+Products can by generalized to three, four or more sets.
+For example, for sets $A$, $B$ and $C$, we write $A\times B\times C$ for the set of triples $(a,b,c)$ wher $a\in A$, $b\in B$ and $c\in C$. Instead of two projections, this has three projections $(x,y,z)\mapsto x$, and so on.
+ 
+
 \begin{exercises}
 	\begin{enumerate}
 		\item For the sets $A = \{a,b,c\}$ and $B = \{1,2,3,4\}$, calculate $A\times B$ and $B\times A$
@@ -942,6 +946,7 @@ So $f\times g$ acts on a pair $(x,y)$ by applying $f$ to $x$ and unrelatedly app
 		\item Suppose $A$ is a finite set with $m$ elements and $B$ is a finite set with $n$ elements.
 		How many elements are in $A\times B$?
 		Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
+		\item For sets $A=\{a,b\}$, $B=\{0,1,2\}$ and $C=\{c,d\}$, calculate $A\times B\times C$, $A\times (B\times C)$ and $(A\times B)\times C$.
 	\end{enumerate}
 \end{exercises}
 
@@ -1062,13 +1067,14 @@ We have used $\NN$ informally to denote the set of natural numbers.
 It is time that we make the structure of the $\NN$ explicit within our theory of sets and functions.
 
 Natural numbers provide a precise picture of counting and of putting things in an order: first, second, third, and so on.
-Now that we have sets and functions as can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots.
-When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead, but the point is still that $a$ itself is a function.
+Now that we have sets and functions we can consider a function $\fromto a\NN A$ to be an \emph{infinite sequence}: $a(0)$, $a(1)$, $a(2)$, \ldots.
+When we do that, we sometimes write $a_0$, $a_1$, $a_2$, \ldots instead. Still $a$ itself is just function from $\NN$ to $a$. To emphasize the notation that 
+$a$ represents an infinite sequence, we will sometimes also write $(a_i)_{i\in I}$.
 
-Much of what we will discuss in this lecture will have about it the feel of computer programming.
-This is because there is a sense in which natural numbers are the main objects of calculation.
-We will want to understand, for example, how to define $n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves.
-In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot$ characterizes factorial by spelling out how to calculate it.
+Much of what we discuss in this lecture will have about it the feel of computer programming.
+This is partly because natural numbers are the main objects of calculation.
+We will want to understand, for example, how to define functions like $n\mapsto n!$ ($n$ factorial) as a function from $\NN$ to $\NN$ by specifying how it behaves.
+In particular, $0! = 1$ and $(n^\nxt)! = n^\nxt\cdot n!$ characterize factorial by spelling out how to calculate it.
 For example,
 \begin{align*}
 	4!  &= 4 \cdot 3! \\
@@ -1081,8 +1087,8 @@ For example,
 We will actually think of $\NN$ as being something like ``the simplest set on which we can use recursion''.
 
 It is quite common to think about a sequence in which $a_{n+1}$ is functionally related to $a_n$. 
-For example, in the sequence $1, 2, 4, 8,\ldots$, each successive entry is double its predecessor. 
-The initial entry is $1$. 
+For example, in the sequence $1, 2, 4, 8,\ldots$, the initial entry is $1$ and each successive entry is double its predecessor.
+
 Indeed, if we know just those two facts -- the initial entry is $1$, and each subsequent entry is double its predecessor -- then we know how the entire sequence behaves.
 Also, we know how to calculate the $n^{\text{th}}$ entry, by recursion just like factorial.
 
@@ -1091,28 +1097,27 @@ Its initial entry is $0$ and each subsequent entry is the successor of its prede
 So we think of this sequence as a sort of prototype for all others, including sequences in other sets. 
 It turns out that this will characterize the set of natural numbers. And it will lead to a fairly general scheme for defining recursive functions.
 
-\section{Sequences and Successions}
+\section{Sequences and Simple Recurrences}
 
 Let us make the informal word \emph{sequence} official.
 
 \begin{defn}
-	A \emph{sequence in $A$} is a function $\fromto a\NN A$. For a sequence $a$, we may write $a_k$ instead of $a(k)$, but these mean exactly the same thing.
-	So a sequence in $A$ is the same thing as a family $\{a_k\}_{k\in\NN}$ of elements of $A$ indexed by $\NN$.
+	A \emph{sequence in $A$} is a function $\fromto a\NN A$.
 \end{defn}
 
 As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number $0$ and (ii) for each natural number $n$ there is a next one, $n^\nxt$. 
 To discuss successor in the language of sets and functions, we can stipulate that successor is a function $\fromto \suc\NN\NN$ given by the rule $n\mapsto n^\nxt$.
 So $\NN$ is not only a set. 
-It comes with functions $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longrightarrow} \NN$.
+It comes with functions $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longleftarrow} \NN$.
 
-Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longrightarrow}A$ is a similar structure.
+Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ is a similar structure.
 Then we ought to be able to define a sequence in $A$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
 In general, $a_k$ should be determined by starting with $b$ and repeatedly applying $r$ a total of $k$ times. 
 
 \begin{defn}\label{def:nno}
-	A \emph{simple recurrence} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$.
+	A \emph{simple recurrence} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longleftarrow}C$.
 	
-	A \emph{countably infinite set} is a simple recurrence $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ so that for any other simple recurrence $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longrightarrow}C$, there is exactly one function $\fromto fNC$ so that $f\circ \hat{z} =\hat b$ and $f\circ s = r\circ f$.
+	A \emph{countably infinite set} is a simple recurrence $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longleftarrow}N$ so that for any other simple recurrence $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longleftarrow}C$, there is exactly one function $\fromto fNC$ so that $f\circ \hat{z} =\hat b$ and $f\circ s = r\circ f$.
 	
 	Simple recurrences go by lots of other names in the literature. You will recognize them later when you see them.
 \end{defn}
@@ -1121,14 +1126,14 @@ The principle we are interested in here is that simple recurrences determine seq
 
 \begin{principle}\label{ax:nat-numbers}
 	The collection of natural numbers is a set, denoted by $\NN$.
-	Moreover, $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longrightarrow} \NN$.
+	Moreover, $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longleftarrow} \NN$.
 	makes $\NN$ a countably infinite set.
 	
-	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} C \stackrel{r}{\longrightarrow} C$, the corresponding unique sequence in $C$
-	may be denoted by $\rec[b,r]$. So $\fromto {\rec[b,r]}\NN A$ is defined by
+	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} C \stackrel{r}{\longleftarrow} C$, the corresponding unique sequence in $C$
+	may be denoted by $\rec[b,r]$. So $\fromto {\rec[b,r]}\NN A$ is characterized by
 	\begin{align*}
-	\rec[b,r]_0 &= b\\
-	\rec[b,r]_{n^\nxt} &= r(\rec[b,r]_n)
+		\rec[b,r]_0 &= b\\
+		\rec[b,r]_{n^\nxt} &= r(\rec[b,r]_n)
 	\end{align*}
 \end{principle}
 
@@ -1151,12 +1156,12 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 	A \emph{primitive recurrence in $A$ (with parameters in $C$)} consists of two  functions $C\stackrel{b}{\longrightarrow} A\stackrel{r}{\longleftarrow}\NN\times C\times A$.
 	
 	A \emph{parametric sequence in $A$ with parameters in $C$} is a function
-	$\fromto a{C\times \NN}A$. For a parametric sequence, we might write $a_{c,n}$
+	$\fromto a{C\times \NN}A$. For a parametric sequence, we may write $a_{c,n}$
 	instead of $a(c,n)$. 
 \end{defn}
 
 \begin{lemma}
-	Any primitive recurrence $C \stackrel{b}{\longrightarrow} A \stackrel{r}{\longleftarrow} C\times \NN \times A$, there is a unique
+	For any primitive recurrence $C \stackrel{b}{\longrightarrow} A \stackrel{r}{\longleftarrow} C\times \NN \times A$, there is a unique
 	function $\fromto f{C\times \NN}A$ satisfying: 
 	\begin{align*}
 		f_{c,0} &= b(c)\\
@@ -1170,15 +1175,63 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 \end{lemma}
 
 \newcommand{\pred}{\mathord{\textsf{pred}}}
+\begin{example}
+	The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^\nxt) = n$. 
+	The primitive recurrence
+	$\One \stackrel{\hat0}{\longrightarrow} \NN \stackrel{\pi_2}{\longleftarrow} \One\times\NN\times\NN$ where $\pi_1$ is the projection $(x,y,z)\mapsto y$ determines a function $\fromto g{\One\times \NN}{\NN}$ given by
+	$g_{\bullet, 0} = 0$ and $g_{\bullet,n^\nxt} = \pi_2(\bullet, n, g_{\bullet, n}) = n$. Hence, we may define $\pred(n) = g_{\bullet, n}$
+\end{example}
 
-The ``predecessor'' function is defined by the scheme $\pred(0)=0$ and $\pred(n^\nxt) = n$. 
+
 
 \begin{exercises}
 \begin{enumerate}
-	\item For a given function $f$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
+	\item For a given function $\fromto f\NN\NN$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
 	\item Find a primitive recurrence that defines the function from $\NN\times \NN$ to $\NN$ given by the rule $(m,n)\mapsto m^n$.
 	\item Define the operation of \emph{monus} $m\stackrel{.}{-} n$ to be $m-n$ when $m \geq n$ and to be $0$ otherwise by  a primitive recurrence.
+	\item Define the function $\lambda(m,n).m^n$ by primitive recursion.
 \end{enumerate}
+\end{exercises}
+
+\section{Lists}
+
+For a set $A$, the lists of elements from $A$ also should form a set.
+The structure of this set is similar to $\NN$.
+
+\begin{defn}
+	For a set $A$, a \emph{simple $A$ recurrrence} is two functions
+	$\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$.
+	
+	For a set $A$, an \emph{$A$-list set} is a simple $A$ recurrence 
+	$\One \stackrel{\hat{e}}{\longrightarrow} L \stackrel{c}{\longleftarrow} A\times L$ so that for simple $A$ recurrence $\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$ there is exactly one function $\fromto hLC$ so that 
+	\begin{align*}
+		h\circ \hat e 	&= \hat b\\
+		h\circ c 		&= r\circ (\id_A\times h).
+	\end{align*}
+\end{defn}
+
+\begin{principle}
+	The collection of lists with items in $A$ is a set, denote by $\List[A]$.
+	The functions $\fromto {\widehat{[\,]}}\One{\List[A]}$ and $\fromto c{A\times\List[A]}{\List[A]}$ defined by the rule $(a,L)\mapsto a:L$,
+	constitute a list of $A$ set.
+	
+	For $\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$, We may recycle our notation from $\NN$
+	and write $\rec[\hat b,r]$ for the unique function 
+	satisfying $\rec[\hat b,r]([\,])= b$
+	and $\rec[\hat b,r](a:L)= r(a, \rec[hat b, L](L))$.  
+\end{principle}
+
+\begin{example}
+	$\One \stackrel{\hat 0}{\longrightarrow} \NN \stackrel{+}{\longleftarrow} \NN\times \NN$ determine a function $s$ from lists of natural numbers to natural numbers. The function satifies $s([\,])= 0$ and $s(n:L)= n + s(L)$.
+	So $s$ returns the sum of the entries of a list. Earlier, we wrote this as $\sum L$.
+\end{example}
+
+
+\begin{exercises}
+	\begin{enumerate}
+		\item For a function $\fromto fAB$, define the function
+			$fromto {\map[f]}{\List[A]}{\List[B]}$ so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
+	\end{enumerate}
 \end{exercises}
 
 \chapter{Powersets and Internal Logic}
