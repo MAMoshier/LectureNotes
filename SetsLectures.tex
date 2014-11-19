@@ -1230,20 +1230,25 @@ The structure of this set is similar to $\NN$.
 
 \begin{exercises}
 	\begin{enumerate}
-		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defined the function
-			$fromto {\map[f]}{\List[A]}{\List[B]}$ so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
+		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defines the function
+			\[\fromto {\map[f]}{\List[A]}{\List[B]}\] so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
 		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do it, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$ recurrence to define a function $\fromto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) Now define $L\star M$ to be $c(L)(M)$.
-		\item Write a scheme for ``$A$-primitive recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
+		\item Write a scheme for ``primitive $A$ recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
 		write equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to C$. 
 	\end{enumerate}
 \end{exercises}
 
-\chapter{Powersets and Internal Logic}
+\chapter{Powersets}
 
 The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
-So the elements of $\Two^A$ correspond to subsets of $A$, and vice versa.
-It makes sense also to suppose that the actual collection of subsets of a set $A$ form a set.
-This behaves exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
+Each element $k\in \Two^A$ corresponds to a subset of $A$ by $k^{-1}(\top) = \{x\in A\st k(x)=\top\}$. Vice versa, a subset $A\subseteq X$ determines a characteristic function $\fromto {\kappa_A}X\Two$ by the rule
+\[x\mapsto \begin{cases}
+			\top &\text{if $x\in A$}\\
+			\bot &\text{otherwise}
+\end{cases}
+\]
+So $\Two^X$ is, in a sense, \emph{representative} of the collection of all subsets of $X$. It is convenient also to suppose that the actual collection of subsets of a set $A$ forms a set.
+This should ``behave'' exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
 	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
@@ -1258,7 +1263,7 @@ This behaves exactly like $\Two^A$, but concretely, it consists of sets rather t
 \end{principle}
 
 For a function $\fromto fAB$, $\ni_B\circ (\id_{\powerset(B)}\times f)$ is a function from $\powerset(B)\times A$ to $\Two$. So there is a unique function
-from $\powerset(B)$ to $\powerset(A)$ determined by it. 
+from $\powerset(B)$ to $\powerset(A)$ determined by $f$. 
 
 \begin{defn}
 	For $\fromto fAB$, let $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ denote
@@ -1267,44 +1272,85 @@ from $\powerset(B)$ to $\powerset(A)$ determined by it.
 	for every $Y\subseteq B$.  So $f^{-1}$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
 \end{defn}
 
-This notation does not clash much with our usage of $f^{-1}(b)$ because 
+This notation does not clash much with our earlier definition of inverse image of an element, $f^{-1}(b)$, because 
 $f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
 
-\section{Specifying Subsets}
+\section{Intersections, Unions, Residuals}
 
-We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to specify the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
+Suppose $A$ and $B$ are subsets of $X$. 
+Then it makes sense to consider the elements that $A$ and $B$ have in commond. 
+For example, for $A$ being the set of even natural numbers and $B$ the set of perfect squares, we might want to concentrate on the set of even, perfect squares.
+Generally, the elements in common ought to constitute another subset of $X$.
+This is called the \emph{intersection} and is denoted by $A\cap B$.
+Likewise, we might consider merging $A$ and $B$ into a single set (in our example, the set of numbers that are either even or perfect squares).
+This is called the \emph{union}.
+Related to intersection, we may also wish to have the largest set $C$ so that $C\cap A\subseteq B$. 
+This is called the \emph{residual}, and is denoted by $A\Rightarrow B$.
+
+These three operations on subsets of $X$ are closely related to the logic of propositions.
+Imagine that $X$ consists of possible ``worlds'' and subsets of $X$ are collections of worlds where certain things are true.
+For example, perhaps $P\subseteq X$ is the set of worlds in which ``Pigs fly'' is true;
+$K\subseteq X$ is the set of worlds in which ``Kittens smoke cigars'' is true.
+So $P\cap K$ is the set of worlds in which ``Pigs fly \emph{and} kittens smoke cigars'' is true.
+Likewise, $P\cup K$ is the set of worlds in which ``\emph{Either} pigs fly \emph{or} kittens smoke cigars'' is true.
+And $P\Rightarrow K$ is the set of worlds in which ``\emph{If} pigs fly, \emph{then} kittens smoke cigars'' is true. Understanding the interaction of $\cap$, $\cup$ and $\Rightarrow$ is thus closely related to the logic of ``and'', ``or'' and ``implies''. If we add a sentence ``False'' that is never true and another one ``True'' that is always true, then the logic of ``and'', ``or'' and ``implies'' form what is called a \emph{Heyting algebra}.
+
+More specially, ``implies'' interacts with ``False'' in a useful way.
+It turns out that ``$P$ implies False'' is essentially the same as saying ``$P$ is not the case''. And if ``$P$ is not the case'' is not the case, then ``$P$'' must be true. This oservation indicates that the Heyting algebra of subsets is actually a \emph{Boolean algebra}.
+ 
+We have introduced the notation $\{x\in A\st f(x)=g(x)\}$ to specify the and equalizer, the subset of $A$ consisting of the particular solutions to the equation $f(x)=g(x)$. 
 We have also slightly extended this for inverse images of elements: $\{x\in A \st f(x)=b\}$, and inverse images of subsets: $\{x\in A\st f(x)\in Y\}$. 
 Life would be easier if we had a more general system for specifying subsets, whereby we could write things like $\{n\in \NN \st \text{$n$ is prime}\}$, or $\{f\in \RR^\RR\st \text{$f$ is differentiable}\}$, or $\{(x,y)\in \RR\times \RR\st |x-y| < \epsilon\}$. 
 
 As it happens, all of these examples are honest specifications of subsets. 
 The fact that two of them use English is not a problem, as long as what we write is unambiguous. 
-In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise. 
-So in practical situations, it is harmless to write clear unambiguous plain language as part of a specification. 
-Nevertheless, it is also helpful to have in mind some formal aspects of this notation, and to put some effort into sorting out when an expression of the form
+In contrast, $\{x\in \RR\st \text{$x$ is messy}\}$ is probably not a good specification, unless we make the meaning of ``messy'' precise.
+
+In practical situations, it is harmless to write clear, unambiguous, plain language as part of a specification. 
+Nevertheless, we should also have in mind some formal aspects of this notation, and put some effort into sorting out when an expression of the form
 $\{x\in U\st \ldots x \ldots\}$ makes sense.
 
-First, we need to understand what is means for a variable to \emph{appear free} in an expression.
-In $\{x\in A \st f(x)=g(x)\}$ the variable \emph{appears bound}.
-This means, roughly, that the meaning of the expression does not depend on a value for $x$, so we are not ``free'' to interpret $x$.
-In contrast, $f$ and $g$ appear free in the same expression because the meaning of the expression depends on the meanings of $f$ and $g$.
-We are ``free'' to choose what they mean.
-Similarly, in the English phrase, ``$m + n = n + m$ for all natural numbers $m$ and $n$'' the variables $m$ and $n$ are bound.
-But in the phrase ``$m+k = n$ for some $k$'' the variables $m$ and $n$ are free and the variable $k$ is bound.
-An important feature of bound variables is that we may rename them without changing the meaning, so long as we do so systematically.
-For example, ``$m+j=n$'' for some $j$'' means exactly the same as ``$m+k=n''$ for some $k$''.
-But we can't just swap $m$ for some other variable without changing the meaning. 
-
-In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
-We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
-
-\begin{vocabulary}
-	In the following, let $X$ and $W$ be sets. Let $P(x)$, $Q(x)$, $R(w,x)$ be expressions and $A,B\subseteq X$, $C\subseteq X\times X$ so that
+%First, we need to understand what is means for a variable to \emph{appear free} in an expression.
+%In $\{x\in A \st f(x)=g(x)\}$ the variable \emph{appears bound}.
+%This means, roughly, that the meaning of the expression does not depend on a value for $x$, so we are not ``free'' to interpret $x$.
+%In contrast, $f$ and $g$ appear free in the same expression because the meaning of the expression depends on the meanings of $f$ and $g$.
+%We are ``free'' to choose what they mean.
+%Similarly, in the English phrase, ``$m + n = n + m$ for all natural numbers $m$ and $n$'' the variables $m$ and $n$ are bound.
+%But in the phrase ``$m+k = n$ for some $k$'' the variables $m$ and $n$ are free and the variable $k$ is bound.
+%An important feature of bound variables is that we may rename them without changing the meaning, so long as we do so systematically.
+%For example, ``$m+j=n$'' for some $j$'' means exactly the same as ``$m+k=n''$ for some $k$''.
+%But we can't just swap $m$ for some other variable without changing the meaning. 
+%
+%In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
+%We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
+%
+\begin{lemma}
+	In the following, let $X$ be a set, and $A,B\subseteq X$ be subsets.
 	\begin{itemize}
-		\item $A = \{x\in X\st P(x)\}$,
-		\item $B = \{x\in X\st Q(x)\}$, and
-		\item $C = \{(w,x)\in W\times X\st R(w,x)\}$.
+		\item There is a subset of $X$, denoted by $A\cap B$, so that for every $C\subseteq X$, $C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.
+		\item There is a subset of $X$, denoted by $A\cup B$, so that for every $C\subseteq X$, $A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.
+		\item There is a subset of $X$, denoted by $A\Rightarrow B$, so that for every $C\subseteq X$, $C\subseteq A\Rightarrow B$ if and only if $C\cap A\subseteq B$.
 	\end{itemize}
-	Then the following sets are definable. 
+	
+	\begin{proof}
+		$A$ and $B$ are determined by characteristic functions $\fromto{\kappa_A}X\Two$ and $\fromto {\kappa_B}X\Two$. 
+		
+		On $\Two\times \Two$, consider the subset $M= \{(\top,\top)\}$. The characteristic function is the function $\fromto {\mathord\wedge}{\Two\times}{\Two}$ given by the rule $x\wedge y = \top$
+		if and only if $x=\top$ and $y=\top$. .
+		So $\lambda x.\kappa_A(x)\wedge\kappa_B(x)$ is a function from $X$ to $\Two$. It is easy to check that desired set $A\cap B$ is 
+		\[(\lambda x.\kappa_A(x)\wedge\kappa_B(x))^{-1}(\top) = \{x\in X\st \kappa_A(x)\wedge\kappa_B(x) = \top \}.\] 
+
+		Likewise the characteristic function of $\{(\bot,\bot),(\top,\bot),(\bot,\top)\}$ is the function $\fromto {\mathord\vee}{\Two\times \Two}\Two$ given by $x\vee y = \top$ if and only if $x=\top$ or $y=\top$. It is easy to check that the desired set $A\cup B$
+		is \[(\lambda x.\kappa_A(x)\vee\kappa_B(x))^{-1}(\top) = \{x\in X\st \kappa_A(x)\vee\kappa_B(x)=\top\}\]
+		
+		Finally, the characteristic function of $\{(\bot,\bot),(\bot,\top),(\top,\top)\}$ charecterizes $A\Rightarrow B$.
+	\end{proof}
+\end{lemma}
+
+This lemma, together with the fact that $\emptyset$ is the smallest element of $\powerset(X)$ and $X$ is the largest, can be summarized by saying that $\cap$, $\cup$, $\Rightarrow$, $\emptyset$ and $X$ make $\powerset(X)$ into what is known
+as a \emph{Heyting algebra}. 
+
+
 	\begin{itemize}
 		\item $W\times A = \{(w,x)\in W\times X\st P(x)\}$. In fact, this is the same 
 		as $\pi_1^{-1}(A)$.  
@@ -1325,7 +1371,7 @@ We can allow expressions in a mix of English and mathematical notation, so long 
 		
 		\item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
 	\end{itemize}
-\end{vocabulary}
+\end{lemma}
 
 All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
 The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
