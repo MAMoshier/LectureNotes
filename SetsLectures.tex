@@ -1275,7 +1275,7 @@ from $\powerset(B)$ to $\powerset(A)$ determined by $f$.
 This notation does not clash much with our earlier definition of inverse image of an element, $f^{-1}(b)$, because 
 $f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
 
-\section{Intersections, Unions, Residuals}
+\section{Intersections, Unions, Residuals, Negations}
 
 Suppose $A$ and $B$ are subsets of $X$. 
 Then it makes sense to consider the elements that $A$ and $B$ have in commond. 
@@ -1324,6 +1324,7 @@ $\{x\in U\st \ldots x \ldots\}$ makes sense.
 %In the following, we write $P(x,y,z)$ for an expression in which $x$, $y$ and $z$ may appear, but are not required. 
 %We can allow expressions in a mix of English and mathematical notation, so long as the meanings are clear.
 %
+
 \begin{lemma}
 	In the following, let $X$ be a set, and $A,B\subseteq X$ be subsets.
 	\begin{itemize}
@@ -1335,24 +1336,71 @@ $\{x\in U\st \ldots x \ldots\}$ makes sense.
 	\begin{proof}
 		$A$ and $B$ are determined by characteristic functions $\fromto{\kappa_A}X\Two$ and $\fromto {\kappa_B}X\Two$. 
 		
-		On $\Two\times \Two$, consider the subset $M= \{(\top,\top)\}$. The characteristic function is the function $\fromto {\mathord\wedge}{\Two\times}{\Two}$ given by the rule $x\wedge y = \top$
-		if and only if $x=\top$ and $y=\top$. .
-		So $\lambda x.\kappa_A(x)\wedge\kappa_B(x)$ is a function from $X$ to $\Two$. It is easy to check that desired set $A\cap B$ is 
-		\[(\lambda x.\kappa_A(x)\wedge\kappa_B(x))^{-1}(\top) = \{x\in X\st \kappa_A(x)\wedge\kappa_B(x) = \top \}.\] 
+		Consider the subset of $\Two\times \Two$ defined as $M= \{(\top,\top)\}$. Its characteristic function is $\fromto {\mathord\wedge}{\Two\times}{\Two}$ given $x\wedge y = \top$
+		if and only if $x=\top$ and $y=\top$ (we write $x\wedge y$ instead of $\mathord\wedge(x,y)$).
+		
+		So $\lambda x.\kappa_A(x)\wedge\kappa_B(x)$ is a function from $X$ to $\Two$. It is easy to check that the desired set $A\cap B$ is 
+		\[(\lambda x.\kappa_A(x)\wedge\kappa_B(x))^{-1}(\top) = \{x\in X\st \kappa_A(x)\wedge\kappa_B(x) = \top \}.\]
+		That is, suppose $C\subseteq A\cap B$. Consider $x\in C$. Then $\kappa_A(x)\wedge \kappa_B(x)=\top$. This happens if and only if 
+		$x\in A$ and $x\n B$. 
 
 		Likewise the characteristic function of $\{(\bot,\bot),(\top,\bot),(\bot,\top)\}$ is the function $\fromto {\mathord\vee}{\Two\times \Two}\Two$ given by $x\vee y = \top$ if and only if $x=\top$ or $y=\top$. It is easy to check that the desired set $A\cup B$
 		is \[(\lambda x.\kappa_A(x)\vee\kappa_B(x))^{-1}(\top) = \{x\in X\st \kappa_A(x)\vee\kappa_B(x)=\top\}\]
 		
-		Finally, the characteristic function of $\{(\bot,\bot),(\bot,\top),(\top,\top)\}$ charecterizes $A\Rightarrow B$.
+		Finally, the characteristic function of $\{(\bot,\bot),(\bot,\top),(\top,\top)\}$ characterizes $A\Rightarrow B$.
 	\end{proof}
 \end{lemma}
 
-This lemma, together with the fact that $\emptyset$ is the smallest element of $\powerset(X)$ and $X$ is the largest, can be summarized by saying that $\cap$, $\cup$, $\Rightarrow$, $\emptyset$ and $X$ make $\powerset(X)$ into what is known
-as a \emph{Heyting algebra}. 
+This lemma, together with the fact that $\emptyset$ is the smallest element of $\powerset(X)$ and $X$ is the largest, can be summarized by saying that $\cap$, $\cup$, $\Rightarrow$, $\emptyset$ and $X$ make $\powerset(X)$ into what is known as a \emph{Heyting algebra}. 
+We do not spell out the axioms for Heyting algebras here, but generally speaking these are the structures that correspond to a sort of minimal version of propositional logic in which ``and'', ``or'', ``implies'', ``false'' and ``true'' interact in natural ways. 
+
+In the case of $\powerset(X)$, additional facts also hold. 
+In particular, $\powerset(X)$ is a \emph{Boolean algebra}. 
+This means the logic is based on a stronger interaction called the Law of Double Negation (or equivalently the Law of the Excluded Middle). 
+Let us abbreviate $A\Rightarrow\emptyset$ by writing $A^*$ (read this informally as ``not $A$). 
+Then the Law of Double Negation asserts that double negations do not change anything: $A^{**} = A$.
 
 \begin{lemma}
-	\begin{itemize}
-		\item $W\times A = \{(w,x)\in W\times X\st P(x)\}$. In fact, this is the same 
+	In $\powerset(X)$, the Law of Double Negation holds.
+	
+	\begin{proof}
+		Calculating the members of $\neg A$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, bt not both. So $x\in A^{**}$ if and only if $x\notin A^*$ if and only if $x\in A$. 
+	\end{proof}
+\end{lemma}
+
+The Law of Double Negation is precisely the property that distinguishes Boolean algebras from general Heyting algebras. 
+That is, one can define the term ``Boolean algebra'' to mean ``Heyting algebra that satisfies the Law of Double Negation.''
+So $\powerset(X)$ is indeed a Boolean algebra.
+
+\section{Quantifiers and Completeness}
+
+Consider how we might try to define the set of perfect square natural numbers. These are the natural numbers of the form $m^2$ for a natural number $m$. So the first few are $0$, $1$, $4$, $9$, $16$ and so on. We would be right to define this set by $\{n\in \NN\st \text{for some $m\in\NN$, $m^2=n$}\}$. We need to make sense of this, since ``for some $m\in \NN$, \ldots'' does not look like anything we have encountered yet. Just as we abbreviated ``and'' with symbol $\wedge$ and ``or'' with $\vee$, we will abbreviate ``for some $n\in\NN$, \ldots'' as $\exists n\in \NN,\ldots$. 
+
+Suppose $\fromto PX\Two$ is a characteristic function on $X$. We will write $\{x\in X\st P(x)\}$ instead of $\{x\in X\st P(x)=\top\}$, mostly to avoid some clutter, but also because this allows for more informal descriptions.
+Using this notation, we can form subsets by writin things like $\{x\in X\st P(x)\wedge Q(x)\}$, to denote the subset of elements satisfying two conditions (this is an intersection).
+Similarly, we can also write $\{x\in X\st P(x)\vee Q(x)\}$ for a union,
+$\{x\in X\st P(x)\to Q(x)\}$ for a residual, and $\{x\in X\st \neg P(x)\}$ for a
+complement.
+
+\begin{defn}
+	For sets $W$ and $X$, characteristic function $\fromto PX\Two$ and subset $A\subseteq AX$ so that $A = \{x\in X\st P(x)\}$, 
+	write $\{(w,x)\in W\times X\st P(x)\}$ for the set $\pi_1^{-1}(A)$.
+\end{defn}
+
+The idea for this is simply that $\{(w,x)\st W\times X\st P(x)\}$ represents
+the pairs $(w,x)$ for which $P(x)$ is true, ignoring the value of $w$.
+
+\begin{lemma}
+	For sets $W$ and $X$ and characteristic function $\fromto R{W\times X}\Two$,
+	there is a subset of $X$, denoted by $\{x\in X\st \exists w\in W.R(w,x)\}$ so that for all $\fromto PX\Two$,
+	$\{x\in X\st \exists w\in W.R(w,x)\} \subseteq {x\in X\st P(x)\}$ if and only if $\{(w,x)\in W\times X\st R(w,x)\} \subseteq \{(w,x)\in W\times X\st P(x)\}$.
+	Also, there is a subset of $X$, denoted by $\{x\in X\st \forall w\in W.R(w,x)\}$ so that for all $\fromto PX\Two$,
+		$\{x\in X\st P(x)\} \subseteq \{x\in X\st \forall w\in W.R(w,x)\}$ if and only if $\{(w,x) \in W\times X\st P(x)\}\subseteq \{(w,x)\in W\times X\st R(w,x)\}$.
+		
+	\begin{proof}
+		The proof of this is fairly technical and, for now, is beyond the scope of this discussion. Concretely, $E$ consists of those $x\in X$ so that $R(w,x) = \top$ for some $w\in W$; $A$ consists of those $x\in X$ so that $R(w,x)=\top$ for all $w\in W$.
+	\end{proof}
+\end{lemma}
 		as $\pi_1^{-1}(A)$.  
 		
 		\item $A\cap B = \{x\in X\st \text{$P(x)$ and $Q(x)$}\}$. We may abbreviate ``$P(x)$ and $Q(x)$'' by writing ``$P(x)\wedge Q(x)$''. 
@@ -1371,7 +1419,7 @@ as a \emph{Heyting algebra}.
 		
 		\item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
 	\end{itemize}
-\end{lemma}
+\end{vocabulary}
 
 All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
 The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
