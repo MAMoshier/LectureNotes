@@ -47,8 +47,8 @@ The elements are arranged here conveniently, but we could just as well have list
 Mathematicians also use functions to model attributes of the things in a collection, like ``the color of'', ``the mass of'', ``the location of'', ``the father of'', ``the favorite book of the person to the left of'' and so on.
 For our example of cards in a poker deck, ``rank of'' or ``suit of'' are two attributes. So we might write $\rank(A\diamondsuit) = A$ and $\suit(A\diamondsuit)=\diamondsuit$.
 In general, $\rank(x)$ and $\suit(x)$ pick out these attributes of any card $x$.
-Thus $R = \{A,1,2,3,4,5,6,7,8,9,10,J,Q,K\}$ 
-and $S = \{\clubsuit, \diamondsuit,\spadesuit,\heartsuit\}$ are also sets.
+Thus $\symb{Rank} = \{A,1,2,3,4,5,6,7,8,9,10,J,Q,K\}$ 
+and $\symb{Suit} = \{\clubsuit, \diamondsuit,\spadesuit,\heartsuit\}$ are also sets.
 There is little sense in saying that $\rank$ and $\suit$ are ``operations'', but they are functions \emph{from} $C$ to $R$ and $C$ to $S$, respectively.
 
 The functions $\rank$ and $\suit$ capture some structure of the elements of $C$. In particular, for any rank $r$ and any suit $s$, there is exactly one card $c$ so that $\rank(c)=r$ and $\suit(c)=s$. 
@@ -204,8 +204,6 @@ Saying $A\subseteq B$ is exactly the same as saying that for any $x$, if $x\in A
   \end{itemize}
 \end{example}
 
-\ipadbreak
-
 \begin{exercises}
 	For each of the following pairs of sets, determine whether or
   not the first is a subset of the second. Explain your answer.
@@ -216,7 +214,6 @@ Saying $A\subseteq B$ is exactly the same as saying that for any $x$, if $x\in A
   \item $\{0,3,6,10\}$ and $\{10,9,8,7,6,5,4,2,1, 0\}$
   \end{enumerate}
 \end{exercises}
-
 
 We can summarize two useful properties of $\subseteq$ as follows.
 \begin{itemize}
@@ -345,15 +342,15 @@ We begin by introducing the vocabulary of functions.
 
 	\item For $\fromto fAB$, the set $A$ is called the \emph{domain} of $f$ and $B$ is called the \emph{codomain} of $f$.
 	
-	\item For any function $\fromto fAB$ and every element $a\in A$, $f$ and $a$ determine an element of $B$, written $f(a)$, and read ``$f$ of $a$''.
+	\item For any function $\fromto fAB$ and any element $a\in A$, $f$ and $a$ determine an element of $B$, written $f(a)$, and read ``$f$ of $a$''.
 	\end{itemize}
 \end{signature}
 
 A functions may sometimes also be called a \emph{map}, a \emph{transformation}, or an \emph{operation}. 
-As we will see, however, \emph{operation} is somewhat misleading. 
+As we will see, however, \emph{operation} is somewhat misleading, so we usually avoid it. 
 
-Often, a function $\fromto fAB$ is \emph{defined} by a rule, just as they are familiar in other parts of mathematics. 
-We typically, write such rules by giving the function a name (very often $f$) and spelling out the rule at the same time.
+Often, a function $\fromto fAB$ is \emph{defined} by a rule, just as they are in other parts of mathematics. 
+We typically, write such rules by giving the function a name (very often $f$ because we are lazy) and spelling out the rule at the same time.
 So we write things like
 \[f(x)=x^2 + 4x + 2\]
 to define a function $\fromto f\RR\RR$ (recall that $\RR$ is the set of real numbers).
@@ -366,23 +363,25 @@ The variable only serves as a place holder, so its particular name does not matt
 
 There are two fundamental (trivial) types of rules that can be used to build functions.
 
-\begin{axiom}
+\begin{principle}
 	\begin{itemize}
 		\item For any set $A$, there is a function $\fromto {\id_A}AA$ defined by the rule $x\mapsto x$.
-		This is called the \emph{identity} function on $A$
+		This is called the \emph{identity} function on $A$.
 		\item For any two functions $\fromto fAB$ and $\fromto gBC$, there is a function $\fromto {g\circ f}AC$ defined by the rule $x\mapsto g(f(x))$.
 		This is called the composition of $g$ and $f$ (or sometimes ``$g$ following $f$'').
 	\end{itemize}
-\end{axiom}
+\end{principle}
 
 Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the codomain of $f$.
 Also, be careful about definitions like $f(x)=1/x$.
 This does not define a function on the real numbers because $f(0)$ is undefined.
-In other words, to be a function, $f$ must determine an element of the codomain for each element of the domain.
+In other words, to be a function, $f$ must determine an element of the codomain for each and every element of the domain.
 
 \begin{exercises}
-Suppose $\fromto fAB$, $\fromto gBC$ and $\fromto hCD$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
+	\begin{enumerate}[resume=exercises]
+\item Suppose $\fromto fAB$, $\fromto gBC$ and $\fromto hCD$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
 from $A$ to $D$. Do you think they are equal? Explain your answer in a few clearly written sentences.	
+\end{enumerate}
 \end{exercises}
 
 \section{Internal Diagrams}
@@ -490,7 +489,7 @@ For example,
 	
 \begin{exercises}
 	Use internal diagrams for the following exercises.
-	\begin{enumerate}
+	\begin{enumerate}[resume=exercises]
 		\item Depict four different functions from the set $\{1,2,3\}$ to the set $\{\bot,\top\}$. [Draw four different diagrams.]
 		\item Depict all of the functions from $\{\bullet\}$ to $\{a,b,c\}$
 		\item Depict all of the functions from $\{a,b,c\}$ to $\{\bullet\}$
@@ -592,10 +591,10 @@ Evidently, for each $n\in\NN$, it is true that $f(n) = g(n)$.
 So even though $f$ and $g$ are defined by different \emph{operations}, the two functions yield the same results.
 As with sets, this leads to an axiom for equality of functions.
 
-\begin{axiom}[\textbf{The Axiom of Function Extensionality}]
+\begin{principle}[\textbf{The Axiom of Function Extensionality}]
 	For functions $\fromto fAB$ and $\fromto gAB$, if it is the case that $f(x)=g(x)$ for all $x\in A$, then $f=g$.
 	Note that equality of functions only makes sense when the two functions share the same domain and the same codomain.
-\end{axiom}
+\end{principle}
 
 If we not concerned about the detailed internals sets, but only with how functions interact, then function can be depicted very simply as $A\stackrel{f}{\longrightarrow} B$.
 So a composition of functions can be depicted as in
