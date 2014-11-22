@@ -5,14 +5,16 @@
 
 \setOverview{
 The mathematical universe consists of various things: numbers, functions, graphs, lists and so on.
-A \noexpand\emph{set} is a collection of things. 
+
+A \noexpand\emph{set} is collection of things. To \emph{describe} a set, we typically will want to describe its ``structure''. This is, for now, an informal idea. To \emph{use} a set, we will want to assume at little about its as we can.
+
 For example, the collection of all natural numbers is a set.
 A \noexpand\emph{function} is a correlation of the members of one set with members of another set.
 These two abstract concepts (sets and functions) form a conceptual framework in which virtually all of mathematics can be built.
 So an understanding of sets and functions is key to a rigorous approach to most other parts of mathematics.
 This conceptual framework can itself be put on a formal, precise footing called the Category of Sets and Functions.
 
-In these lectures, we build up the Category of Sets and Functions, so that we can use these things as the basic building blocks of everything else we do.
+In these lectures, we investigate the Category of Sets and Functions, so that we can use these things as the basic building blocks of everything else we do.
 }
 
 \chapter{Sets}
@@ -33,8 +35,15 @@ In these lectures, we build up the Category of Sets and Functions, so that we ca
 \end{itemize}
 \end{goals}
 
-\emph{Sets} are the mathematician's way of thinking about \emph{collections} of objects. Examples will be the set of natural numbers, the set of pairs of natural numbers, the set of lists of natural numbers, and so on.
+\emph{Sets} are the mathematician's way of thinking about \emph{collections} of objects. Examples will be the set of natural numbers, the set of pairs of natural numbers, the set of real numbers, and so on.
 \emph{Functions} are the mathematicians way of thinking about operations, such as successor, addition, summation, and so on.
+
+An example is a set representing poker cards. We may denote it by
+\[\{
+A\heartsuit,2\heartsuit,3\heartsuit,4\heartsuit,5\heartsuit,6\heartsuit,7\heartsuit,8\heartsuit,9\heartsuit,10\heartsuit, J\heartsuit,Q\heartsuit,K\heartsuit,\\
+A\heartsuit,2\heartsuit,3\heartsuit,4\heartsuit,5\heartsuit,6\heartsuit,7\heartsuit,8\heartsuit,9\heartsuit,10\heartsuit, J\heartsuit,Q\heartsuit,K\heartsuit,\\
+A\heartsuit,2\heartsuit,3\heartsuit,4\heartsuit,5\heartsuit,6\heartsuit,7\heartsuit,8\heartsuit,9\heartsuit,10\heartsuit, J\heartsuit,Q\heartsuit,K\heartsuit,\\
+A\heartsuit,2\heartsuit,3\heartsuit,4\heartsuit,5\heartsuit,6\heartsuit,7\heartsuit,8\heartsuit,9\heartsuit,10\heartsuit, J\heartsuit,Q\heartsuit,K\heartsuit\}\]
 
 Mathematicians also use functions to model attributes of the things in a collection, like ``the color of'', ``the mass of'', ``the location of'', ``the father of'', ``the favorite book of the person to the left of'' and so on.
 There is little sense in saying these are ``operations'', but they have a similar behavior. For each potential
@@ -1393,260 +1402,57 @@ the pairs $(w,x)$ for which $P(x)$ is true, ignoring the value of $w$.
 \begin{lemma}
 	For sets $W$ and $X$ and characteristic function $\fromto R{W\times X}\Two$,
 	there is a subset of $X$, denoted by $\{x\in X\st \exists w\in W.R(w,x)\}$ so that for all $\fromto PX\Two$,
-	$\{x\in X\st \exists w\in W.R(w,x)\} \subseteq {x\in X\st P(x)\}$ if and only if $\{(w,x)\in W\times X\st R(w,x)\} \subseteq \{(w,x)\in W\times X\st P(x)\}$.
+	$\{x\in X\st \exists w\in W.R(w,x)\} \subseteq \{x\in X\st P(x)\}$ if and only if $\{(w,x)\in W\times X\st R(w,x)\} \subseteq \{(w,x)\in W\times X\st P(x)\}$.
 	Also, there is a subset of $X$, denoted by $\{x\in X\st \forall w\in W.R(w,x)\}$ so that for all $\fromto PX\Two$,
 		$\{x\in X\st P(x)\} \subseteq \{x\in X\st \forall w\in W.R(w,x)\}$ if and only if $\{(w,x) \in W\times X\st P(x)\}\subseteq \{(w,x)\in W\times X\st R(w,x)\}$.
 		
 	\begin{proof}
-		The proof of this is fairly technical and, for now, is beyond the scope of this discussion. Concretely, $E$ consists of those $x\in X$ so that $R(w,x) = \top$ for some $w\in W$; $A$ consists of those $x\in X$ so that $R(w,x)=\top$ for all $w\in W$.
+		The proof of this is fairly technical and, for now, is beyond the scope of this discussion. Concretely, $E$ consists of those $x\in X$ so that $R(w,x) = \top$ for some $w\in W$; $A$ consists of those $x\in X$ so that $R(w,x)=\top$ for all $w\in W$. This justifies our notation: $\exists w\in W,R(w,x)$ is read as ``there \emph{exists} $w\in W$ so that $R(w,x)$;''
+		$\forall w\in W, R(w,x)$'' is read as ``for \emph{all} $w\in W$, $R(w,x)$.''
 	\end{proof}
 \end{lemma}
-		as $\pi_1^{-1}(A)$.  
-		
-		\item $A\cap B = \{x\in X\st \text{$P(x)$ and $Q(x)$}\}$. We may abbreviate ``$P(x)$ and $Q(x)$'' by writing ``$P(x)\wedge Q(x)$''. 
-		
-		\item $A\Rightarrow B = \{x\in X\st \text{$P(x)$ implies $Q(x)$}\}$. We may abbreviate ``$P(x)$ implies $Q(x)$'' by writing ``$P(x)\to Q(x)$''.
-		
-		\item $A\cup B = \{x\in X\st \text{$P(x)$ or $Q(x)$}\}$. We may abbreviate ``$P(x)$ or $Q(x)$'' by writing ``$P(x)\vee Q(x)$''.
-		
-		\item $\emptyset = \{x\in X\st \text{false} \}$. This defines $\emptyset$ as a subset of $A$. We may abbreviate ``false'' by writing $\textsf{F}$.
-		
-		\item $X = \{x\in X\st \text{true}\}$ defines $X$ as a subset of $X$. We may abbreviate ``true'' by writing $\textsf{T}$.
-		
-		\item $\{x\in X \st \text{for some $w\in W$, $R(w,x)$}\}$ defines a subset of $X$. We may abbreviate ``for some $w\in W$, $R(w,x)$'' by writing ``$\exists w\in W, P(w,x)$''.
-		
-		\item $\{x\in X \st \text{for every $w\in W$, $R(w,x)$}\}$ defines a subset of $X$.  We may abbreviate ``for every $x\in W$, $R(w,x)$'' by writing ``$\forall w\in W, R(w,x)$''.
-		
-		\item $A^* = \{x\in X\st \text{it is not the case that $P(x)$}\}$.  We may abbreviate ``it is the case that $P(x)$'' by writing ``$\neg P(x)$''.
-	\end{itemize}
-\end{vocabulary}
 
-All of these can defined as equalizers $\{x\in X\st k(x)=\top\}$ for suitable choices of $k$, but the exercise of finding the suitable choices is not likely to be illuminating for now. 
-The point here is simply that, together with equalizers and inverse images, these constructions provide a rich system for describing subsets of given sets.
-Also note that $A^*$ is the same thing as $A\Rightarrow\emptyset$ because $x\in A^*$ means that $x\in X$ and $x\notin A$.
-But $x\in A\Rightarrow \emptyset$ means $x\in AX$ and \emph{if $x\in A$, then $x\in\emptyset$}.
-The only elements of $X$ that can satisfy the latter condition are those that are not in $A$.
+Let $\fromto AI{\powerset(X)}$ be a function into the powerset of $X$.
+We may write $A_i$ instead  of $A(i)$ to emphasize that the idea that each $A_i$ is
+a set. Then let $\bigcup_{i\in I}A_i = \{x\in X\st \exists i\in I.x\in A_i\}$. 
+According to Lemma \ref{lem:existential-set}, this is again a subset of $X$. It is 
+easy to check now that $\bigcup_{i\in I}A_i\subseteq C$ if and only if $A_i\subseteq C$ for each $i\in I$. So $\bigcup$ behaves like $\cup$, but for an
+arbitrary family of subsets, instead of for just two. In this sense, $\powerset(X)$ is \emph{complete}. That is, the union of any family of subsets of $X$ exists.
 
-\section{The structure of Powersets}
+\begin{exercises}
+	\begin{enumerate}
+		\item Define $\bigcap_{i\in I}A_i$ in analogy with $\bigcup_{i\in I}A_i$.
+		\item For $I=\emptyset$, what is $\bigcup_{i\in I}A_i$?
+	\end{enumerate}
+	content
+\end{exercises}
 
-For any set $U$, the powerset $\powerset(U)$ has useful structure.
-It is a \emph{partially ordered set} with respect to $\subseteq$.
-This means that $\subseteq$ satisfies three conditions:
-\begin{description}
-	\item[Reflexivity] $A\subseteq A$ holds for any $A\in \powerset(U)$;
-	\item[Transitivity] If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$ for any $A,B,C\in\powerset(U)$;
-	\item[Anti-symmetry] If $A\subseteq B$ and $B\subseteq A$, then $A=B$. 
-\end{description}
+\subsection*{de~Morgan's Law}
 
-More specifically, $\powerset(U)$ is known as a \emph{complete atomic Boolean algebra}. In an important sense, this is \emph{the} structure of a powerset. So we
-should take some time to understand it. First, let us consider how the basic
-constructions of the previous section behave.
+In a Boolean algebra, the operations $\cup$, $\cap$ and $\neg$ interact in another way.
 
 \begin{lemma}
-	For a set $U$ and subsets $A$, $B$ and $C$,
-	\[\text{$C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.}\]
+	For subsets $A,B\subseteq X$, $\neg(A\cap B) = \neg A\cup \neg B$.
 	
-	\begin{proof}
-		Suppose $C\subseteq A\cap B$.
-		Since $x\in A\cap B$ implies, by definition,
-		that $x\in A$ and $x\in B$, obviously $C\subseteq A$ and $C\subseteq B$.
-		
-		Suppose $C\subseteq A$ and $C\subseteq AB$, and consider some $x\in C$.
-		Then $x\in A$ and $x\in B$, so by definition $x\in A\cap B$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	For a set $U$ and subsets $A$, $B$ and $C$,
-	\[\text{$A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.}\]
+	Likewise, for $\fromto AI{\powerset(X)}$, $\neg\bigcup_{\in I}A_i = \bigcap_{i\in I}\neg A_i$.
 	
 	\begin{proof}
 		Exercise.
 	\end{proof}
 \end{lemma}
 
-From these, it is easy to see that $\cap$ and $\cup$ are commutative, associative
-and idempotent. That is,
+\section{Atomicity}
 
-$A\cap B = B\cap A$
-$A\cap (B\cap C) = (A\cap B)\cap C$
-$A\cap A = A$
+The complete Boolean algebras $\powerset(X)$ have one more feature that characterizes powersets among other complete Boolean algebras. They are \emph{atomic}. This means, roughly, that all subsets are built from the simplest ones.
 
-A binary operation that satisfies these three laws is called a \emph{semilattice} operation. But actually $\cap$ and $\cup$ interact by another law.
-$A\cap (B\cup A) = (A\cap B)\cup A$
+An \emph{atom} of $\powerset(X)$ is a subset $A$ with the property that $\emptyset\subseteq B\subseteq A$ implies $B=\emptyset$ or $B=A$. Clearly,
+the singletons are the atoms. That is, $\{a\}$ for $a\in X$ has the property that its only proper subset is $\emptyset$.
 
-Any structure with two operations that satisfy all of these laws is called a \emph{lattice}. So $\powerset(X)$ with the operations $\cap$ and $\cup$ is a lattice. If the two operations have identities $A\cap X = A$ and $a\cup \emptyset = A$, then it is a \emph{bounded lattice}. 
-
-So in fact, $\powerset(X)$ with $\cap$, $\cup$, $X$ and $\emptyset$ forms a bounded lattice. Next, we consider how $\Rightarrow$ provides additional information.
+The rule $x\mapsto \{x\}$ shows that the atoms of $\powerset(X)$ correspond to elements of $X$. In fact, we should show that this rule defines a function.
 
 \begin{lemma}
-	For set $X$ and subsets $A$, $B$ and $C$,
-	\[\text{$A\cap B\subseteq C$ if and only if $A\subseteq B\Rightarrow C$}\]
-	
-	\begin{proof}
-		Suppose $A\cap B\subseteq C$. Consider $x\in A$. 
-		For such an $x$, it i true that $x\in B$ implies $x\in C$.
-		So $x\in B\Rightarrow C$.
-		
-		Suppose $A\subseteq B\Rightarrow C$.
-		Consider $x\in A\cap B$. 
-		Then $x\in A$. So $x\in B\Rightarrow C$.
-		But also $x\in B$. So $x\in C$. 		
-	\end{proof}
+	For any set $X$, the rule $x\mapsto \{x\}$ determines a function from $X$ to $\powerset(X)$.
 \end{lemma}
-
-This law, sometimes called the Law of Residuation, specifies exactly how $\cap$ an $\Rightarrow$ interact. A bounded lattice with an operation that satisies the Law of Residuation is called a \emph{Heyting algebra}. So we have not shown that $\powerset(X)$ is a Heyting algebra. A useful fact about Heyting algebras is that, even though residuation does not explicitly mention $\cup$, it implies that law of distribution.
-
-\begin{lemma}
-	For set $X$ and subsets $A$, $B$, and $C$,
-	\[A\cap (B\cup C) = (A\cap B) \cup (A\cap C)\]
-	
-	\begin{proof}
-		In any lattice $(A\cap B)\cup (A\cap C)\subseteq A\cap (B\cup C)$. [Prove this as an exercise.]
-		So the equality only requires we prove the other inclusion.
-		
-		By the Law of Residuation, $A\cap (B\cup C)\subseteq (A\cap B)\cup (A\cap C)$ holds if and only if $B\cup C\subseteq A\Rightarrow (A\cap B)\cup (A\cap C)$ holds. But by Law of Union, the latter holds if and only if both $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ and $C\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ hold. And finally, by the Law of Residuation again, $B\subseteq A\Rightarrow ((A\cap B)\cup (A\cap C))$ holds if and only if $A\cap B\subseteq (A\cap B)\cup (A\cap C)$ holds, and likewise for $C$. But $A\cap B$ is indeed contained in $(A\cap B)\cup (A\cap C)$ and similarly $A\cap C$ is indeed contained in $(A\cap B)\cup (A\cap C)$. 
-	\end{proof}
-\end{lemma}
-
-Notice that the proof does not explicitly mention elements of $X$. It only uses the algebraic properties of $\cap$, $\cup$ and $\Rightarrow$. So we have actually proved that every Heyting algebra satisfies the Law of Distribution.
-
-\begin{lemma}
-	For set $X$ and subset $A\subseteq X$, $A^{**} = A$.
-	
-	\begin{proof}
-		Exercise.
-	\end{proof}
-\end{lemma}
-
-A Heyting algebra satisfying this additional law is called a Boolean algebra (historically, this is backwards. Boolean algebras were named before Heyting algebras). So $\powerset(X)$ is a Boolean algebra.
-
-\begin{lemma}
-	For any function $\fromto fXY$, the function $\fromto {f^{-1}}{\powerset(Y)}{\powerset(X)}$ satisfies
-	\begin{itemize}
-		\item $f^{-1}(\emptyset) = \emptyset$
-		\item $f^{-1}(A\cup B) = f^{-1}(A)\cup f^{-1}(B)$
-		\item $f^{-1}(Y) = X$
-		\item $f^{-1}(A\cap B) = f^{-1}(A) \cap f^{-1}(B)$
-		\item $f^{-1}(A^*) = f^{-1}(A)^*$
-	\end{itemize}
-\end{lemma}
-
-So not only is $\powerset(X)$ always a Boolean algebra, but $f^{-1}$ is a function that \emph{preserves} the relevant operations that give $\powerset(X)$ that structure.
-
-An element $x$ of a Boolean algebra is \emph{atomic} if whenever $x = y\vee z$,
-either $y=x$ or $z=x$. In $\powerset(X)$, the atoms are singleton subsets $\{x\}$
-for $x\in X$. In $\powerset(X)$, there are a lot of atoms. Specifically, 
-every $A\in\powerset(X)$ is either $\emptyset$ or has at least one atom $\{x\}\subseteq A$. It is possible to have a Boolean algebra with no atoms, but this is a property that all powersets have.
-
-Summarizing so far $\powerset(X)$ is an atomic Boolean algebra, and $f^{-1}$ preserves Boolean structure. Since $f^{-1}(\{x\})$ is not necessarily a singleton,
-$f^{-1}$ does not generally preserve atoms.
-
-Finally, we need to understand completeness.
-
-\begin{lemma}
-	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and $A\subseteq X$,
-	\[\text{$\{x\in X\st \exists w\in W.P(w,x)\} \subseteq A$ if and only if $\{(w,x)\in W\times X\st P(w,x)\} \subseteq \pi_1^{-1}(A)$.}\] 
-	
-	\begin{proof}
-		Suppose $\{x\in X\st \exists w\in W.P(w,x)\}\subseteq A$.
-		Consider $(w,x)\in W\times X$ for which $P(w,x)$.
-		Then $x\in A$. So $(w,x)\in \pi_1^{-1}(A)$. 
-		
-		For the reserve inclusion, suppose $\{(w,x)\in W\times X\st P(x,y)\}\subseteq \pi_1^{-1}(A)$.
-		Consider $x\in X$ for which $P(w,x)$ holds for some $w\in W$.
-		Then $(w,x)\in \pi^{-1}(A)$.
-		So $x\in A$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	For sets $W$ and $X$, expression $P(w,x)$ defining $\{(w,x)\in W\times X\st P(w,x)\}$ and subset $A\subseteq X$,
-	\[\text{$A\subseteq \{x\in X\st \forall w\in W.P(w,x)\}$ if and only if 
-		$\pi_1^{-1}(A)\subseteq \{(w,x)\in W\times X\st P(w,x)\}$.}\]
-	
-	\begin{proof}
-		Exercise.
-	\end{proof} 	
-\end{lemma}
-
-First, for completeness we need the following definition:
-\begin{defn}
-	Let $\fromto aIA$ be a function. Writing $a_i$,
-	instead of $a(i)$, then we refer to $a$ as an \emph{(indexed) family of elements of $A$}, and write it as $\{a_i\}_{i\in I}$. This notation is just a way to denote a function that emphasizes its role as a way to pick out elements of $A$.
-	
-	If $(P,\leq)$ is a partially ordered set and $\{a_i\}_{i\in I}$ is an indexed family in $P$. An element $u\in P$ is a \emph{least upper bound} of $\{a_i\}_{i\in I}$ if for every $p\in P$, $u\leq p$ if and only if $a_k\leq p$ 
-	for every $k\in I$. 
-\end{defn}
-
-In $\powerset(X)$, let $\{A_i\}_{i\in I}$ be a family of subsets.
-Then consider the set $\bigcup_{i\in I}A_i $ defined by $\{x\in X\st \exists i\in I. x\in A_i\}$. Then $A_k\subseteq \bigcup_{i\in I}A_i$ for every $k\in I$
-Furthermore, suppose $A_k\subseteq C$ is true for each $k\in I$.
-Then $x\in \bigcup_{i\in I}A_i$, there is some $k\in I$ so that $x\in A_k$.
-Hence $x\in C$.
-This shows that $\bigcup_{i\in I}A_i$ is the least upper bound of the family $\{A_i\}_{i\in I}$.
-So every family of subsets of $X$ has a least upper bound.
-This is what we mean by saying that $\powerset(X)$ is \emph{complete}.
-
-All together $\powerset(X)$ is a complete atomic Boolean algebra. Moreover,
-for any $\fromto fXY$, 
-$f^{-1}$ preserves even the complete structure.
-
-\begin{lemma}
-	For function $\fromto fXY$, let $P(w,y)$ be an expression defining
-	$\{(w,y)\in W\times Y\st P(w,y)\}$. For any function $\fromto fXY$,
-	\begin{align*}
-	f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\}) &= \{x\in X\st \exists w\in W, P(w,f(x)\}\\
-	f^{-1}(\{y\in Y\st \forall w\in W, P(w,y)\}) &= \{x\in X\st \forall w\in W, P(w,f(x)\}\\
-	\end{align*}
-	
-	\begin{proof}
-		This is essentially by definition. That is, $x\in f^{-1}(\{y\in Y\st \exists w\in W, P(w,y)\})$ if and only if $f(x)\in \{y\in Y\st \exists w\in W,P(w,y)\}$. So $P(w,f(x))$ holds for some $w\in W$. In other words, 
-		$x\in \{x\in X\st \exists w\in W,P(w,f(x))\}$.
-		For the $\forall$ case, the proof is similar.
-	\end{proof} 
-\end{lemma}
-
-It is slightly beyond the scope of these lectures, but in fact, if $P$ is
-a complete atomic Boolean algebra, then letting $A(P)$ denote the set of atoms of $P$, one can show that the function $\fromto \alpha {P\times A(P)}\Two$ defined 
-by \[\alpha(p,a) = \begin{cases}
-\top & \text{if $x\leq p$}\\
-\bot & \text{otherwise}
-\end{cases}
-\]
-is an evaluation map. So $P$ and $\powerset(A(P))$ have the same structure. 
-
-So in general, for a family $\{a_i\}_{i\in I}$ a least upper bound might not exist.
-For example, $\NN$ is a partially ordered set with respect to the usual meaning of $\leq$, but $\{n\}_{n\in \NN}$ has no upper bounds at all.
-On the other hand, $\powerset(U)$ has the useful property that every family has a least upper bound.
-This is what we mean by saying $\powerset(U)$ is \emph{complete}. 
-
-\begin{lemma}
-	Every family $\{A_i\}_{i\in I}$ of subset of $U$ has a least upper bound in $\powerset(U)$.
-	This is called the \emph{union} of $\{A_i\}_{i\in I}$ and is written $\bigcup_{i\in I}A_i$.
-	
-	\begin{proof}
-		Suppose $\{A_i\}_{i\in I}$ is a family of subsets of $U$. 
-		Define 
-		\[\bigcup_{i\in I}A_i = \{x\in U\st \text{for some $i\in I$, $x\in A_i$}\}.\]
-		For $k\in I$, suppose $x\in A_k$.
-		Then by definition $x\in \bigcup_{i\in I}A_i$.
-		So $A_k\subseteq \bigcup_{i\in I}A_i$.
-		In other words, $\bigcup_{i\in I}A_i$ is an upper bound of the family $\{A_i\}_{i\in I}$.
-		
-		Suppose $A_k\subseteq C$ for each $k\in I$.
-		If $x\in\bigcup_{i\in I}A_i$, then by definition, $x\in A_k$ for some $k\in I$.
-		So $x\in C$.
-		This shows that $\bigcup_{i\in I}A_i\subseteq C$.
-		
-		The proof is not quite complete because we have not shown that
-		our definition of $\bigcup_{i\in I}A_i$ is a real definition.
-	\end{proof}
-\end{lemma}
-
-A set $\{(i,x)\in I\times U\st \ni(A_i,x)=\top\}$
-It is easy to check that the union of a family is unique, it it exists. Our next principle (which actually follows from the principles we already have stated)
-says that the union of a family of subsets of $U$ exists.
 
 
 
