@@ -581,12 +581,13 @@ For example,
 
 \section{Extensionality}
 
-Just like sets, we need a way to say when two functions are equal.
+Just as for sets, we need a way to say when two functions are equal.
 Let $\NN$ denote the set of natural numbers. 
-Then define $\fromto f\NN\NN$ by
-\[f(n) = n^2 +  2n + 1.\]
-Likewise, define $\fromto g\NN\NN$ by
-\[g(n) = (n+1)^2.\]
+Then define $\fromto f\NN\NN$ and $\fromto g\NN\NN$ by
+\begin{align*}
+f(n) &= n^2 +  2n + 1\\
+g(n) &= (n+1)^2
+\end{align*}
 Evidently, for each $n\in\NN$, it is true that $f(n) = g(n)$.
 So even though $f$ and $g$ are defined by different \emph{operations}, the two functions yield the same results.
 As with sets, this leads to an axiom for equality of functions.
@@ -596,7 +597,7 @@ As with sets, this leads to an axiom for equality of functions.
 	Note that equality of functions only makes sense when the two functions share the same domain and the same codomain.
 \end{principle}
 
-If we not concerned about the detailed internals sets, but only with how functions interact, then function can be depicted very simply as $A\stackrel{f}{\longrightarrow} B$.
+If we not concerned about the detailed internals of sets, but only with how functions interact, then a function can be depicted very simply as $A\stackrel{f}{\longrightarrow} B$.
 So a composition of functions can be depicted as in
 \[
 \tikzset{>=stealth}
@@ -623,7 +624,7 @@ So the simpler diagram
 \draw[->] (B) -- (C) node[anchor=west]  {$g$};
 \end{tikzpicture}
 \]
-shows the same information, namely, that $\fromto fAB$ and $\fromto gBC$ are functions and therefore, $g\circ f$ is too.
+shows the same information, namely, that $\fromto fAB$ and $\fromto gBC$ are functions and therefore, $\fromto {g\circ f}AC$ is too.
 
 Now a diagram such as this
 \[
@@ -686,11 +687,11 @@ Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
 	\end{itemize}
 \end{goals}
 
-So far, we have been able to think mainly about finite sets and a few informally defined functions on, say, the real numbers or the natural numbers.
-To fill out our understanding of sets, we need to be able to build sets for specific purposes.
+So far, we have thought mainly about finite sets and a few informally defined functions on, say, the real numbers or the natural numbers.
+To fill out our understanding of sets, we need to be able to build sets for specific purposes and with specific structure in mind. 
 
-Two finite sets will play particularly important roles.
-The first, which we denote by $\One$, is  set with one element; the second, which we denote by $\Two$, is a set with two elements.
+Three finite sets will play particularly important roles. We have already mentioned the set $\emptyset$, consisting of no elements.
+We also need a designated set with one element and a distinguished set with two elements. We denote these by $\One$ and $\Two$. 
 It does not matter at all \emph{what} elements are in these because, as we will soon see, any two sets of the same size are interchangeable.
 What `interchangeable' means is discussed later.
 What `same size' means is obvious for finite sets, but not at all apparent for infinite ones.
@@ -751,28 +752,23 @@ Since $\One$ has only a single element, it can ``point'' only to a single elemen
 So we might refer to a function $\One\to A$ as a \emph{pointer} into $A$.
 Each pointer determines an element of $A$. 
 And conversely, it should be possible to point to any element of $A$. 
-This leads to our first axiom guaranteeing that certain functions exist.
+This leads to our first (and nearly trivial) principle guaranteeing that certain functions exist.
 
 \begin{principle}\label{ax:pointers}
-	For any set $A$, and any $a\in A$, there is a pointer $\fromto {\hat a}\One A$ so that $\hat{a}(\bullet)=a$.
+	For any set $A$, and any $a\in A$, there is a function $\fromto {\hat a}\One A$ given by the rule $x\mapsto = a$.
 \end{principle}
 
-In effect, this principle claims that elements of a set $A$ and functions $\One\to A$ are interchangible: from $a\in A$ we get $\fromto {\hat{a}}\One A$; from $\fromto p\One A$.
-we get $p(\bullet)$. 
+In effect, this principle simple asserts that elements of a set $A$ and functions $\One\to A$ are interchangible: from $a\in A$ we get $\fromto {\hat{a}}\One A$; from $\fromto p\One A$.
+we get the element $p(\bullet)$. 
 
-This principle also justifies the drawing of internal diagrams for pointers because it means that any such diagram does depict an actual function. 
-Other principles that we will discuss later justify our use of internal diagrams for all finite sets.
-
-We can specify $\hat{a}$ by the rule $x\mapsto a$.
-That is, since $\bullet$ is an element of $\One$, $\hat{a}(\bullet)=a$.
-And since $\bullet$ is the only element of $\One$, $\hat{a}{x}=a$ is true for \emph{every} element of $\One$.
+This principle also justifies the drawing of internal diagrams, like the one above, for pointers because it means that any such diagram is guaranteed to depict an actual function. 
 
 Suppose $\fromto fA\One$ and $\fromto gA\One$ are functions, that is, their \emph{codomain} is $\One$ instead their \emph{domain}. 
 Then $f(a)=g(a)$ is true for every $a\in A$ because $\bullet$ is the only possible value for $f(a)$ and $g(a)$. 
 So $f=g$ by the Principle of Function Extensionality.
 In other words, there is at most one function from $A$ to $\One$.
 But the rule $x\mapsto \bullet$ is as simple a rule as one can imagine. 
-This leads to another axiom.
+This leads to another definition and another principle.
 
 \begin{defn}\label{def:terminal}
 	A set $T$ is \emph{terminal} if it is the case that for any set $A$ there is exactly one function from $A$ to $T$.
@@ -788,8 +784,8 @@ This leads to another axiom.
 \end{principle}
 
 Using $\Diamond_A$ and $\hat{b}$ for an element $b\in B$, we can now define constant functions. 
-That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ defined by 
-\[(\hat{b}\circ\Diamond_A)(x) = \hat{b}(\Diamond_A(x))= \hat{b}(\bullet) = b.\] 
+That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ given by the rule
+$x\mapsto \hat{b}(\Diamond_A(x))$. But since $\hat{b}(\Diamond_A(x))= \hat{b}(\bullet) = b$, the rule simplifies to $x\mapsto b$. 
 In short, this is the function sending any element of $A$ to the constant result $b$. 
 
 \begin{exercises}
@@ -804,15 +800,16 @@ In short, this is the function sending any element of $A$ to the constant result
 
 For trivial reasons, there is at most one function from $\emptyset$ to $A$,
 for any set $A$. That is,  if $\fromto {f,g}\emptyset A$ are functions, then
-for each $x\in\emptyset$, $f(x)=g(x)$ because there are none. Hence by Principle \ref{ax:FunctionExtensionality}, $f=g$. The empty ``rule'' that tells us nothing does actually specify a function from $\emptyset$ to $A$. So $\emptyset$ 
-is the \emph{initial} set, i.e., for any set $A$, there is exactly one function from $\emptyset$ to $A$.
+for each $x\in\emptyset$, $f(x)=g(x)$ because there are no $x$'s to concern us. Hence by Principle \ref{ax:FunctionExtensionality}, $f=g$. The empty ``rule'' that tells us nothing does actually specify a function from $\emptyset$ to $A$. So for any set $A$, there is exactly one function from $\emptyset$ to $A$.
 
 \begin{defn}
 	An \emph{initial set} is a set $I$ so that for any set $A$, there is exactly one function from $I$ to $A$.
 \end{defn}
 
 \begin{principle}
-	The emptyset $\emptyset$ is an initial set.
+	The emptyset $\emptyset$ is an initial set. For a set $A$, the unique
+	function from $\emptyset$ to $A$ may be denoted by 
+	$\fromto {\Box_A}\emptyset A$.
 \end{principle}
 
 Notice that a function $A\to\emptyset$ is impossible unless $A$ is also empty.
@@ -820,11 +817,12 @@ So it follows that $\emptyset$ is the only initial set.
 
 \begin{exercises}
 	\begin{enumerate}
-		\item How many functions are there from $\emptyset$ to $\{a,b,c,d\}$
-		\item How many functions are there from $\{a,b,c,d\}$ to $emptyset$.
+		\item How many functions are there from $\emptyset$ to $\{a,b,c,d\}$? Explain.
+		\item How many functions are there from $\{a,b,c,d\}$ to $emptyset$? Explain.
+		\item How many functions are there from $\One$ to $\{a,b,c,d\}$? Explain.
+		\item How many functions are there from $\{a,b,c,d\}$ to $\One$? Explain.
 	\end{enumerate}
 \end{exercises}
-
 
 \section{Solution Sets, Subsets, Characteristic Functions}
 
