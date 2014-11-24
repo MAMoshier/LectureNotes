@@ -1485,7 +1485,7 @@ Although we do not investigate this here, any complete atomic Boolean algebra ha
 	and $f^{-1}(\bigcap_{i\in I}B_i) = \bigcap_{i\in I}f^{-1}(B_i)$.
 	
 	\begin{proof}
-		$x\in f^{-1}(\bigcup_{i\in I}B_i)$ if and only if $f(x)\in \bigcup_{i\in I}B_i$ if and only if f(x)\in B_k$ for some $k\in I$ if and only if $x\in f^{-1}(B_k)$ for some $k\in I$ if and only if $x\in \bigcup_{i\in I}f^{-1}(B_i)$. THe proof for $\bigcap$ is similar with ``for some \ldots$ replaced by ``for all \ldots".  
+		$x\in f^{-1}(\bigcup_{i\in I}B_i)$ if and only if $f(x)\in \bigcup_{i\in I}B_i$ if and only if $f(x)\in B_k$ for some $k\in I$ if and only if $x\in f^{-1}(B_k)$ for some $k\in I$ if and only if $x\in \bigcup_{i\in I}f^{-1}(B_i)$. THe proof for $\bigcap$ is similar with ``for some \ldots'' replaced by ``for all \ldots".  
 	\end{proof}
 \end{lemma}
 
@@ -1498,7 +1498,7 @@ Although we do not investigate this here, any complete atomic Boolean algebra ha
 		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
 		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
 		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
-		\item I claim that $\{\emptyset\}\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
+		\item I claim that $\powerset(\emptyset)\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
 	\end{enumerate}
 \end{exercises}
 
@@ -1508,7 +1508,7 @@ For a function $\fromto fAB$ the function $\fromto {f^-}{\powerset(C)}{\powerset
 
 \begin{defn}
 	For $\fromto fXY$, define $\fromto {f^+}{\powerset(X)}{\powerset(Y)}$ by the rule $A= \bigcup\{B\subseteq Y\st f^-(B)\subseteq A\}$. The subset 
-	$f^+(A)\subseteq Y$ is called the \emph{forward image of $A$ with respect to $f$.
+	$f^+(A)\subseteq Y$ is called the \emph{forward image of $A$ with respect to $f$}.
 \end{defn}
 
 It follows easily that $f^-(B)\subseteq A$ if and only if $B\subseteq f^+(A)$.
@@ -1521,7 +1521,16 @@ f^+(A) &= \{y\in Y\st \exists B\subseteq Y, f^-(B)\subseteq A \wedge y\in B\}\\
 There is also a lower adjoin of $f^-$, but as it is less common, we do not investigate it here.
 
 The important features of $f^+$ are easily checked. First, $f^+$ preserves atoms.
-That is, $f^+(\{x\}) = \{f(x)\}$. Second, $f^_$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Not that $f$ does not necessarily preserve intersections.
+That is, $f^+(\{x\}) = \{f(x)\}$. 
+Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Note that $f$ does not necessarily preserve intersections.
+
+\begin{exercises}
+	\begin{enumerate}
+		\item Define a function $\fromto fXY$ and two subsets $A,B\subseteq X$ so that $f(X)\cap f(Y) \neq f(X\cap Y)$. Try to find the smallest example you can.
+		\item Prove that for any function $\fromto fXY$ and any $A\subseteq X$, it inclusion $A\subseteq f^-(f^+(A))$ holds.
+		\item Prove that for any function $\fromto fXY$ and any $B\subseteq Y$, it inclusion $f^+(f^-(B))\\subseteq B$ holds.
+	\end{enumerate}
+\end{exercises}
 
 \chapter{Monomophisms, Epimorphisms and Isomorphisms}
 
@@ -1601,8 +1610,9 @@ The converse of this is also true.
 	\end{proof}
 \end{lemma}
 
-As simple as this result is, this is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition). Epimorphisms are also defined externally, but we do not yet have an internal characterization. Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
-
+As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition). 
+Epimorphisms are also defined externally, but we do not yet have an internal characterization. 
+Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
 
 \begin{lemma}
 	A function $\fromto gBC$ is an injection if and only if for any $y\in C$ there is \emph{at most one} $x\in B$ for which $g(x)=y$.
@@ -1630,31 +1640,43 @@ We already know that injections and monomorphisms are the same things. We can ho
 	\begin{proof}
 		Assume that $g$ is a surjection. 
 		Suppose $\fromto {h_0,h_1}BD$ are functions for which $h_0\circ g = h_1\circ g$. 
-		For $y\in C$, choose an $x\in B$ for which $g(x)=y$.
+		For $y\in C$, pick some $x\in B$ for which $g(x)=y$.
 		This can be done because $g$ is a surjection.
 		So $h_0(y) = h_0(g(x)) = h_1(g(x)) = h_1(y)$.
-		So $h_0(y) = h_1(y)$ for every $y\in C$, so $h_0=h_1$.
-		Thus $g$ is an epimorphism.
+		This works for every $y\in C$, so $h_0=h_1$.
+		This proves $g$ is an epimorphism.
 		
-		Assume that $g$ is not a surjection.
+		Assume that $g$ is \emph{not} a surjection.
 		We will prove that it is not an epimorphism.
 		Supposing that $g$ is not a surjection means there is an element $c\in C$ so that $g(x)\neq c$ for all $x\in B$. 
-		Consider the functions $\fromto {h_0}C\Two$ defined by $h_0(y)=\top$ and $\fromto {h_1}C\Two$ defined by $h_1(y) = \top$ if $y=c$ and $h_1(y)=\bot$ otherwise.
+		Consider the functions $\fromto {h_0}C\Two$ defined by $h_0(y)=\top$ and $\fromto {h_1}C\Two$ defined by 
+		\[h_1(y) = \begin{cases}
+			\top & \text{if  $y=c$}\\
+			\bot &\text {otherwise}
+		\end{cases}
+		\]
 		For every $x\in B$, $h_0(g(x)) = \top = h_1(g(x))$. So $h_0\circ g = h_1\circ g$, but obviously $h_0(c)\neq h_1(c)$. So $h_0\neq h_1$.  
 	\end{proof}
 \end{lemma}
 
 \begin{exercises}
-	Prove that for any set $A$, $\id_A$ is a monomorphism.
-	Prove that if $\fromto fAB$ and $\fromto gBC$ are monomorphisms, then $g\circ f$ is a monomorphism.
-	Formulate and prove analogous claims for epimorphisms.
+	\begin{enumerate}
+		\item Prove that for any set $A$, $\id_A$ is a monomorphism.
+		\item Prove that if $\fromto fAB$ and $\fromto gBC$ are monomorphisms, then $g\circ f$ is a monomorphism.
+		\item Formulate and prove analogous claims for epimorphisms.
+	\end{enumerate}
 \end{exercises}
 
 The choice we made to define $\Two$ to be the set $\{\bot,\top\}$ instead of, say,
-$\{0,1\}$ or $\{\emptyset, \{emptyset\}\}$ or any other two element set, seems accidental. In some sense, any two element set would have done to job of defining a subset classifier. Similarly, $\One$ just needs to be a singleton, not $\{\bullet\}$ specifically. Likewise, we defined the product $A\times B$ 
-to consist of pairs $(x,y)$ where $x\in A$ and $y\in B$, but we could just as well have defined it to consist of pairs $(y,x)$. The specific order in which we put the pairs is not important, so long as we about what we are doing.
+$\{0,1\}$ or $\{\emptyset, \{emptyset\}\}$ or any other two element set, seems accidental. 
+Any two element set would, it seems, have done to job of defining a subset classifier. 
+Similarly, $\One$ just needs to be a singleton, not $\{\bullet\}$ specifically.
+We defined the product $A\times B$ to consist of pairs $(x,y)$ where $x\in A$ and $y\in B$, but we could just as well have defined it to consist of pairs $(y,x)$.
+The specific order in which we put the pairs seems unimportant, so long as we agree on what we are doing.
+The set of natural numbers $\NN$ officially consists of $0$, $0^\nxt$, $0^{\nxt\nxt}$ and so on. But informally, we use $0$, $1$, $2$, and so on as \emph{numerals}. Some one else might think the natural numbers consist of ``null, eins, zwei, und so weiter.'' Somehow the particular names we give to the natural numbers does not matter. What matters is that, whatever the specific elements happen to be, they match perfectly with the things we think are the ``actual'' natural numbers.
 
-In some sense, certain sets are ``essentially the same'' as other sets. The idea is captured in sets and functions by the idea of an isomorphism.
+This leads us to suspect that certain sets are ``essentially the same'' as other sets. 
+To work how what that might mean, we need one more definition.
 
 \begin{defn}
 	A function $\fromto fAB$ is an \emph{isomorphism} if there is a function
