@@ -865,7 +865,7 @@ Since it common to pick out sets like this, special notation is in order.
 
 \begin{defn}\label{def:inverse-image}
 	For a function $\fromto fAC$, and a value $c\in C$, 
-	\[f^-}(c) = \{x\in A\st f(x)=c\}.\] 
+	\[f^-(c) = \{x\in A\st f(x)=c\}.\] 
 	In this case, $f^-(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
 \end{defn}
 
@@ -1745,53 +1745,7 @@ and $\fromto mZY$ so that $f=m\circ e$. We will say this is an EM factorization 
 	\end{proof}
 \end{lemma}
 
-\section{Graphs of Functions}
 
-\begin{defn}
-	For function $\fromto fAB$, defined the \emph{graph of $f$} to be the subset of $A\times B$,
-	\[\Gamma[f] = \{(x,y)\in A\times B\st f(x) = y\}.\]
-	That is, $\Gamma[f]$ is the equalizer of $f\circ \pi_0$ and $\pi_1$.
-\end{defn}
-
-The graph of $f$ and the domain of $f$ are a prototypical example of isomorphic sets.
-
-\begin{lemma}
-	For any function $\fromto fXY$, the sets $X$ and $\Gamma[f]$ are isomorphic.
-	
-	\begin{proof}
-		Since $\Gamma[f]$ is an equalizer, it has an inclusion function $i$ from
-		$\Gamma[f]$ to $X\times Y$. 
-		The functions $\id_X$ and $f$ determine the function $\fromto {\langle \id_X,f\rangle}{X}{X\times Y}$. 
-		It is easy to see that this factors through
-		$i$. 
-		So we can use the same rule $x\mapsto (x,f(x))$ to define a function $h$ from $X$ to $\Gamma[f]$. 
-		We claim that $h$ is an isomorphism and $h^{-1} = \pi_0\circ i$. 
-		But $(\pi_0\circ i)\circ h = \pi_0\circ \langle \id_X,f\rangle = \id_X$.
-		And suppose $(x,y)\in \Gamma[f]$.
-		Then $y=f(x)$.
-		So $h(\pi_0(i(x,y))) = h(\pi_0(x,y)))=h(x) = (x,f(x)) = (x,y)$. 
-		Hence $h\circ (\pi_0\circ i)=\id_{\Gamma[f]}$.  
-	\end{proof}
-\end{lemma}
-
-Suppose $G\subseteq X\times Y$ (with inclusion $i$) has the property that for each $x\in X$, there is a unique $y\in Y$ so that $(x,y)\in G$. Then composition $\pi_0\circ i$ is an isomorphism with inverse $h$.
-Then $g = \pi_1\circ i\circ h$ is a function from $X$ to $Y$. 
-It is rather easy to check that $G= \Gamma[g]$.
-In other words, functions $\fromto gXY$ and graphs (subsets of $X\times Y$ for which $\pi_0\circ i$ is an isomorphism) are interchangible. 
-
-For any function $\fromto fXY$, the function $\fromto {f^-}Y{\powerset(X)}$ given by $f^-(y) = \{x\in X\st f(x)=y\}$ is automatically a one to one function. 
-\begin{lemma}
-	Every bijection has an inverse, and is therefore an isomorphism.	
-	\begin{proof}
-		We will show that if $\fromto fXY$ is a bijection, then $\Gamma[f]$ and $Y$ are isomorphic.
-		
-		First, notice that $X$ and $\{\{x\} \st x\in X\}$ is clearly isomorphic. 
-		
-		Let $i$ be the inclusion function from $\Gamma[f]$ to $X\times Y$. 
-		Define $g = \pi_1\circ i$.
-		Now define $\{(x,y)\st }
-	\end{proof}
-\end{lemma}
 
 Isomorphisms are related to the constructions of Lectures \ref{lec:constructions} and \ref{lec:natural-numbers}. 
 In particular, all terminal objects are isomorphic to each other, all equalizers of two functions are isomorphic to each other, and so on. 
@@ -1822,21 +1776,24 @@ We illustrate the general idea with products and countably infinite sets.
 	\end{proof}
 \end{lemma}
 
+
+\chapter{Cardinality}
+
 The problem of judging which sets are the \emph{same size} seems easy enough when we look at finite sets. But consider, for example, how to compare $\NN$ and $\NN\times \NN$. These are both infinite sets, but are they the same size?
-Cantor realized that isomorphisms are the key to understanding this. That is,
-he, in effect, \emph{defined} two sets to be the same size if they are isomorphic.
+Cantor realized that bijections are the key to understanding this. That is,
+he \emph{defined} two sets to be the same size if they are bijective.
 This gives us a precise criterion for comparing sets by their size. We introduce the idea formally.
 
 \begin{defn}
-	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are isomorphic.
+	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are bijective.
 \end{defn}
 
-Thus ``equipotent'' and ``isomorphic'' mean the same thing.
+Thus ``equipotent,'' ``bijective'' and ``isomorphic'' mean the same thing.
 The usage differs mainly in terms of emphasis.
-When we are mainly interested in comparing sets by size, we use the word ``''equipotent''. 
+When we are mainly interested in merely comparing sets by size, we mostly use the word ``equipotent''. 
 
 \begin{example}
-	The set $\NN\times \NN$ is countably infinite.
+	The set $\NN\sim \NN\times \NN$.
 	
 	Define $\fromto a{\NN\times \NN}\NN$ by $a(m,n) = (m+n)(m+n+1)/2 + n$. 
 	Also define $\fromto s{\NN\times \NN}{\NN\times \NN}$ by
@@ -1867,10 +1824,26 @@ When we are mainly interested in comparing sets by size, we use the word ``''equ
 %TODO Finish the proof.  
 \end{example}
 
+We can convince ourselves without much effort that there are no bijections between a set of five elements and a set of six elements. So for finite sets, the idea of equipootency is useful. At the very least, there are sets that are \emph{not} equipotent. So the concept is not trivial. But what about infinite sets? It seems plausible that every two infinite sets might be equipotent. After all, infinity is infinity. Right? 
+
+Let us turn the question of equipotency on its head and ask what would it take to show that two sets are \emph{not} equipotent? Evidently, it would require that we show that there are no bijections. A simpler condition would be to show that there are no surjections. that is, if no function $\fromto fAB$ is a surjection, we can fairly conclude that $A$ and $B$ are not equipotent. 
+
+\begin{theorem}
+	For any set $X$, no function $\fromto f{X}{\Two^X}$ is a surjection.
+	
+	\begin{proof}
+		Consider a function $\fromto fX{\Two^X}$. So $f(x)$ is a function from $X$ to $\Two$. Consider the function $g\in \Two^X$ defined by $g(x)= \neg f(x)(x)$. For any $x\in X$, $g(x) = \neg f(x)(x)$ so $g\neq f(x)$.
+		In other words, $g$ is not in the image of $f$. So $f$ is not a surjection.
+	\end{proof}
+\end{theorem}
+
+This actually was an earth-shakering result for 19th century mathematics. It showed, for the first time, that the notion of ``infinity'' is not absolute. There are different ``sizes'' of infinity. In fact, we can now ask ``how many?'' Evidently, the answer is as complicated as it gets. 
+
 \begin{lemma}
 	If $A$ and $B$ are countable, then so is $A\times B$.
 	If $A$ and $B$ are countable, then so is $A\cup B$.
 	If $I$ is countable and for each $i\in I$, $A_i$ is countable, then $\bigcup_{i\in I}A_i$ is countable.
+	If $A$ is countable, then so is $\List[A]$.
 	
 	\begin{proof}
 		The assumption that $I$ is countable means there is a surjection $\fromto f\NN I$. Likewise, the assumption that each $A_i$ is countable means there is a surjection $\fromto {g_i}\NN{A_i}$ for each $i\in I$. It suffices now to show that there is a surjection fromt $\NN\times \NN$ to $\bigcup_{i\in I}A_i$.
