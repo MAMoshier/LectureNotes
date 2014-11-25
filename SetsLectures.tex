@@ -865,23 +865,23 @@ Since it common to pick out sets like this, special notation is in order.
 
 \begin{defn}\label{def:inverse-image}
 	For a function $\fromto fAC$, and a value $c\in C$, 
-	\[f^{-1}(c) = \{x\in A\st f(x)=c\}.\] 
-	In this case, $f^{-1}(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
+	\[f^-}(c) = \{x\in A\st f(x)=c\}.\] 
+	In this case, $f^-(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
 \end{defn}
 
-Evidently, in Definition \ref{def:inverse-image}, the set $f^{-1}(c)$ is a subset of $A$.
+Evidently, in Definition \ref{def:inverse-image}, the set $f^-(c)$ is a subset of $A$.
 It would be good to know that any subset of $A$ can be described as an inverse image.
 This is where the set $\Two$ plays a role.
 
 \begin{defn}\label{def:subset-classifier}
-	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kAT$ for which $B = k^{-1}(t)$.
+	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kAT$ for which $B = k^-(t)$.
 	That is, $B$ is uniquely defined as the inverse image of $t$ with respect to a function into $S$.
 \end{defn}
 
 \begin{principle}\label{ax:subset-char}
 	The set $\Two$ with the distinguished element $\top$ is a subset classifier.
 	For subset $B\subseteq A$, the function corresponding to $B$, called the \emph{characteristic function of $B$}, is denoted by $\kappa_B$.
-	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^{-1}(\top)$.
+	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^-(\top)$.
 
 	For $B\subseteq A$, the characteristic function is defined by the rule
 	\[
@@ -1518,11 +1518,17 @@ f^+(A) &= \{y\in Y\st \exists B\subseteq Y, f^-(B)\subseteq A \wedge y\in B\}\\
        &= \{y\in Y\st \exists x\in A.f(x)=y\}.
 \end{align*}
 
-There is also a lower adjoin of $f^-$, but as it is less common, we do not investigate it here.
+There is also a lower adjoint of $f^-$, but as it is less common, we do not investigate it here.
 
 The important features of $f^+$ are easily checked. First, $f^+$ preserves atoms.
 That is, $f^+(\{x\}) = \{f(x)\}$. 
 Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Note that $f$ does not necessarily preserve intersections.
+
+Finally, we need another principle that related to forward images.
+
+\begin{principle}
+	For $\fromto fXY$, and $A\subseteq X$, let $\fromto iAX$ and $\fromto j{f^+(A)}Y$ be the evident inclusion maps. Then there is a function $\fromto {f_A}A{f^+(A)}$ so that satisfies $j\circ f_A = f\circ i$.  
+\end{principle} 
 
 \begin{exercises}
 	\begin{enumerate}
@@ -1610,7 +1616,15 @@ The converse of this is also true.
 	\end{proof}
 \end{lemma}
 
-As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition). 
+As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition).
+
+A basic class of monomorphisms consists of the inclusion maps of subsets. That is,
+if $A\subseteq X$, then the inclusion function $\fromto iAX$ is obviously one-to-one, so it is a monomorphism. 
+
+Recall that for any function $\fromto fXY$, we may define the subset of $Y$
+which is the forward image of $X$ via $f$. That is, $f^+(X) = \{y\in Y\st \exists x\in X.f(x)=y\}$. We had an additional principle that $f$ itself co-restricts to $f^+(X)$. That is, the rule defining $f$ also determines a function from $X$ to
+$f^+(X)$. Evidently, inclusion functions are monomorphic. And $f$ corestricted to 
+
 Epimorphisms are also defined externally, but we do not yet have an internal characterization. 
 Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
 
@@ -1681,36 +1695,94 @@ What matters is that, whatever the specific elements happen to be, they match pe
 
 This leads us to suspect that one set $A$ may be ``essentially the same'' as another set $B$, because they differ only a systematic renaming of elements in $A$ as elements in $B$. 
 A systematic renaming is at least a bijection.
-
+But if $A$ is essentially the same as $B$, we should expect $B$ to be essentially the same as $A$. This leads to an external definition.
 
 \begin{defn}
 	A function $\fromto fAB$ is an \emph{isomorphism} if there is a function
-	$\fromto gBA$ so that $g\circ f = \id_A$ and $f\circ g= \id_B$. 
-	When such a function $g$ exists, it is called an \emph{inverse} of $f$ and is usually written as $f^{-1}$. 
+	$\fromto {g}BA$ so that $g\circ f = \id_A$ and $f\circ g= \id_B$. 
+	When such a function $g$ exists, it is called an \emph{inverse} of $f$. 
 	If an isomorphism exists from $A$ to $B$, we say that $A$ and $B$ are \emph{isomorphic}.
 \end{defn}
 
-Clearly, if $f$ is an isomorphism, then so is $f^{-1}$. 
+Clearly, if $f$ is an isomorphism with inverse $g$, then $g$ is an isomorphism with inverse $f$. 
 So if $A$ is isomorphic to $B$, then $B$ is isomorphic to $A$. 
 That's a good thing, for otherwise ``isomorphic'' would be a strange word to use here, since it ought to mean ``same shape'' based on its Greek etymology. 
 
-Moreover, a function  can only have at most one inverse, because if $g$ and $h$ are both inverses of $f$,
-then \[g = \id_A\circ g = h\circ f\circ g = h\circ \id_B = h.\]
+A function  can only have at most one inverse, because if $g$ and $h$ are both inverses of $f$,
+then \[g = \id_A\circ g = (h\circ f)\circ g = h\circ (f\circ g)= h\circ \id_B = h.\]
+So if $f$ has an inverse, the inverse is unique. We write $f^{-1}$ for the unique inverse in that case. 
 
-Suppose $\fromto gBC$ is an isomorphism.
+\begin{exercises}
+	\begin{enumerate}
+		\item Suppose $\fromto fXY$ and $\fromto gYZ$ are isomorphisms. Show that $g\circ f$ is an isomorphism. [Hint: As what the inverse of $g\circ f$ is.]
+		\item Show that $\fromto {\id_X}XX$ is an isomorphism. [Hint: Ask what the inverse of $\id_A$ is.]
+	\end{enumerate}
+\end{exercises}
+
+Suppose $\fromto fXY$ is an isomorphism.
 It is easy to check that it is both a monomorphism and an epimorphism. 
-That is, if $g\circ f_0 = g\circ f_1$, then \[f_0 = g^{-1}\circ g\circ f_0 = g^{-1}\circ g\circ f_1 = f_1.\] 
+That is, if $f\circ g_0 = g\circ g_1$, then \[g_0 = f^{-1}\circ f\circ g_0 = f^{-1}\circ f\circ g_1 = g_1.\] 
 So $g$ is a monomorphism.
 The proof that it is an epimorphism is left as a (very easy) exercise. 
-Since we know that monomorphisms are the same things as one-to-one functions and epimorphisms are the same things as onto functions, we now know that isomorphisms are one-to-one, onto functions.
-The converse is also true, but the proof is a bit technical, requiring some ideas discussed later in these notes.
-We give only an informal sketch of the proof here.
+Since we know that monomorphisms are the same things as one-to-one functions and epimorphisms are the same things as onto functions, we now know that isomorphisms are one-to-one, onto functions, i.e., ar bijections. This confirms the idea that two sets that are ``essentially the same'' differ by a systematic renaming of elements.
+
+The converse is also true: every bijection is an isomorphism.
+The proof is slightly more technical, requiring some additional effort.
 
 \begin{lemma}
-	Every bijection has an inverse, and is therefore an isomorphism.
+	Every monomorphism is an equalizer.
 	
 	\begin{proof}
-		Suppose $\fromto fAB$ is bijection. Then for each $y\in B$ there is exactly one $x\in A$ for which $f(x)=y$. Consequently, we may define $f^{-1}$ by the condition that $f^{-1}(y)=x$ if and only if $f(x)=y$. 
+		For monomorphism $\fromto fAB$ 
+	\end{proof}
+Suppose $\fromto fAB$ is a monomorphism and an epimorphism. The characteristic 
+function of $f^+(A)$ is the constant function $y\mapsto \top$. That is, $f$ is itself an equalizer of the equation $\kappa_B(y) = \top$. 
+
+ideas that we can develop here.
+
+\begin{defn}
+	For function $\fromto fAB$, defined the \emph{graph of $f$} to be the subset of $A\times B$,
+	\[\Gamma[f] = \{(x,y)\in A\times B\st f(x) = y\}.\]
+	That is, $\Gamma[f]$ is the equalizer of $f\circ \pi_0$ and $\pi_1$.
+\end{defn}
+
+The graph of $f$ and the domain of $f$ are a prototypical example of isomorphic sets.
+
+\begin{lemma}
+	For any function $\fromto fXY$, the sets $X$ and $\Gamma[f]$ are isomorphic.
+	
+	\begin{proof}
+		Since $\Gamma[f]$ is an equalizer, it has an inclusion function $i$ from
+		$\Gamma[f]$ to $X\times Y$. 
+		The functions $\id_X$ and $f$ determine the function $\fromto {\langle \id_X,f\rangle}{X}{X\times Y}$. 
+		It is easy to see that this factors through
+		$i$. 
+		So we can use the same rule $x\mapsto (x,f(x))$ to define a function $h$ from $X$ to $\Gamma[f]$. 
+		We claim that $h$ is an isomorphism and $h^{-1} = \pi_0\circ i$. 
+		But $(\pi_0\circ i)\circ h = \pi_0\circ \langle \id_X,f\rangle = \id_X$.
+		And suppose $(x,y)\in \Gamma[f]$.
+		Then $y=f(x)$.
+		So $h(\pi_0(i(x,y))) = h(\pi_0(x,y)))=h(x) = (x,f(x)) = (x,y)$. 
+		Hence $h\circ (\pi_0\circ i)=\id_{\Gamma[f]}$.  
+	\end{proof}
+\end{lemma}
+
+Suppose $G\subseteq X\times Y$ (with inclusion $i$) has the property that for each $x\in X$, there is a unique $y\in Y$ so that $(x,y)\in G$. the composition $\pi_0\circ i$ is an isomorphism with inverse $h$.
+Then $g = \pi_1\circ i\circ h$ is a function from $X$ to $Y$. 
+It is rather easy to check that $G= \Gamma[g]$.
+In other words, functions $\fromto gXY$ and graphs (subsets of $X\times Y$ for which $\pi_0\circ i$ is an isomorphism) are interchangible. 
+
+For any function $\fromto fXY$, the function $\fromto {f^-}Y{\powerset(X)}$ given by $f^-(y) = \{x\in X\st f(x)=y\}$ is automatically a one to one function. 
+\begin{lemma}
+	Every bijection has an inverse, and is therefore an isomorphism.	
+	\begin{proof}
+		We will show that if $\fromto fXY$ is a bijection, then $\Gamma[f]$ and $Y$ are isomorphic.
+		
+		First, notice that $X$ and $\{\{x\} \st x\in X\}$ is clearly isomorphic. 
+		
+		Let $i$ be the inclusion function from $\Gamma[f]$ to $X\times Y$. 
+		Define $g = \pi_1\circ i$.
+		Now define $\{(x,y)\st }
 	\end{proof}
 \end{lemma}
 
