@@ -1530,11 +1530,13 @@ Finally, we need another principle that related to forward images.
 	For $\fromto fXY$, and $A\subseteq X$, let $\fromto iAX$ and $\fromto j{f^+(A)}Y$ be the evident inclusion maps. Then there is a function $\fromto {f_A}A{f^+(A)}$ so that satisfies $j\circ f_A = f\circ i$.  
 \end{principle} 
 
+This princple tells us that we can ``restrict'' $f$ the domain $A$ and ``corestrict'' it to codomain $f^+(A)$. This is a natural principle because it basically says that a rule $x\mapsto f(x)$ can be restricted to any subset on which it makes sense.
+
 \begin{exercises}
 	\begin{enumerate}
 		\item Define a function $\fromto fXY$ and two subsets $A,B\subseteq X$ so that $f(X)\cap f(Y) \neq f(X\cap Y)$. Try to find the smallest example you can.
 		\item Prove that for any function $\fromto fXY$ and any $A\subseteq X$, it inclusion $A\subseteq f^-(f^+(A))$ holds.
-		\item Prove that for any function $\fromto fXY$ and any $B\subseteq Y$, it inclusion $f^+(f^-(B))\\subseteq B$ holds.
+		\item Prove that for any function $\fromto fXY$ and any $B\subseteq Y$, it inclusion $f^+(f^-(B))\subseteq B$ holds.
 	\end{enumerate}
 \end{exercises}
 
@@ -1618,12 +1620,8 @@ The converse of this is also true.
 
 As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition).
 
-A basic class of monomorphisms consists of the inclusion maps of subsets. That is,
-if $A\subseteq X$, then the inclusion function $\fromto iAX$ is obviously one-to-one, so it is a monomorphism. 
-
-Recall that for any function $\fromto fXY$, we may define the subset of $Y$
-which is the forward image of $X$ via $f$. That is, $f^+(X) = \{y\in Y\st \exists x\in X.f(x)=y\}$. We had an additional principle that $f$ itself co-restricts to $f^+(X)$. That is, the rule defining $f$ also determines a function from $X$ to
-$f^+(X)$. Evidently, inclusion functions are monomorphic. And $f$ corestricted to 
+Inclusion maps of subsets constitute an important class of monomorphisms. That is,
+if $A\subseteq X$, then the inclusion map $\fromto iAX$ is obviously one-to-one, so it is a monomorphism.
 
 Epimorphisms are also defined externally, but we do not yet have an internal characterization. 
 Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
@@ -1712,6 +1710,20 @@ A function  can only have at most one inverse, because if $g$ and $h$ are both i
 then \[g = \id_A\circ g = (h\circ f)\circ g = h\circ (f\circ g)= h\circ \id_B = h.\]
 So if $f$ has an inverse, the inverse is unique. We write $f^{-1}$ for the unique inverse in that case. 
 
+Suppose $\fromto fXY$ is a bijection. Then for each $y\in Y$, there is exactly on $x\in X$ so that $f(x)=y$. So it seems reasonable that a rule 
+\[y\mapsto \text{the unique $x$ for which $f(x)=y$}\]
+ought to determine a function from $Y$ to $X$, which is the inverse of $f$. This suggests the following princple.
+
+\begin{principle}
+	Every bijection is an isomorphism.
+\end{principle}
+
+This is justified informally by the notion that, when $f$ is a bijection,
+we can define $f^{-1}$ by stating that $f^{-1}(y)=x$ if and only if $y=f(x)$. 
+We need this principle (it does not follow from other principles) because of our decision to think about sets both internally in terms of elements and externally in terms of function composition. 
+This principle allows us to relate the two.
+There are other approaches to set theory for which this would be a lemma.
+
 \begin{exercises}
 	\begin{enumerate}
 		\item Suppose $\fromto fXY$ and $\fromto gYZ$ are isomorphisms. Show that $g\circ f$ is an isomorphism. [Hint: As what the inverse of $g\circ f$ is.]
@@ -1719,26 +1731,21 @@ So if $f$ has an inverse, the inverse is unique. We write $f^{-1}$ for the uniqu
 	\end{enumerate}
 \end{exercises}
 
-Suppose $\fromto fXY$ is an isomorphism.
-It is easy to check that it is both a monomorphism and an epimorphism. 
-That is, if $f\circ g_0 = g\circ g_1$, then \[g_0 = f^{-1}\circ f\circ g_0 = f^{-1}\circ f\circ g_1 = g_1.\] 
-So $g$ is a monomorphism.
-The proof that it is an epimorphism is left as a (very easy) exercise. 
-Since we know that monomorphisms are the same things as one-to-one functions and epimorphisms are the same things as onto functions, we now know that isomorphisms are one-to-one, onto functions, i.e., ar bijections. This confirms the idea that two sets that are ``essentially the same'' differ by a systematic renaming of elements.
+\section{E-M factorization}
 
-The converse is also true: every bijection is an isomorphism.
-The proof is slightly more technical, requiring some additional effort.
+There is a sense in which the only functions we will ever need as monomorphism, epimorphisms and functions built by composing these. We say that a function
+$\fromto fXY$ \emph{factors in $m\circ e$} if there are functions $\fromto eXZ$
+and $\fromto mZY$ so that $f=m\circ e$. We will say this is an EM factorization if $e$ is an epimorpihsm and $m$ is a monomorphism.
 
 \begin{lemma}
-	Every monomorphism is an equalizer.
+	Any function $\fromto fXY$ has an EM factorization.
 	
 	\begin{proof}
-		For monomorphism $\fromto fAB$ 
+		For $\fromto fXY$, let $Z = f^+(X)\subseteq Y$. Let $m$ be the inclusion map from $f^+(X)$ to $Y$. We already remarked that any inclusion is a monomorphism. Let $e$ be the corestriction of $f$ to $f^+(X)$. Clearly, for any $y\in f^+(X)$, there is at least one $x\in X$ so that $f(x)=y$. So $e$ is an onto function, hence is an epimorphism.
 	\end{proof}
-Suppose $\fromto fAB$ is a monomorphism and an epimorphism. The characteristic 
-function of $f^+(A)$ is the constant function $y\mapsto \top$. That is, $f$ is itself an equalizer of the equation $\kappa_B(y) = \top$. 
+\end{lemma}
 
-ideas that we can develop here.
+\section{Graphs of Functions}
 
 \begin{defn}
 	For function $\fromto fAB$, defined the \emph{graph of $f$} to be the subset of $A\times B$,
@@ -1767,7 +1774,7 @@ The graph of $f$ and the domain of $f$ are a prototypical example of isomorphic 
 	\end{proof}
 \end{lemma}
 
-Suppose $G\subseteq X\times Y$ (with inclusion $i$) has the property that for each $x\in X$, there is a unique $y\in Y$ so that $(x,y)\in G$. the composition $\pi_0\circ i$ is an isomorphism with inverse $h$.
+Suppose $G\subseteq X\times Y$ (with inclusion $i$) has the property that for each $x\in X$, there is a unique $y\in Y$ so that $(x,y)\in G$. Then composition $\pi_0\circ i$ is an isomorphism with inverse $h$.
 Then $g = \pi_1\circ i\circ h$ is a function from $X$ to $Y$. 
 It is rather easy to check that $G= \Gamma[g]$.
 In other words, functions $\fromto gXY$ and graphs (subsets of $X\times Y$ for which $\pi_0\circ i$ is an isomorphism) are interchangible. 
