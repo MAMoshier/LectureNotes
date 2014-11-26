@@ -1057,10 +1057,45 @@ with the desired universal properties.
 
 \begin{exercises}
 	\begin{enumerate}
-		\item Explain how $\One\stackrel{\hat{\top}}{\longrightarrow}\Two$ is universal. [There is not a fix correct answer to this. 
+		\item Explain how $\One\stackrel{\hat{\top}}{\longrightarrow}\Two$ is universal. [There is not a single intended correct answer to this. 
 		I want you to think about how $\Two$ fits into a bigger picture.]
 	\end{enumerate}
 \end{exercises}
+
+\section{Relations and Function Graphs}
+
+We have already noted that a chaacteristic function $\fromto R{X\times Y}\Two$ corresponds to a subset of $X\times Y$. We can think of $R$ \emph{relating} elements of $X$ to elements of $Y$. This leads to a useful definition.
+
+\begin{defn}
+	A \emph{relation from $X$ to $Y$} is a function $\fromto R{X\times Y}\Two$.
+	A \emph{relation on $X$} is a relation from $X$ to $X$.
+	
+	For a relation $R$ from $X$ to $Y$, we will say ``$x$ is $R$-related to $y$'' and write $R(x,y)$ when $R(x,y)=\top$. In some situations, we may use ``infix'' notation, writing $x\mathrel{R}y$ instead of $R(x,y)$.
+	
+	A relation $\fromto R{X\times Y}\Two$ is
+	\begin{itemize}
+		\item \emph{total} if for every $x\in X$, there is at least one $y\in Y$ for which $x\mathrel{R}y$;
+		\item \emph{deterministic} if for every $x\in X$, there is at most one $y\in Y$ for which $x\mathrel{R}y$;
+		\item \emph{functional} if it is total and deterministic.
+	\end{itemize}
+\end{defn}
+
+\begin{example}
+	The relation of $\leq$ on real numbers can be regarded as a function $\fromto {\mathord{\leq}}{\RR\times\RR}{\Two}$ defined by $\mathord\leq(x,y) = \top$ when $x$ is actually less than or equal to $y$ and $\mathord\leq(x,y)=\bot$ otherwise. This is a good example of why we prefer to write $x\leq y$ instead of $\mathord\leq(x,y)$ or $\mathord\leq(x,y)=\top$.
+
+	The relation $=$ on any set is functional because, for any $x\in X$ there is exactly one $y\in X$ so that $x=y$. 
+\end{example}
+
+\begin{defn}
+A function $\fromto fXY$ determines a relation called the \emph{graph of $f$} defined by 
+\[\Gamma_f(x,y) = \begin{cases}
+					\top &\text{if $f(x)=y$}\\
+					\bot &\text{otherwise}
+				\end{cases}.
+\]
+\end{defn}
+
+
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
@@ -1524,7 +1559,7 @@ The important features of $f^+$ are easily checked. First, $f^+$ preserves atoms
 That is, $f^+(\{x\}) = \{f(x)\}$. 
 Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Note that $f$ does not necessarily preserve intersections.
 
-Finally, we need another principle that related to forward images.
+Finally, we need another principle related to forward images.
 
 \begin{principle}
 	For $\fromto fXY$, and $A\subseteq X$, let $\fromto iAX$ and $\fromto j{f^+(A)}Y$ be the evident inclusion maps. Then there is a function $\fromto {f_A}A{f^+(A)}$ so that satisfies $j\circ f_A = f\circ i$.  
@@ -1540,6 +1575,26 @@ This princple tells us that we can ``restrict'' $f$ the domain $A$ and ``corestr
 	\end{enumerate}
 \end{exercises}
 
+\chapter{Relations and Graphs of Functions}
+
+\begin{defn}
+A \emph{relation} between $X$ and $Y$ is characteristic function $\fromto R{X\times Y}\Two$. Of course, such a function is essentially the same as a 
+subset of $X\timesY$. It is often convenient to write a relation using ``infix'' notation: $xRy$ instead of $R(x,y)$. 
+\end{defn}
+
+A relation $R$ determines a function $\fromto rX{\powerset(Y)}$ defined by the rule $x\mapsto \{y\in Y\st R(x,y)\}$. Conversely, any such function
+determines a relation $R(x,y)$ if and only if $y\in r(x)$. These two correspondences are inverses of ech other.
+
+Suppose $R\subseteq X\times Y$ and $S\subseteq Y\times Z$ are relations.
+Define $R;S\subseteq X\times Z$ by $R;S(x,z)$ if and only if there exists $y\in Y$
+so that $R(x,y)$ and $S(y,z)$. 
+
+\begin{defn}
+	A relation $\fromto R{X\times Y}\Two$ is \emph{total} if it is the case that for every $x\in X$, there is at least one $y\in Y$ for which $R(x,y)$. A relation is \emph{deterministic} if it is the case that for every $x\in X$, there is at most one $y\in Y$ for which $R(x,y)$.
+	A relation is \emph{functional} if it is total and deterministic.
+\end{defn}
+
+Given a fucntion $\fromto fXY$, define the \emph{graph} of $f$ to be $\Gamma_f = \{(x,y)\in X\times Y\st f(x)=y\} 
 \chapter{Monomophisms, Epimorphisms and Isomorphisms}
 
 \begin{goals}
@@ -1731,22 +1786,6 @@ There are other approaches to set theory for which this would be a lemma.
 	\end{enumerate}
 \end{exercises}
 
-\section{E-M factorization}
-
-There is a sense in which the only functions we will ever need as monomorphism, epimorphisms and functions built by composing these. We say that a function
-$\fromto fXY$ \emph{factors in $m\circ e$} if there are functions $\fromto eXZ$
-and $\fromto mZY$ so that $f=m\circ e$. We will say this is an EM factorization if $e$ is an epimorpihsm and $m$ is a monomorphism.
-
-\begin{lemma}
-	Any function $\fromto fXY$ has an EM factorization.
-	
-	\begin{proof}
-		For $\fromto fXY$, let $Z = f^+(X)\subseteq Y$. Let $m$ be the inclusion map from $f^+(X)$ to $Y$. We already remarked that any inclusion is a monomorphism. Let $e = f_X$, i.e., the corestriction of $f$ to be a function from $X$ to $f^+(X)$. Clearly, for any $y\in f^+(X)$, there is at least one $x\in X$ so that $f(x)=y$. So $e$ is an onto function, hence is an epimorphism. And since $m(e(x))= f(x)$, $m$ and $e$ factor the given function.
-	\end{proof}
-\end{lemma}
-
-
-
 Isomorphisms are related to the constructions of Lectures \ref{lec:constructions} and \ref{lec:natural-numbers}. 
 In particular, all terminal objects are isomorphic to each other, all equalizers of two functions are isomorphic to each other, and so on. 
 We illustrate the general idea with products and countably infinite sets. 
@@ -1790,7 +1829,7 @@ This gives us a precise criterion for comparing sets by their size. We introduce
 
 Thus ``equipotent,'' ``bijective'' and ``isomorphic'' mean the same thing.
 The usage differs mainly in terms of emphasis.
-When we are mainly interested in merely comparing sets by size, we mostly use the word ``equipotent''. 
+When we are interested in merely comparing sets by size, we mostly use the word ``equipotent''. 
 
 \begin{example}
 	The set $\NN\sim \NN\times \NN$.
@@ -1837,7 +1876,61 @@ Let us turn the question of equipotency on its head and ask what would it take t
 	\end{proof}
 \end{theorem}
 
-This actually was an earth-shakering result for 19th century mathematics. It showed, for the first time, that the notion of ``infinity'' is not absolute. There are different ``sizes'' of infinity. In fact, we can now ask ``how many?'' Evidently, the answer is as complicated as it gets. 
+This actually was a profoundly important result for 19th century mathematics. It showed, for the first time, that the notion of ``infinity'' is not absolute. There are different ``sizes'' of infinity. In fact, we can now ask ``how many?'' Evidently, the answer is as complicated as it gets. Namely, for any et $X$, the set $\Two^X$ (equivalently, $\powerst(X)$) is bigger. So there are infinitely many infinities.
+
+A closely related proof shows that the collection of all sets can not be a set. For suppose $U$ is a set that consists of all sets. In particular, $U\in U$, which is not a problem on its own. On the other hand, now consider the subset of $U$ defined by $R = \{X\in U\st X\notin X\}$. Clearly, 
+$R\in U$ because $R$ is a set. But is it true that $R\in R$. By definition,
+this can only happen when $R\notin R$. So apparently $R\notin R$. But in that case, $R$ satisfies the criterion for belonging to $R$. So $R\in R$. In other words, it is not possible for $R$ to be an element of $R$, nor to be excluded from $R$. We conclude that $R$ must not be a set, and so $U$ must not be a set.  
+
+\section{Countable Sets}
+
+We are often interested in sets that are not too big, i.e., that ar no bigger than $\NN$. 
+
+\begin{defn}
+A set $A$ is \emph{countable} if $A$ is empty, or there is a surjection $\fromto a\NN A$. 
+That is, $a_0$, $a_1$, \ldots, exhaustively ``lists'' the element of $A$.
+\end{defn}
+
+Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
+$A = \{a_0,\ldots a_n\}$, then we define a function $\fromto rAA$ by
+\[r(a_i) = \begin{cases}
+a_{i+1} & \text{if $i<n$}\\
+a_0     &\text{otherwise}
+\end{cases}\]
+So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ determines a function $\rec[a_0,r]$. It is easy to see that this is surjective.
+
+\begin{defn}
+	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
+\end{defn}
+
+\begin{lemma}
+	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
+	\begin{itemize}
+		\item $\mu(A)\in A$.
+		\item if $n\in A$, then $\mu(A)\leq n$.
+	\end{itemize}
+	
+	\begin{proof}
+		If $A\subseteq \NN$ has no least element, then $A$ must be empty. This is provable by strong induction. Suppose $A\subseteq \NN$ has no least element. Then
+		\begin{itemize}
+			\item{}[Strong Inductive Hypothesis] Suppose that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
+			\item{}[Inductive Step] We claim that $k\notin A$. Otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
+		\end{itemize} 
+		Hence for any non empty $A\subseteq \NN$, there is least element. This is the element defined by $\mu(A)$. 
+	\end{proof}
+	
+\end{lemma}
+\begin{lemma}
+	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
+	
+	\begin{proof}
+		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
+		
+		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is a monomorphism. Suppose there is a surjection $\fromto c\NN A$. Then
+		for any $a\in A$, the set $c^{-1}(a)$ is not empty. So this set has a 
+		smallest element. We define $\fromto mA\NN$ by $m(a) = \text{the smallest $n\in \NN$ so that $n\in c^{-1}(a)$. 
+	\end{proof}
+\end{lemma}
 
 \begin{lemma}
 	If $A$ and $B$ are countable, then so is $A\times B$.
