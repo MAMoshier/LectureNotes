@@ -1344,7 +1344,7 @@ Each element $k\in \Two^A$ corresponds to a subset of $A$ by $k^{-1}(\top) = \{x
 \]
 So $\Two^X$ is, in a sense, \emph{representative} of the collection of all subsets of $X$. 
 It is convenient also to suppose that the actual collection of subsets of a set $A$ forms a set.
-This should ``behave'' exactly like $\Two^A$, but concretely, it consists of sets rather than characteristic functions.
+This should ``behave'' exactly like $\Two^A$, but concretely, consist of sets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
 	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, and called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
@@ -1362,14 +1362,14 @@ For a function $\fromto fAB$, $\ni_B\circ (\id_{\powerset(B)}\times f)$ is a fun
 from $\powerset(B)$ to $\powerset(A)$ determined by $f$. 
 
 \begin{defn}
-	For $\fromto fAB$, let $\fromto {f^{-1}}{\powerset(B)}{\powerset(A)}$ denote
-	the unique function for which $\ni_B\circ (\id_{\powerset(B)}\times f) = \ni_A\circ(f^{-1}\times \id_A)$. In simpler terms, $f^{-1}$ satsifies
-	\[x\in f^{-1}(Y) \text{if and only if } f(x)\in Y\]
-	for every $Y\subseteq B$.  So $f^{-1}$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
+	For $\fromto fAB$, let $\fromto {f^-}{\powerset(B)}{\powerset(A)}$ denote
+	the unique function for which $\ni_B\circ (\id_{\powerset(B)}\times f) = \ni_A\circ(f^-\times \id_A)$. In terms of elements, $f^-$ satsifies
+	\[x\in f^-(Y) \text{if and only if } f(x)\in Y\]
+	for every $Y\subseteq B$.  So $f^-$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
 \end{defn}
 
-This notation does not clash much with our earlier definition of inverse image of an element, $f^{-1}(b)$, because 
-$f^{-1}(b)$ (from the earlier usage) is the same as $f^{-1}(\{b\})$.
+This notation does not clash much with our earlier definition of inverse image of an element, $f^-(b)$, because 
+$f^-(b)$ (from the earlier usage) is the same as $f^-(\{b\})$.
 
 \section{Intersections, Unions, Residuals, Differences and Negations}
 
@@ -1453,7 +1453,7 @@ $\{x\in U\st \ldots x \ldots\}$ makes sense.
 \end{lemma}
 
 This lemma, together with the fact that $\emptyset$ is the smallest element of $\powerset(X)$ and $X$ is the largest, can be summarized by saying that $\cap$, $\cup$, $\Rightarrow$, $\emptyset$ and $X$ make $\powerset(X)$ into what is known as a \emph{Heyting algebra}. 
-We do not spell out the axioms for Heyting algebras here, but generally speaking these are the structures that correspond to a sort of minimal version of propositional logic in which ``and'', ``or'', ``implies'', ``false'' and ``true'' interact in natural ways. 
+We spell out the axioms for Heyting algebras in the next section, but generally speaking these are the structures that correspond to a sort of minimal version of propositional logic in which ``and'', ``or'', ``implies'', ``false'' and ``true'' interact in natural ways. 
 
 In the case of $\powerset(X)$, additional facts also hold. 
 In particular, $\powerset(X)$ is a \emph{Boolean algebra}. 
@@ -1465,13 +1465,63 @@ Then the Law of Double Negation asserts that double negations do not change anyt
 	In $\powerset(X)$, the Law of Double Negation holds.
 	
 	\begin{proof}
-		Calculating the members of $\neg A$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, bt not both. So $x\in A^{**}$ if and only if $x\notin A^*$ if and only if $x\in A$. 
+		Calculating the members of $\neg A$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, but not both. So $x\in A^{**}$ if and only if $x\notin A^*$ if and only if $x\in A$. 
 	\end{proof}
 \end{lemma}
 
 The Law of Double Negation is precisely the property that distinguishes Boolean algebras from general Heyting algebras. 
 That is, one can define the term ``Boolean algebra'' to mean ``Heyting algebra that satisfies the Law of Double Negation.''
 So $\powerset(X)$ is indeed a Boolean algebra.
+
+\printbreak
+\section{Laws of Finitary Set Operations}
+
+As we mentioned, $\powerset(X)$ forms a Boolean algebra. 
+This means that $\cup$, $cup$, $\Rightarrow$, $\emptyset$ and $X$ satisfy various laws. 
+We spell the most important out here.
+
+\begin{laws}
+	\noindent For any set $U$ and any subsets $A$, $B$ and $C$:
+	
+	\begin{tabular}{lr@{\,}l}
+		\multicolumn{3}{c}{\textbf{Semilattice Laws}}\\
+		\textbf{Associativity}	& $A \cap (B \cap C)$ &$= (A\cap B)\cap C$\\
+								& $A \cup (B \cup C)$ &$= (A\cup B)\cup C$\\
+		\textbf{Commutativity}	& $A\cap B$ & $= B\cap A$\\
+								& $A\cup B$ & $= B\cup  A$\\
+		\textbf{Idempotency}	& $A\cap A$ & $= A$\\
+								& $A\cup A$ & $= A$\\
+		&&\\						
+		\multicolumn{3}{c}{\textbf{Lattice Laws}}\\		
+		\textbf{Absorptivity}	& $A$ & $\subseteq A\cap(B\cup A)$\\
+								& $A\cup(B\cap A)$ & $\subseteq  A$\\
+		\textbf{Ordering} & \multcolumn{2}{c}{$A\subseteq B$ if and only if $A=A\cap B$}\\
+						& \multcolumn{2}{c}{$A\subseteq B$ if and only if $A\cup B = B$}\\
+				&&\\ 
+		\multicolumn{3}{c}{\textbf{Bounded Lattice Laws}}\\				
+		\textbf{Identity}&$A\cap U$    &$subseteq  A$\\ 								
+								&$A$ & $\subseteq A\cup \emptyset$\\
+		&&\\
+		\multicolumn{3}{c}{\textbf{Heyting Algebra Law}}\\								
+		\textbf{Residuation} &\multicolumn{2}{c}{$A\cap B\subseteq C$ if and only if $A\subseteq B\Rightarrow C$}\\
+		&&\\
+		
+		\multicolumn{3}{c}{\textbf{Boolean Algebra Law}}\\					
+		\textbf{Double Negation} & $A^{**}$ & $\subseteq A$ \\
+		&&\\
+		
+		\multicolumn{3}{c}{\textbf{Distributive Lattice Laws}}\\						
+		\textbf{Distributivity} & $A\cap(B\cup C)$ &$\subseteq (A\cap B)\cup (A\cap C)$\\
+			                    & $(A\cup B)\cap (A\cup C)$ & $\subseteq A\cup(B\cap C)$\\
+				
+	\end{tabular}
+\end{laws}
+
+The laws we list here are not independant of one another.
+In the Residuation and Double Negation laws
+In particular, the two Absorption laws are equivalent when the first six laws hold.
+That is, suppose the first Absoprtion law holds. Then
+$A\subseteq A\cup (B\cap A)$ is always true
 
 \section{Quantifiers and Completeness}
 
@@ -1584,7 +1634,7 @@ Although we do not investigate this here, any complete atomic Boolean algebra ha
 
 \section{Forward images}
 
-For a function $\fromto fAB$ the function $\fromto {f^-}{\powerset(C)}{\powerset(B)}$ has what are known as an \emph{upper adjoint}. 
+For a function $\fromto fAB$ the function $\fromto {f^-}{\powerset(C)}{\powerset(B)}$ has what is known as an \emph{upper adjoint}. 
 
 \begin{defn}
 	For $\fromto fXY$, define $\fromto {f^+}{\powerset(X)}{\powerset(Y)}$ by the rule $A= \bigcup\{B\subseteq Y\st f^-(B)\subseteq A\}$. The subset 
@@ -1917,11 +1967,36 @@ But it is true that $X\leq Y$ and $Y\leq X$ implies $X\sim Y$?
 	
 	\begin{proof}
 		Suppose $\fromto fXY$ and $\fromto gYX$ are one-to-one functions.
-		We define subsets $X_n\subseteq X$ and $Y_n\subseteq Y$ so that
-		$X_n\cap X_m = \emptyset$ whenever $n\neq m$, and likewise for the sets $Y_n$. Moreover, we define bijections $\fromto {f_n}{X_n}{Y_{n^\nxt}}$ and $\frmoto {g_n}{Y_n}{X_{n^\nxt}}$ for every $n\in \NN$. We also define $X_* = X\setminus\bigcup_{n\in\NN}X_n$
-		and $Y_* = X\setminus\bigcup_{n\in \NN}Y_n$ and a bijection $\fromto {f_*}{X_*}{Y_*}$. 
+		To understand the proof, it helps to do things slightly out of order.
 		
-		Putting these together, we define a bijective relation $B$ between $X$ and $Y$ by setting $x\mathrel{B} 
+		Suppose we can define subsets $X_n\subseteq X$ and $Y_n\subseteq Y$ and relations $\fromto {B_n}{X_n\times Y_{n^\nxt}}\Two$ 
+		and $\fromto {C_n}{X_{n^\nxt}\times Y_n}\Two$ so that
+		$X_n\cap X_m = \emptyset$ whenever $n\neq m$, and likewise for the sets $Y_n$. Let $X_* = X\setminus \bigcup_{n\in \NN}X_n$ and let $Y_* = Y\setminus\bigcup_{n\in\NN}Y_n$. Suppose we can also define a relation
+		$\fromto {B_*}{X_*\times Y_*}\Two$.  
+		
+		Putting these together, we can define a relation $B$ between $X$ and $Y$ by cases as follows:
+		\begin{enumerate}
+			\item If $x\in X_{2n}$ and $x\mathrel{B_{2n}} y$, then $x\mathrel{B} y$
+			\item If $x\in Y_{2n+1}$ and $x\mathrel{C_{2n}}y$, then $x\mathrel{B} y$
+			\item If $x\in X_*$ and $x\mathrel{B_*} y$, then $x \mathrel{B} y$.
+		\end{enumerate}
+		
+		Suppose each of the constituent relations $B_n$, $C_n$ and $B_*$ are matchings, then we can show that $B$ is a matching, hence determining a bijection between $X$ and $Y$.
+		
+		To see that $B$ is a matching: Each $x\in X$ is in exactly one of the sets $X_n$ or $X_*$. If it is in $X_*$, then $x\mathrel{B} y$ for exactly one $y\in Y_*$. If $x\in X_{2n}$ for some $n$,
+		then $x\mathrel{B} y$ for exactly one $y\in Y_{2n+1}$. If $x\in X_{2n+1}$ for some $n$, then $x \mathrel{B} y$ for exactly one $y\in Y_{2n}$. By construction $x\mathrel{B} y$ does not hold for any other $y$. So $B$ is functional. Likewise, each $y\in Y$ belongs to exactly one of the sets $Y_n$ or $Y_*$. A similar analysis shows that there is exactly one $x$
+		for which $x\mathrel{B} y$. So $B$ is a matching.
+		
+		Now the hard part. We construct the sets $X_n$, $Y_n$ recursively.
+		\begin{align*}
+			X_0 &= X\setminus g^+(Y)\\
+			Y_0 &= Y\setminus f^+(X)\\
+			X_{n^\nxt} &= g^+(Y_n)\\
+			Y_{n^\nxt} &= f^+(X_n)
+		\end{align*}
+		Now define $x \mathrel{B_n} y$ if and only if $f(x)=y$ and $x \mathrel{C_n} y$ if and only if $g(y)=x$. Finally, define $x\mathrel{B_*} y$ if and only if $f(x) = y$.
+		
+		
 	\end{proof}
 \end{theorem}
 \section{Countable Sets}
@@ -1953,7 +2028,8 @@ So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longle
 	\end{itemize}
 	
 	\begin{proof}
-		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}$
+		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}
+		\Two$
 		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
 		
 		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
