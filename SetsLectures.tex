@@ -1095,7 +1095,24 @@ A function $\fromto fXY$ determines a relation called the \emph{graph of $f$} de
 \]
 \end{defn}
 
+\begin{lemma}
+	For any function $\fromot fYX$, the graph $\Gamma_f$ is functional.
+	
+	\begin{proof}
+		This is pretty obvious from the basic properties of functions. That is,
+		for each $x\in X$, $f(x)\in Y$ and obviously $f(x)=f(x)$. So $\Gamma_f$ is total. On the other hand if $y = f(x)$ and $y'=f(x)$, then $y=y'$. So $\Gamma_f$ is deterministic.
+	\end{proof}
+\end{lemma}
 
+But suppose we have a functional relation $\fromto R{X\times Y}\Two$. Then it is reasonable to suppose it actually came from a function.
+
+\begin{principle}\label{princ:graphs}
+	Suppose $\fromto R{X\times Y}{\Two}$ is a functional relation. Then there is a function $\fromto {F_R}XY$ so that $\Gamma_{F_R} = R$.
+\end{principle}
+
+It is easy enough to check that $F_{\Gamma_f} = f$ for any function $f$. That is,
+$F_{\Gamma_f}(x)=y$ if and only if $x\mathrel{\Gamma_f} y$ if and only if $f(x)=y$. So functions from $X$ to $Y$ correspond exactly to functional relations
+from $X$ to $Y$. 
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
@@ -1219,8 +1236,36 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 	\end{align*}
 
 	\begin{proof}
-		The proof of this is intricate enough that we do not have room to complete it here. 
-		An original proof can be found in \cite{freyd66}.
+		The proof of this is intricate enough that we do not have room to give all the details here. 
+		
+		The idea of the proof is to use simple recursion to define a sequence of binary relations $R_0$, $R_1$, \ldots, from $C\times \NN$ to $A$. In other words, $R$ is a function from $\NN$ to $\Two^{(C\times \NN)\times A}$. 
+		These relations will satisfy the following conditions for each $i\in\NN$:
+		\begin{itemize}
+			\item $R_i\subseteq R_{i^\nxt}$;
+			\item $R_i$ is deterministic;
+			\item $R_i$ is total on $\{0,\ldots, i-1\}$
+		\end{itemize}
+		Then we define $R$ to be the relation $(c,n)\mathrel{R}a$ if and only if $(c,n)R_i a$ holds for some $i\in \NN$. 
+		It follows from the above conditions that $R$ is functional. So there is a function $\fromto f{C\times\NN}A$ for which $f(c,n)=a$ if and only if $(c,n)\mathrel{R}a$. By the construction of $R$, it will follow that $f$ satisfies  
+		\begin{align*}
+			f_{c,0} &= b(c)\\
+			f_{c,k^\nxt} &= r(c,k,f_{c,k})
+		\end{align*}
+			
+		Define $R_0$ to be the constantly $\bot$ relation. 
+		This is clearly deterministic and since $C\times \emptyset = \emptyset$, it is total on that set.
+		Define $\fromto p{\Two^{(C\times\NN)\times A}}{\Two^{(C\times \NN)\times A}}$ by the following rules (writing $p_R$ for $p(R)$ to eliminate some confusing parentheses:
+		\begin{itemize}
+			\item $(c,0)\mathrel{p_R}b(c)$
+			\item $(c,k^\nxt)\mathrel{p_R}x$ if and only if either
+			 \begin{itemize}
+			 	\item $(c,k^\nxt)\mathrel{R}x$ or
+			 	\item for some $y$, $(c,k)\mathrel{R}y$ and $r(c,k,y)=x$.
+			 \end{itemize}
+		\end{itemize}
+		Now we check that (i) $R\subseteq p_R$, (ii) if $R$ is deterministic then $p_R$ is deterministic, and (iii) if $R$ is total on $C\times \{0,\ldots, k-1\}$, then $p_R$ is total on $C\times \{0,\ldots,k\}$. 
+		Consequently, defining $R_i$ by the simple recurrence $\rec[R_0,p]$, we can prove by induction that the conditions stated in the second paragraph hold. 
+		Finally, by the way we constructed $R$, $f_{c,o} = b(c)$  and by induction on $k$, $f_{c,k^\nxt} = r(c,k,f_{c,k})$. 
 	\end{proof}
 \end{lemma}
 
