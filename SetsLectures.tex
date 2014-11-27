@@ -1096,7 +1096,7 @@ A function $\fromto fXY$ determines a relation called the \emph{graph of $f$} de
 \end{defn}
 
 \begin{lemma}
-	For any function $\fromot fYX$, the graph $\Gamma_f$ is functional.
+	For any function $\fromto fYX$, the graph $\Gamma_f$ is functional.
 	
 	\begin{proof}
 		This is pretty obvious from the basic properties of functions. That is,
@@ -1620,26 +1620,6 @@ This princple tells us that we can ``restrict'' $f$ the domain $A$ and ``corestr
 	\end{enumerate}
 \end{exercises}
 
-\chapter{Relations and Graphs of Functions}
-
-\begin{defn}
-A \emph{relation} between $X$ and $Y$ is characteristic function $\fromto R{X\times Y}\Two$. Of course, such a function is essentially the same as a 
-subset of $X\timesY$. It is often convenient to write a relation using ``infix'' notation: $xRy$ instead of $R(x,y)$. 
-\end{defn}
-
-A relation $R$ determines a function $\fromto rX{\powerset(Y)}$ defined by the rule $x\mapsto \{y\in Y\st R(x,y)\}$. Conversely, any such function
-determines a relation $R(x,y)$ if and only if $y\in r(x)$. These two correspondences are inverses of ech other.
-
-Suppose $R\subseteq X\times Y$ and $S\subseteq Y\times Z$ are relations.
-Define $R;S\subseteq X\times Z$ by $R;S(x,z)$ if and only if there exists $y\in Y$
-so that $R(x,y)$ and $S(y,z)$. 
-
-\begin{defn}
-	A relation $\fromto R{X\times Y}\Two$ is \emph{total} if it is the case that for every $x\in X$, there is at least one $y\in Y$ for which $R(x,y)$. A relation is \emph{deterministic} if it is the case that for every $x\in X$, there is at most one $y\in Y$ for which $R(x,y)$.
-	A relation is \emph{functional} if it is total and deterministic.
-\end{defn}
-
-Given a fucntion $\fromto fXY$, define the \emph{graph} of $f$ to be $\Gamma_f = \{(x,y)\in X\times Y\st f(x)=y\} 
 \chapter{Monomophisms, Epimorphisms and Isomorphisms}
 
 \begin{goals}
@@ -1921,12 +1901,29 @@ Let us turn the question of equipotency on its head and ask what would it take t
 	\end{proof}
 \end{theorem}
 
-This actually was a profoundly important result for 19th century mathematics. It showed, for the first time, that the notion of ``infinity'' is not absolute. There are different ``sizes'' of infinity. In fact, we can now ask ``how many?'' Evidently, the answer is as complicated as it gets. Namely, for any et $X$, the set $\Two^X$ (equivalently, $\powerst(X)$) is bigger. So there are infinitely many infinities.
+This actually was a profoundly important result for 19th century mathematics. It showed, for the first time, that the notion of ``infinity'' is not absolute. There are different ``sizes'' of infinity. In fact, we can now ask ``how many?'' Evidently, the answer is as complicated as it gets. Namely, for any et $X$, the set $\Two^X$ (equivalently, $\powerset(X)$) is bigger. So there are infinitely many infinities.
 
 A closely related proof shows that the collection of all sets can not be a set. For suppose $U$ is a set that consists of all sets. In particular, $U\in U$, which is not a problem on its own. On the other hand, now consider the subset of $U$ defined by $R = \{X\in U\st X\notin X\}$. Clearly, 
 $R\in U$ because $R$ is a set. But is it true that $R\in R$. By definition,
 this can only happen when $R\notin R$. So apparently $R\notin R$. But in that case, $R$ satisfies the criterion for belonging to $R$. So $R\in R$. In other words, it is not possible for $R$ to be an element of $R$, nor to be excluded from $R$. We conclude that $R$ must not be a set, and so $U$ must not be a set.  
 
+
+Let us define $X\leq Y$ to mean that there is a monomorphism from $X$ to $Y$. 
+Then it is clear that $X\leq X$, and if $X\leq Y$ and $Y\leq Z$, then $X\leq Z$. 
+But it is true that $X\leq Y$ and $Y\leq X$ implies $X\sim Y$? 
+
+\begin{theorem}
+	If $X\leq Y$ and $Y\leq X$, then $X\sim Y$.
+	
+	\begin{proof}
+		Suppose $\fromto fXY$ and $\fromto gYX$ are one-to-one functions.
+		We define subsets $X_n\subseteq X$ and $Y_n\subseteq Y$ so that
+		$X_n\cap X_m = \emptyset$ whenever $n\neq m$, and likewise for the sets $Y_n$. Moreover, we define bijections $\fromto {f_n}{X_n}{Y_{n^\nxt}}$ and $\frmoto {g_n}{Y_n}{X_{n^\nxt}}$ for every $n\in \NN$. We also define $X_* = X\setminus\bigcup_{n\in\NN}X_n$
+		and $Y_* = X\setminus\bigcup_{n\in \NN}Y_n$ and a bijection $\fromto {f_*}{X_*}{Y_*}$. 
+		
+		Putting these together, we define a bijective relation $B$ between $X$ and $Y$ by setting $x\mathrel{B} 
+	\end{proof}
+\end{theorem}
 \section{Countable Sets}
 
 We are often interested in sets that are not too big, i.e., that ar no bigger than $\NN$. 
@@ -1956,26 +1953,30 @@ So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longle
 	\end{itemize}
 	
 	\begin{proof}
-		If $A\subseteq \NN$ has no least element, then $A$ must be empty. This is provable by strong induction. Suppose $A\subseteq \NN$ has no least element. Then
+		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}$
+		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
+		
+		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
 		\begin{itemize}
-			\item{}[Strong Inductive Hypothesis] Suppose that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
-			\item{}[Inductive Step] We claim that $k\notin A$. Otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
+			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
+			\item{}[Inductive Step] We claim that $k\notin A$. For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
 		\end{itemize} 
-		Hence for any non empty $A\subseteq \NN$, there is least element. This is the element defined by $\mu(A)$. 
+		Hence for any non empty $A\subseteq \NN$, there is a least element $n$. Thus there is an element $n$ for which $A\mathrel{M}n$. This shows that $M$ is a functional relation. So it determines the function $\mu$.
 	\end{proof}
-	
 \end{lemma}
+
 \begin{lemma}
 	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
 	
 	\begin{proof}
 		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
 		
-		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is a monomorphism. Suppose there is a surjection $\fromto c\NN A$. Then
-		for any $a\in A$, the set $c^{-1}(a)$ is not empty. So this set has a 
-		smallest element. We define $\fromto mA\NN$ by $m(a) = \text{the smallest $n\in \NN$ so that $n\in c^{-1}(a)$. 
+		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is always monomorphism. Suppose $\fromto f\NN A$ is a surjection. Then 
+		$f^-$ is a function from $A$ to $\powerset_{\text{ne}}(\NN)$. Define $m = \mu\circ f^-$. That is, $m(a)$ is the smallest natural number for which $f(n)=a$. This is obviously a one-to-one function because in fact, $f(m(a))=a$ for each $a$.
 	\end{proof}
 \end{lemma}
+
+
 
 \begin{lemma}
 	If $A$ and $B$ are countable, then so is $A\times B$.
