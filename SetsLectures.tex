@@ -1958,609 +1958,120 @@ Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in 
 	\end{enumerate}
 \end{exercises}
 
-\chapter{Monomorphisms, Epimorphisms and Isomorphisms}
+\chapter{Additional Constructions}
 
-\begin{goals}
-	\noindent\textbf{Lecture}
-	\begin{itemize}
-		\item Introduce special kinds of functions: monomorphism, epimorphism, injection, surjection.
-		\item Investigate the relations between these.
-	\end{itemize}
-	
-	\noindent\textbf{Study}
-	\begin{itemize}
-		\item Learn to recognize injections and surjections by internal behavior
-		\item Be able to illustrate simple, small examples of injections, non-injections, surjections, non-surjections.
-	\end{itemize}
-\end{goals}
-
-\section{Basics}
-
-Recall that we required that if a natural number has a predecessor, it has exactly one. 
-We wrote that as an axiom: $m^\nxt = n^\nxt$ implies $m=n$.
-Putting this in terms of functions: $\suc(m) = \suc(n)$ implies $m=n$.
-Likewise, the singleton function $x\mapsto \{x\}$ has a similar property that $\{x\}=\{y\}$ implies $x= y$.
-
-Also, recall that we proved that addition is \emph{cancellative}: $m+p = n+p$
-implies $m=n$, and that multiplication by a positive natural number is cancellative:
-$m\cdot p^\nxt = n\cdot p^\nxt = m=n$.
-
-This leads to some definitions.
-
-\begin{defn}
-	For a function $\fromto gBC$, say that
-	\begin{itemize}
-		\item $g$ is an \emph{injection} if $g(x_0)=g(x_1)$ implies $x_0=x_1$ for every $x_0,x_1\in B$;
-		\item $g$ is a \emph{monomorphism} if  $g\circ f_0=g\circ f_1$ implies $f_0=f_1$ for every $\fromto {f_0,f_1}AB$; and
-		\item $g$ is an \emph{epimorphism} if  $h_0\circ g = h_1\circ g$ implies $h_0=h_1$ for every $\fromto {h_0,h_1}CD$.
-	\end{itemize}  
-\end{defn}
-
-So an injection is a function with the property that application of it is cancellative.
-A monomorphism is a function with the property that composition with it on the left is cancellative. 
-An epimorphism is a function with property that composition with it on the right is cancellative.
-
-An injection is also said to be \emph{injective} or \emph{one-to-one}.
-A monomorphism is also said to be \emph{left-cancellable}. 
-An epimorphism is also said to be \emph{right-cancellable}.
-
-We will look at epimorphisms later. For now we concentrate on monomorphisms and injections.
-
-\printbreak
-\begin{example}
-	\begin{enumerate}
-		\item Consider the function $\fromto f\NN\NN$ defined as $f(n) = 2\cdot n  + 2$.
-		Suppose $f(m)=f(n)$, then $2\cdot m + 2=2\cdot n+ 2$. 
-		Addition is cancellative, so $2\cdot m=2\cdot n$. 
-		And multiplication by a positive natural number is cancellative, so $m=n$.
-		Thus $f$ is an injection.
-		\item Consider $\fromto g\RR\RR$ defined as $f(x) = x^2$. 
-		This is not injective because $f(1)=f(-1)$, but $1\neq -1$.
-	\end{enumerate}
-\end{example}
-
-Suppose $\fromto gBC$ is a monomorphism. 
-Then it clearly is also an injection. 
-That is, suppose $g$ is a monomorphism and that $g(b_0)=g(b_1)$. 
-We already know that $\widehat{g(b_0)} = g\circ \widehat{b_0}$.
-So $g\circ \widehat{b_0} = g\circ \widehat{b_1}$.
-Because $g$ cancels on the left, $\widehat{b_0} = \widehat{b_1}$.
-But this implies that $b_0=b_1$.
-The converse of this is also true.
-
-\begin{lemma}
-	A function $\fromto gBC$ is a monomorphism if and only if it is an injection.
-	\begin{proof}
-		The previous paragraph proves that every monomorphism is an injection. To prove the converse, assume that $g$ is an injection. 
-		That is, $g(b_0)=g(b_1)$ implies $b_0=b_1$.
-		For two functions $\fromto {f_0,f_1}AB$, suppose $g\circ f_0=g\circ f_1$. 
-		For any $x\in A$, then $g(f_0(x)) = g(f_1(x))$. So $f_0(x)=f_1(x)$. Hence by the Principle of Function Extensionality, $f_0=f_1$.
-	\end{proof}
-\end{lemma}
-
-As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition).
-
-Inclusion maps of subsets constitute an important class of monomorphisms. That is,
-if $A\subseteq X$, then the inclusion map $\fromto iAX$ is obviously one-to-one, so it is a monomorphism.
-
-Epimorphisms are also defined externally, but we do not yet have an internal characterization. 
-Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
-
-\begin{lemma}
-	A function $\fromto gBC$ is an injection if and only if for any $y\in C$ there is \emph{at most one} $x\in B$ for which $g(x)=y$.
-	
-	\begin{proof}
-There is nothing to prove here, really. This ``at most one'' formulation is essentially just a rephrasing of the definition of injectivity.
-	\end{proof}
-\end{lemma}
-
-This suggests a sort of ``dual'' definition. To make the connection clear, we repeat the definition of injections.
-
-\begin{defn}
-	For a function $\fromto gBC$, say that
-	\begin{itemize}
-		\item $g$ is an \emph{injection} if for every $y\in C$, there is \emph{at most one} $x\in B$ for which $g(x)=y$;
-		\item $g$ is a \emph{surjection} if for every $y\in C$, there is \emph{at least one} $x\in B$ for which $g(x)=y$;
-		\item $g$ is a \emph{bijection} if it is both an injection and a surjection. That is, for every $y\in C$, there is \emph{exactly one} $x\in B$ for which $g(x)=y$. 
-	\end{itemize}  
-\end{defn}
-
-We already know that injections and monomorphisms are the same things. We can hope that surjections and epimorphisms are also the same. Indeed.
-
-\begin{lemma}
-	A function $\fromto gBC$ is an surjection if and only if it is an epimorphism.
-	\begin{proof}
-		Assume that $g$ is a surjection. 
-		Suppose $\fromto {h_0,h_1}BD$ are functions for which $h_0\circ g = h_1\circ g$. 
-		For $y\in C$, pick some $x\in B$ for which $g(x)=y$.
-		This can be done because $g$ is a surjection.
-		So $h_0(y) = h_0(g(x)) = h_1(g(x)) = h_1(y)$.
-		This works for every $y\in C$, so $h_0=h_1$.
-		This proves $g$ is an epimorphism.
-		
-		Assume that $g$ is \emph{not} a surjection.
-		We will prove that it is not an epimorphism.
-		Supposing that $g$ is not a surjection means there is an element $c\in C$ so that $g(x)\neq c$ for all $x\in B$. 
-		Consider the functions $\fromto {h_0}C\Two$ defined by $h_0(y)=\top$ and $\fromto {h_1}C\Two$ defined by 
-		\[h_1(y) = \begin{cases}
-			\top & \text{if  $y=c$}\\
-			\bot &\text {otherwise}
-		\end{cases}
-		\]
-		For every $x\in B$, $h_0(g(x)) = \top = h_1(g(x))$. So $h_0\circ g = h_1\circ g$, but obviously $h_0(c)\neq h_1(c)$. So $h_0\neq h_1$.  
-	\end{proof}
-\end{lemma}
-
-\begin{exercises}
-	\begin{enumerate}
-		\item Prove that for any set $A$, $\id_A$ is a monomorphism.
-		\item Prove that if $\fromto fAB$ and $\fromto gBC$ are monomorphisms, then $g\circ f$ is a monomorphism.
-		\item Formulate and prove analogous claims for epimorphisms.
-	\end{enumerate}
-\end{exercises}
-
-\section{Split Monomorphisms and Split Epimorphisms, the Axiom of Choice}
-
-Suppose $\fromto fAXY$ and $\fromto gYX$ are functions so that $g\circ f =\id_X$.
-That is, $g(f(x)) = x$ for all $x\in X$. Then $f(x) = f(x')$ implies $x=g(f(x))=g(f(x'))=x'$. So $f$ is one-to-one. Also, for any $x\in X$, $g(f(x))=x$
-means that $g$ is onto.
-
-\begin{defn}
-	A function $\fromto fXY$ is a \emph{split monomorphism} if there is a function $\fromto gYX$ for which $g\circ f = \id_X$. In that case, $g$ is called a \emph{left inverse} of $f$. A function $\fromto fXY$ is a \emph{split epimorphism} if there is a function $\fromto gYX$ for which $f\circ g=\id_Y$. In that case, $g$ is called a \emph{right inverse} of $f$.
-\end{defn}
-
-Except for in one special case, every monomorphism is split.
-
-\begin{lemma}
-	If $\fromto fXY$ is a monomorphism, then either $X=\emptyset$ or $f$ is split.
-	
-	\begin{proof}
-		Suppose $\fromto fXY$ is a monomorphism and $X$ is not empty.
-		Let $x_0$ be an element of $X$.
-		Then define the relation $G\subseteq Y\times X$ by $y\mathrel{G} x$ if and only if either (i) $y = f(x)$ or (ii) $y\neq f(x')$ for all $x'\in X$ and $x=x_0$.
-		Evidently, $G$ is a total relation: for each $y\in Y$, either $y=f(x)$ for some $x$, or $y\mathrel{G}x_0$. 
-		Also it is deterministic: If $y\mathrel{G} x$ and $y\mathrel{G} x'$, then either $f(x)=y=f(x')$, hence $x=x'$, or $x=x_0=x'$. 
-		So $G$ determines a function, $\fromto gYX$.
-		Evidently, $g(f(x))=x$ by definition of $g$.
-	\end{proof}
-\end{lemma}
-
-We might hope that the dual fact is also true, that every epimorphism is split. But in fact, this is does not follow from the principles to which we have agreed so far.
-This requires a new principle, called the Axiom of Choice (AC).
+Although not strictly needed for most applications, mathematicians generally agree that any two sets, no matter how they are related, can be merged into a single set with elements taken fom both. We mtake this as an additional principle.
 
 \begin{principle}
-	Every epimorphism is split. For an epimorphism $\fromto fXY$, a function $\fromto gYX$ for which $f\circ g = \id_Y$ is called a \emph{choice function}
-	for $f$. This name makes sense, because for each $y\in Y$, $g(y)\in f^-(y)$. So $g$ choices  an element of $f^-(y)$ for each $y$.
+	For any sets $X$ and $Y$, there is a set $Z$ so that $X\subseteq Z$ and $Y\subseteq Z$. Hence, $X\cup Y$ is subset of this $Z$. 
 \end{principle}
 
-It is probably not obvious to you why the Axiom of Choice is even necessary. But remember, we intend to be explicit about how sets and functions are built. 
-Without AC, there may not be any other principle by which an epimorphism can be split.
-The principle that epimorphisms are split has many useful consequences, most of which are difficult to state without further development.
-In general, we will not use AC without explicitly discussing how we use it.
+The fact that this principle is not necessary is a bit technical. 
+It is because the principles we already have can be employed to construct a set that is not equal to $X\cup Y$ but that behaves exactly the same as $X\cup Y$.
+Certainly it is a reasonable principle that make many other things easier. It says that the union of any two sets exists.
+
+The sets $\emptyset$ and $\One$ behave in opposite ways, in the sense that for any set $X$, (i) there is exactly one function from $\emptyset$ to $X$ and (ii) there is exactly one function from $X$ to $\One$. 
+We signalled this by refering to $\emptyset$ as \emph{initial} and $\One$ as \emph{terminal}. 
+We say that the notion of an initial set is \emph{dual} to the notion of a terminal set. 
+The constructions of equalizers and products have duals called \emph{co-equalizers} and \emph{co-products}. 
+To describe co-equalizers leads to another useful idea of constructing a \emph{quotient} of a set. We build the co-product first.
+
+\begin{defn}
+	For sets $X$ and $Y$, a \emph{co-table} is a set with a pair of functions
+	$X\stackrel{f}{\longrightarrow}C\stackrel{g}{\longleftarrow}Y$.
+	
+	A \emph{co-product} is a co-table $X\stackrel{i}{\longrightarrow}S\stackrel{j}{\longleftarrow}Y$
+	so that for any co-table $X\stackrel{f}{\longrightarrow}C\stackrel{g}{\longleftarrow}Y$
+	there is exactly one function $\fromto cSC$ so that $f = c\circ i$ and
+	$g = c\circ j$. 
+\end{defn}
+
+\begin{lemma}
+	Any two sets $X$ and $Y$ have a co-product.
+	
+	\begin{proof}
+		Define $X\uplus Y = \{0\}\times X \cup \{1\}\times Y$.
+		So the set $X\uplus Y$ consists of pairs
+		$(i,w)$ where $i=0$ and $w\in X$ or $i=1$ and $w\in Y$.
+		Think of $X\uplus Y$ has consisting if a copy of $X$ and a completely separate copy of $Y$.
+		
+		Define the two functions $\fromto {\inj_0}X{X\uplus Y}$ and $\fromto {\inj_1}Y{X\uplus Y}$ by $\inj_0(x) = (0,x)$ and $\inj_1(y) = (1,y)$. 
+		Now, for any pair of functions $X\stackrel{f}{\longrightarrow}C\stackrel{g}{\longleftarrow}Y$
+		define $\fromto {[f,g]}{X\uplus Y}C$ by cases:
+		\[[f,g](i,w) = \begin{cases}
+		f(w) &\text{if $i=0$}\\
+		g(w) &\text{if $i=1$.}
+		\end{cases}\]
+		Evidently, $[f,g]\circ \inj_0 = f$ and $[f,g]\circ\inj_1 = g$. And clearly, no other function than $[f,g]$ has this property.		
+	\end{proof}
+\end{lemma}
+
+The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$. It is a union, preceded by ``marking'' each $x\in X$ by putting it into a pair $(0,x)$ and marking each $y\in Y$ differently by putting it into a pair $(1,y)$. Hence it is the union of disjoint copies of $X$ and $Y$. 
 
 \begin{exercises}
+	Let $A= \{a,b,c,d,e\}$ and $B = \{w,x,y,z,a,b,c,\}$
 	\begin{enumerate}
-	\item The function $\fromto f\NN\NN$ given by $x\mapsto x^2$ is a monomorphism.
-	Give an epimorphism that splits it.
-	\item Let $\fromto i\ZZ\RR$ be the obvious inclusion function. Let $\fromto {\lfloor\,\rfloor}{\RR}{\NN}$ be the floor function: $\lfloor x\rfloor$ is the largest integer less than or equal to $x$. Is $i$ a left or right inverse of $\lfloor\,\rfloor$?
-	\item The function $x\mapsto e^x$ is a monomorphism. Define a function that splits it.
+		\item Calculate $A\uplus B$
+		\item Calculate $A\uplus \emptyset$
+		\item Find a bijection between $\NN$ and $\One\uplus \NN$.
+		\item Find a bijection between $\One \uplus \One$ and $\Two$.
+		\item For any sets $X$, $Y$ and $Z$, define a bijection betweeen
+		$X\times (Y\uplus Z)$ and $(X\times Y )\uplus (X\times Z)$.
 	\end{enumerate}
 \end{exercises}
 
-\section{Bijections, Inverses and Cardinality}
+Sometimes, elements of a set $X$ will be classified into ``like'' kinds. 
+For example, we might classify the natural numbers into even and odd. 
+We might classify poker cards according to suit, ignoring the rank -- or by rank, ignoring suit. 
+Or, if $C$ is  set modelling a Discrete Mathematics class, we might classify the elements (students) according to their grade: A, B, etc. 
+Situations like this is modelled by what is known as a \emph{partion} of a set. If we also wish to think of all A students as being ``equivalent'', all B students as being ``equivalent'', we model this by what is known as an \emph{equivalence relation}.
 
 \begin{defn}
-	A function $\fromto fXY$ is an \emph{isomorphism} if there is a function $\fromto gYX$ so that $g\circ f = \id_X$ and $f\circ g = \id_Y$. In that case, $g$ is called an \emph{inverse} of $f$. Note that $g$ is both a left and right inverse. 
-\end{defn}
-
-Note that if $f$ is an isomorphism, then it is both a split monomorphism and a split epimorphism. 
-Hence it is a one-to-one, onto function. 
-The term we have used for this is \emph{bijection}.
-Conversely, if $\fromto fXY$ is a bijection, then the relation $F^{-1}\subseteq Y\times X$ given by $y\mathrel{F^{-1}} x$ if and only if $y = f(x)$ is total and deterministic.
-So it determines a function $f^{-1}$.
-It is routine to check that $f^{-1}$ is an inverse of $f$. In other words, any bijection is invertible.
-
-It is also easy to see that if $f$ has an inverse, that inverse is unique. 
-So we may refer to \emph{the} inverse of $f$, and write $f^{-1}$. 
-
-\begin{exercises}
-	\begin{enumerate}
-		\item Suppose $\fromto fXY$ and $\fromto gYZ$ are isomorphisms. Show that $g\circ f$ is an isomorphism. [Hint: Ask what the inverse of $g\circ f$ is.]
-		\item Show that $\fromto {\id_X}XX$ is an isomorphism. [Hint: Ask what the inverse of $\id_A$ is.]
-		\item Suppose $\fromto fXY$ is an isomorphism. Show that $f^{-1}$ is an isomorphism. [This is quite easy.]
-	\end{enumerate}
-\end{exercises}
-
-The choice we made to define $\Two$ to be the set $\{\bot,\top\}$ instead of, say,
-$\{0,1\}$ or $\{\emptyset, \{emptyset\}\}$ or any other two element set, is accidental. 
-Any two element set would have done to job of defining a subset classifier. 
-Similarly, $\One$ just needs to be a singleton, not $\{\bullet\}$ specifically.
-We defined the product $A\times B$ to consist of pairs $(x,y)$ where $x\in A$ and $y\in B$, but we could just as well have defined it to consist of pairs $(y,x)$.
-The specific order in which we put the pairs seems unimportant, so long as we agree on what we are doing.
-The set of natural numbers $\NN$ officially consists of $0$, $0^\nxt$, $0^{\nxt\nxt}$ and so on. 
-But informally, we use $0$, $1$, $2$, and so on as \emph{numerals}.
-Some one else might think the natural numbers consist of ``null, eins, zwei, und so weiter.''
-Somehow the particular names we give to the natural numbers does not matter.
-What matters is that, whatever the specific elements happen to be, they match with the things we think of as the ``actual'' natural numbers.
-
-This leads us to suspect that the sets described in Lecture \ref{lec:basic-constructions} are all definable ``up to isomorphism''. That is, any isomorphic sets would do just as well.
-
-We illustrate the general idea with products and countably infinite sets, but similar proofs show work for equalizers, and so on. 
-
-\begin{lemma}
-	For any sets $A$ and $B$, if $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ and
-	$A\stackrel{p'}{\longleftarrow}P'\stackrel{q'}{\longrightarrow}B$
-	are both products, then $P$ and $P'$ are isomorphic.
+	For a set $X$, a \emph{partition of $X$} is a set $P\subseteq\powerset(X)$
+	so that $\bigcup_{A\in P}A = X$ and for every $A,B\in P$, if $A\neq B$ then $A\cap B=\emptyset$. The sets in $P$ are called \emph{blocks}. 
 	
-	\begin{proof}
-		By definition of products, there are unique functions $\fromto fP{P'}$
-		and $\fromto g{P'}P$ so that $p'\circ f = p$, $q'\circ f=q$, 
-		$p\circ g = p'$ and $q\circ g = q'$. 
-		So $p\circ g\circ f = p$
-		and $q\circ g\circ f = q$. But $\id_P$ also satisfies $p\circ \id_P = p$
-		and $q\circ \id_P = q$. Since $p$ and $q$ are the projections of a product,
-		$g\circ f = \id_P$. For the same reason, $f\circ g = \id_{P'}$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	If $\One\stackrel{z}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ and $\One\stackrel{z'}{\longrightarrow}N'\stackrel{s'}{\longrightarrow}N'$ are natural numbers sets, then $N$ and $N'$ are isomorphic. 
-	
-	\begin{proof}
-		By definition of natural numbers sets, there are unique functions $\fromto fN{N'}$ and $\fromto g{N'}N$ so that $z'= f\circ z$, $s'\circ f=f\circ s$, $z=g\circ z'$ and $s\circ g=g\circ s'$.
-		So $z = (g\circ f)\circ z$ and $s\circ (g\circ f) = (g\circ f)\circ s$.
-		Since $\id_N$ satisfies the same equations, $g\circ f = \id_N$. For the same reason, $f\circ g = \id_{N'}$.
-	\end{proof}
-\end{lemma}
-
-\begin{exercises}
-	\begin{enumerate}
-		\item Show that if $t\in T$ and $s\in S$ are subset classifiers, then $S$ and $T$ are isomorphic.
-		\item Show that if $\fromto eEA$ is an equalizer for the functions $A\doublerightarrow{f}{g}B$, then there is an isomorphism from $E$ to
-		$\{x\in A\st f(x)=g(x)\}$.
-	\end{enumerate}
-\end{exercises}
-
-The problem of judging which sets are the \emph{same size} seems easy enough when we look at finite sets. But consider, for example, how to compare $\NN$ and $\NN\times \NN$. These are both infinite sets, but are they the same size?
-Cantor realized that bijections are the key to understanding this. That is,
-he \emph{defined} two sets to be the same size if they are bijective.
-This gives us a precise criterion for comparing sets by their size. We introduce the idea formally.
-
-\begin{defn}
-	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are bijective.
-\end{defn}
-
-Thus ``equipotent,'' ``bijective'' and ``isomorphic'' mean the same thing.
-The usage differs mainly in terms of emphasis.
-When we are interested in merely comparing sets by size, we mostly use the word ``equipotent''. 
-
-\begin{example}
-	The sets $\NN$ and $\NN\times \NN$ are equipotent.
-	
-	Define $\fromto f{\NN\times \NN}\NN$ by $f(m,n) = (m+n)(m+n+1)/2 + n$.
-	Define $\fromto g\NN{\NN\times \NN}$ by a simple recursion as follows.
-	Also define $\fromto s{\NN\times \NN}{\NN\times \NN}$ by
-	$s(0,n) = (n^\nxt,0)$ and $s(m^\nxt,n) = (m,n^\nxt)$.
-	Then $(0,0)$ and $s$ define a simple recurrence in $\NN\times \NN$,
-	so $g = \srec[(0,0),s]$ is a function from $\NN$ to $\NN\times \NN$. 
-	We claim that $f$ and $g$ are inverses of each other. As a reminder,
-	$g$ satisfies the two equations:
-	\begin{align*}
-		g(0) &= (0,0)\\
-		g(k^\nxt) &= s(g(k))
-	\end{align*}
-	
-	By induction on $k$, $f(g(k)) = k$. 
+	For a set $X$, an \emph{equivalence relation on $X$} is a binary relation satisfying
 	\begin{itemize}
-		\item{}[Basis]  $f(g(0))=f(0,0) = 0$
-		\item{}[Inductive Hypothesis] Suppose $f(g(k)) = k$ for some $k$. 
-		\item{}[Inductive Step] By simple recursion, $g(k^\nxt) = s(g(k))$. 
-		By cases, this is either $(m^\nxt,0)$ for some $m$ or $(m,n^\nxt)$ for some $m$ and $n$. 
-		In the first case, by the definition of $s$, $g(k) = (0,m)$. So, by the inductive hypothesis, $m(m+1)/2 + m = f(m,0) = k$. 
-		Some simple algebra shows that $f(m^\nxt,0)= k^\nxt$.
-		In the second case, by the definition of $s$, $g(k) = (m^\nxt,n)$. So again by the inductive hypothesis, $(m^\nxt + n)(m^\nxt + n + 1)/2 + n = f(m^\nxt,n)=k$, and algebra shows that $f(m,n^\nxt) = k^\nxt$.
-	\end{itemize}
-	So $f$ is a left inverse of $g$.
-	
-	Now by induction on $p=m+n$,  we claim that $g(f(m,n)) = (m,n)$.
-	\begin{itemize}
-		\item{}[Basis] This is immediate from the definitions.
-		\item{}[Inductive Hypothesis] Suppose that for any $m$ and $n$ for which
-		$m+n=k$, it is the case that $g(f(m,n)) = (m,n)$.
-		\item{}[Inductive Step] This step of the proof is left as an exercise using induction on $n$. Remember: at this stage of the main proof, the above inductive hypothesis is already assumed.
-		\begin{itemize}
-			\item{}[Basis] Show that if $m=k^\nxt$, then $g(f(m,0)) = (m,0)$.
-			\item{}[Inductive Hypothesis] Suppose that $m+j = k^\nxt$ implies $g(f(m,j)) = (m,j)$ for some $j$
-			\item{}[Inductive Step] Show that $m+j = k^\nxt$ implies
-			$g(f(m,j^\nxt)) = (m,j^\nxt)$.
-		\end{itemize}
-	\end{itemize}
-\end{example}
-
-The example illustrates that equipotency can be a bit counter-intuitive. One might have thought that $\NN\times \NN$ is somehow ``bigger'' than $\NN$.
-
-Let us turn the question of equipotency on its head and ask what would it take to show that two sets are \emph{not} equipotent? Evidently, it would require that we show that there are no bijections. A simpler condition would be to show that there are no surjections. That is, if no function $\fromto fAB$ is a surjection, we can conclude that $A$ and $B$ are not equipotent. 
-
-\begin{theorem}
-	For any set $X$, no function $\fromto f{X}{\powerset(X)}$ is a surjection.
-	
-	\begin{proof}
-		Consider a function $\fromto fX{\powerset(X)}$. So for each $x\in X$, $f(x)$ is a subset of $X$. 
-		To show that $f$ is not a surjection, we only need to find a subset $D\subseteq X$ so that $f(x)\neq D$ for all $x\in X$. 
-		Let $D = \{x\in X\st x\notin f(x)\}$.
-		Now we compare $D$ to $f(x)$ for some $x\in X$. If $x\in f(x)$, then by definition $x\notin D$. So $D\neq f(x)$. If $x\notin f(x)$, then by definition $x\in D$. So again $D\neq f(x)$. Since this is the case for an arbitrary $x\in X$, we conclude that $D$ is not in the image of $f$.
-	\end{proof}
-\end{theorem}
-
-This was a profoundly important result for 19th century mathematics. It showed that the notion of ``infinity'' is not fixed. 
-There are different ``sizes'' of infinity. 
-In fact, we can now ask ``how many infinities are there?'' 
-Evidently, the answer is as complicated as it gets. 
-Namely, for any set $X$, the set $\powerset(X)$ is bigger. 
-So there are infinitely many infinities.
-
-A closely related proof shows that the collection of all sets can not be a set. For suppose $U$ is a set that consists of all sets. In particular, $U\in U$, which is not a problem on its own. On the other hand, now consider the subset of $U$ defined by $R = \{X\in U\st X\notin X\}$. Clearly, 
-$R\in U$ because $R$ is a set. But is it true that $R\in R$. By definition,
-this can only happen when $R\notin R$. So apparently $R\notin R$. But in that case, $R$ satisfies the criterion for belonging to $R$. So $R\in R$. In other words, it is not possible for $R$ to be an element of $R$, nor to be excluded from $R$. We conclude that $R$ must not be a set, and so $U$ must not be a set.  
-
-
-Let us define $X\leq Y$ to mean that there is a monomorphism from $X$ to $Y$. 
-Then it is clear that $X\leq X$, and if $X\leq Y$ and $Y\leq Z$, then $X\leq Z$. 
-But it is true that $X\leq Y$ and $Y\leq X$ implies $X\sim Y$? 
-
-\begin{theorem}
-	If $X\leq Y$ and $Y\leq X$, then $X\sim Y$.
-	
-	\begin{proof}
-		Suppose $\fromto fXY$ and $\fromto gYX$ are one-to-one functions.
-		To understand the proof, it helps to do things slightly out of order.
-		
-		Suppose we can define subsets $X_n\subseteq X$ and $Y_n\subseteq Y$ and relations $\fromto {B_n}{X_n\times Y_{n^\nxt}}\Two$ 
-		and $\fromto {C_n}{X_{n^\nxt}\times Y_n}\Two$ so that
-		$X_n\cap X_m = \emptyset$ whenever $n\neq m$, and likewise for the sets $Y_n$. Let $X_* = X\setminus \bigcup_{n\in \NN}X_n$ and let $Y_* = Y\setminus\bigcup_{n\in\NN}Y_n$. Suppose we can also define a relation
-		$\fromto {B_*}{X_*\times Y_*}\Two$.  
-		
-		Putting these together, we can define a relation $B$ between $X$ and $Y$ by cases as follows:
-		\begin{enumerate}
-			\item If $x\in X_{2n}$ and $x\mathrel{B_{2n}} y$, then $x\mathrel{B} y$
-			\item If $x\in Y_{2n+1}$ and $x\mathrel{C_{2n}}y$, then $x\mathrel{B} y$
-			\item If $x\in X_*$ and $x\mathrel{B_*} y$, then $x \mathrel{B} y$.
-		\end{enumerate}
-		
-		Suppose each of the constituent relations $B_n$, $C_n$ and $B_*$ are matchings, then we can show that $B$ is a matching, hence determining a bijection between $X$ and $Y$.
-		
-		To see that $B$ is a matching: Each $x\in X$ is in exactly one of the sets $X_n$ or $X_*$. If it is in $X_*$, then $x\mathrel{B} y$ for exactly one $y\in Y_*$. If $x\in X_{2n}$ for some $n$,
-		then $x\mathrel{B} y$ for exactly one $y\in Y_{2n+1}$. If $x\in X_{2n+1}$ for some $n$, then $x \mathrel{B} y$ for exactly one $y\in Y_{2n}$. By construction $x\mathrel{B} y$ does not hold for any other $y$. So $B$ is functional. Likewise, each $y\in Y$ belongs to exactly one of the sets $Y_n$ or $Y_*$. A similar analysis shows that there is exactly one $x$
-		for which $x\mathrel{B} y$. So $B$ is a matching.
-		
-		Now the hard part. We construct the sets $X_n$, $Y_n$ recursively.
-		\begin{align*}
-			X_0 &= X\setminus g^+(Y)\\
-			Y_0 &= Y\setminus f^+(X)\\
-			X_{n^\nxt} &= g^+(Y_n)\\
-			Y_{n^\nxt} &= f^+(X_n)
-		\end{align*}
-		Now define $x \mathrel{B_n} y$ if and only if $f(x)=y$ and $x \mathrel{C_n} y$ if and only if $g(y)=x$. Finally, define $x\mathrel{B_*} y$ if and only if $f(x) = y$.
-		
-		
-	\end{proof}
-\end{theorem}
-\section{Countable Sets}
-
-We are often interested in sets that are not too big, i.e., that ar no bigger than $\NN$. 
-
-\begin{defn}
-A set $A$ is \emph{countable} if $A$ is empty, or there is a surjection $\fromto a\NN A$. 
-That is, $a_0$, $a_1$, \ldots, exhaustively ``lists'' the element of $A$.
-\end{defn}
-
-Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
-$A = \{a_0,\ldots a_n\}$, then we define a function $\fromto rAA$ by
-\[r(a_i) = \begin{cases}
-a_{i+1} & \text{if $i<n$}\\
-a_0     &\text{otherwise}
-\end{cases}\]
-So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ determines a function $\srec[a_0,r]$. It is easy to see that this is surjective.
-
-\begin{defn}
-	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
-\end{defn}
-
-\begin{lemma}
-	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
-	\begin{itemize}
-		\item $\mu(A)\in A$.
-		\item if $n\in A$, then $\mu(A)\leq n$.
+		\item $x \mathrel{E}x$ for all $x\in X$,
+		\item $x\mathrel{E}y$ annd $y\mathrel{E}z$ implies $z\mathrel{E}z$ for all $x,y,z\in X$, and 
+		\item $x\mathrel{E}y$ imples $y\mathrel{E}x$
 	\end{itemize}
 	
-	\begin{proof}
-		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}
-		\Two$
-		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
-		
-		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
-		\begin{itemize}
-			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
-			\item{}[Inductive Step] We claim that $k\notin A$. For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
-		\end{itemize} 
-		Hence for any non empty $A\subseteq \NN$, there is a least element $n$. Thus there is an element $n$ for which $A\mathrel{M}n$. This shows that $M$ is a functional relation. So it determines the function $\mu$.
-	\end{proof}
-\end{lemma}
+	For a partition $P$ define the relation $\equiv_P\equiv_P\subseteq X\times X$ by $x\equiv_P y$ if and only if for some $A\in P$, $x\in A$ and $y\in A$.
+	
+	For an equivalence relation $E$ and an element $x\in X$, let $[x]_E = \{y\in X\st x\mathrel{E} y\}$. So $x\mapsto [x]_E$ defines a function from $X$ to $\powerset(X)$. Let ${\mathcal P}_{E} = \{[x]_E\st x\in X\}$.
+	That is, ${\mathcal P}_E$ is the range of the function $[\cdot]_E$.
+\end{defn}
+
+The two notions, partition and equivalence relation, are essentially the same in the sense that there is a natural bijection between partitions and equivalence relations.
 
 \begin{lemma}
-	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
+	Let $X$ be any set. Then
 	
+	\begin{itemize}
+		]
+	\end{itemize}set $X$ and partition $P$ of $X$, the relation $\equiv_P$ is an equivalence relation on $X$. 
+	
+	For any equivalence relation $E$ on $X$, the collection ${\mathcal P}_E$ forms a partition of $X$.
+	
+	Moreover, for any partition $P$ of $X$, $P = \mathcal P_{\equiv_P}$
+	For any equivalence relation $E$ on $X$, $E = \equiv_{{\mathcal P}_E}$.
+
+	So $x\mapsto [x]_E$ determines an onto function from $X$ to ${\mathcal P}_E$. 
 	\begin{proof}
-		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
-		
-		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is always monomorphism. Suppose $\fromto f\NN A$ is a surjection. Then 
-		$f^-$ is a function from $A$ to $\powerset_{\text{ne}}(\NN)$. Define $m = \mu\circ f^-$. That is, $m(a)$ is the smallest natural number for which $f(n)=a$. This is obviously a one-to-one function because in fact, $f(m(a))=a$ for each $a$.
-	\end{proof}
+		Exercise.
+	\end{proof} 
 \end{lemma}
 
-
+\begin{defn}
+	For functions $X\doublerightarrow{f}{g}Y$, a \emph{co-solution} is a set $C$ with function $\fromto cYC$ so that $c\circ f=c\circ g$.
+	
+	A \emph{co-equalizer} is a \emph{co-solution} $\fromto qYQ$ so that for any co-solution $\fromto cYC$, there is a unique function $\fromto eCQ$ so that $c = e\circ q$.
+\end{defn}
 
 \begin{lemma}
-	If $A$ and $B$ are countable, then so is $A\times B$.
-	If $A$ and $B$ are countable, then so is $A\cup B$.
-	If $I$ is countable and for each $i\in I$, $A_i$ is countable, then $\bigcup_{i\in I}A_i$ is countable.
-	If $A$ is countable, then so is $\List[A]$.
+	Any $X\doubleleftarrow{f}{g}Y$ has a co-equalizer.
 	
 	\begin{proof}
-		The assumption that $I$ is countable means there is a surjection $\fromto f\NN I$. Likewise, the assumption that each $A_i$ is countable means there is a surjection $\fromto {g_i}\NN{A_i}$ for each $i\in I$. It suffices now to show that there is a surjection fromt $\NN\times \NN$ to $\bigcup_{i\in I}A_i$.
-		
-		Let $\fromto h{\NN\times \NN}\bigcup_{i\in I}A_i$ y defined by $h(m,n) = g_{f(m}(n)$. For $x\in \bigcup_{i\in I}A_i$, $x\in  A_k$ for some $k\in I$. Since $g_k$ is a surjection, $x = g_k(n)$ for some $n\in\NN$. 
-		But likewise, $f$ is a surjection, so $k = f(m)$ for some $m\in\NN$. 
-		Hence $x = g_{f(m)}(n) = h(m,n)$.
 	\end{proof}
 \end{lemma}
-
-%\section{What Can Primitive Recursion Do?}
-%
-%Strictly, we are over-using the term \emph{primitive recurrence}. \emph{Primitive recursive} functions are meant to capture a class of ``obviously'' computable number theoretic functions. One mechanism of computation is primitive recursion. Specifically, we declare the functions $\fromto {\hat 0}\One\NN$, $\fromto\suc\NN\NN$, $\fromto {\Diamond_{\NN^k}}{\NN^k}\One$ and 
-%projections $\fromto {\pi^k_i\NN^k}\NN$ for $i<k$ to be \emph{primitive recursive}. If $\fromto f{\NN^k}{\NN^m}$ and $\fromto g{\NN^k}{\NN^n}$ are primitive recusive, then $\rangle f,g\langle$ is primitive recursive. If $\fromto f{\NN^m}{\NN^n}$ and $\fromto g{\NN^n}{\NN^p}$ are primitive recursive, then $g\circ f$ is primitive recursive. And if $\fromto b{\NN^m}\NN$
-%and $\fromto r{\NN^{m+2}}\NN$ are primitive recursive, then $\fromto {PR[b,r]}{\NN^{k+1}}\NN$
-%is primitive recursive, where $PR[b,r]$ is defined by the equations 
-%\begin{align*} 
-%PR[b,r](x_0,\ldots, x_{k-1},0) &= b(x_0,\ldots,x_{k-1})\\
-%PR[b,r](x_0,\ldots, x_{k-1},n^\nxt) &= r(x_0,\ldots,x_{k-1}, x_k, PR[b,r](x_0,\ldots. x_{k-1},n))
-%\end{align*}
-%No other functions are primitive recursive. The idea is that the basic functions: $\hat 0$ and so on, are obviously computable. Also functions built from obviously computable functions by composition, $\langle\ \rangle$ and primitive recurrences are also obviously computable.
-
-
-%\section{When are Two Sets Essentially the Same}
-%
-%Most of the constructions so far, follow a pattern. 
-%We define some sort of gadget (a terminal object, an equalizer, a product, an exponent) by virtue of how it relates to other similar gadgets (solutions, tables, parametric functions).
-%In each case, the definition requires that there is exactly one function that relates the general gadget  to the special one. 
-%Then a corresponding principle asserts that a particular example can be constructed: $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$ and $B^A$.  The way we have used $\Two$ as a subset classifier does not quite follow this pattern, but it very close. Namely, we define ``subset classifier'' in terms of the existence of unique functions for some purpose. Then the corresponding principle says that $\top\in \Two$ is such a thing.
-%
-%There is some ``obvious'' sense in which $B\times A$ and $A\times B$ are essentially the same. 
-%After all, the only difference between them is the order in which we choose to write pairs: $(a,b)$ or $(b,a)$. 
-%So even though $A\times B$ and $B\times A$ are not generally \emph{equal}, we would like to say they are
-%essentially the same.
-%Similarly, there is nothing special about $\One$, except that it as a single element. 
-%So $\{0\}$, $\{\emptyset\}$ or any other singleton is a terminal set, hence essentially the same as $\One$.
-%
-%We would rather have a precise, technical meaning when we say two sets are essentially the same. The key idea
-%is that we may think of a function $\fromto fAB$ as a systematic way to ``substitute'' elements of $B$ 
-%for elements of $A$. Two sets are essentially the same if their elements can be substituted back and forth
-%with no resulting change.
-%
-%\begin{defn}
-%	An \emph{isomorphism} is a function $\fromto fAB$ so that there is some function $\fromto gBA$ 
-%	satisfying $\id_A = g\circ f$ and $\id_B = f\circ g$. In that case, the set $A$ is said to be \emph{isomorphic to $B$}. The function $g$ is called an \emph{inverse of $f$}.
-%\end{defn}
-%
-%Some basic facts are handy.
-%
-%\begin{lemma}
-%	The following are true:
-%	\begin{enumerate}
-%		\item If $\fromto fAB$ is an isomorphism and $\fromto gBA$ is an inverse of $f$, then $g$ is an isomorphism	and $f$ is an inverse of $g$.
-%		\item If $\fromto gBA$ and $\fromto {g'}BA$ are inverses of $\fromto fAB$, then $g=g'$.
-%		\item If $\fromto fAB$ and $\fromto gBC$ are isomorphisms, then so is $g\circ f$.
-%		\item For any set $A$, the function $\id_A$ is an isomorphism.
-%	\end{enumerate}
-%	\begin{proof}
-%		The first claim is obvious since the two defining conditions $g\circ f=\id_A$ 
-%		and $f\circ g=\id_B$ are interchangible. For the second claim, suppose $g\circ f = \id_A = g'\circ f$
-%		and $f\circ g = \id_B = f\circ g'$. Then
-%		\begin{align*}
-%		g &= g\circ \id_B\\
-%		&= g\circ (f\circ g')\\
-%		&= (g\circ f)\circ g'\\
-%		&= \id_A\circ g'\\
-%		&= g
-%		\end{align*}
-%		For third claim suppose suppose $\fromto hBA$ is an inverse of $f$ and $\fromto kCB$ is
-%		an inverse of $g$, then $(h\circ k)\circ (g\circ f) = \id_A$ and $(g\circ f)\circ(h\circ k)=\id_B$. So $h\circ k$ is inverse of $g\circ f$. The fourth claim is trivial as $\id_A$ is its own inverse.
-%	\end{proof}
-%\end{lemma}
-%
-%From this, we can define what it means for sets $A$ and $B$ to be \emph{isomorphic}.
-%
-%\begin{defn}
-%	Sets $A$ and $B$ are \emph{isomorphic}, written $A\simeq B$ if there is an isomorphism $\fromto fAB$.
-%\end{defn}
-%
-%The lemma indicates that $A\simeq A$ is always true, that $A\simeq B$ implies $B\simeq A$, and that $A\simeq B$ and $B\simeq C$ implies $A\simeq C$. 
-%We say that $\simeq$ is an \emph{equivalence} on sets.
-%It  captures what we mean be saying two sets are essentially the same. 
-%Also, when $f$ is an isomorphism, there is exactly one inverse. 
-%Although the notation can be confused with other usages (like inverse image), when $f$ has an inverse it is typically denoted by $f{-1}$.
-%
-%Returning to the definitions of this lecture, all of them are characterized \emph{up to isomorphism}, meaning
-%that is a terminal set, an equalizer of $f$ and $g$, a product of $A$ and $B$, an exponent of $A$ over $B$, or a subset classifier if and only if it is isomorphic the $\One$, $\{x\in A\st f(x)=g(x)\}$, $A\times B$, $B^A$ or $\Two$, respectively. We make that more explicit in the following lemma.
-%
-%\begin{lemma}
-%	The following are all true:
-%	\begin{enumerate}
-%		\item A set $C$ is a terminal set if and only if $C\simeq \One$.
-%		\item For functions $A\doublerightarrow{f}{g} B$:
-%		\begin{itemize} 
-%			\item If $\fromto eEA$ is an equalizer, then $E\simeq \{x\in A\st f(x)=g(x)\}$. 
-%			\item If $\fromto hE\{x\in A\st f(x)=g(x)\}$ is an isomorphism, then $\fromto {(i\circ h)}EA$ is an equalizer.
-%		\end{itemize}
-%		\item For sets $A$ and $B$:
-%		\begin{itemize}
-%			\item If $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product, then $P\simeq A\times B$. 
-%			\item If $\fromto hP{A\times B}$ is an isomorphism, then $A\stackrel{\pi_0\circ h}{longleftarrow} P \stackrel{\pi_1\circ h}{\longrightarrow}B$ is a product.
-%		\end{itemize}
-%		\item If $t\in S$ is a subset classifier, then $S\simeq \Two$ and the isomorphism sends $t$ to $\top$.
-%		If $\fromto hC\Two$ is an isomorphism, then $h^{-1}(\top)in C$ is a subseet classifier.
-%		\item For sets $A$ and $B$:
-%		\begin{itemize} 
-%			\item If $\fromto a{F\times A}B$ is an evaluation map, then $F\simeq B^A$.
-%			\item If $\fromto hF{B^A}$ is an isomorphism, then $\fromto \beta{F\times A}B$ is an evaluation map
-%			given by $\beta(x,y) = \alpha(h(x),y)$.
-%		\end{itemize}
-%	\end{enumerate}
-%	\begin{proof}
-%		The proofs for all five of these follow a similar pattern. We prove the claim for products
-%		and leave the others as exercises. 
-%		
-%		Suppose $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ is a product of $A$ and $B$.
-%		Then $\langle p,q\rangle$ is a function from $P$ to $A\times B$ satisying $p=\pi_0\circ \langle p,q\rangle$ and $q = \pi_1\circ \langle p,q\rangle$. But since $P$ is a product, there is also a function
-%		$\fromto h{A\times B}P$ so that $\pi_0 = p\circ h$ and $\pi_1\circ h$. Now we can compute
-%		$p\circ h\circ \langle p,q\rangle = \pi_0\circ \langle p,q\rangle = p$
-%		and likewise $q\circ h\circ \langle p,q\rangle = q$. But since $p\circ \id_P = p$
-%		and $q\circ \id_P = q$, $h\circ \langle p,q\rangle = \id_B$. Form a similar calculation,
-%		$\langle p,q\rangle\circ h = \id_{A\times B}$. Hence $h$ is an isomorphism with inverse $\langle p,q\rangle$.
-%		
-%		On the other hand suppose $\fromto hP{A\times B}$ is an isomorphism. Then let $p = \pi_0\circ h$ and $q = \pi_1\circ h$, so $A\stackrel{p}{\longleftarrow} P \stackrel{q}B$ is a table. Consider any table
-%		$A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$. Then $h^{-1}\circ \langle f,g\rangle$ is a function from $C$ to $P$ satisfying
-%		$p\circ h^{-1} \circ \rangle f,g\langle = \pi_0\circ \langle f,g\rangle = f$
-%		and $q\circ h^{-1} \circ \rangle f,g\langle = \pi_1\circ \langle f,g\rangle = g$.
-%		Moreover, if $p \circ m = f$ and $q\circ m = g$, then 
-%		\begin{align*}
-%		h^{-1} \langle f,g\rangle &= h^{-1}\circ \langle p\circ m, q\circ m\rangle\\
-%		&= h^{-1}\circ h\circ m\\
-%		&= m
-%		\end{align*}
-%		So $h^{-1}\circ\langle f,g\rangle$ is the unique function satisfying $p\circ h^{-1}\circ \langle f,g\rangle = f$ and $q\circ h^{-1}\circ \langle f,g\rangle = g$.  
-%	\end{proof}
-%\end{lemma}
-%
-%In some settings, a countably infinite set is called a \emph{natural numbers object}. In other settings, the phrase ``countably infinite'' is used to refer to a set that is ``the same size as $\NN$.'' In the latter setting, $\NN$ is regarded as being a fixed ``standard of measure'', sort of like marks on a platinum-iridium bar sitting in a temperature controlled vault in Paris used to be \emph{the} standard meter.\footnote{Meter was originally defined to be 1 ten millionth of the distance from the equator to the north pole along a great circle passing through Paris. It is now defined in a way that can be measures very accurately in a laboratory: it is the distance travelled by light in vacuum during a time interval of 1/299 792 458 of a second measured by a cesium-133 atomic clock. Everyone has one of those.}
-%
-%
-%For any set $A$, the simple rule $x\mapsto \{x\}$ ought to define a function from $A$ to $\powerset(A)$. But we have a lot of ways now of constructing functions, so it would be better (more \emph{elegant}) to construct this function using the principles we already have, rather than just stipulate another principle.
-%
-%Define $\Delta_A = \{(x,y)\in A\times A\st x=y\}$. 
-%If one thinks of $A\times A$ as laid out in a square grid, then $\Delta_A$ lies along the diagonal, hence it is usually called the \emph{diagonal set for $A$}.
-%Let $\fromto {\kappa_{\Delta_A}}{A\times A}\Two$ be the corresponding characteristic function. That is,
-%\[
-%\kappa_{\Delta_A}(x,y) = \begin{cases}
-%\top & \text{if $x=y$}\\
-%\bot & text{otherwise}
-%\end{cases}
-%\]
-%Then Principle \ref{ax:powerset} applied to $\kappa_{\Delta_A}$ means that there is a unique function $\fromto sA{\powerset(A)}$ satisfying the odd looking equation $\ni(s(x),y) = \top$ if and only if $x=y$. But the formula $\ni(s(x),y)$ is $\top$ if and only if $y\in s(x)$. So $y\in s(x)$ if and only if $y=x$. 
-%In other words, $s$ is given by the rule $x\mapsto \{x\}$. We call this the \emph{singleton insertion map}. Usually, we don't usually give this an explicit name (like $s$), instead we may write it as $\{-\}$ if we need to,'
-%
-%
-%
-%On $\Two$, the characteristic function of $\{\bot}$ is the function sending $\bot$ to $\top$
-%and $\top$ to $\bot$. So it swaps ``true'' with ``false''. 
-%
