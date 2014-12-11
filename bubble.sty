@@ -71,6 +71,12 @@
 	\newenvironment{#1}{\begin{#1Bubble}}{\end{#1Bubble}}
 }
 
+\newcommand{\newlecbubble}[3]{
+	\makebubble{#1}{#2~\thechapter}{#3}
+	\newenvironment{#1}{\begin{#1Bubble}}{\end{#1Bubble}}
+}
+
+
 \newcommand{\newnumbubble}[3]{
 	\makebubble{#1}{#2~\csname the#1Cnt\endcsname}{#3}
 	\expandafter\renewcommand\csname the#1Cnt\endcsname{\thechapter.\arabic{#1Cnt}}
@@ -89,8 +95,8 @@
 \newnumbubble{axiom}{Axiom}{MidnightBlue}
 \newnumbubble{principle}{Principle}{MidnightBlue}
 
-\newnumbubble{lemma}{Lemma}{Orchid}
-\newnumbubble{theorem}{Theorem}{Orchid}
+\newnumbubble{lemma}{Lemma}{Periwinkle}
+\newnumbubble{theorem}{Theorem}{Periwinkle}
 \newnumbubble{example}{Example}{Mahogany}
 
 
