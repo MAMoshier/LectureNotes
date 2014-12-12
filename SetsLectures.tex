@@ -49,9 +49,9 @@ For our example of cards in a poker deck, ``rank of'' or ``suit of'' are two att
 In general, $\rank(x)$ and $\suit(x)$ pick out these attributes of any card $x$.
 Thus $\symb{Rank} = \{A,1,2,3,4,5,6,7,8,9,10,J,Q,K\}$ 
 and $\symb{Suit} = \{\clubsuit, \diamondsuit,\spadesuit,\heartsuit\}$ are also sets.
-There is little sense in saying that $\rank$ and $\suit$ are ``operations'', but they are functions \emph{from} $C$ to $R$ and $C$ to $S$, respectively.
+There is little sense in saying that $\rank$ and $\suit$ are ``operations'', but they are functions \emph{from} $\symb{Deck}$ to $\symb{Rank}$ and $\symb{Deck}$ to $\symb{Suit}$, respectively.
 
-The functions $\rank$ and $\suit$ capture some structure of the elements of $C$. In particular, for any rank $r$ and any suit $s$, there is exactly one card $c$ so that $\rank(c)=r$ and $\suit(c)=s$. 
+The functions $\rank$ and $\suit$ capture some structure of the elements of $\symb{Deck}$. In particular, for any rank $r$ and any suit $s$, there is exactly one card $c$ so that $\rank(c)=r$ and $\suit(c)=s$. 
 For example, if $\rank(c)=4$ and $\suit(c)=\spadesuit$, then we know exactly what $c$ must be. So the two functions, in a sense, explain what a card is. We will use functions and sets to discuss more complicated structures, but the idea will be very similar to this simple example.
 
 Taken together, sets and functions constitute a fundamental structure in contemporary mathematics called the \emph{Category of Sets and Functions}. 
@@ -79,20 +79,20 @@ has a special connotation in mathematics that we do not need here. Nevertheless,
 A set consists of things that are ``in'' the set. All other things are ``not in'' the set. In our running example, $A\spadesuit$ is in the set $C$, but $25$ is not in $C$. Let us make the idea precise.
 
 \begin{signature}\label{sig:SetSignature}
-  A \emph{set} is a mathematical entity $A$ with the following feature. 
-  For any thing $x$, either $x$ \emph{is in} $A$ or $x$ \emph{is not in} $A$. 
-  We write $x\in A$ if $x$ is in $A$ and $x\notin A$ if $x$ is not in $A$.
+  A \emph{set} is a mathematical entity $X$ with the following feature. 
+  For any thing $x$, either $x$ \emph{is in} $X$ or $x$ \emph{is not in} $X$. 
+  We write $x\in A$ if $x$ is in $X$ and $x\notin X$ if $x$ is not in $X$.
 
 The symbol $\in$ is used in mathematics exclusively to indicate membership in a set. 
 You will not see it used in any other way.  
 
 For variety, all of the following phrases mean the same thing:
 \begin{itemize}
-\item $x$ is in $A$
-\item $x$ is an \emph{element of} $A$
-\item $x$  is a \emph{member of} $A$
-\item $A$ \emph{contains} $x$
-\item $x$ \emph{belongs to} $A$
+\item $x$ is in $X$
+\item $x$ is an \emph{element of} $X$
+\item $x$  is a \emph{member of} $X$
+\item $X$ \emph{contains} $x$
+\item $x$ \emph{belongs to} $X$
 \end{itemize}
 \end{signature}
 
@@ -122,7 +122,7 @@ Here are some examples of sets built from finite lists:
 \item $\{4,5, \{\}, [\,]\}$ -- a set consisting of four elements. Note that
 the set $\{\}$ and the list $[\,]$ are not the same things.
 \item $\{1,2,3,4,3,2,1\}$ -- a set consisting of four elements, listing an element twice is redundant.
-\item The sets $C$, $R$ and $S$ from the introduction.
+\item The sets $\symb{Deck}$, $\symb{Rank}$ and $\symb{Suit}$ from the introduction.
 \end{itemize}
 \end{example}
 
@@ -132,8 +132,8 @@ of combinatorics later in the course.
 
 Various infinite sets of numbers also exist. Their existence follows from general principles
 of set theory. 
-We will not try to justify that explicitly.
-For now, we can introduce them informally alon with the standard symbols we use to denotet them.
+We do not try to justify that claim explicitly for now.
+Instead, we introduce them informally along with the standard symbols we use to denote them.
 
 \begin{defn}
 	The following sets are denoted by the special symbols:
@@ -147,7 +147,7 @@ For now, we can introduce them informally alon with the standard symbols we use 
 \end{defn}
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{firstexercise}
   \item Let $A = \{1,\{2,3\},4\}$. Determine which of the following assertions are true.
     \begin{enumerate}
     \item $1\in A$
@@ -163,74 +163,74 @@ For now, we can introduce them informally alon with the standard symbols we use 
   \item $\{1,2,4,8,\ldots, 256\}$
   \item $\{0,1,3, 6, 10,\ldots, 55\}$
   \end{enumerate}
-  \item $\bullet\in S$ (where $S$ is the finite set defined in the introduction).
-  \end{enumerate}
+  \item $\bullet\in \symb{Suit}$ (the finite set defined above).
+  \end{firstexercise}
 \end{exercises}
 
 \section{Subsets and Extensionality}
 
-Sets are meant to be bare collections. 
-For a set $A$, some things are in, some are not. 
+A set is meant to be a collection: some things are in, some are not. 
 That's all we can say.
 Unlike a list, a set has no ``initial'' element.
-For example, the set $\{1,2,3\}$ is the same as the set $\{2,3,1\}$, because both have the same elements. This is an important difference between
-lists and sets: $[1,2,3]$ and $[2,3,1]$ are \emph{not} the same lists because order matters in lists. 
+For example, the set $\{1,2,3\}$ is the same as the set $\{2,3,1\}$, because both have the same elements. This is one important difference between
+lists and sets: $[1,2,3]$ and $[2,3,1]$ are \emph{not} the same list because order matters in lists. 
 To make this precise, we need to be clear about when sets are equal. To help, we introduce an important definition.
 
 \begin{defn}
-  For sets $A$ and $B$, we say that \emph{$A$ is a subset of $B$} provided that every element of $A$ is an element of $B$. We 
-  write this as $A\subseteq B$, and say that \emph{$A$ is included in $B$}.  We may also write $B\supseteq A$ 
-  to mean the same thing, and say that \emph{$B$ is a superset of $A$}.
+  For sets $X$ and $Y$, we say that \emph{$X$ is a subset of $Y$} provided that every element of $X$ is an element of $Y$. We 
+  write this as $X\subseteq Y$, and say that \emph{$X$ is included in $Y$}.  We may also write $Y\supseteq X$ 
+  to mean the same thing, and say that \emph{$Y$ is a superset of $B$}.
 
-  If $A$ is \emph{not} a subset of $B$, we write $A\not\subseteq B$. If $A\subseteq B$ and $B\not\subseteq A$, then $A$ is called a
-  \emph{proper subset of $B$}. To indicate that $A$ is a \emph{proper} subset of $B$, we may write $A\subsetneq B$. Some people write $A\subset B$ for this situation, but we will never use that symbol.
+  If $X$ is \emph{not} a subset of $Y$, we write $X\not\subseteq Y$. If $X\subseteq Y$ and $Y\not\subseteq X$, then $X$ is called a
+  \emph{proper subset of $Y$}. To indicate that $X$ is a \emph{proper} subset of $Y$, we may write $X\subsetneq Y$. Some people write $X\subset Y$ for proper subsets, but we will never use that symbol.
 \end{defn}
 
-Saying $A\subseteq B$ is exactly the same as saying that for any $x$, if $x\in A$ then $x\in B$. Suppose now $P$ is the set of all professors, and $H$ is the set of all human beings. Then $P\subseteq H$ is the (perhaps dubious) assertion that ``all professors are human beings''. 
+To say $X\subseteq Y$ is exactly to say that for any $x$, if $x\in X$ then $x\in Y$. In plain English, we may translate it informally as ``all $X$s are $Y$s.'' For example, suppose $P$ is the set of all professors, and $H$ is the set of all human beings. Then $P\subseteq H$ is the (dubious) assertion that ``all professors are human beings''. 
 
 \begin{example}
   Here are some examples and counter-examples of the subset relation.
   \begin{itemize}
   \item $\{1,2,3\}\subseteq \{0,1,2,3\}$
   \item $\{\}\subseteq \{0\}$
-  \item $A\subseteq A$ for any set $A$ because, trivially, every
-    element of $A$ is an element of $A$
-  \item $\{\} \subseteq A$ for any set $A$ because every element of
-    $\{\}$ (there are none) is an element of $A$
+  \item $X\subseteq X$ for any set $X$ because, trivially, every
+    element of $X$ is an element of $X$
+  \item $\{\} \subseteq X$ for any set $X$ because every element of
+    $\{\}$ (there are none) is an element of $X$
   \item $\{1,2,3\}\not\subseteq \{0,2,3\}$ because $1\in \{1,2,3\}$
     but $1\notin \{0,2,3\}$
   \item $\{1,2,3\}\subseteq \{2,3,1\}$
   \item $\{\spadesuit\} \subseteq S$
   \end{itemize}
 \end{example}
+\printbreak
 
 \begin{exercises}
 	For each of the following pairs of sets, determine whether or
   not the first is a subset of the second. Explain your answer.
-  \begin{enumerate}[series=exercises]
+  \begin{nextexercise}
   \item $\{0,1\}$ and $\{1,0\}$
   \item $\{a,b,c,d\}$ and $\{a,b,d,e,c\}$
   \item $\{\}$ and $\{\{\}\}$
   \item $\{0,3,6,10\}$ and $\{10,9,8,7,6,5,4,2,1, 0\}$
-  \end{enumerate}
+  \end{nextexercise}
 \end{exercises}
+\printbreak
 
 We can summarize two useful properties of $\subseteq$ as follows.
 \begin{itemize}
-	\item{}[Reflexivity]  For any set $A$, $A \subseteq A$. We say $\subseteq$ is \emph{reflexive}.
-	\item{}[Transitivity] For any sets $A$, $B$ and $C$,
-	if $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$. We say $\subseteq$ is \emph{transitive}.
+	\item{}[Reflexivity]  For any set $X$, $X \subseteq X$. We say $\subseteq$ is \emph{reflexive}.
+	\item{}[Transitivity] For any sets $X$, $Y$ and $Z$,
+	if $X\subseteq Y$ and $Y\subseteq Z$, then $X\subseteq Z$. We say $\subseteq$ is \emph{transitive}.
 \end{itemize}
 Another familiar example of a reflexive, transitive
-relation is $\leq$ on the natural numbers. In fact there are many examples of reflexive transitive relations throughout mathematics. 
-
+relation is $\leq$ on the natural numbers. In fact there are many examples of reflexive, transitive relations throughout mathematics. 
 The relation $\leq$ is also \emph{anti-symmetric}, meaning that if $m\leq n$ and $n\leq m$ then $m=n$. 
-Suppose $A\subseteq B$ and $B\subseteq A$. Then, by definition $A$ and $B$ have the exact same elements.  By our understanding of sets as collections,
-$A$ and $B$ must be equal. So we state this as another axiom.
+Suppose $X\subseteq Y$ and $Y\subseteq X$. Then, by definition $X$ and $Y$ have exactly the same elements.  By our understanding of sets as collections,
+$X$ and $Y$ must be equal. So we state this as another axiom.
 
 \begin{principle}\label{ax:set-extensionality}
 [\textbf{The Axiom of Set Extensionality}]
-For sets $A$ and $B$, if $A\subseteq B$ and $B\subseteq A$, then $A=B$. In other words, $\subseteq$ is anti-symmetric.
+For sets $X$ and $Y$, if $X\subseteq Y$ and $Y\subseteq X$, then $X=Y$. In other words, $\subseteq$ is anti-symmetric.
 \end{principle}
 
 Based on this, we can already establish a useful fact: there is exactly one empty set. To set the tone for what follows, we make this a formal claim.
@@ -294,7 +294,7 @@ matter of drawing a smaller boundary around some of the elements as in the follo
 
 \begin{exercises}
 Draw depictions of the following sets
-  \begin{enumerate}[resume=exercises]
+  \begin{nextexercise}
   \item $\{1,4,5,2,3\}$
   \item $\{1,2,3,\ldots, 23\}$
   \item $\{a,b,c,d,e\}$ and $\{c,e,f,g\}$ on the same diagram
@@ -303,7 +303,7 @@ Draw depictions of the following sets
   \item $\{\bot,\top$
   \item $\{\bullet\}$
   \item $\{\top,\bot,3,5,1, \bullet\}$
-  \end{enumerate}
+  \end{nextexercise}
 \end{exercises}
 
 \chapter{Functions}
@@ -331,22 +331,22 @@ But it can also be seen as an attribute (the ``square of $x$'').
 The ``operational'' view is informal, and often useful.
 As we will see, though, it gets an important aspect of functions wrong because two entirely different operations may define the same function.
 
-Informally, a function ``takes'' an argument from a given set as input and ``produces'' an output in a given set.
+Informally, a function ``takes'' an element of a given set as input and ``produces'' an element of  a given set as output.
 So the function $f$ defined by $f(x)=x^2 + 2x + 1$ might ``take'' the natural number $2$ and ``produce'' the natural number $10$. 
 That is, $f(3)=3^2 + 1 = 10$. 
-We begin by introducing the vocabulary of functions.
+We begin by making this idea formal, introducing the vocabulary of functions.
 
 \begin{signature}
 	\begin{itemize}
-	\item For a set $A$ and a set $B$, there are things called \emph{functions from $A$ to $B$}, with a function $f$ from $A$ to $B$ being writing $\fromto fAB$ or $A\stackrel{f}{\to} B$. 
+	\item For a set $X$ and a set $Y$, there are things called \emph{functions from $X$ to $Y$}. We write $\fromto fXY$ or $A\stackrel{f}{\to} B$ to indicate that $f$ is a function from $X$ to $Y$. 
 
-	\item For $\fromto fAB$, the set $A$ is called the \emph{domain} of $f$ and $B$ is called the \emph{codomain} of $f$.
+	\item For $\fromto fXY$, the set $X$ is called the \emph{domain} of $f$ and $Y$ is called the \emph{codomain} of $f$.
 	
-	\item For any function $\fromto fAB$ and any element $a\in A$, $f$ and $a$ determine an element of $B$, written $f(a)$, and read ``$f$ of $a$''.
+	\item For any function $\fromto fXY$ and any element $a\in X$, $f$ and $a$ determine an element of $Y$, written $f(a)$, and read ``$f$ of $a$''.
 	\end{itemize}
 \end{signature}
 
-A functions may sometimes also be called a \emph{map}, a \emph{transformation}, or an \emph{operation}. 
+A function may sometimes also be called a \emph{map}, a \emph{transformation}, or an \emph{operation}. 
 As we will see, however, \emph{operation} is somewhat misleading, so we usually avoid it. 
 
 Often, a function $\fromto fAB$ is \emph{defined} by a rule, just as they are in other parts of mathematics. 
@@ -355,8 +355,9 @@ So we write things like
 \[f(x)=x^2 + 4x + 2\]
 to define a function $\fromto f\RR\RR$ (recall that $\RR$ is the set of real numbers).
 But sometimes it is useful to have a rule without giving it a name.
-To do that, we use the ``maps to'' arrow $\mapsto$.
-So we might define the same function $f$ by saying that \emph{$f$ is given by the rule $x\mapsto x^2 + 4x + 2$}. 
+To do that, we will use the ``maps to'' arrow $\mapsto$.
+So we may define the same function $f$ by saying that \emph{$f$ is given by the rule}
+	\[x\mapsto x^2 + 4x + 2.\]
 We will not go so far as to write $f = (x\mapsto x^2+4x+2)$ because this more easily understood by writing $f(x)=x^2+4x+2$.
 The rule $x\mapsto x^2  4x + 2$ is the same as the rule $y\mapsto y^2 + 4y + 2$. 
 The variable only serves as a place holder, so its particular name does not matter.
@@ -365,28 +366,25 @@ There are two fundamental (trivial) types of rules that can be used to build fun
 
 \begin{principle}
 	\begin{itemize}
-		\item For any set $A$, there is a function $\fromto {\id_A}AA$ defined by the rule $x\mapsto x$.
+		\item For any set $X$, there is a function $\fromto {\id_X}XX$ defined by the rule $x\mapsto x$.
 		This is called the \emph{identity} function on $A$.
-		\item For any two functions $\fromto fAB$ and $\fromto gBC$, there is a function $\fromto {g\circ f}AC$ defined by the rule $x\mapsto g(f(x))$.
-		This is called the composition of $g$ and $f$ (or sometimes ``$g$ following $f$'').
+		\item For any two functions $\fromto fXY$ and $\fromto gYZ$, there is a function $\fromto {g\circ f}XZ$ defined by the rule $x\mapsto g(f(x))$.
+		This is called the \emph{composition of $g$ and $f$} (or sometimes \emph{$g$ following $f$}).
 	\end{itemize}
 \end{principle}
 
-Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the codomain of $f$.
-Also, be careful about definitions like $f(x)=1/x$.
-This does not define a function on the real numbers because $f(0)$ is undefined.
-In other words, to be a function, $f$ must determine an element of the codomain for each and every element of the domain.
+Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches the \emph{codomain} of $f$.
 
 \begin{exercises}
-	\begin{enumerate}[resume=exercises]
-\item Suppose $\fromto fAB$, $\fromto gBC$ and $\fromto hCD$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
-from $A$ to $D$. Do you think they are equal? Explain your answer in a few clearly written sentences.	
-\end{enumerate}
+	\begin{firstexercise}
+\item Suppose $\fromto fWX$, $\fromto gXY$ and $\fromto hYZ$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
+from $W$ to $Z$. Do you think they are equal? Explain your answer in a few clearly written sentences.	
+\end{firstexercise}
 \end{exercises}
 
 \section{Internal Diagrams}
 
-To depict a function on small sets, we can use the simple internal diagrams of the last section. For example,
+To depict a function on small sets, we can use the simple internal diagrams of the last section with arrows indicating the input/output relationship. For example,
 \[
   \begin{tikzpicture}[
     >=stealth,
@@ -489,7 +487,7 @@ For example,
 	
 \begin{exercises}
 	Use internal diagrams for the following exercises.
-	\begin{enumerate}[resume=exercises]
+	\begin{nextexercise}
 		\item Depict four different functions from the set $\{1,2,3\}$ to the set $\{\bot,\top\}$. [Draw four different diagrams.]
 		\item Depict all of the functions from $\{\bullet\}$ to $\{a,b,c\}$
 		\item Depict all of the functions from $\{a,b,c\}$ to $\{\bullet\}$
@@ -576,13 +574,13 @@ For example,
 		Describe what you would do, and provide an example.
 		\item Suppose $\fromto f\RR\RR$ is given by the rule $x\mapsto x^2$, suppose $\fromto g\RR\RR$ is given
 		by the rule $x\mapsto x-1$. Write rules for $f\circ g$ and $g\circ f$ without using the symbols $f$ and $g$. Explain whether or not it is the case that $f\circ g = g\circ f$.
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \section{Extensionality}
 
-Just as for sets, we need a way to say when two functions are equal.
-Let $\NN$ denote the set of natural numbers. 
+As with sets, we need a way to say when two functions are equal. Consider an example.
+Recall that $\NN$ denotes the set of natural numbers. 
 Then define $\fromto f\NN\NN$ and $\fromto g\NN\NN$ by
 \begin{align*}
 f(n) &= n^2 +  2n + 1\\
@@ -593,38 +591,38 @@ So even though $f$ and $g$ are defined by different \emph{operations}, the two f
 As with sets, this leads to an axiom for equality of functions.
 
 \begin{principle}[\textbf{The Axiom of Function Extensionality}]
-	For functions $\fromto fAB$ and $\fromto gAB$, if it is the case that $f(x)=g(x)$ for all $x\in A$, then $f=g$.
+	For functions $\fromto fXY$ and $\fromto gXY$, if it is the case that $f(x)=g(x)$ for all $x\in X$, then $f=g$.
 	Note that equality of functions only makes sense when the two functions share the same domain and the same codomain.
 \end{principle}
 
-If we not concerned about the detailed internals of sets, but only with how functions interact, then a function can be depicted very simply as $A\stackrel{f}{\longrightarrow} B$.
+When we are not concerned about the detailed internals of sets, but only with how functions interact, then an individual function can be depicted very simply as $X\stackrel{f}{\longrightarrow} Y$.
 So a composition of functions can be depicted as in
 \[
 \tikzset{>=stealth}
 \begin{tikzpicture}[every node/.style={midway}]
 \matrix[column sep={4em,between origins},
         row sep={2em}] at (0,0)
-{ \node(A)   {$A$}  ; & \node(B) {$B$}; \\
-                      & \node(C) {$C$}; \\};
+{ \node(A)   {$X$}  ; & \node(B) {$Y$}; \\
+                      & \node(C) {$Z$}; \\};
 \draw[->] (A) -- (B) node[anchor=south]  {$f$};
 \draw[->] (B) -- (C) node[anchor=west]  {$g$};
 \draw[->,red] (A) -- (C) node[anchor=north east] {$g\circ f$};
 \end{tikzpicture}
 \]
-We do not really need to draw $g\circ f$ as a separate arrow because the \emph{path} from $A$ to $B$ to $C$ is already implicitly a depiction of $g\circ f$.
+We do not really need to draw $g\circ f$ as a separate arrow because the \emph{path} from $X$ to $Y$ to $Z$ is already implicitly a depiction of $g\circ f$.
 So the simpler diagram 
 \[
 \tikzset{>=stealth}
 \begin{tikzpicture}[every node/.style={midway}]
 \matrix[column sep={4em,between origins},
         row sep={2em}] at (0,0)
-{ \node(A)   {$A$}  ; & \node(B) {$B$}; \\
-                      & \node(C) {$C$}; \\};
+{ \node(A)   {$X$}  ; & \node(B) {$Y$}; \\
+                      & \node(C) {$Z$}; \\};
 \draw[->] (A) -- (B) node[anchor=south]  {$f$};
 \draw[->] (B) -- (C) node[anchor=west]  {$g$};
 \end{tikzpicture}
 \]
-shows the same information, namely, that $\fromto fAB$ and $\fromto gBC$ are functions and therefore, $\fromto {g\circ f}AC$ is too.
+shows the same information, namely, that $\fromto fXY$ and $\fromto gYZ$ are functions and therefore, $\fromto {g\circ f}XZ$ is too.
 
 Now a diagram such as this
 \[
@@ -632,8 +630,8 @@ Now a diagram such as this
 \begin{tikzpicture}[every node/.style={midway}]
 \matrix[column sep={4em,between origins},
         row sep={2em}] at (0,0)
-{ \node(A)   {$A$}  ; & \node(B) {$B$}; \\
-  \node(D)   {$D$}  ; & \node(C) {$C$}; \\};
+{ \node(A)   {$W$}  ; & \node(B) {$X$}; \\
+  \node(D)   {$Y$}  ; & \node(C) {$Z$}; \\};
 \draw[->] (A) -- (B) node[anchor=south]  {$f$};
 \draw[->] (B) -- (C) node[anchor=west]  {$g$};
 \draw[->] (A) -- (D) node[anchor=east] {$h$};
@@ -646,7 +644,7 @@ In other words, saying that a certain diagram commutes \emph{is} an assertion th
 
 
 \begin{exercises}
-\begin{enumerate}
+\begin{nextexercise}
 \item  For each of the following pairs of functions $\NN\to\NN$, determine whether they are equal and explain why or why not.
   \begin{enumerate}
   \item $f(n) = 2n + 3$ and $g(m) = 2m + 3$
@@ -656,11 +654,11 @@ In other words, saying that a certain diagram commutes \emph{is} an assertion th
   \end{enumerate}
 \item Let $\RR$ denote the set of all real numbers. Let $f(x) = \tan(x)$.
 Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
-\item Suppose the following functions exist: $\fromto fAB$, $\fromto gBC$, $\fromto aAD$, $\fromto bCD$. 
+\item Suppose the following functions exist: $\fromto fWX$, $\fromto gXY$, $\fromto aWZ$, $\fromto bYZ$. 
   Draw a commutative diagram asserting that $b\circ g\circ f = a$.
 \item Suppose the following functions exist: $\fromto fCA$, $\fromto gCB$, $\fromto hCP$, $\fromto pPA$ and $\fromto qPB$.
  Draw a commutative diagram asserting that $f=p\circ h$ and $g=q\circ h$.
-\end{enumerate}
+\end{nextexercise}
 \end{exercises}
 
 \chapter{Basic Building Blocks}
@@ -714,13 +712,13 @@ The particular choices we make here will be clearer as we put them to use.
 
 As mentioned above, the particular choice of elements is not important.
 Some folks would define $\One$ to be $\{0\}$ and $\Two$ to be $\{0,1\}$.
-This is convenient because the pattern continues: $\mathcal{3}$ would $\{0,1,2\}$, and so on.
+This is convenient because the pattern continues: $\mathcal{3}$ would be $\{0,1,2\}$, and so on.
 We, however, wish to emphasize other things that have nothing directly to do with the numbers $0$ and $1$ (as members of $\One$ and $\Two$).
 
 \section{Elements, Pointers and Constant Functions}
 
-Suppose we are told that $\fromto p\One A$ is a function.
-Since $\bullet\in\One$, this function determines an element of $A$, namely $p(\bullet)$.
+Suppose we are told that $\fromto p\One X$ is a function.
+Since $\bullet\in\One$, this function determines an element of $X$, namely $p(\bullet)$.
 A picture of the situation might be this:
 \[
   \begin{tikzpicture}[
@@ -754,87 +752,87 @@ A picture of the situation might be this:
     \draw[projection] (p) -- (a3);
   \end{tikzpicture}
 \]
-Since $\One$ has only a single element, it can ``point'' only to a single element of $A$.
-So we might refer to a function $\One\to A$ as a \emph{pointer} into $A$.
-Each pointer determines an element of $A$. 
-And conversely, it should be possible to point to any element of $A$. 
+Since $\One$ has only a single element, it can ``point'' only to a single element of $X$.
+So we might refer to a function $\One\to X$ as a \emph{pointer} into $X$.
+Each pointer determines an element of $X$. 
+And conversely, it should be possible to point to any element of $X$. 
 This leads to our first principle guaranteeing that certain (nearly trivial) functions exist.
 
 \begin{principle}\label{ax:pointers}
-	For any set $A$, and any $a\in A$, there is a function $\fromto {\hat a}\One A$ given by the rule $x\mapsto = a$.
+	For any set $X$, and any $a\in X$, there is a function $\fromto {\hat a}\One X$ given by the rule $x\mapsto a$.
 \end{principle}
 
 Thus the function depicted above is $\hat{2}$. 
-In effect, this principle simply asserts that elements of a set $A$ and functions $\One\to A$ are interchangible: from $a\in A$ we get $\fromto {\hat{a}}\One A$; from $\fromto p\One A$.
+In effect, this principle simply asserts that elements of a set $X$ and functions $\One\to X$ are interchangible: from $a\in X$ we get $\fromto {\hat{a}}\One X$; from $\fromto p\One X$.
 we get the element $p(\bullet)$.
 
 This principle also justifies the drawing of internal diagrams for pointers, like the one above, because it means that any such diagram is guaranteed to depict an actual function. 
 
-Suppose $\fromto fA\One$ and $\fromto gA\One$ are functions, that is, their \emph{codomain} is $\One$ instead their \emph{domain}. 
-Then $f(a)=g(a)$ is true for every $a\in A$ because $\bullet$ is the only possible value: $f(a) = \bullet = g(a)$. 
+Suppose $\fromto fX\One$ and $\fromto gX\One$ are functions, that is, their \emph{codomain} is $\One$ instead their \emph{domain}. 
+Then $f(a)=g(a)$ is true for every $a\in X$ because $\bullet$ is the only possible value: $f(a) = \bullet = g(a)$. 
 So $f=g$ by the Principle of Function Extensionality.
-In other words, there is at most one function from $A$ to $\One$.
+In other words, there is at most one function from $X$ to $\One$.
 But the rule $x\mapsto \bullet$ is as simple a rule as one can imagine. 
 This leads to another definition and another principle.
 
 \begin{defn}\label{def:terminal}
-	A set $T$ is \emph{terminal} if it is the case that for any set $A$ there is exactly one function from $A$ to $T$.
+	A set $T$ is \emph{terminal} if it is the case that for any set $X$ there is exactly one function from $X$ to $T$.
 \end{defn}
 
 \begin{principle}
 	The set $\One$ is a terminal set. 
-	We denote the unique function from $A$ to $\One$ by $\fromto {\Diamond_A}{A}\One$.
+	We denote the unique function from $X$ to $\One$ by $\fromto {\Diamond_X}{X}\One$.
 	
-	The rule defining $\Diamond_A$ must be
+	The rule defining $\Diamond_X$ must be
 	\[x\mapsto\bullet.\]
 \end{principle}
 
-Using $\Diamond_A$ and $\hat{b}$ for an element $b\in B$, we can now define a constant function. 
-That is $\hat{b}\circ\Diamond_A$ is a function from $A$ to $B$ given by the rule
-$x\mapsto \hat{b}(\Diamond_A(x))$. But since $\hat{b}(\Diamond_A(x))= \hat{b}(\bullet) = b$, the rule simplifies to $x\mapsto b$. 
-In short, this is the function sending any element of $A$ to the constant $b$. 
+Using $\Diamond_X$ and $\hat{b}$ for an element $b\in Y$, we can now define a constant function. 
+That is $\hat{b}\circ\Diamond_X$ is a function from $X$ to $Y$ given by the rule
+$x\mapsto \hat{b}(\Diamond_X(x))$. But since $\hat{b}(\Diamond_X(x))= \hat{b}(\bullet) = b$, the rule simplifies to $x\mapsto b$. 
+In short, this is the function sending any element of $X$ to the constant $b$. 
 
 \begin{exercises}
-	\begin{enumerate}
-		\item Show that for any pointer $\fromto p\One A$, it is the case that $\widehat{p(\bullet)}=p$.
+	\begin{firstexercise}
+		\item Show that for any pointer $\fromto p\One X$, it is the case that $\widehat{p(\bullet)}=p$.
 		\item Show that any set with exactly one element is a terminal set.
-		\item Suppose that $\fromto fAB$ is a function. Show that for every $a\in A$, $\widehat{f(a)} = f\circ \hat{a}$.
-	\end{enumerate}
+		\item Suppose that $\fromto fXY$ is a function. Show that for every $a\in A$, $\widehat{f(a)} = f\circ \hat{a}$.
+	\end{firstexercise}
 \end{exercises}
 
 \section{The Empty Set}
 
 For trivial reasons, there is at most one function from $\emptyset$ to $A$,
 for any set $A$. That is,  if $\fromto {f,g}\emptyset A$ are functions, then
-for each $x\in\emptyset$, $f(x)=g(x)$ because there are no $x$'s to concern us. Hence by Principle \ref{ax:FunctionExtensionality}, $f=g$. The empty ``rule'' that tells us to do nothing actually specifies a function from $\emptyset$ to $A$. So for any set $A$, there is exactly one function from $\emptyset$ to $A$. Let's make that official.
+for each $x\in\emptyset$, $f(x)=g(x)$ because there are no $x$'s to concern us. Hence by Principle \ref{ax:FunctionExtensionality}, $f=g$. The empty ``rule'' that tells us to do nothing actually specifies a function from $\emptyset$ to $X$. So for any set $X$, there is exactly one function from $\emptyset$ to $X$. Let's make that official.
 
 \begin{defn}
-	An \emph{initial set} is a set $I$ so that for any set $A$, there is exactly one function from $I$ to $A$.
+	An \emph{initial set} is a set $I$ so that for any set $X$, there is exactly one function from $I$ to $X$.
 \end{defn}
 
 \begin{principle}
-	The emptyset $\emptyset$ is an initial set. For a set $A$, the unique
-	function from $\emptyset$ to $A$ (given by the empty rule) may be denoted by 
-	$\fromto {\Box_A}\emptyset A$.
+	The emptyset $\emptyset$ is an initial set. For a set $X$, the unique
+	function from $\emptyset$ to $X$ (given by the empty rule) may be denoted by 
+	$\fromto {\Box_A}\emptyset X$.
 \end{principle}
 
-Notice that a function $A\to\emptyset$ is impossible unless $A$ is also empty.
+Notice that a function $X\to\emptyset$ is impossible unless $X$ is also empty.
 So $\emptyset$ is the only initial set. 
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item How many functions are there from $\emptyset$ to $\{a,b,c,d\}$? Explain.
 		\item How many functions are there from $\{a,b,c,d\}$ to $emptyset$? Explain.
 		\item How many functions are there from $\One$ to $\{a,b,c,d\}$? Explain.
 		\item How many functions are there from $\{a,b,c,d\}$ to $\One$? Explain.
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \section{Solution Sets, Subsets, Characteristic Functions}
 
-Suppose we are given two functions that are ``parallel'': $\fromto fAB$ and $\fromto gAB$. 
-To aid readability, we will write this as $A\doublerightarrow{f}{g}B$.
-For some values $a\in A$, it might be the case that $f(a)=g(a)$.
+Suppose we are given two functions that are ``parallel'': $\fromto fXY$ and $\fromto gXY$. 
+To aid readability, we will write this as $X\doublerightarrow{f}{g}Y$.
+For some values $a\in X$, it might be the case that $f(a)=g(a)$.
 We may call such a value a \emph{particular solution to the equation $f(x)=g(x)$}. 
 
 It might be the case that there are no particular solutions to an equation $f(x)=g(x)$.
@@ -846,47 +844,35 @@ In fact, these three are the only particular solutions.
 We generalize as follows.
 
 \begin{defn}\label{def:equalizer} 
-	For two functions $A\doublerightarrow{f}{g} B$, a \emph{general solution} is a function $\fromto sCA$ so that 
-	\[f\circ s = g\circ s.\]
-	Thus for example, if $a\in A$ is a particular solution then the pointer $\hat a$ is a general solution.
+	For two functions $X\doublerightarrow{f}{g} Y$, a \emph{solution} is a function $\sfromto sSX$ so that 
+	$f\circ s = g\circ s$.
+	Thus for example, if $a\in A$ is a particular solution then the pointer $\hat a$ is a solution.
 
-	For functions $A\doublerightarrow{f}{g} B$, an \emph{equalizer} is general solution $\fromto eEA$ so that for any general solution $\fromto sCA$, there is exactly one function $\fromto hCE$ so that \[e\circ h = k.\]
+	For functions $A\doublerightarrow{f}{g} B$, an \emph{equalizer} is a solution $\sfromto eEX$ so that for any solution $\sfromto sSX$, there is exactly one function $\sfromto hSE$ so that $e\circ h = k$.
 \end{defn}
 
 \begin{principle}
-	For functions $A\doublerightarrow{f}{g} B$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in A\st f(x) = g(x)\}$. 	
-	The function $\fromto i{\{x\in A\st f(x)=g(x)\}}A$ given by the rule $x\mapsto x$ (called an \emph{inclusion map}) is an equalizer for $f$ and $g$.
+	For functions $X\doublerightarrow{f}{g} Y$, the collection of all particular solutions to the equation $f(x)=g(x)$ form a set, denoted by $\{x\in X\st f(x) = g(x)\}$. 	
+	The function $\sfromto i{\{x\in X\st f(x)=g(x)\}}A$ given by the rule $x\mapsto x$ (called an \emph{inclusion map}) is an equalizer for $f$ and $g$.
 	
-	If $\fromto sCA$ is a general solution of  $f(x)=g(x)$, that is, $f\circ s = g\circ s$,
-	then the function $\fromto {\check s}C{\{x\in A\st f(x)=g(x)\}}$ given by the rule 
+	If $\sfromto sSX$ is a solution (that is, $f\circ s = g\circ s$),
+	then the function $\sfromto {\check s}C{\{x\in A\st f(x)=g(x)\}}$ given by the rule 
 	\[x\mapsto s(x)\]
 	is the unique function for which $s = i\circ \check s$. 
 \end{principle}
 
 This axiom tells us three main things.
-First, we can form a subset of $A$ by specifying an equation $f(x)=g(x)$ for any two functions $A\doublerightarrow{f}{g}B$, and picking out the particular solutions.
-Second, a subset formed in this way ``embeds'' in the given set $A$ by its inclusion map $i$.
+First, we can form a subset of $X$ by specifying an equation $f(x)=g(x)$ for any two functions $X\doublerightarrow{f}{g}Y$, and picking out the particular solutions.
+Second, a subset formed in this way ``embeds'' in the given set $X$ by its inclusion map $i$.
 Third, for any solution $s$, the function into the set of particular solutions is defined by the same rule as $s$.
 
-External diagrams help us understand equalizers. A general solution of $X\doublerightarrow{f}{g}Y$ can be depicted by saying that the following diagram commutes 
-
+External diagrams help us understand equalizers. 
+An equalizer is a solution
 \[
 \begin{tikzpicture}
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
-	\node (A) {$A$}; & \node (B) {$B$};\\
-};
-\draw[->] (A.10) -- node[anchor=south]  {$f$} (B.170) ;
-\draw[->] (A.350) -- node[anchor=north]  {$g$} (B.190);
-\end{tikzpicture}
-\]
-
-Then an equalizer is a general solution
-\[
-\begin{tikzpicture}
-\matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
-{
-	\node (E) {$E$}; & \node (A) {$A$}; & \node (B) {$B$};\\
+	\node (E) {$E$}; & \node (A) {$X$}; & \node (B) {$Y$};\\
 };
 \draw[->, green] (E.east) -- node[anchor=north] {$e$} (A.west); 
 \draw[->] (A.10) -- node[anchor=south]  {$f$} (B.170) ;
@@ -899,7 +885,7 @@ so that if
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
 	\node (S) {$S$};\\
-	\node (E) {$E$}; & \node (A) {$A$}; & \node (B) {$B$};\\
+	\node (E) {$E$}; & \node (A) {$X$}; & \node (B) {$Y$};\\
 };
 \draw[->, red] (S.south east) -- node[anchor=south] {$s$} (A.north west);
 \draw[->, blue] (E.east) -- node[anchor=north] {$e$} (A.west); 
@@ -907,13 +893,13 @@ so that if
 \draw[->] (A.350) -- node[anchor=north]  {$g$} (B.190);
 \end{tikzpicture}
 \]
-also commutes (that is, $\fromto sSA$ is a general solution), then there is exactly one function making
+is also a solution ($f\circ s=g\circ s$), then there is exactly one function making
 \[
 \begin{tikzpicture}
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
 	\node (S) {$S$};\\
-	\node (E) {$E$}; & \node (A) {$A$}; & \node (B) {$B$};\\
+	\node (E) {$E$}; & \node (A) {$X$}; & \node (B) {$Y$};\\
 };
 \draw[->,ForestGreen] (S.south) -- node[anchor=east] {$\check s$} (E.north);
 \draw[->, red] (S.south east) -- node[anchor=south] {$s$} (A.north west);
@@ -924,17 +910,19 @@ also commutes (that is, $\fromto sSA$ is a general solution), then there is exac
 \]
 commute.
 
-Suppose $c\in C$ and $\fromto fAC$ is a function, then we can form the equalizer of $f$ and the constant function $\hat{c}\circ\Diamond_A$.
-This is more easily written we $\{x\in A\st f(x)=c\}$.
-Since it common to pick out sets like this, special notation is in order.
+\subsection*{Inverse Images}
+
+Suppose $c\in Y$ and $\sfromto fXY$ is a function, then we can form the equalizer of $f$ and the constant function $\hat{c}\circ\Diamond_X$.
+This is more easily written we $\{x\in X\st f(x)=c\}$.
+Since it is common to pick out sets like this, special notation is in order.
 
 \begin{defn}\label{def:inverse-image}
-	For a function $\fromto fAC$, and a value $c\in C$, 
-	\[f^-(c) = \{x\in A\st f(x)=c\}.\] 
+	For a function $\sfromto fXY$, and a value $c\in Y$, 
+	\[f^-(c) = \{x\in X\st f(x)=c\}.\] 
 	In this case, $f^-(c)$ is called the \emph{inverse image of $c$ with respect to $f$}.
 \end{defn}
 
-A diagram can help understand inverse images. Suppose $\fromto fAC$ and $c\in C$,
+A diagram can help understand inverse images as well. Suppose $\fromto fXY$ and $c\in C$,
 then we can arrange a diagram 
 
 \[
@@ -942,13 +930,13 @@ then we can arrange a diagram
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
 	& \node (one) {$\One$};\\
-	\node (A) {$A$}; & \node (C) {$C$};\\
+	\node (A) {$X$}; & \node (C) {$Y$};\\
 };
 \draw[->] (A.east) -- node[anchor=north]  {$f$} (C.west) ;
 \draw[->] (one.south) -- node[anchor=east]  {$\hat c$} (C.north);
 \end{tikzpicture}
 \]
-The inverse image is a subset of $A$ with an inclusion map that makes the following diagram commute:
+The inverse image is a subset of $X$ with an inclusion map that makes the following diagram commute:
 \[
 \begin{tikzpicture}
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
@@ -959,15 +947,15 @@ The inverse image is a subset of $A$ with an inclusion map that makes the follow
 \draw[->] (A.east) -- node[anchor=north]  {$f$} (C.west) ;
 \draw[->] (one.south) -- node[anchor=west]  {$\hat c$} (C.north);
 \draw[->,blue] (inv.south) -- node[anchor=east] {$i$} (A.north);
-\draw[->,blue] (inv.east) -- node[anchor=north] {$\Diamond_{f^-(c)}$} (one.west);
+\draw[->,blue] (inv.east) -- node[anchor=south] {$\Diamond_{f^-(c)}$} (one.west);
 \end{tikzpicture}
 \]
-For any other functions that make following diagram commute:
+For any other function $\sfromto gWX$ that makes following diagram commute:
 \[
 \begin{tikzpicture}
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
-	\node (B) {$B$};\\
+	\node (B) {$W$};\\
 	&\node (inv) {$f^-(c)$}; & \node (one) {$\One$};\\
 	&\node (A) {$A$}; & \node (C) {$C$};\\
 };
@@ -976,59 +964,61 @@ For any other functions that make following diagram commute:
 \draw[->,blue] (inv.south) -- node[anchor=east] {$i$} (A.north);
 \draw[->,blue] (inv.east) -- node[anchor=north] {$\Diamond_{f^-(c)}$} (one.west);
 \draw[->,red] (B.south) -- node[anchor=east] {$g$} (A.north west);
-\draw[->,red] (B.east) -- node[anchor=south] {$\Diamond_B$} (one.north west);
+\draw[->,red] (B.east) -- node[anchor=south] {$\Diamond_W$} (one.north west);
 \end{tikzpicture}
 \]
-there is a unique function $\fromto {\check g}B{f^-(c)}$ making
+there is a unique function $\sfromto {\check g}B{f^-(c)}$ making
 \[
 \begin{tikzpicture}
 \matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 {
-	\node (B) {$B$};\\
+	\node (B) {$W$};\\
 	&\node (inv) {$f^-(c)$}; & \node (one) {$\One$};\\
-	&\node (A) {$A$}; & \node (C) {$C$};\\
+	&\node (A) {$X$}; & \node (C) {$Y$};\\
 };
 \draw[->] (A.east) -- node[anchor=north]  {$f$} (C.west) ;
 \draw[->] (one.south) -- node[anchor=west]  {$\hat c$} (C.north);
 \draw[->,blue] (inv.south) -- node[anchor=east] {$i$} (A.north);
 \draw[->,blue] (inv.east) -- node[anchor=north] {$\Diamond_{f^-(c)}$} (one.west);
 \draw[->,red] (B.south) -- node[anchor=east] {$g$} (A.north west);
-\draw[->,red] (B.east) -- node[anchor=south] {$\Diamond_B$} (one.north west);
+\draw[->,red] (B.east) -- node[anchor=south] {$\Diamond_W$} (one.north west);
 \draw[->, ForestGreen] (B.south east) -- node[anchor=west] {$\check g$} (inv.north west);
 \end{tikzpicture}
 \]
 commute.
 
 
-In Definition \ref{def:inverse-image}, the set $f^-(c)$ is a subset of $A$.
-It would be good to know that any subset of $A$ can be described as an inverse image.
+In Definition \ref{def:inverse-image}, the set $f^-(c)$ is a subset of $X$.
+It would be good to know that any subset of $X$ can be described as an inverse image.
 This is where the set $\Two$ plays a role.
 
 \begin{defn}\label{def:subset-classifier}
-	A \emph{subset classifier} is a set $S$ with a distinguished element $t\in S$ so that for any set $A$ and any subset $B\subseteq A$, there is exactly one function $\fromto kAT$ for which $B = k^-(t)$.
-	That is, $B$ is uniquely defined as the inverse image of $t$ with respect to a function into $S$.
+	A \emph{pointed set} is a set $P$ with a distinguished element $p\in P$.
+	
+	A \emph{subset classifier} is a set $T$ with a distinguished element $t\in T$ so that for any set $X$ and any subset $A\subseteq X$, there is exactly one function $\fromto kXT$ for which $A = k^-(t)$.
+	That is, $A$ is uniquely defined as the inverse image of $t$ with respect to a function into $T$.
 \end{defn}
 
 \begin{principle}\label{ax:subset-char}
 	The set $\Two$ with the distinguished element $\top$ is a subset classifier.
-	For subset $B\subseteq A$, the function corresponding to $B$, called the \emph{characteristic function of $B$}, is denoted by $\kappa_B$.
-	In other words, $\kappa_B$ is the unique function for which $B = \kappa_B^-(\top)$.
+	For subset $A\subseteq X$, the function corresponding to $A$, called the \emph{characteristic function of $A$}, is denoted by $\kappa_A$.
+	In other words, $\kappa_A$ is the unique function for which $A = \kappa_A^-(\top)$.
 
-	For $B\subseteq A$, the characteristic function is defined by the rule
+	For $A\subseteq X$, the characteristic function is defined by the rule
 	\[
 	x \mapsto
 		\begin{cases}
-			\top &\text{ if } x\in B\\
+			\top &\text{ if } x\in A\\
 			\bot &\text{ otherwise}
 		\end{cases}
 	\]
 \end{principle}
 
-Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $\One\to A$ are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $A$ and the functions $A\to\Two$ are interchangeable.
+Just as Principle \ref{ax:pointers} asserts that elements of $X$ and functions $\One\to X$ are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $X$ and the functions $X\to\Two$ are interchangeable.
    
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 	\item Draw a depiction of $A=\{a,b,c,d,e,f,g\}$ and its subset $B=\{a,c,e,g\}$ in the same internal diagram. Now depict the characteristic map for $B$ as a subset of $A$.
 	
 	\item Define two functions $\NN\doublerightarrow{f}{g}\NN$ so that the set of particular solutions fo $f(x)=g(x)$ is $\{1,5\}$. 
@@ -1044,7 +1034,7 @@ Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $
 	\matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 	{
 		\node (one) {$\One$};\\
-		\node (S) {$S$};\\
+		\node (S) {$T$};\\
 	};
 	\draw[->] (one.south) -- node[anchor=west]  {$\hat t$} (S.north);
 	\end{tikzpicture}
@@ -1063,7 +1053,7 @@ Just as Principle \ref{ax:pointers} asserts that elements of $A$ and functions $
 		\end{tikzpicture}
 		\]
 	What additional function is required to exist? What properties is it required to have? [Hint: the result should be that $A$ is an inverse image.]
-	\end{enumerate}
+	\end{nextexercise}
 		
 \end{exercises}
 
@@ -1079,42 +1069,42 @@ What makes this work is that points in the plane \emph{project} onto the two axe
 Products of sets generalize this idea.
 
 \begin{defn}
-For sets $A$ and $B$, a \emph{table} consists of two functions $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$.
+For sets $X$ and $Y$, a \emph{table} consists of two functions $X\stackrel{f}{\longleftarrow} T\stackrel{g}{\longrightarrow}Y$.
 Note that the two functions have the same domain. We may call the two functions \emph{legs} of the table.
 
-For sets $A$ and $B$, a \emph{product of $A$ and $B$} is a table $A\stackrel{p}{\longleftarrow} P\stackrel{q}{\longrightarrow}B$ so that for any table $A\stackrel{f}{\longleftarrow} C\stackrel{g}{\longrightarrow}B$ there is exactly one function $\fromto hCP$ for which $f = p\circ h$ and $g= q\circ h$. 
+For sets $X$ and $Y$, a \emph{product of $X$ and $Y$} is a table $X\stackrel{p}{\longleftarrow} P\stackrel{q}{\longrightarrow}Y$ so that for any table $X\stackrel{f}{\longleftarrow} T\stackrel{g}{\longrightarrow}Y$ there is exactly one function $\sfromto hTP$ for which $f = p\circ h$ and $g= q\circ h$. 
 For a product, the legs $p$ and $q$ are called the \emph{projections}.
 \end{defn}
 
 \begin{principle}\label{ax:products}
-	For sets $A$ and $B$, the collection of all pairs $(a,b)$ where $a\in A$ and $b\in B$ is a set, denoted by $A\times B$. 
-	The functions $A\stackrel{\pi_0}{\longleftarrow}{A\times B}\stackrel{\pi_1}{\longrightarrow}B$ given by the rules $(a,b)\mapsto a$
-	and $(a,b)\mapsto b$ are projections. For $A\stackrel{f}{\longleftarrow}{C}\stackrel{g}{\longrightarrow}B$, the unique function required by
+	For sets $X$ and $Y$, the collection of all pairs $(x,y)$ where $x\in X$ and $y\in Y$ is a set, denoted by $X\times Y$. 
+	The functions $X\stackrel{\pi_0}{\longleftarrow}{X\times Y}\stackrel{\pi_1}{\longrightarrow}Y$ given by the rules $(x,y)\mapsto x$
+	and $(x,y)\mapsto y$ are projections. For $X\stackrel{f}{\longleftarrow}{T}\stackrel{g}{\longrightarrow}Y$, the unique function required by
 	the product may be denoted by $\langle f,g\rangle$.
 
-	For $A\stackrel{f}{\longleftarrow}{C}\stackrel{g}{\longrightarrow}B$, the function $\fromto {\langle f,g\rangle}C{A\times B}$ is defined by the rule $\langle f,g\rangle(x)=(f(x),g(x))$.
+	For $X\stackrel{f}{\longleftarrow}{T}\stackrel{g}{\longrightarrow}Y$, the function $\sfromto {\langle f,g\rangle}T{X\times Y}$ is given by the rule $t\mapsto(f(t),g(t))$.
 \end{principle}
 
-As with equalizers and inversee images, products can be described in terms of diagrams.
+As with equalizers and inverse images, products can be described in terms of diagrams.
 
-A product of $A$ and $B$ is depicted as a diagram
+A product of $X$ and $Y$ is depicted as a diagram
 	\[
 	\begin{tikzpicture}
 	\matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 	{
-		\node (A) {$A$}; & \node (P) {$P$}; & \node (B) {$B$};\\
+		\node (A) {$X$}; & \node (P) {$P$}; & \node (B) {$Y$};\\
 	};
 	\draw[->, blue] (P.west) -- node[anchor=north] {p} (A.east);
 	\draw[->, blue] (P.east) -- node[anchor=north] {q} (B.west);
 	\end{tikzpicture}
 	\]
-so that for any other table over $A$ and $B$:
+so that for any other table over $X$ and $Y$:
 	\[
 	\begin{tikzpicture}
 	\matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 	{
-		&\node (C) {$C$};\\
-		\node (A) {$A$}; & \node (P) {$P$}; & \node (B) {$B$};\\
+		&\node (C) {$T$};\\
+		\node (A) {$X$}; & \node (P) {$P$}; & \node (B) {$Y$};\\
 	};
 	\draw[->,red] (C.south west) -- node[anchor=south east] {$f$} (A.north east);
 	\draw[->,red] (C.south east) -- node[anchor=south west] {$g$} (B.north west);
@@ -1127,8 +1117,8 @@ there is a unique function making
 	\begin{tikzpicture}
 	\matrix (m) [row sep=3em,column sep=4em,minimum width=2em]
 	{
-		&\node (C) {$C$};\\
-		\node (A) {$A$}; & \node (P) {$P$}; & \node (B) {$B$};\\
+		&\node (C) {$T$};\\
+		\node (A) {$X$}; & \node (P) {$P$}; & \node (B) {$Y$};\\
 	};
 	\draw[->,ForestGreen] (C.south) -- node[anchor=north east] {$\langle f,g\rangle$} (P.north);
 	\draw[->,red] (C.south west) -- node[anchor=south east] {$f$} (A.north east);
@@ -1139,32 +1129,32 @@ there is a unique function making
 	\]
 commute.		
 
-Suppose we are given two unrelated functions $\fromto fAB$ and $\fromto gCD$. 
-We can now form a single function from $A\times C$ to $B\times D$ by combining $f$ and $g$ ``independently''. 
+Suppose we are given two unrelated functions $\sfromto fXY$ and $\sfromto gAB$. 
+We can now form a single function from $X\times A$ to $Y\times B$ by combining $f$ and $g$ ``independently''. 
 That is, define $f\times g = \langle f\circ \pi_0,g\circ \pi_1\rangle$.
 Calculating concretely in terms of elements $(f\times g)(x,y) = (f(x),g(y))$. 
 So $f\times g$ acts on a pair $(x,y)$ by applying $f$ to $x$ and unrelatedly applying $g$ to $y$. 
 
 Products can by generalized to three, four or more sets.
-For example, given sets $A$, $B$ and $C$, we might write $A\times B\times C$ for the set of triples $(a,b,c)$ where $a\in A$, $b\in B$ and $c\in C$. 
+For example, given sets $X$, $Y$ and $Z$, we might write $X\times Y\times Z$ for the set of triples $(x,y,z)$ where $x\in X$, $y\in Y$ and $z\in Z$. 
 Instead of two projections, this would have three projections $(x,y,z)\mapsto x$, and so on. 
-It turns out, however, that binary products are enough because $A\times (B\times C)$ behaves just like $A\times B\times C$.
+It turns out, however, that binary products are enough because $X\times (Y\times Z)$ behaves just like $X\times Y\times Z$.
 
 \begin{exercises}
-	\begin{enumerate}
-		\item For the sets $A = \{a,b,c\}$ and $B = \{1,2,3,4\}$, calculate $A\times B$ and $B\times A$
+	\begin{nextexercise}
+		\item For the sets $A = \{a,b,c\}$ and $B = \{1,2,3,4\}$, write out $A\times B$ and $B\times A$
 		\item What is $\emptyset \times A$? 
-		\item Calculate $\{4,a,0\}\times \Two$.
+		\item Write out $\{4,a,0\}\times \Two$.
 		\item Describe in plain English what are the elements of $\NN\times \NN$.
 		\item Suppose $A$ is a finite set with $m$ elements and $B$ is a finite set with $n$ elements.
 		How many elements are in $A\times B$?
 		\item Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
-		\item For sets $A=\{a,b\}$, $B=\{0,1,2\}$ and $C=\{c,d\}$, calculate $A\times B\times C$, $A\times (B\times C)$ and $(A\times B)\times C$.
-		\item Describe the standard fifty-two card poker deck as a product of two sets.
-	\end{enumerate}
+		\item For sets $A=\{a,b\}$, $B=\{0,1,2\}$ and $C=\{c,d\}$, calculate $A\times B\times C$, $A\times (B\times C)$ and $(A\times B)\times C$. Are these sets equal? If not, how do they differ.
+		\item Describe a model of the standard fifty-two card poker deck as a product of two sets.
+	\end{nextexercise}
 \end{exercises}
 
-\section{Function Sets}
+\section{Function Sets and Parametric Functions}
 
 A function from $A$ to $B$ might depend on a parameter from $C$. 
 For example, the function $\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
@@ -1179,7 +1169,7 @@ This leads to the following definition.
 	Suppose $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
 	Then we can form another parametric function with parameters in $C$ by composition: $f\circ (k\times \id_A)$.
 	We may refer to $k$ as a \emph{change of parameters} function because $k$ transforms the parametric function with parameters in $D$ into a parametric function with parameters in $C$. 
-	Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$. 
+	Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$.
 	
 	An \emph{evaluation map} for $A$ and $B$ is a parametric function $\fromto a{F\times A}B$, so that for any 
 	parametric function $\fromto g{C\times A}B$ there is exactly one change of parameters $\fromto hCF$ so that
@@ -1223,7 +1213,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
  
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item  For set $A= \{1,2,3\}$ and $B = \{a,b\}$ 
 			\begin{enumerate}
 				\item draw internal diagrams corresponding to each element of $B^A$ (there are eight of them);
@@ -1233,7 +1223,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 		\item Consider the function $\fromto f{\NN\times\NN}\NN$ defined by
 		      $f(m,n) = m^n$. What function is $\curry[f](3)$? Use $\lambda$ notation to describe it.
 		\item Use $\lambda$ notation to describe a function from $\NN$ to $\NN$ that quadruples the square of the input.
-	\end{enumerate}	
+	\end{nextexercise}	
 \end{exercises}
 
 %\section{Universal Constructions}
@@ -1331,9 +1321,9 @@ That is, $F_{\Gamma_f}(x)=y$ if and only if $x\mathrel{\Gamma_f} y$ if and only 
 So functions from $\fromto fXY$ correspond exactly to functional relations from $R\subseteq X\times Y$.
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item Define $T\subseteq \RR\times \RR$ by $x\mathrel{T} y$ if and only if $\tan x = y$. Is $T$ deterministic? Is it total?
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
@@ -1499,12 +1489,12 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 \end{example}
 
 \begin{exercises}
-\begin{enumerate}
+\begin{firstexercise}
 	\item For a given function $\fromto f\NN\NN$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
 	\item Find a primitive recurrence that defines the function from $\NN\times \NN$ to $\NN$ given by the rule $(m,n)\mapsto m^n$.
 	\item Define the operation of \emph{monus} $m\stackrel{.}{-} n$ to be $m-n$ when $m \geq n$ and to be $0$ otherwise by  a primitive recurrence.
 	\item Define the factorial function by primitive recursion.
-\end{enumerate}
+\end{firstexercise}
 \end{exercises}
 
 \section{Lists}
@@ -1543,14 +1533,14 @@ The structure of this set is similar to $\NN$.
 
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defines the function
 			\[\fromto {\map[f]}{\List[A]}{\List[B]}\] so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
 		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do the job, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$-recurrence to define a function $\fromto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) define $L\star M$ to be $c(M)(L)$.
 		\item Write a scheme for ``primitive $A$ recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
 		write equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to C$. 
 		You do not need to prove that your scheme actually defines a function.
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \chapter{Powersets}
@@ -1726,9 +1716,9 @@ That is, one can define the term ``Boolean algebra'' to mean ``Heyting algebra t
 So $\powerset(X)$ is indeed a Boolean algebra. 
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{firstexercise}
 		\item An easy consequence of Double Negation is that $A\Rightarrow \emptyset = U\setminus A$. Prove it.
-	\end{enumerate}
+	\end{firstexercise}
 \end{exercises}
 
 \printbreak
@@ -1811,7 +1801,7 @@ Several remarks are in order.
 
 \begin{exercises}
 	In the following, assume that $U$ is a set, and all other sets are subsets of $U$.
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item Prove, using only the Semilattice Laws, the Absorption Laws and the Bounded Lattice Laws, that $A\cap \emptyset = \emptyset$. Likewise, show that $A\cup U = U$.
 		\item Prove, using only the Semilattice and Lattice Laws, that the two Distribution Laws are equivalent. That is, show that if $A\cap(B\cup C)\subseteq (A\cap B)\cup (A\cap C)$ holds for all $A,B,C$, then
 		so does $(A\cup B)\cap (A\cup C)\subseteq A\cup(B\cap C)$. Hint: Let $X=A\cup B$, $Y= A$ and $Z=C$. So $(A\cup B)\cap(A\cup C) = X\cap (Y\cup Z)$. Now use the first distributivity law, followed by absorption, then a second use of distributivity, and association and finally a second use of absorption.
@@ -1819,7 +1809,7 @@ Several remarks are in order.
 		\item Prove, using only the Semilattice, Lattice Laws, Heyting Algebra and Boolean Algebra Laws, that the two de~Morgan's Laws hold.
 		\item Prove that $A\Rightarrow B = A^* \cup B$, using any method. 
 		\item Prove that $A\setminus B = A\cap B^*$, using any method. 
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \section{Quantifiers and Completeness}
@@ -1874,11 +1864,11 @@ That is, the union of any family of subsets of $X$ exists.
 It is this fact that justifes saying that $\powerset(X)$ is a \emph{complete} Boolean algebra.
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item Show that $\bigcup_{i\in I}A_i\subseteq C$ if and only if $A_k\subseteq C$ holds every $k\in I$.
 		\item Define $\bigcap_{i\in I}A_i$ in analogy with $\bigcup_{i\in I}A_i$.
 		\item For $I=\emptyset$, what is $\bigcup_{i\in I}A_i$?
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \section{Atomicity}
@@ -1918,14 +1908,14 @@ Although we do not investigate this here, any complete atomic Boolean algebra ha
 \end{lemma}
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item Write out $\powerset(\{a,b,c\})$
 		\item Write out $\powerset(\emptyset)$
 		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
 		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
 		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
 		\item I claim that $\powerset(\emptyset)\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \section{Forward images}
@@ -1933,48 +1923,63 @@ Although we do not investigate this here, any complete atomic Boolean algebra ha
 For a function $\fromto fAB$ the function $\fromto {f^-}{\powerset(C)}{\powerset(B)}$ has what is known as an \emph{upper adjoint}. 
 
 \begin{defn}
-	For $\fromto fXY$, define $\fromto {f^+}{\powerset(X)}{\powerset(Y)}$ by the rule $A= \bigcup\{B\subseteq Y\st f^-(B)\subseteq A\}$. The subset 
+	For $\fromto fXY$, define $\fromto {f^+}{\powerset(X)}{\powerset(Y)}$ by the rule $A\mapsto \{y\in B\st \exists x\in A.f(x)=y\}$. The subset 
 	$f^+(A)\subseteq Y$ is called the \emph{forward image of $A$ with respect to $f$}.
 \end{defn}
 
-It follows easily that $f^-(B)\subseteq A$ if and only if $B\subseteq f^+(A)$.
-In terms of elements, 
-\begin{align*}
-f^+(A) &= \{y\in Y\st \exists B\subseteq Y, f^-(B)\subseteq A \wedge y\in B\}\\
-       &= \{y\in Y\st \exists x\in A.f(x)=y\}.
-\end{align*}
+The important fact about $f^+$ is that is related to $f^-$.
 
-There is also a lower adjoint of $f^-$, but as it is less common, we do not investigate it here.
+\begin{lemma}
+	For any $A\subseteq X$ and $B\subseteq Y$,
+	$f^+(A)\subseteq B$ if and only if $A\subseteq f^-(B)$.
+	
+	\begin{proof}
+		Suppose $f^+(A)\subseteq B$. For $x\in A$, $f(x)\in f^+(A)$. So $f(x)\in B$.
+		By definition, this means $x\in f^-(B)$. This shows that $A\subseteq f^-(B)$. Conversely, suppose $A\subseteq f^-(B)$. For $y\in f^+(A)$, there is some $x\in A$ so that $f(x)=y$.
+		So there is some $x\in f^-(B)$ so that $f(x)=y$. Thus $y=f(x)\in B$. This shows that $f^+(A)\subseteq B$
+	\end{proof}
+\end{lemma}
+
+There is also a lower adjoint of $f^-$, but as it is less commonly used, we do not investigate it here.
 
 The important features of $f^+$ are easily checked. First, $f^+$ preserves atoms.
 That is, $f^+(\{x\}) = \{f(x)\}$. 
 Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Note that $f$ does not necessarily preserve intersections.
 
 \begin{exercises}
-	\begin{enumerate}
+	\begin{nextexercise}
 		\item Define a function $\fromto fXY$ and two subsets $A,B\subseteq X$ so that $f(X)\cap f(Y) \neq f(X\cap Y)$. Try to find the smallest example you can.
 		\item Prove that for any function $\fromto fXY$ and any $A\subseteq X$, the inclusion $A\subseteq f^-(f^+(A))$ holds.
 		\item Prove that for any function $\fromto fXY$ and any $B\subseteq Y$, the inclusion $f^+(f^-(B))\subseteq B$ holds.
-	\end{enumerate}
+	\end{nextexercise}
 \end{exercises}
 
 \chapter{Additional Constructions}
 
-Although not strictly needed for most applications, mathematicians generally agree that any two sets, no matter how they are related, can be merged into a single set with elements taken fom both. We mtake this as an additional principle.
+Many other constructions can be built up using the principles we have discussed. In this lecture, we discuss some of the most useful and most general.
+
+\section{Unions}
+
+Although not strictly needed for most applications, mathematicians generally agree that sets, no matter how they are related, can be merged into a single set with elements taken form the originals. We take this as an additional principle.
 
 \begin{principle}
-	For any sets $X$ and $Y$, there is a set $Z$ so that $X\subseteq Z$ and $Y\subseteq Z$. Hence, $X\cup Y$ is subset of this $Z$. 
+	Suppose $\mathcal X$ is a set and each element of $\mathcal X$ is a set (so $\mathcal X$ is a set of sets).
+	Then there is a set $U$ so that $\mathcal X\subseteq \powerset(U)$ and 
+	for any sets $U$, if $\mathcal X\subseteq\powerset(Z)$, then $U\subseteq Z$.
 \end{principle}
 
-The fact that this principle is not necessary is a bit technical. 
-It is because the principles we already have can be employed to construct a set that is not equal to $X\cup Y$ but that behaves exactly the same as $X\cup Y$.
-Certainly it is a reasonable principle that make many other things easier. It says that the union of any two sets exists.
+Using this principle, the set $U$ is actually the union $\bigcup_{X\in\mathcal X}X$.
+That is, $x\in\bigcup_{X\in\mathcal X}X$ holds if any only if $x\in X$ for some $X\in\mathcal X$.
+
+For a sets of sets $\{X,Y\}$, we write $X\cup Y$ instead of $\bigcup\ldots$. 
+
+\section{Co-products}
 
 The sets $\emptyset$ and $\One$ behave in opposite ways, in the sense that for any set $X$, (i) there is exactly one function from $\emptyset$ to $X$ and (ii) there is exactly one function from $X$ to $\One$. 
 We signalled this by refering to $\emptyset$ as \emph{initial} and $\One$ as \emph{terminal}. 
 We say that the notion of an initial set is \emph{dual} to the notion of a terminal set. 
 The constructions of equalizers and products have duals called \emph{co-equalizers} and \emph{co-products}. 
-To describe co-equalizers leads to another useful idea of constructing a \emph{quotient} of a set. We build the co-product first.
+Co-equalizers are indeed definable using the principles we already have, but it turns out that a related notion of \emph{quotients} is more commonly used. We discuss quotients below, but build co-products first.
 
 \begin{defn}
 	For sets $X$ and $Y$, a \emph{co-table} is a set with a pair of functions
@@ -2006,18 +2011,18 @@ To describe co-equalizers leads to another useful idea of constructing a \emph{q
 	\end{proof}
 \end{lemma}
 
-The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$. It is a union, preceded by ``marking'' each $x\in X$ by putting it into a pair $(0,x)$ and marking each $y\in Y$ differently by putting it into a pair $(1,y)$. Hence it is the union of disjoint copies of $X$ and $Y$. 
+The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$. It is a union, preceded by ``marking'' each $x\in X$ by putting it into a pair $(0,x)$ and marking each $y\in Y$ differently by putting it into a pair $(1,y)$. Hence it is the union of disjoint copies of $X$ and $Y$.
 
 \begin{exercises}
 	Let $A= \{a,b,c,d,e\}$ and $B = \{w,x,y,z,a,b,c,\}$
-	\begin{enumerate}
+	\begin{firstexercise}
 		\item Calculate $A\uplus B$
 		\item Calculate $A\uplus \emptyset$
 		\item Find a bijection between $\NN$ and $\One\uplus \NN$.
 		\item Find a bijection between $\One \uplus \One$ and $\Two$.
 		\item For any sets $X$, $Y$ and $Z$, define a bijection betweeen
 		$X\times (Y\uplus Z)$ and $(X\times Y )\uplus (X\times Z)$.
-	\end{enumerate}
+	\end{firstexercise}
 \end{exercises}
 
 Sometimes, elements of a set $X$ will be classified into ``like'' kinds. 
@@ -2027,51 +2032,69 @@ Or, if $C$ is  set modelling a Discrete Mathematics class, we might classify the
 Situations like this is modelled by what is known as a \emph{partion} of a set. If we also wish to think of all A students as being ``equivalent'', all B students as being ``equivalent'', we model this by what is known as an \emph{equivalence relation}.
 
 \begin{defn}
-	For a set $X$, a \emph{partition of $X$} is a set $P\subseteq\powerset(X)$
-	so that $\bigcup_{A\in P}A = X$ and for every $A,B\in P$, if $A\neq B$ then $A\cap B=\emptyset$. The sets in $P$ are called \emph{blocks}. 
+	For a set $X$, a \emph{partition of $X$} is a set $P\subseteq\powerset(X)$ so that $\bigcup_{A\in P}A = X$ and for every $A,B\in P$, if $A\neq B$ then $A\cap B=\emptyset$. The sets in $P$ are called \emph{blocks}. 
 	
 	For a set $X$, an \emph{equivalence relation on $X$} is a binary relation satisfying
 	\begin{itemize}
 		\item $x \mathrel{E}x$ for all $x\in X$,
-		\item $x\mathrel{E}y$ annd $y\mathrel{E}z$ implies $z\mathrel{E}z$ for all $x,y,z\in X$, and 
+		\item $x\mathrel{E}y$ and $y\mathrel{E}z$ implies $z\mathrel{E}z$ for all $x,y,z\in X$, and 
 		\item $x\mathrel{E}y$ imples $y\mathrel{E}x$
 	\end{itemize}
 	
-	For a partition $P$ define the relation $\equiv_P\equiv_P\subseteq X\times X$ by $x\equiv_P y$ if and only if for some $A\in P$, $x\in A$ and $y\in A$.
+	For a partition $P$ define the relation $\mathord{\equiv_P}\subseteq X\times X$ by $x\equiv_P y$ if and only if for some $A\in P$, $x\in A$ and $y\in A$.
 	
-	For an equivalence relation $E$ and an element $x\in X$, let $[x]_E = \{y\in X\st x\mathrel{E} y\}$. So $x\mapsto [x]_E$ defines a function from $X$ to $\powerset(X)$. Let ${\mathcal P}_{E} = \{[x]_E\st x\in X\}$.
-	That is, ${\mathcal P}_E$ is the range of the function $[\cdot]_E$.
+	For an equivalence relation $E$ and an element $x\in X$, let $[x]_E = \{y\in X\st x\mathrel{E} y\}$. So $x\mapsto [x]_E$ defines a function from $X$ to $\powerset(X)$. Let $X/E= \{[x]_E\st x\in X\}$.
+	That is, $X/E$ is the range of the function $[\cdot]_E$.
 \end{defn}
 
 The two notions, partition and equivalence relation, are essentially the same in the sense that there is a natural bijection between partitions and equivalence relations.
 
 \begin{lemma}
 	Let $X$ be any set. Then
-	
 	\begin{itemize}
-		]
-	\end{itemize}set $X$ and partition $P$ of $X$, the relation $\equiv_P$ is an equivalence relation on $X$. 
-	
-	For any equivalence relation $E$ on $X$, the collection ${\mathcal P}_E$ forms a partition of $X$.
-	
-	Moreover, for any partition $P$ of $X$, $P = \mathcal P_{\equiv_P}$
-	For any equivalence relation $E$ on $X$, $E = \equiv_{{\mathcal P}_E}$.
+		\item For any partition $P$ of $X$, the relation $\equiv_P$ is an equivalence relation on $X$;
+		\item For any equivalence relation $E$ on $X$, the collection ${\mathcal P}_E$ forms a partition of $X$;
+		\item For any partition $P$ of $X$, $P = X/{\equiv_P}$
+		\item For any equivalence relation $E$ on $X$, $E = \equiv_{X/E}$;
+		\item the rule $x\mapsto [x]_E$ determines an onto function from $X$ to $X/E$.
+	\end{itemize} 
 
-	So $x\mapsto [x]_E$ determines an onto function from $X$ to ${\mathcal P}_E$. 
 	\begin{proof}
 		Exercise.
 	\end{proof} 
 \end{lemma}
 
+Suppose $E\subseteq X\times X$ is an equivalance relation and $\fromto fXY$ 
+is a function so that $x\mathrel{E}x'$ implies $f(x)=f(x')$. 
+Then we can define a function from $X/E$ to $Y$ by the ``rule'' $[x]_E \mapsto f(x)$.
+We can not call this a rule in the usual way because the left side is not a variable or a tuple of variables. 
+But we can define a relation $F\subseteq (X/E)\times Y$ by stipulating that for $B\in X/E$ and $y\in Y$, $B\mathrel{F}y$ if and only if $f(x)=y$ for some $x\in B$. 
+This relation is total because every block $B\in X/E$ non-empty. 
+So there is some $x\in B$, and thus $B\mathrel{F}f(x)$.
+The relation $F$ is also deterministic because if $B\mathrel{F}y$ and $B\mathrel{F}y'$, then there is some $x\in B$ for which $f(x)=y$
+and there is some $x'\in B$ for which $f(x')=y'$. 
+But $x,x'\in B$ implies $x\mathrel{E}x'$.
+Hence $f(x)=f(x')$.
+
 \begin{defn}
-	For functions $X\doublerightarrow{f}{g}Y$, a \emph{co-solution} is a set $C$ with function $\fromto cYC$ so that $c\circ f=c\circ g$.
-	
-	A \emph{co-equalizer} is a \emph{co-solution} $\fromto qYQ$ so that for any co-solution $\fromto cYC$, there is a unique function $\fromto eCQ$ so that $c = e\circ q$.
+	Suppose $E\subseteq X\times X$ is an equivalence relation. A function $\fromto fXY$ is \emph{$E$-invariant} if $x\mathrel{E}x'$ implies $f(x)=f(x')$.
+	For an $E$-invariant function $\fromto fXY$, let $f/E$ denote the function 
+	from $X/E$ to $Y$ defined by $(f/E)([x]_E) = f(x)$.
 \end{defn}
 
-\begin{lemma}
-	Any $X\doubleleftarrow{f}{g}Y$ has a co-equalizer.
-	
-	\begin{proof}
-	\end{proof}
-\end{lemma}
+\begin{example}
+	Let $E\subseteq \RR\times \RR$ be the relation $xEy$ if and only if $x-y = k2\pi$ for some integer $k$. This is an equivalence relation:
+	$xEx$ is true because $x-x=0\dot2\pi$. If $x-y=k2\pi$ then $y-x=-k2\pi$, so
+	 $E$ is symmetric. And if $x-y=k2\pi$ and $y-z=j2\pi$, then $x-z = (x-y)+(y-z) = (k+j)2\pi$. So $E$ is transitive. The functions $\sin$ and $\cos$ are $E$ invariant because $\sin(x + k2pi) = \sin(x)$ and $\cos(x + k2\pi) = \cos(x)$ for any $x$ and any $k$. 
+\end{example}
+
+\begin{exercises}
+	On the integers $\ZZ$, define a relation $\equiv_7$ by $i \equiv_7 j$ if and only if there is some integer $k$ so that $i +7k = j$.
+	\begin{nextexercise}
+		\item Show that $\equiv_7$ is an equivalence relation.
+		\item Describe the set $[5]_{\equiv_7}$.
+		\item Show that the function $f(n) = n+3$ is $\equiv_7$-invariant.
+		\item Show that the function $g(n) = 2n$ is $\equiv_7$-invariant.
+		\item Determine whether the function $h(n) = 2^n$ is $\equiv_7$-invariant.
+	\end{nextexercise}
+\end{exercises}
