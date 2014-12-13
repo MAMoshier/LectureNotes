@@ -1156,62 +1156,69 @@ It turns out, however, that binary products are enough because $X\times (Y\times
 
 \section{Function Sets and Parametric Functions}
 
-A function from $A$ to $B$ might depend on a parameter from $C$. 
-For example, the function $\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
-There is a related function $\fromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$.
-Evidently, $g$ describes the same behavior as $f$, but it makes the parameter explicit. It will be helpful to relate $g$ -- a function on pairs -- to $f$ a function with a parameter.
+A function from $X$ to $Y$ might depend on a parameter from another set $P$. 
+For example, the function $s\fromto f\RR\RR$ defined by the rule $f(x) = \sin(x + c)$ depends on the constant $c$.
+There is a related function $\sfromto g{\RR\times \RR}\RR$ defined by $g(c,x) = \sin(x+c)$.
+Though $g$ describes the same behavior as $f$, it makes the parameter explicit as another argument. It will be helpful to relate $g$ -- a function on pairs -- to $f$ a function with a parameter.
 This leads to the following definition.
 
 \begin{defn}
-	For sets $A$ and $B$, a \emph{parametric function from $A$ to $B$} is a function $\fromto g{C\times A}B$ for some set $C$.
-	The set $C$ may be called the \emph{set of parameters}.
+	For sets $X$ and $Y$, a \emph{parametric function from $X$ to $Y$} is a function $\sfromto g{P\times X}Y$ for some set $P$.
+	The set $P$ may be called the \emph{set of parameters}.
 	
-	Suppose $\fromto f{D\times A}B$ is a parametric function with parameter set $D$ and $\fromto kCD$ is a function.
-	Then we can form another parametric function with parameters in $C$ by composition: $f\circ (k\times \id_A)$.
-	We may refer to $k$ as a \emph{change of parameters} function because $k$ transforms the parametric function with parameters in $D$ into a parametric function with parameters in $C$. 
-	Specifically, $f\circ(k\times \id_A)$ is given by the rule $(c,a)\mapsto f(k(c),a)$.
+	Suppose $\sfromto f{Q\times X}Y$ is a parametric function with parameter set $Q$ and $\sfromto kPQ$ is a function.
+	Then we can form another parametric function with parameters in $P$ by composing: $f\circ (k\times \id_A)$.
+	The function $k$ acts lie a \emph{change of parameters} because it transforms the parametric function with parameters in $Q$ into a parametric function with parameters in $Q$. 
+	Specifically, $f\circ(k\times \id_X)$ is given by the rule $(c,a)\mapsto f(k(c),a)$.
 	
-	An \emph{evaluation map} for $A$ and $B$ is a parametric function $\fromto a{F\times A}B$, so that for any 
-	parametric function $\fromto g{C\times A}B$ there is exactly one change of parameters $\fromto hCF$ so that
-	$g = a\circ (h\times \id_A)$. In that case, $F$ is called an \emph{exponential with base $B$ and exponent $A$}.
+	An \emph{evaluation map} for $X$ and $Y$ is a parametric function $\sfromto a{F\times X}Y$, so that for any 
+	parametric function $\sfromto g{P\times X}Y$ there is exactly one change of parameters $\fromto hPF$ so that
+	$g = a\circ (h\times \id_X)$. In that case, $F$ is called an \emph{exponential with base $Y$ and exponent $X$}.
 \end{defn}
 
 \begin{principle}
-	For sets $A$ and $B$, the collection of all functions from $A$ to $B$, denoted by $B^A$, is a set.
+	For sets $X$ and $Y$, the collection of all functions from $X$ to $Y$, denoted by $Y^X$, is a set.
 	
-	The rule $(f,x) \mapsto f(x)$ defines an evaluation map $\fromto \appl{B^A\times A}B$.
+	The rule $(f,x) \mapsto f(x)$ defines an evaluation map $\sfromto \appl{Y^X\times X}Y$.
 	
-	For a parametric function $\fromto f{C\times A}B$, the unique function from $C$ to $B^A$ determined by $f$ does not have a completely standard name.
+	For a parametric function $\fromto f{P\times X}Y$, the unique function from $P$ to $Y^X$ determined by $f$ does not have a completely standard name.
 	Increasingly, mathematicians honor the twentieth century logician, Haskell Curry, by referring to this as `currying'.
-	For these lectures, we follow that tradition and write $\curry[f]$ for the unique function satisfying $f = \appl\circ (\curry[f] \times \id_A)$.
+	For these lectures, we follow that tradition and write $\curry[f]$ for the unique function satisfying $f = \appl\circ (\curry[f] \times \id_X)$.
 	
-	Calculating how $\fromto {\curry[f]}C{B^A}$ must behave, we see that $\curry[f](c)$ is the function from $A$ to $B$ given by the rule $x\mapsto f(c,x)$.
-	So for any $c\in C$, $\curry[f](c)$ is the function such that for any $a\in A$, $\curry[f](c)(a) = f(c,a)$. 
+	Calculating how $\sfromto {\curry[f]}P{Y^X}$ must behave, we see that for any parameter $p\in P$, $\curry[f](p)$ is the function from $X$ to $Y$ given by the rule $x\mapsto f(p,x)$.
+	So for any $p\in P$, $\curry[f](p)$ is the function such that for any $x\in X$, $\curry[f](p)(x) = f(p,x)$. 
 \end{principle}
 
 \subsection*{$\lambda$ Notation}
 
-When we describe a function by a rule like $x\mapsto x^2$, it is usually convenient to give the function a name.
-So we might write $f(x) = x^2$ (lazily, because $f$ is vastly over-used).
-But when we need to define an element of $B^A$, it is often convenient to have a notation that does not require a name. 
-The logician Alonzo Church \cite{church} proposed a notation to describe functions. 
+In defining $\curry[f]$, we needed to describe certain elements of $Y^X$.
+But elements of $Y^X$ are functions. And a function typically is described by a rule.
+So it would be convienent to have a notation that permits us to describe the behavior of a function without giving the function a name. 
+The logician Alonzo Church \cite{church} was interested in the fundamental idea of just what \emph{is} a function. He proposed a notation for describing functions. 
 He wrote things like $\lambda x.x^2$ to describe the function that squares its input. 
-The Greek letter $\lambda$ is used only as a marker to introduce a function. 
-It does not mean anything special. 
-We could make the $\lambda$ notation formal (as did Church), but for our purposes we do not need to be too formal.
+The Greek letter $\lambda$ means nothing.  It is used only as a marker to introduce a function. 
+This ``$\lambda$'' notation is widely adopted in computer science. Indeed, it appears even in languages such as Python.  
+We could make the $\lambda$ notation formal (as did Church), but for our purposes informality is enough. We use this notation to describe elements of $Y^X$. Several examples will help to explain this. 
 
 \begin{example}
 	\begin{itemize}
-	\item For $\fromto fAB$ and $\fromto gBC$, the composite function $g\circ f$ is $\lambda x.g(f(x))$.
+	\item For $\sfromto fXY$ and $\sfromto gYZ$, the composite function $g\circ f\in Z^X$ is $\lambda x.g(f(x))$.
 	
-	\item For $A\stackrel{f}{\longleftarrow}C\stackrel{g}{\longrightarrow}B$, the function
-	$\fromto {\langle f,g\rangle}C{A\times B}$ is $\lambda x.(f(x),g(x))$.
+	\item The element of $\NN^\NN$ defined by $\lambda x.x^\nxt$ is the successor function.
 	
-	\item For a parametric function $\fromto f{C\times A}B$, the function $\fromto {\curry[f]}{C}{B^A}$ can be defined by the rule $c\mapsto \lambda x.f(c,x)$.
+	\item For any $a\in X$, the function $\hat a \in X^\One$ is $\lambda x.a$.
+	
+	\item For $X\stackrel{f}{\longleftarrow}T\stackrel{g}{\longrightarrow}Y$, the function
+	${\langle f,g\rangle}{X\times Y}^T$ is $\lambda x.(f(x),g(x))$.
+	
+	\item For a parametric function $\sfromto f{P\times X}Y$, the function $\sfromto {\curry[f]}{P}{Y^X}$ can be defined by the rule $p\mapsto \lambda x.f(p,x)$.
+	
+	\item For any $f\in Y^X$, $f = \lambda x.f(x) = \lambda y.f(y)$. 
+
+	\item The only element of $\One^X$ is $\lambda x.\bullet$.
 	\end{itemize}
 \end{example}
  
-
 \begin{exercises}
 	\begin{nextexercise}
 		\item  For set $A= \{1,2,3\}$ and $B = \{a,b\}$ 
@@ -1219,10 +1226,11 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 				\item draw internal diagrams corresponding to each element of $B^A$ (there are eight of them);
 				\item draw internal diagrams corresponding to each element of $A^B$ (there are nine of them).
 			\end{enumerate}
-		\item If $A$ is a finite set with $k$ elements, $B$ is a finite set with $j$ elements, how many elements are there in the set $B^A$. 
-		\item Consider the function $\fromto f{\NN\times\NN}\NN$ defined by
-		      $f(m,n) = m^n$. What function is $\curry[f](3)$? Use $\lambda$ notation to describe it.
-		\item Use $\lambda$ notation to describe a function from $\NN$ to $\NN$ that quadruples the square of the input.
+		\item If $X$ is a finite set with $k$ elements, $Y$ is a finite set with $j$ elements, how many elements are there in the set $Y^X$? 
+		\item Consider the function $\sfromto f{\NN\times\NN}\NN$ defined by
+		      $f(m,n) = m^n$. What element of $\NN^\NN$ is $\curry[f](3)$? Use $\lambda$ notation to describe it.
+		\item For the function $\min$ from $\RR\times\RR$ to $\RR$ defined to mean the minimum of $x$ and $y$, define $\curry[\min]$.
+		\item Use $\lambda$ notation to describe the element of $\NN^\NN$ that quadruples the square of the input.
 	\end{nextexercise}	
 \end{exercises}
 
@@ -1265,7 +1273,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 
 \section{Relations and Function Graphs}
 
-We have already noted that a charcteristic function $\fromto R{X\times Y}\Two$ corresponds to a subset of $X\times Y$. We can think of $R$ \emph{relating} elements of $X$ to elements of $Y$. This leads to a useful definition.
+We have already noted that a characteristic function $\fromto r{X\times Y}\Two$ corresponds to a subset of $X\times Y$. We can think of $r$ \emph{relating} elements of $X$ to elements of $Y$. This leads to a useful definition.
 
 \begin{defn}
 	A \emph{relation from $X$ to $Y$} is subset $R\subseteq X\times Y$.
@@ -1282,7 +1290,7 @@ We have already noted that a charcteristic function $\fromto R{X\times Y}\Two$ c
 \end{defn}
 
 \begin{example}
-	The relation of $\leq$ on real numbers can be regarded as subset $\mathord{\leq}\subseteq {\RR\times\RR}$ defined by $(x,y) \in \mathord\leq$ when $x$ is actually less than or equal to $y$ and $(x,y)\in \mathord\leq$ otherwise. 
+	The relation of $\leq$ on real numbers can be regarded as subset $\mathord{\leq}\subseteq {\RR\times\RR}$ defined by $(x,y) \in \mathord\leq$ when $x$ is actually less than or equal to $y$ and $(x,y)\notin \mathord\leq$ otherwise. 
 	This is a good example of why we prefer to write $x\leq y$ instead of $\mathord\leq(x,y)$ or $(x,y)\in \mathord\leq(x,y)$. Note that $\leq$ is a total relation, because for any $x\in \RR$ there is a $y\in \RR$ for which $x\leq y$.
 
 	The relation $=$ on any set is functional because, for any $x\in X$ there is exactly one $y\in X$ so that $x=y$.
@@ -1294,10 +1302,9 @@ We have already noted that a charcteristic function $\fromto R{X\times Y}\Two$ c
 
 \begin{defn}
 A function $\fromto fXY$ determines a relation called the \emph{graph of $f$} defined by 
-\[\text{$(x,y)\in \Gamma_f(x,y)$ if and only if $f(x)=y$}.
-\]
+$\Gamma_f = \{(x,y)\in X\times Y\st f(x)=y\}$.
 
-[Note: $\Gamma_f = \{(x,y)\in X\times Y\st f(x)=y\}$. So it is an equalizer $\{p\in X\times Y\st f(\pi_0(p)) = \pi_1(p)\}$]
+Note: $\Gamma_f$ is an equalizer $f\circ\pi_0$ and $\pi_1$.
 \end{defn}
 
 \begin{lemma}
@@ -1305,11 +1312,11 @@ A function $\fromto fXY$ determines a relation called the \emph{graph of $f$} de
 	
 	\begin{proof}
 		This is pretty obvious from the basic properties of functions. That is,
-		for each $x\in X$, $f(x)\in Y$ and obviously $f(x)=f(x)$. So $\Gamma_f$ is total. On the other hand if $y = f(x)$ and $y'=f(x)$, then $y=y'$. So $\Gamma_f$ is deterministic.
+		for each $x\in X$, $f(x)\in Y$ and obviously $f(x)=f(x)$. So $\Gamma_f$ is total. On the other hand if $f(x)=y$ and $f(x)=y'$, then $y=y'$. So $\Gamma_f$ is deterministic.
 	\end{proof}
 \end{lemma}
 
-Suppose we have a functional relation $R\subseteq {X\times Y}$. Then it is reasonable to suppose it actually came from a function.
+Suppose we have a functional relation $R\subseteq {X\times Y}$. Then it is reasonable to suppose it actually determines a function.
 
 \begin{principle}\label{princ:graphs}
 	Suppose $R\subseteq {X\times Y}$ is a functional relation. 
@@ -1318,11 +1325,22 @@ Suppose we have a functional relation $R\subseteq {X\times Y}$. Then it is reaso
 
 It is easy enough to check that $F_{\Gamma_f} = f$ for any function $f$. 
 That is, $F_{\Gamma_f}(x)=y$ if and only if $x\mathrel{\Gamma_f} y$ if and only if $f(x)=y$. 
-So functions from $\fromto fXY$ correspond exactly to functional relations from $R\subseteq X\times Y$.
+So functions from $\sfromto fXY$ correspond exactly to functional relations from $R\subseteq X\times Y$.
+
+Like functions, relations allow a kind of composition,
+
+\begin{defn}
+Suppose $R\subseteq X\times Y$ and $S\subseteq Y\times Z$ are relations. Define $R;S\subseteq X\times Z$ by $x\mathrel{R;S}z$ if and only if there is some $y\in Y$ so that $x\mathrel{R}y$ and $y\mathrel{S}z$.
+
+For set $X$, let $\Delta_X\subseteq X\times X$ be defined as $\Gamma_{\id_X}$. That is, $x\mathrel{\Delta_X}y$ if and only if $x=y$.
+\end{defn}
 
 \begin{exercises}
 	\begin{nextexercise}
 		\item Define $T\subseteq \RR\times \RR$ by $x\mathrel{T} y$ if and only if $\tan x = y$. Is $T$ deterministic? Is it total?
+		\item Show that for any relation $R\subseteq X\times Y$, $\Delta_X;R = R = R;\Delta_X$.
+		\item Show that for any functions $\sfromto fXY$ and $\sfromto gYZ$, 
+		$\Gamma_f;\Gamma_g = \Gamma_{g\circ f}$.
 	\end{nextexercise}
 \end{exercises}
 
