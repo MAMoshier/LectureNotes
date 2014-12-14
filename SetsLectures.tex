@@ -1273,13 +1273,15 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 
 \section{Relations and Function Graphs}
 
-We have already noted that a characteristic function $\fromto r{X\times Y}\Two$ corresponds to a subset of $X\times Y$. We can think of $r$ \emph{relating} elements of $X$ to elements of $Y$. This leads to a useful definition.
+Suppose $S$ is a set modelling the students at Chapman and $M$ is a et modelling the academic majors the university offers: $\symb{Mathematics}$, $\symb{Philosophy}$, $\symb{HeadScratching}$, and so on. Then elements of $S$ (students) can be related to elements of $M$ (majors) by `is majoring in' as in
+``$\symb{Jethro}$ is majoring in $\symb{Biology}$.'' Because a student might have a double major, we can not model the situation as a function, at least not in the most obvious way. Instead, we introduce the notion of a \emph{(binary) relation}. The same idea, generalized to higher dimensional relations, is at the heart of what we call \emph{relational databases}.  
+We will investigate the general concept of a \emph{relation} in more detail later. For now, we need them primarily as they relate to functions. 
 
 \begin{defn}
-	A \emph{relation from $X$ to $Y$} is subset $R\subseteq X\times Y$.
-	A \emph{relation on $X$} is a relation from $X$ to $X$.
+	A \emph{binary relation from $X$ to $Y$} is subset $R\subseteq X\times Y$.
+	A \emph{binary relation on $X$} is a relation from $X$ to $X$. Since we will only be concerned with binary relations, from now on we refer them simply as \emph{relations}
 	
-	For a relation $R$ from $X$ to $Y$, we will say ``$x$ is $R$-related to $y$'' and write $R(x,y)$ when $(x,y)\in R$. In some situations, we may use ``infix'' notation, writing $x\mathrel{R}y$ instead of $R(x,y)$.
+	For a relation $R$ from $X$ to $Y$, we will say ``$x$ is $R$-related to $y$'' and write $R(x,y)$ when $(x,y)\in R$. In many situations, we use ``infix'' notation, writing $x\mathrel{R}y$ instead of $R(x,y)$.
 	
 	A relation $R\subseteq {X\times Y}$ is
 	\begin{itemize}
@@ -1290,7 +1292,7 @@ We have already noted that a characteristic function $\fromto r{X\times Y}\Two$ 
 \end{defn}
 
 \begin{example}
-	The relation of $\leq$ on real numbers can be regarded as subset $\mathord{\leq}\subseteq {\RR\times\RR}$ defined by $(x,y) \in \mathord\leq$ when $x$ is actually less than or equal to $y$ and $(x,y)\notin \mathord\leq$ otherwise. 
+	The relation of ``less than or equal to'' $\leq$ on real numbers can be regarded as a subset $\mathord{\leq}\subseteq {\RR\times\RR}$ defined by $(x,y) \in \mathord\leq$ when $x$ is actually less than or equal to $y$ and $(x,y)\notin \mathord\leq$ otherwise. 
 	This is a good example of why we prefer to write $x\leq y$ instead of $\mathord\leq(x,y)$ or $(x,y)\in \mathord\leq(x,y)$. Note that $\leq$ is a total relation, because for any $x\in \RR$ there is a $y\in \RR$ for which $x\leq y$.
 
 	The relation $=$ on any set is functional because, for any $x\in X$ there is exactly one $y\in X$ so that $x=y$.
@@ -1338,9 +1340,11 @@ For set $X$, let $\Delta_X\subseteq X\times X$ be defined as $\Gamma_{\id_X}$. T
 \begin{exercises}
 	\begin{nextexercise}
 		\item Define $T\subseteq \RR\times \RR$ by $x\mathrel{T} y$ if and only if $\tan x = y$. Is $T$ deterministic? Is it total?
-		\item Show that for any relation $R\subseteq X\times Y$, $\Delta_X;R = R = R;\Delta_X$.
+		\item Show that for any relations $R\subseteq X\times Y$, $\Delta_X;R = R = R;\Delta_Y$.
+		\item Show that for any relations $R\subseteq W\times X$, $S\subseteq X\times Y$ and $T\subseteq Y\times Z$, $R;(S;T) = (R;S);T$.
 		\item Show that for any functions $\sfromto fXY$ and $\sfromto gYZ$, 
 		$\Gamma_f;\Gamma_g = \Gamma_{g\circ f}$.
+		Show that for any set $X$, $\Gamma_{\id_X} = \Delta_X$. 
 	\end{nextexercise}
 \end{exercises}
 
@@ -1357,7 +1361,7 @@ For set $X$, let $\Delta_X\subseteq X\times X$ be defined as $\Gamma_{\id_X}$. T
 \noindent\textbf{Study:}
 \begin{itemize}
 	\item Be able to define simple functions by recursion
-	\item Be able to prove explain how induction and recursion are related
+	\item Be able to explain how induction and recursion are related
 \end{itemize}
 \end{goals}
 
@@ -1399,7 +1403,7 @@ So we think of the sequence that comprises $\NN$ as a universal recursively defi
 Let us make the informal word \emph{sequence} official.
 
 \begin{defn}
-	A \emph{sequence in $A$} is a function $\fromto a\NN A$.
+	A \emph{sequence in set $X$} is a function $\fromto a\NN X$.
 \end{defn}
 
 As we studied in previous lectures, the basic vocabulary of natural numbers is that (i) there is a starting natural number, $0$, and (ii) for each natural number $n$ there is a next one, $n^\nxt$. 
@@ -1407,14 +1411,14 @@ To discuss successor in the language of sets and functions, we stipulate that su
 So $\NN$ is not just a set. 
 It comes with functions $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longleftarrow} \NN$.
 
-Suppose $\One\stackrel{\hat{b}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ is a similar structure.
-Then we ought to be able to define a sequence in $A$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
+Suppose $\One\stackrel{\hat{b}}{\longrightarrow}X\stackrel{r}{\longleftarrow}X$ is a similar structure.
+Then we ought to be able to define a $a$ sequence in $X$, so that $a_0=b$, $a_1=r(b)$, $a_2=r(r(b))$, and so on. 
 In general, $a_k$ should be determined by starting with $b$ and repeatedly applying $r$ a total of $k$ times. 
 
 \begin{defn}\label{def:nno}
-	A \emph{simple recurrence} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longleftarrow}C$.
+	A \emph{simple recurrence} is a set with functions $\One\stackrel{\hat{b}}{\longrightarrow}X\stackrel{r}{\longleftarrow}X$. We will say the two functions $\hat{b}$ and $r$ form a \emph{recurrence on $X$}.
 	
-	A \emph{natural number set} is a simple recurrence $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longleftarrow}N$ so that for any other simple recurrence $\One\stackrel{\hat{b}}{\longrightarrow}C\stackrel{r}{\longleftarrow}C$, there is exactly one function $\fromto fNC$ so that $f\circ \hat{z} =\hat b$ and $f\circ s = r\circ f$.
+	A \emph{natural number set} is a simple recurrence   $\One\stackrel{\hat{z}}{\longrightarrow}N\stackrel{s}{\longleftarrow}N$ so that for any other simple recurrence $\One\stackrel{\hat{b}}{\longrightarrow}X\stackrel{r}{\longleftarrow}X$, there is exactly one function $\sfromto fNX$ so that $f\circ \hat{z} =\hat b$ and $f\circ s = r\circ f$.
 \end{defn}
 
 The principle we are interested in here is that simple recurrences determine sequences.
@@ -1424,19 +1428,20 @@ The principle we are interested in here is that simple recurrences determine seq
 	Moreover, $\One \stackrel{\hat{0}}{\longrightarrow} \NN \stackrel{\suc}{\longleftarrow} \NN$.
 	makes $\NN$ a natural numbers set.
 	
-	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} C \stackrel{r}{\longleftarrow} C$, the corresponding unique sequence in $C$
-	may be denoted by $\srec[b,r]$. So $\fromto {\srec[b,r]}\NN A$ is characterized by
+	From a simple recurrence $\One \stackrel{\hat{b}}{\longrightarrow} X \stackrel{r}{\longleftarrow} X$, the corresponding unique sequence in $X$
+	may be denoted by $\srec[b,r]$. So $\sfromto {\srec[b,r]}\NN X$ is characterized by
 	\begin{align*}
 		\srec[b,r]_0 &= b\\
 		\srec[b,r]_{n^\nxt} &= r(\srec[b,r]_n)
 	\end{align*}
 \end{principle}
 
-Every simple recurrence in $C$ determines a sequence in $C$. 
+So every simple recurrence on a set $X$ determines a sequence in $X$. 
 On the other hand, it is not the case that every sequence is determined by a simple recurrence.
 Take for example, the sequence $0,1,0,2,0,3,\ldots$. 
 This can not be defined (at least not directly) by giving an initial entry and specifying successive entries based only on the predecessors. 
 After all, the entries $1$, $2$, $3$ and so on all have the same preceding entry.
+
 
 \section{Primitive Recursion}
 
@@ -1444,7 +1449,6 @@ Evidently, addition, multiplication, factorial, and other familiar functions sho
 But there are problems to overcome: Addition is not a sequence, at least not in an obvious way. And factorial is not obviously definable by a simple recurrence
 because we would need a function $\fromto r\NN\NN$ so that $n^\nxt! = r(n!)$
 for all $n$. If, in place of $r$, we could use a function that depends on $n$ as well as on $n!$, we could define factorial recursively the usual way.
-
 
 Putting things together, we consider a scheme that generalizes simple recursion to permit (i) dependence on a parameter not directly involved in the recursion, and
 (ii) dependence on $n$ at each stage of the recursion.
@@ -1508,13 +1512,72 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 
 \begin{exercises}
 \begin{firstexercise}
+	\item Define addition $\sfromto {+}{\NN\times \NN}\NN$ by primitive recursion. That is, find functions $\sfromto b\NN\NN$ and and $\sfromto r{\NN\times\NN\times \NN}\NN$ so that
+	\begin{align*}
+		m+0 &= b(m)\\
+		m+n^\nxt &= r(m,n,m+n)
+	\end{align*}
+	That way, $\primrec[b,r]$ is addition.
+	\item Define multiplication $\sfromto {\cdot}{\NN\times \NN}\NN$ by primitive recursion. You may use addition in defining the primitive recurrence.
+	\item Define the factorial function by primitive recursion. You may use multiplication in defining the primitive recurrence.	
 	\item For a given function $\fromto f\NN\NN$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
-	\item Find a primitive recurrence that defines the function from $\NN\times \NN$ to $\NN$ given by the rule $(m,n)\mapsto m^n$.
-	\item Define the operation of \emph{monus} $m\stackrel{.}{-} n$ to be $m-n$ when $m \geq n$ and to be $0$ otherwise by  a primitive recurrence.
-	\item Define the factorial function by primitive recursion.
+	\item The operation of \emph{monus} $m\stackrel{.}{-} n$ is defined to be $m-n$ when $m \geq n$ and to be $0$ otherwise. Define monus by primitive recursion.
+	\item Let $\sfromto p\NN\Two$ be a characteristic function. Show that bounded existential quantification is primitive recursive. That is, define the function $\fromto {\exists^<_p}\NN\Two$ by $\exists^p_<(n) = \top$ iff there is at least one $k<n$ for which $p(k)=\top$.  Show that this can be defined by a primitive recurrence.
+	[Hint: $\exists^p_<(0) = \bot$ because there are no natural numbers below $0$. 
+	Now ask what value is $\exists^p_<(n^\nxt)$ in terms of $p$ and $\exists^p_<(n)$.]
 \end{firstexercise}
 \end{exercises}
 
+\section{Primitive Recursion and ``for'' loops}
+
+It is a theorem (that we can not prove here) that there is a technical sense in which primitive recursion is implementable, say in Python, by nested ``for'' loops. To get a taste of what this means, let us pretend that $\sfromto bPX$ and $\fromto r{P\times \NN\times X}X$ are somehow defined by Python functions. Then the following code implements $\primrec[b,r]$.
+
+\begin{lstlisting}
+	def f(p,n):
+		result = b(p)
+		for i in range(n):
+			result = r(p,i,result)
+		return result
+\end{lstlisting}
+
+Conversely, suppose a function in Python is defined using only natural number variables and the following parts of Python:
+\begin{itemize}
+	\item Assignment statements
+	\item Increment statements: ``\lstinline!n+=1!''
+	\item loops of the form ``\lstinline!for i in range(n): !\ldots''
+	\item evaluations of functions that are defined similarly
+\end{itemize}
+The theorem we allude to claims that such a function is definable by primitive recursion. The theorem is not especially difficult, but it does involve a lot of careful checking. For us, the point is that primitive recursion allows us to define a lot of the functions that we expect to be able to program in a standard programming language.
+
+A question arises, however. If ``for'' loops are sufficient to program any primitive recursive function, why bother with other more complicated loops?
+One answer is that programming languages are not merely for computing functions. They are used to implement lots of behavior that is not so easily cast in terms of sets and functinos. Another answer, though, is internal to set theory. Namely, there are recursive functions on $\NN$ which are not primitive recursive.
+
+For each $n\in \NN$, define the sets $P^n\subseteq \NN^{\NN^n}$ of \emph{$n$-ary number theoretic primitive recursive functions} to be the smallest sets satisfying:
+\begin{itemize}
+	\item $\hat{0} \in P^0$
+	\item $\suc\in P^1$
+	\item for each $k<n$, $\pi^n_k\in P^n$ where $\pi^_k\in \NN^{\NN^n}$ is defined by $\pi^n_k(x_0,\dotsc, x_{n-1}) = x_k$
+	\item If $g\in P^n$ and for each $k<n$, $f_i\in P^m$, then $g\circ \langle f_0,\dotsc, f_{n-1}\rangle \in P^m$
+	\item if $b\in P^m$ and $h\in P^{m+2}$, then $\primrec[b,h]\in P^{m+1}$
+\end{itemize}
+
+Consider the following sequence $A_0, A_1, \dotsc$ in ${\NN}^\NN$ defined by
+\begin{align*}
+A_0 & \suc\\
+A_{k^\nxt} = \primrec[\hat{A_k(k)}, A_k\circ \pi^2_1]
+\end{align*}
+Putting this in terms of elements
+\begin{align*}
+	A_0(m) &= m+1\\
+	A_{k^\nxt}(0) &= A_k(k)\\
+	A_{k^\nxt}(m^\nxt) &= A_k(A_{k^\nxt}(m)).
+\end{align*}
+Evidently, each individual function $A_k$ is a number theoretic primitive recursive unary function. But
+the function $\fromto {\symb{Ack}}\NN\NN$ defined by $\symb{Ack}(n) = A_n(n)$ is not. The proof is quite ingeneous. Roughly, one shows that $\symb{Ack}$ grows faster than any primitive recursive function.
+
+To have an idea of how fast this function grows, $\symb{Ack}(0) = 1$, $\symb{Ack}(1) = 2$, $\symb{Ack}(3) = 10$, $\symb{Ack}(4) = 220$, and $\symb{Ack}(5)$ is a number far larger than the number of electrons in the visible universe. 
+
+ 
 \section{Lists}
 
 For a set $A$, the lists of elements from $A$ also should form a set.
