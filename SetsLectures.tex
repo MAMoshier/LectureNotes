@@ -1556,7 +1556,7 @@ For each $n\in \NN$, define the sets $P^n\subseteq \NN^{\NN^n}$ of \emph{$n$-ary
 \begin{itemize}
 	\item $\hat{0} \in P^0$
 	\item $\suc\in P^1$
-	\item for each $k<n$, $\pi^n_k\in P^n$ where $\pi^_k\in \NN^{\NN^n}$ is defined by $\pi^n_k(x_0,\dotsc, x_{n-1}) = x_k$
+	\item for each $k<n$, $\pi^n_k\in P^n$ where $\pi^n_k\in \NN^{\NN^n}$ is defined by $\pi^n_k(x_0,\dotsc, x_{n-1}) = x_k$
 	\item If $g\in P^n$ and for each $k<n$, $f_i\in P^m$, then $g\circ \langle f_0,\dotsc, f_{n-1}\rangle \in P^m$
 	\item if $b\in P^m$ and $h\in P^{m+2}$, then $\primrec[b,h]\in P^{m+1}$
 \end{itemize}
@@ -1573,22 +1573,21 @@ Putting this in terms of elements
 	A_{k^\nxt}(m^\nxt) &= A_k(A_{k^\nxt}(m)).
 \end{align*}
 Evidently, each individual function $A_k$ is a number theoretic primitive recursive unary function. But
-the function $\fromto {\symb{Ack}}\NN\NN$ defined by $\symb{Ack}(n) = A_n(n)$ is not. The proof is quite ingeneous. Roughly, one shows that $\symb{Ack}$ grows faster than any primitive recursive function.
+the function $\fromto {\symb{Ack}}\NN\NN$ defined by $\symb{Ack}(n) = A_n(n)$ is not. The proof is quite ingeneous. Roughly, one shows that $\symb{Ack}$ grows faster than any number theoretic primitive recursive function.
 
-To have an idea of how fast this function grows, $\symb{Ack}(0) = 1$, $\symb{Ack}(1) = 2$, $\symb{Ack}(3) = 10$, $\symb{Ack}(4) = 220$, and $\symb{Ack}(5)$ is a number far larger than the number of electrons in the visible universe. 
-
+To get an idea of how fast this function grows, $\symb{Ack}(0) = 1$, $\symb{Ack}(1) = 3$, $\symb{Ack}(3) = 61$, $\symb{Ack}(4) = 2^{2^{65536}}-3$ a number vastly larger than the number of electrons in the visible universe. 
  
 \section{Lists}
 
-For a set $A$, the lists of elements from $A$ also should form a set.
+For a set $A$, the lists consisting of elements from $A$ also form a set.
 The structure of this set is similar to $\NN$.
 
 \begin{defn}
 	For a set $A$, a \emph{simple $A$-recurrrence} is a set with two functions
-	$\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$.
+	$\One \stackrel{\hat b}{\longrightarrow} X \stackrel{r}{\longleftarrow} A\times X$.
 	
 	For a set $A$, an \emph{$A$-list set} is a simple $A$-recurrence 
-	$\One \stackrel{\hat{e}}{\longrightarrow} L \stackrel{c}{\longleftarrow} A\times L$ so that for any simple $A$-recurrence $\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$ there is exactly one function $\fromto hLC$ so that 
+	$\One \stackrel{\hat{e}}{\longrightarrow} L \stackrel{c}{\longleftarrow} A\times L$ so that for any simple $A$-recurrence $\One \stackrel{\hat b}{\longrightarrow} X \stackrel{r}{\longleftarrow} A\times X$ there is exactly one function $\fromto hLX$ so that 
 	\begin{align*}
 		h\circ \hat e 	&= \hat b\\
 		h\circ c 		&= r\circ (\id_A\times h).
@@ -1596,78 +1595,96 @@ The structure of this set is similar to $\NN$.
 \end{defn}
 
 \begin{principle}
-	The collection of lists with items in $A$ is a set, denote by $\List[A]$.
-	The functions $\fromto {\widehat{[\,]}}\One{\List[A]}$ and $\fromto c{A\times\List[A]}{\List[A]}$ defined by the rule $(a,L)\mapsto a:L$,
-	constitute an $A$-list set.
+	The collection of lists with items drawn from $A$ is a set, denote by $\List[A]$.
+	The functions $\One\stackrel{\widehat{[\,]}}{\longrightarrow}\List[A]\stackrel{\mathord{:}}{\longleftarrow}A\times \List[A]$
+	constitute an $A$-list set, where the function $\sfromto {mathord{\colon}}{A\times \List[A]}{\List[A]}$ is the function given by the rule $(a,L)\mapsto a:L$.
 	
-	For $\One \stackrel{\hat b}{\longrightarrow} C \stackrel{r}{\longleftarrow} A\times C$, we reuse our notation for recursive functions defined from $\NN$
+	For $\One \stackrel{\hat b}{\longrightarrow} X \stackrel{r}{\longleftarrow} A\times X$, we reuse our notation for recursive functions defined from $\NN$
 	and write $\srec[\hat b,r]$ for the unique function 
-	satisfying $\srec[\hat b,r]([\,])= b$
-	and $\srec[\hat b,r](a:L)= r(a, \srec[\hat b, r](L))$.  
+	satisfying 
+	\begin{align*} 
+	 \srec[\hat b,r]([\,]) &= b\\
+	 \srec[\hat b,r](a:L)  &= r(a, \srec[\hat b, r](L))
+	\end{align*}
 \end{principle}
 
 \begin{example}
-	$\One \stackrel{\hat 0}{\longrightarrow} \NN \stackrel{+}{\longleftarrow} \NN\times \NN$ determine a function $\srec[\hat 0, +]$ from $\List(\NN)$ to $\NN$. The function satifies $\srec[\hat 0,+]([\,])= 0$ and $\srec[\hat 0,+](n:L)= n + s(L)$.
-	So $\srec[0,+]$ returns the sum of items of a list natural numbers.
-	Earlier, we wrote this as $\sum L$.
+	$\One \stackrel{\hat 0}{\longrightarrow} \NN \stackrel{+}{\longleftarrow} \NN\times \NN$ determine a function $\srec[\hat 0, +]$ from $\List(\NN)$ to $\NN$. The function satifies $\srec[\hat 0,+]([\,])= 0$ and $\srec[\hat 0,+](n:L)= n + \srec[\hat 0,+](L)$.
+	So $\srec[0,+]$ returns the sum of items in a list natural numbers.
+	Earlier, we wrote this as $\sum L$. In other words, we \emph{defined} $\mathord{\Sigma} = \srec[\hat 0,+]$.
 \end{example}
 
 
 \begin{exercises}
 	\begin{nextexercise}
-		\item For a function $\fromto fAB$, specify a simple $A$ recurrence that defines the function
-			\[\fromto {\map[f]}{\List[A]}{\List[B]}\] so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
-		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do the job, because that can only define a function $\List[A]\to C$ for some  $C$. Do this instead: (i) specify a simple $A$-recurrence to define a function $\fromto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) define $L\star M$ to be $c(M)(L)$.
-		\item Write a scheme for ``primitive $A$ recursion''. Specified by a function $\fromto bPC$ and a function $\fromto r{P\times A\times \List[A] \times C}C$,
-		write equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to C$. 
+		\item For a function $\fromto fXY$, specify a simple $X$ recurrence that defines the function
+			\[\fromto {\map[f]}{\List[X]}{\List[Y]}\] so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
+		\item For $\map[\cdot]$ as defined in the previous exercise, show that for any $\fromto fXY$ and $\fromto gYZ$, $\map[g\circ f] = \map[g]\circ \map[f]$.
+		\item Define concatenation in $\List[A]$ by a simple $A$ recurrence. [Hint: I am asking for a function from $\List[A]\times \List[A]$ to $\List[A]$, but simple $A$ recurrence alone will not do the job, because that can only define a function $\List[A]\to X$ for some  $X$. Do this instead: (i) specify a simple $A$-recurrence to define a function $\fromto c{\List[A]}{\List[A]^{\List[A]}}$ for which $c(M)(L)$ is the concatetation of $L$ followed by $M$, (ii) define $L\star M$ to be $c(M)(L)$.
+		\item Write a scheme for ``primitive $A$ recursion'', specified by functions $P\stackrel{b}{\longrightarrow}X\stackrel{r}{\longleftarrow}P\times \List[A]\times X$. Write the equations involving $b$ and $r$ that should determine a unique function $P\times \List[A]\to X$. 
 		You do not need to prove that your scheme actually defines a function.
 	\end{nextexercise}
 \end{exercises}
 
 \chapter{Powersets}
 
-The exponential $\Two^A$ for any set $A$ is the set of all characteristic maps on $A$.
-Each element $k\in \Two^A$ corresponds to a subset of $A$ by $k^{-1}(\top) = \{x\in A\st k(x)=\top\}$. Vice versa, a subset $A\subseteq X$ determines a characteristic function $\fromto {\kappa_A}X\Two$ by the rule
+\begin{goals}
+	
+\end{goals}
+
+The exponential $\Two^X$ for a set $X$ is the set of all characteristic maps on $X$.
+Each $k\in \Two^X$ corresponds to a subset of $X$ by $k^{-1}(\top) = \{x\in X\st k(x)=\top\}$. Vice versa, a subset $A\subseteq X$ determines a characteristic function $\fromto {\kappa_A}X\Two$ by the rule
 \[x\mapsto \begin{cases}
 			\top &\text{if $x\in A$}\\
 			\bot &\text{otherwise}
 \end{cases}
 \]
-So $\Two^X$ is, in a sense, \emph{representative} of the collection of all subsets of $X$. 
-It is convenient also to suppose that the actual collection of subsets of a set $A$ forms a set.
-This should ``behave'' exactly like $\Two^A$, but concretely, consist of subsets rather than characteristic functions.
+So $\Two^X$ is, in this sense, \emph{representative} of the collection of all subsets of $X$. 
+It is convenient also to suppose that the actual collection of subsets of a set $X$ forms a set.
+This should ``behave'' exactly like $\Two^X$, but concretely, consist of subsets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
-	For any set $A$, the collection of subsets of $A$ is a set, denoted by $\powerset(A)$, called the \emph{power set of $A$}. Moreover, there is a function $\fromto {\ni_A}{\powerset(A)\times A}\Two$ defined by 
-	\[{\mathord\ni}_A(B,x) = \begin{cases}
-	\top, &\text{ if } x\in B\\
+	For any set $X$, the collection of subsets of $X$ is a set, denoted by $\powerset(X)$, called the \emph{power set of $X$}. Moreover, there is a function $\fromto {\ni_X}{\powerset(X)\times X}\Two$ defined by 
+	\[{\mathord\ni}_X(A,x) = \begin{cases}
+	\top, &\text{ if } x\in A\\
 	\bot &\text{otherwise}
 	\end{cases}
 	\]
-	The function $\ni_A$ is an evaluation map, meaning that 
-	for any function $\fromto f{C\times A}\Two$, there is a unique function $\fromto {f^\dagger}C{\powerset(A)}$ for which $f = {\mathord\ni}_A\circ (f^\dagger \times \id_A)$. The function $f^\dagger$ 
-	is given by the rule $c\mapsto \{x\in A\st f(c,x)=\top\}$.
+	The function $\ni_X$ is an evaluation map, meaning that 
+	for any function $\fromto f{P\times X}\Two$, there is a unique function $\fromto {f^\dagger}P{\powerset(X)}$ for which $f = {\mathord\ni}_X\circ (f^\dagger \times \id_X)$. The function $f^\dagger$ 
+	is given by the rule $p\mapsto \{x\in X\st f(p,x)=\top\}$.
 \end{principle}
 
-For a function $\fromto fAB$, ${\mathord\ni}_B\circ (\id_{\powerset(B)}\times f)$ is a function from $\powerset(B)\times A$ to $\Two$. So there is a unique function
-from $\powerset(B)$ to $\powerset(A)$ determined by $f$. 
+For a function $\fromto fXY$, ${\mathord\ni}_Y\circ (\id_{\powerset(X)}\times f)$ is a function from $\powerset(Y)\times X$ to $\Two$. So there is a unique function
+from $\powerset(Y)$ to $\powerset(X)$ determined by $f$ according to the above princple.
+This is called \emph{inverse image}.
 
 \begin{defn}
-	For $\fromto fAB$, let $\fromto {f^-}{\powerset(B)}{\powerset(A)}$ denote
+	For $\sfromto fXY$, let $\sfromto {f^-}{\powerset(Y)}{\powerset(X)}$ denote
 	the unique function for which ${\mathord\ni}_B\circ (\id_{\powerset(B)}\times f) = {\mathord\ni}_A\circ(f^-\times \id_A)$. In terms of elements, $f^-$ satsifies
-	\[x\in f^-(Y) \text{if and only if } f(x)\in Y\]
-	for every $Y\subseteq B$.  So $f^-$ is given by the rule $Y\mapsto \{x\in A\st f(x)\in Y\}$
+	\[x\in f^-(B) \text{if and only if } f(x)\in B\]
+	for every $B\subseteq Y$.  So $f^-$ is given by the rule $B\mapsto \{x\in X\st f(x)\in B\}$
 \end{defn}
 
-This notation does not clash much with our earlier definition of inverse image of an element, $f^-(b)$, because 
+This notation clashes slightly with our earlier definition of inverse image of an element, $f^-(b) = \{x\in X\st f(x)=b\}$. But this is harmless because 
 $f^-(b)$ in the earlier usage is the same as $f^-(\{b\})$ in the new usage.
+
+\begin{exercises}
+	\begin{firstexercise}
+		\item For $\fromto f\NN\NN$ defined by $f(n) = x^2$, what is $f^-(\{2,3,4,5,6,7,8\})$?
+		\item For $\fromto \sin\RR\RR$, what is $\sin^-(\{-1,1\})$?
+		\item Show that for any two functions $\fromto fXY$ and $\fromto gYZ$, $(g\circ f)^- = f^-\circ g^-$.
+	\end{firstexercise}
+\end{exercises}
 
 \section{Intersections, Unions, Residuals, Differences and Negations}
 
+Suppose we are currently interested in a particular set, which we will consider to be the ``universe of discourse.'' For example, for now we might only be interested in natural numbers. So our universe of discourse is $\NN$. Or we might be interested in poker. So our universe of discourse is $\symb{Deck}$, the set we defined earlier in these lectures. For this discussion, let us refer to this set as $U$ (for ``universe''). Then the structure of $\powerset(U)$ is of particular interest.
+
 Suppose $A$ and $B$ are subsets of $U$. 
 Then it makes sense to consider the elements that $A$ and $B$ have in common. 
-For example, for $A$ being the set of even natural numbers and $B$ the set of perfect squares, we might want to concentrate on the set of even, perfect squares.
-Generally, the elements in common ought to constitute another subset of $X$.
+For example, for $A\subseteq \NN$ being the set of even natural numbers and $B\subseteq \NN$ the set of perfect squares, we might want to concentrate on the set of even, perfect squares, which is another subset of $\NN$.
+In general, for $A\subseteq U$ and $B\subseteq U$, the elements in common constitute another subset of $U$.
 This is called the \emph{intersection} and is denoted by $A\cap B$.
 
 Likewise, we might consider merging $A$ and $B$ into a single set (in our example, the set of numbers that are either even or perfect squares).
@@ -1677,17 +1694,17 @@ This is called the \emph{residual}, and is denoted by $A\Rightarrow B$.
 Flipping this the other way, there is also a smallest set $C$ so that $A\subseteq B\cup C$. This is called the \emph{set difference} and is denoted by $A\setminus B$. 
 
 These operations on subsets of $X$ are closely related to the logic of propositions.
-Imagine that $U$ consists of a ``universe'' of possible worlds and subsets of $U$ are collections of worlds where certain things are true.
+Imagine that $U$ consists of a ``universe'' of possible worlds. Then subsets of $U$ are collections of worlds where certain things are true.
 For example, perhaps $P\subseteq U$ is the set of worlds in which pigs fly;
 $K\subseteq X$ is the set of worlds in which kittens smoke cigars.
 So $P\cap K$ is the set of worlds in which pigs fly \emph{and} kittens smoke cigars.
 Likewise, $P\cup K$ is the set of worlds in which \emph{Either} pigs fly \emph{or} kittens smoke cigars.
 And $P\Rightarrow K$ is the set of worlds in which it is true that if pigs fly, \emph{then} kittens smoke cigars. 
 
-Understanding the interaction of $\cap$, $\cup$ and $\Rightarrow$ is thus closely related to the logic of ``and'', ``or'' and ``implies''. If we add a sentence ``False'' that is never true and another one ``True'' that is always true, then the logic of ``and'', ``or'' and ``implies'' form what is called a \emph{Heyting algebra}.
+Understanding the interaction of $\cap$, $\cup$ and $\Rightarrow$ is closely related to the logic of ``and'', ``or'' and ``implies''. If we add a sentence ``False'' that is never true and another one ``True'' that is always true, then the logic of ``and'', ``or'' and ``implies'' form what is called a \emph{Heyting algebra}.
 
-More specially, ``implies'' interacts with ``False'' in a useful way.
-It turns out that ``$P$ implies False'' is essentially the same as saying ``$P$ is not the case''. And if ``$P$ is not the case'' is not the case, then ``$P$'' must be true. This oservation indicates that the Heyting algebra of subsets is actually a \emph{Boolean algebra}.
+In fact, ``implies'' interacts with ``False'' in a useful way.
+It turns out that ``$P$ implies False'' is essentially the same as saying ``$P$ is not true''. And if ``$P$ is not true'' is not true, then ``$P$'' must be true. This oservation indicates that the Heyting algebra of subsets is actually a \emph{Boolean algebra}.
 
 The operation of set difference is not as familiar in a logical setting. 
 It corresponds to``but not'', so $P\setminus K$ is the set of worlds  in which pigs fly, but kittens do not smoke cigars. 
@@ -1708,12 +1725,12 @@ It corresponds to``but not'', so $P\setminus K$ is the set of worlds  in which p
 %
 
 \begin{lemma}
-	In the following, let $X$ be a set, and $A,B\subseteq X$ be subsets.
+	In the following, let $U$ be a set, and $A,B\subseteq X$ be subsets.
 	\begin{itemize}
-		\item There is a subset of $X$, denoted by $A\cap B$, so that for every $C\subseteq X$, $C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.
-		\item There is a subset of $X$, denoted by $A\cup B$, so that for every $C\subseteq X$, $A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.
-		\item There is a subset of $X$, denoted by $A\Rightarrow B$, so that for every $C\subseteq X$, $C\subseteq A\Rightarrow B$ if and only if $C\cap A\subseteq B$.
-		\item There is a subset of $X$, denoted by $A\setminus B$, so that for every $C\subseteq X$, $A\setminus B\subseteq C$ if and only if $A\subseteq B\cup C$.
+		\item There is a subset of $U$, denoted by $A\cap B$, so that for every $C\subseteq U$, $C\subseteq A\cap B$ if and only if $C\subseteq A$ and $C\subseteq B$.
+		\item There is a subset of $U$, denoted by $A\cup B$, so that for every $C\subseteq U$, $A\cup B\subseteq C$ if and only if $A\subseteq C$ and $B\subseteq C$.
+		\item There is a subset of $U$, denoted by $A\Rightarrow B$, so that for every $C\subseteq U$, $C\subseteq A\Rightarrow B$ if and only if $C\cap A\subseteq B$.
+		\item There is a subset of $U$, denoted by $A\setminus B$, so that for every $C\subseteq U$, $A\setminus B\subseteq C$ if and only if $A\subseteq B\cup C$.
 	\end{itemize}
 	
 	\begin{proof}
@@ -1772,9 +1789,8 @@ It corresponds to``but not'', so $P\setminus K$ is the set of worlds  in which p
 This lemma, together with the fact that $\emptyset$ is the smallest element of $\powerset(X)$ and $X$ is the largest, can be summarized by saying that $\cap$, $\cup$, $\Rightarrow$, $\emptyset$ and $X$ make $\powerset(X)$ into what is known as a \emph{Heyting algebra}. 
 We spell out the axioms for Heyting algebras in the next section, but generally speaking these are the structures that correspond to a sort of minimal version of propositional logic in which ``and'', ``or'', ``implies'', ``true'' and ``false'' interact in natural ways. Likewise, ``or'', ``and'', ``but not'', ``false'' and ``true'' interact in natural ways to determine a co-Heyting algebra. 
 
-Additionally, ``implies'' and ``false'' interact in stronger ways, as do ``but not'' and ``true''. 
-In particular, $\powerset(X)$ is a \emph{Boolean algebra}. 
-This means the logic is based on a stronger interaction called the Law of Double Negation (or equivalently the Law of the Excluded Middle). 
+Additionally, ``implies'' and ``false'' interact in a stronger way, as do ``but not'' and ``true''. 
+In particular, $\powerset(U)$ is a \emph{Boolean algebra}. 
 Let us abbreviate $A\Rightarrow\emptyset$ by writing $A^*$ (read this informally as ``not $A$).
 Then the Law of Double Negation asserts that double negations do not change anything: $A^{**} = A$.
 
@@ -1782,7 +1798,7 @@ Then the Law of Double Negation asserts that double negations do not change anyt
 	In $\powerset(X)$, $A^{**} = A$.
 	
 	\begin{proof}
-		Calculating the members of $\neg A$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, but not both. 
+		Calculating the members of $A^*$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, but not both. 
 		So $x\in A^{**}$ if and only if $x\notin A^*$ if and only if $x\in A$. 
 		
 		Put differently, define the function $\fromto {\mathord\neg}\Two\Two$ by $\neg\top=\bot$ and $\neg\bot = \top$.
@@ -1797,9 +1813,9 @@ That is, one can define the term ``Boolean algebra'' to mean ``Heyting algebra t
 So $\powerset(X)$ is indeed a Boolean algebra. 
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{nextexercise}
 		\item An easy consequence of Double Negation is that $A\Rightarrow \emptyset = U\setminus A$. Prove it.
-	\end{firstexercise}
+	\end{nextexercise}
 \end{exercises}
 
 \printbreak
@@ -1919,15 +1935,24 @@ $\{x\in X\st P(x)\to Q(x)\}$ for a residual, and $\{x\in X\st \neg P(x)\}$ for a
 	\[\text{$C \subseteq \{x\in X\st \forall w\in W.R(w,x)\}$ if and only if $\{(w,x) \in W\times X\st x\in C\}\subseteq R$}.\]
 
 	\begin{proof}
-		The proof of this is fairly technical and, for now, is beyond the scope of this discussion.
-		Concretely, $\{x\in X\st \exists w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x) = \top$ for some $w\in W$;
-		$\{x\in X\st \forall w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x)=\top$ for all $w\in W$.
+		The proof of this is fairly technical and not especially infomrative. A sketch will suffice.
+		
+		The relation $R$ determines a function $r$ from $X$ to $\powerset(W)$ by $x\mapsto \{w\in W\st R(w,x)\}$.
+		Then 
+		\begin{align*}
+			\{x\in X\st \forall w\in W.R(w,x)\} &= r^-(\{W\})\\
+			\{x\in X\st \exists w\in W.R(w,x)\} &= r^-(\powerset(W)\setminus\{\emptyset\})
+		\end{align*}
+		Proving that these sets satisify the desired conditions is technical, but routine.
+		 
+		Concretely, $\{x\in X\st \exists w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x)$ for some $w\in W$;
+		$\{x\in X\st \forall w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x)$ for all $w\in W$.
 		This justifies our notation: $\exists w\in W,R(w,x)$ is read as ``there \emph{exists} $w\in W$ so that $R(w,x)$;''
 		$\forall w\in W, R(w,x)$'' is read as ``for \emph{all} $w\in W$, $R(w,x)$.''
 	\end{proof}
 \end{lemma}
 
-We use this lemma to generalize $\cup$ and $\cap$ to arbitrary sets of subsets.
+We can use this lemma to generalize $\cup$ and $\cap$ to arbitrary sets of subsets.
 
 \begin{defn}
 Let $\fromto AI{\powerset(X)}$ be a function into the powerset of $X$.
@@ -1935,7 +1960,8 @@ We may write $A_i$ instead  of $A(i)$ to emphasize that each $A_i$ is
 a set. 
 Then define 
 \begin{align*}
-\bigcup_{i\in I}A_i &= \{x\in X\st \exists i\in I.x\in A_i\}
+\bigcup_{i\in I}A_i &= \{x\in X\st \exists i\in I.x\in A_i\}\\
+%\bigcap_{i\in I}A_i &= \{x\in X\st \forall i\in I.x\in A_i\}
 \end{align*}
 \end{defn}
 
@@ -1958,7 +1984,7 @@ The complete Boolean algebras $\powerset(X)$ have one more feature that characte
 They are \emph{atomic}. 
 This means, roughly, that all subsets are built from the simplest ones.
 
-An \emph{atom} of $\powerset(X)$ is a subset $A$ with the property that $\emptyset\subseteq B\subseteq A$ implies $B=\emptyset$ or $B=A$. That is, there is nothing strictly between $\emptyset$ and $A$. 
+An \emph{atom} of $\powerset(X)$ is a subset $A$ with the property that $\emptyset\subseteq B\subseteq A$ implies $B=\emptyset$ or $B=A$. That is, there is nothing strictly between $\emptyset$ and $A$.
 Clearly, the singleton subsets of $X$ are the atoms $\powerset(X)$.
 
 \begin{lemma}
@@ -1980,11 +2006,11 @@ For a complete Boolean algebra, this is what is meant by saying that $\powerset(
 Although we do not investigate this here, any complete atomic Boolean algebra has the same structure as $\powerset(X)$ for some $X$. The structure of $\powerset(X)$ is even preserved by inverse images.
 
 \begin{lemma}
-	For any function $\fromto fXY$, any $\fromto BI{\powerset(Y)}$, it is the case that $f^{-1}(\bigcup_{i\in I}B_i) = \bigcup_{i\in I}f^{-1}(B_i)$
+	For any function $\fromto fXY$, any $\fromto BI{\powerset(Y)}$, it is the case that $f^{-}(\bigcup_{i\in I}B_i) = \bigcup_{i\in I}f^{-1}(B_i)$
 	and $f^{-1}(\bigcap_{i\in I}B_i) = \bigcap_{i\in I}f^{-1}(B_i)$.
 	
 	\begin{proof}
-		$x\in f^{-1}(\bigcup_{i\in I}B_i)$ if and only if $f(x)\in \bigcup_{i\in I}B_i$ if and only if $f(x)\in B_k$ for some $k\in I$ if and only if $x\in f^{-1}(B_k)$ for some $k\in I$ if and only if $x\in \bigcup_{i\in I}f^{-1}(B_i)$. THe proof for $\bigcap$ is similar with ``for some \ldots'' replaced by ``for all \ldots".  
+		$x\in f^{-}(\bigcup_{i\in I}B_i)$ if and only if $f(x)\in \bigcup_{i\in I}B_i$ if and only if $f(x)\in B_k$ for some $k\in I$ if and only if $x\in f^{-}(B_k)$ for some $k\in I$ if and only if $x\in \bigcup_{i\in I}f^{-}(B_i)$. The proof for $\bigcap$ is similar with ``for some \ldots'' replaced by ``for all \ldots".  
 	\end{proof}
 \end{lemma}
 
@@ -2037,11 +2063,15 @@ Second, $f^-$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in 
 
 \chapter{Additional Constructions}
 
-Many other constructions can be built up using the principles we have discussed. In this lecture, we discuss some of the most useful and most general.
+
+\begin{goals}
+	content
+\end{goals}
+Many other constructions can be built up using the principles we have discussed. In this lecture, we consider some of the most useful and most general.
 
 \section{Unions}
 
-Although not strictly needed for most applications, mathematicians generally agree that sets, no matter how they are related, can be merged into a single set with elements taken form the originals. We take this as an additional principle.
+Although not strictly needed for most applications, mathematicians generally agree that sets, no matter how they are related, can be merged into a single set with elements taken form the originals. That is, union ($\bigcup$) is meaningful for any set of sets. We take this as an additional principle.
 
 \begin{principle}
 	Suppose $\mathcal X$ is a set and each element of $\mathcal X$ is a set (so $\mathcal X$ is a set of sets).
@@ -2052,7 +2082,7 @@ Although not strictly needed for most applications, mathematicians generally agr
 Using this principle, the set $U$ is actually the union $\bigcup_{X\in\mathcal X}X$.
 That is, $x\in\bigcup_{X\in\mathcal X}X$ holds if any only if $x\in X$ for some $X\in\mathcal X$.
 
-For a sets of sets $\{X,Y\}$, we write $X\cup Y$ instead of $\bigcup\ldots$. 
+For a sets of sets $\{A,B\}$, we write $A\cup B$ instead of $\bigcup_{X\in\{A,B\}}X$.
 
 \section{Co-products}
 
@@ -2060,7 +2090,7 @@ The sets $\emptyset$ and $\One$ behave in opposite ways, in the sense that for a
 We signalled this by refering to $\emptyset$ as \emph{initial} and $\One$ as \emph{terminal}. 
 We say that the notion of an initial set is \emph{dual} to the notion of a terminal set. 
 The constructions of equalizers and products have duals called \emph{co-equalizers} and \emph{co-products}. 
-Co-equalizers are indeed definable using the principles we already have, but it turns out that a related notion of \emph{quotients} is more commonly used. We discuss quotients below, but build co-products first.
+Co-equalizers are indeed definable using the principles we already have, but it turns out that a related notion of \emph{quotients} is more commonly used. We discuss quotients below, and build co-products first.
 
 \begin{defn}
 	For sets $X$ and $Y$, a \emph{co-table} is a set with a pair of functions
@@ -2105,6 +2135,8 @@ The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$
 		$X\times (Y\uplus Z)$ and $(X\times Y )\uplus (X\times Z)$.
 	\end{firstexercise}
 \end{exercises}
+
+\section{Quotients}
 
 Sometimes, elements of a set $X$ will be classified into ``like'' kinds. 
 For example, we might classify the natural numbers into even and odd. 
@@ -2179,3 +2211,20 @@ Hence $f(x)=f(x')$.
 		\item Determine whether the function $h(n) = 2^n$ is $\equiv_7$-invariant.
 	\end{nextexercise}
 \end{exercises}
+
+\section{The Axioms of Choice and Replacement}
+
+There are other axioms of set theory that mathematicians sometimes use, but that do not fit easily into our way of thinking about \emph{constructions}. 
+One such axiom is called the Axiom of Choice. Roughly is says that some how, one make arbitrarily many choices all at once. A famous example, due to Russel, is having an infinite collection of identical socks. One needs the Axiom of Choice to say that the socks can be put into pairs. The Axiom of Choice is quite useful in mathematics, sometimes to prove something that genuinely needs the axoim, other times to simplify a proof that could have been proved without it. Because of the special role the Axiom of Choice plays in mathematics, we return to discuss the Axiom of Choice in detail after we have some other concepts in place.
+
+Another axiom says, roughly, that if a collection is the same size as a set, then it is a set. This is the Axiom of Replacement (think of replacing the elements of a set with elements of the collection, thus forming a new set). This is an important axiom for dealing with set theory, \emph{per se}, but it does not come up much in practice. We can state a form of the axiom that is technical, but occasionally useful.
+
+\begin{principle}
+	Suppose $I$ is a set, and for each $x\in I$, $a_i$ is a mathematical entity. Then there is a set, denoted by $\{a_i\}_{i\in I}$,satisfying $x\in \{a_i\}_{i\in I}$ if and only if $x=a_i$ for some $i\in I$. The set $\{a_i\}_{i\in I}$ is sometimes called an \emph{indexed set},
+	or \emph{indexed family}.
+\end{principle}
+
+For example, let $V_i = \NN$ and let $V_{k+1} = \powerset(V_k)$. Then the principle tells us that $\{V_i\}_{i\in \NN}$ is a set.
+Now define $V_\omega = \bigcup_{i\in \NN}V_i$. This is a set that can not be constructed without Replacement. This princple can be made formal by introducing some additional logical machinery, but we will not make use of it in these lectures enough to warrant that attention.
+
+Other stronger and stronger axioms of sets are possible. For these lectures, though, our goal is to have enough set theoretic machinery to do ``ordinary'' mathematics. We can stop here (remembering the promise to come back to the Axiom of Choice later). The interested student should follow up with a course in Set Theory.
