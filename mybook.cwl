@@ -15,6 +15,9 @@
 \begin{principle}#S
 \end{principle}#S
 
+\begin{vocabulary}#S
+\end{vocabulary}#S
+
 \NN
 \RR
 \QQ

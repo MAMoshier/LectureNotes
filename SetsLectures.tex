@@ -2212,7 +2212,7 @@ Hence $f(x)=f(x')$.
 	\end{nextexercise}
 \end{exercises}
 
-\section{The Axioms of Choice and Replacement}
+\section{The Axioms of Choice, Replacement and Beyond}
 
 There are other axioms of set theory that mathematicians sometimes use, but that do not fit easily into our way of thinking about \emph{constructions}. 
 One such axiom is called the Axiom of Choice. Roughly is says that some how, one make arbitrarily many choices all at once. A famous example, due to Russel, is having an infinite collection of identical socks. One needs the Axiom of Choice to say that the socks can be put into pairs. The Axiom of Choice is quite useful in mathematics, sometimes to prove something that genuinely needs the axoim, other times to simplify a proof that could have been proved without it. Because of the special role the Axiom of Choice plays in mathematics, we return to discuss the Axiom of Choice in detail after we have some other concepts in place.
@@ -2220,8 +2220,8 @@ One such axiom is called the Axiom of Choice. Roughly is says that some how, one
 Another axiom says, roughly, that if a collection is the same size as a set, then it is a set. This is the Axiom of Replacement (think of replacing the elements of a set with elements of the collection, thus forming a new set). This is an important axiom for dealing with set theory, \emph{per se}, but it does not come up much in practice. We can state a form of the axiom that is technical, but occasionally useful.
 
 \begin{principle}
-	Suppose $I$ is a set, and for each $x\in I$, $a_i$ is a mathematical entity. Then there is a set, denoted by $\{a_i\}_{i\in I}$,satisfying $x\in \{a_i\}_{i\in I}$ if and only if $x=a_i$ for some $i\in I$. The set $\{a_i\}_{i\in I}$ is sometimes called an \emph{indexed set},
-	or \emph{indexed family}.
+	Suppose $I$ is a set, and for each $i\in I$, $a_i$ is a mathematical entity. Then there is a set, denoted by $\{a_i\}_{i\in I}$,satisfying $x\in \{a_i\}_{i\in I}$ if and only if $x=a_i$ for some $i\in I$. The set $\{a_i\}_{i\in I}$ is sometimes called an \emph{indexed set},
+	or \emph{indexed family}. For indexed set $\{a_i\}_{i\in I}$, the rule $i\mapsto a_i$ determines a function from $I$ to $\{a_i\}_{i\in I}$.
 \end{principle}
 
 For example, let $V_i = \NN$ and let $V_{k+1} = \powerset(V_k)$. Then the principle tells us that $\{V_i\}_{i\in \NN}$ is a set.

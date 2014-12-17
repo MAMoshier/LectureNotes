@@ -1,0 +1,973 @@
+\chapter{Counting Finite Sets}
+
+\begin{goals}
+	\noindent\textbf{Lecture}
+	\begin{itemize}
+		\item Use the basic set and function constructions to discover techniques of counting finite systems.
+		\item Introduce recurrence equations.
+	\end{itemize}
+	
+	\noindent\textbf{Study}
+	\begin{itemize}
+		\item Learn the standard counting techniques.
+		\item Be able to apply these techniques to common practical situations. 
+	\end{itemize}
+\end{goals}
+
+Consider the following questions:
+\begin{itemize}
+	\item How many ways are there to choose a president, secretary and treasurer from among the $25$ members of a student club? 
+	\item How many different five card poker hands are there?
+	\item How many different ways can you be dealt a five card poker hand, one card at a time.
+	\item How many of those poker hands are four-of-a-kind?
+	\item How many three-letter words contain the letter ``a''? [A ``word'' is any three letter sequence. So `azx' counts even though it is not an English word.]
+\end{itemize}
+
+These are examples of \emph{counting problems}. It turns out that there are actually a very small handful of techniques that allow us to solve a wide range of these sorts of problems.
+
+
+\section{Finite Sets}
+
+Recall that a finite set is a set the elements of which, in principle, can be listed. 
+So a set modelling the collection of five card poker hands is finite. 
+Not that we would actual wish to compile a list of all of them, but it could be done in principle.
+Far worse, we could consider listing the elements of $\powerset(\powerset(\powerset(\powerset(\powerset(\powerset(\powerset(\emptyset)))))))$. 
+Actually writing these in a list would vastly exceeed using up all paper ever produced. 
+Nevertheless, the set is finite because, \emph{in principle}, its elements can be listed.
+
+Recall that for any list $L = [a_0,\ldots, a_{n-1}]$, there is a set $\{a_0,\ldots, a_{n-1}\}$. So a set is finite if a corresponding $L$ exists. Simple as that. Also, recall that we already defined the length of a list, inductively. So we can define \emph{finite set} and the \emph{size} of a finite set formally.
+
+\begin{defn}
+	A set $A$ is \emph{finite} if there is a list $L=[a_0,\dotsc, a_{n-1}]$ so that $A = \{a_0,\dotsc, a_{n-1}\}$.
+	
+	For a finite set $A$, let $|A|$ (the \emph{size} of $A$) be the smallest natural number $n$ for which there is a $L=\{a_0,\dotsc,a_{n-1}\}$ satisfying $A = \{a_0,\dotsc, a_{n-1}\}$. 
+	
+	A fancy synonym for \emph{size} is \emph{cardinality}.  
+\end{defn}
+ 
+This definition is a bit unsatisfying because calculating $|A|$ seems to require that we compare $A$ to all of the ways we could list $A$'s elements, and pick a shortest one. There should be a more direct method.
+Let us define standard sets of each finite size to use for comparison.
+
+\begin{defn}
+	For natural number $n$, let $\tilde n = \{x\in \NN\st x<n\}$.
+	So $\tilde 0 = \{\}$, $\tilde 1 = \{0\}$, $\tilde 2 = \{0,1\}$, and so on.
+\end{defn}
+
+\begin{lemma}
+	A set $A$ is finite if and only if for some $n\in\NN$, there are functions $\sfromto fA{\tilde n}$ and $\sfromto g{\tilde n}A$ so that $g\circ f = \id_A$. 
+	
+	For a finite set $A$, the value $n$ can be chosen to be $|A|$. In that case, the functions $f$ and $g$ also $f\circ g=\id_{\tilde n}$
+	
+	\begin{proof}
+		Suppose $n$ and the indicated functions exist. Then the list $[g(0),\dotsc,g(n-1)]$ lists elements of $A$. So
+		$\{g(0),\dotsc,g(n-1)\}\subseteq A$. For $a\in A$, $f(a)\in \tilde n$, so $g(f(a))$ is on the list. But $a=g(f(a))$. Thus
+		$A\subseteq \{g(0),\dotsc,g(n-1)\}$.
+		
+		Suppose $A$ is finite, then $A = \{a_0,\dotsc,a_{n-1}\}$
+		for some list of length $n$. So we define $g(i) = a_i$
+		and $f(x) = \text{the smallest $i$ for which $x = a_i$}$.
+		
+		The last part of the claim is obvious, but you should at least sketch why you believe it.
+	\end{proof}
+\end{lemma}
+
+This lemma provides a useful tool for determining the size of a finite set because the sets $\tilde n$ act as ``measuring sticks'': $|A| = n$ if and only if we can match up the elements of $A$ with the elements of $\{0,\dotsc, n-1\}$. So we are free to write $A = \{a_0,\dotsc,a_{|A|-1}\}$, and prove facts abount finite sets by induction on $|A|$.
+
+One detail needs to be taken into account in proofs by induction. 
+Suppose $\{a_0,\dotsc,a_{|A|-1}\} = A = \{b_0,\dotsc,b_{|A|-1}\}$. That is, the same set $A$ is listed in two different ways. We will need to be careful that a proof does not depend on which listing we use. This will become clear as we go along.
+
+
+\section{The Basic Principles}
+
+The basic fact about counting elements in finite sets is shat we may call \emph{additivity}.
+
+\begin{lemma}
+	For finite sets $A$ and $B$, $\size{A\uplus B} = \size A + \size B$. So if $A\cap B=\emptyset$, then $\size{A\cup B} = \size A + \size B$.
+	
+	\begin{proof}
+		Too obvious to bother writing the details.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	For finite sets $A$ and $B$, $\size{A\times B}=\size A \cdot\size B$.
+	
+	\begin{proof}
+		This is also fairly obvious, but let's tackle a proof to illustrate the technique involved. 
+		
+		The proof is by inducion on the size of $B$. Fix a finite set $A$ with $\size A=m$. 
+		\begin{itemize}
+			\item{}[Basis] $A\times \emptyset = \emptyset$, and obviously, $\size \emptyset = 0$.
+			\item{}[Inductive Hypothesis] Assume that for any finite set $X$, if $\size X = k$, and $\size{A\times X} = m \cdot \size X$.
+			\item{}[Inductive Step] Suppose $\lVert B\rVert = k+1$. 
+			Then $B$ can be written as $\{b_0,\dotsc,b_k\}$.
+			Let $X = \{b_0,\ldots, b_{k-1}\}$ and let $A' = \{(a,b_k)\}_{a\in A}$. Clearly, $\size A = \size A'$.
+			By the inductive hypothesis, and $\size {A\times X} = m\cdot k$.  
+			Now $A\times B = A\times X \cup A'$ 
+			and $A\times X\cap A' = \emptyset$.
+			So $\size{A\times B} = \size{A\times X} + \size A' = m\cdot k + m = m\cdot(k+1)$.
+			
+			[Note that the proof does not depend on how $b_k$ is chosen. So it is valid for every way we might have written $B$.]
+		\end{itemize}
+	\end{proof}
+\end{lemma}
+
+Now that we know how to handle cartesian products of finite sets, exponents can not be far behind.
+
+\begin{lemma}
+	For finite sets $A$ and $B$, $\size{B^A} = \size{B}^{\size A}$.
+	
+	\begin{proof}
+		The proof is by induction on $\size A$. We leave it as an exercise below.
+	\end{proof}
+\end{lemma}
+
+
+\begin{exercises}
+	In these exercises, you will prove the foregoing lemma.
+	Suppose $B$ is a finite set and $\size B=m$.
+	\begin{firstexercise}
+		\item Show that $\size{B^\emptyset} = 1$. [This is really just an observation about functions with domain $\emptyset$.]
+		\item State the inductive hypothesis: ``Assume that for any finite set $X$ with $\size X = k$, ldots''
+		\item Prove the inductive step: For $A$ of size $k+1$, $\size{B^A} = \size{B}^{\size{A}}$. 
+	\end{firstexercise}
+\end{exercises}
+
+\section{Arrangements}
+
+Suppose we are given a set $B$ and wish to form a list of $k$ items drawn from $B$. This is called an \emph{$k$-arrangement from $B$}. 
+If the items on the list are allow to appear more than once, it is a $k$-arrangement \emph{with replacement}. 
+Otherwise it is \emph{without replacement}. 
+
+Evidently, a $k$-arrangement from $B$, $[b_0,dotsc,b_{k-1}]$ corresponds to a function $\fromto b{\tilde k}B$. 
+With replacement (items are permitted to appear more than once), there are no restrictions on the function. 
+Without replacement (items can not be repeated), the function must be \emph{one-to-one}, meaning that $b_i=b_j$ implies $i=j$.
+
+The number of $k$-arrangements with replacement is $\size{B}^k$.
+The number of $k$-arrangements without replacement is the number of one-to-one functions.
+
+\begin{defn}
+	For sets $A$ and $B$, let $B^{\underline A}$ denote the set of one-to-one functions from $A$ to $B$.
+\end{defn}
+
+\begin{defn}
+	For $x\in RR$ and $k\in\NN$, let $x^{\underline k}$ by the following recurrence.
+	\begin{align*}
+		x^{\underline 0} &= 1\\
+		x^{\underline{k^\nxt}} & = x\cdot (x-1)^k
+	\end{align*}
+\end{defn}
+
+\begin{lemma}
+	For finite sets $A$ and $B$, $\size{B^{\underline A}} = \size{B}^{\underline{\size{A}}}$. 
+	
+	\begin{proof}
+		We prove this by induction  $\size{A}$.
+		\begin{itemize}
+			\item{}[Basis] There is one function from $\emptyset$ to $B$. It is by definition one-to-one.
+			\item{}[Inductive Hypothesis] Assume that $\size{B^{\underline{A}}} = \size{B}^{\underline{\size{A}}}$
+			for all finite sets $B$ and $A = \{a_0,\dotsc,a_{k-1}\}$.
+			\item{}[Inductive Step] To choose a one-to-one function $f$ from $\{a_0,\dotsc,a_{k-1},a_k\}$ to $B$, we choose a value for $b_k\in B$. 
+			There are $\size{B}$ ways to make that choice.
+			Next we choose a one-to-one function $g$ from $\{a_0,\dotsc,a_{k-1}\}$ to $B\setminus\{f(a_k)\}$.
+			Then we define 
+			\[f(a_i)=\begin{cases}
+			           g(a_i) &\text{if $i<k$}\\
+			           b_k &\text{otherwise}.
+			\end{cases}\]
+			Evidently, there are $(\size{B}-1)^{\underline k}$ ways to choose $g$ and $\size{B}$ ways to choose $b_k$.
+		\end{itemize}
+	\end{proof}
+\end{lemma}
+
+Note that $n^{\underline n} = n\cdot(n-1)\cdot(n-2)\cdot\dotsm\cdot 2\cdot1 = n!$. And by inudction on $j$, $n^{\underline{k+j}} = n^{\underline{k}}(n-k)^{\underline{j}}$. So consider $j=n-k$. Then $n!=n^{\underline{k+j}}=n^{\underline{k}}j^{\underline{j}}$.
+So $n^{\underline{k}} = n!/(n-k)!$.
+
+\begin{example}
+	Suppose a student club has $30$ members.
+	The club needs a president, secretary and treasurer.
+	How many ways can they be chosen?
+	If a club member is allowed to serve in more than one role then this is a $3$-arrangment with replacement. So $30^3$ possibilities.
+	If the three offices must be held by different members, then this is a $3$-arrangement without replacement. So there are $30^{\underline 3} = 30\cdot29\cdot28$ possibilities. 
+\end{example}
+
+\section{Combinations}
+
+To count the number of poker hands, we can think about a set-theoretic \emph{model} of the situation.
+We have a deck consisting of $52$ cards.
+We can represent it as a set $D$.
+In a \emph{hand}, the order of the cards does not matter.
+So we can model a hand as a subset of $D$ of size $5$.
+Similar situations, of course, come up for other sets and other sizes.
+This is called a $k$-combination without replacement. The difference between \emph{arrangement} and \emph{combination} is order. In an arrangement, the order of the items matter. In a combination, the order does not matter.
+
+\begin{defn}
+	For a set $X$ and natural number $k$, let $X^{[k]}$ denote the collection of subsets of $X$ of cardinality $k$. This is called the set of $k$-combinations without replacement (usually, people omit the prepositional phrase and just call them $k$-combinations).
+	
+	So for example, $X^{[0]} = \{\emptyset\}$, and $X^{[1]}$ consists of all the singleton subsets of $X$. For a finite set $A$, $A^{[\size{A}]}$ consists of all subsets of $A$ of size $\size A$. There is only one. So $A^{[\size A]} = \{A\}$.
+	
+	For a set $A$ of size $n$, let $\binom n k = \size{A^{[k]}$.
+\end{defn}
+
+
+To calculate $\binom n k$, we can relate $k$-combinations to $k$-arrangements. 
+Specifically, the set of $k$-arrangements from $A$ without replacement ($A^{\underline{\tilde k}}$) is the same size as the set $A^{[k]}\times {\tilde k}^{\underline{\tilde k}}$. 
+To choose a $k$-arrangment $[b_0,\dotsc,b_{k-1}]$ we can choose
+a subset $B\subseteq A$ of size $k$ and choose a specific ordering of 
+the elements of $B$. These two choices can be made independently, and every $k$-arrangement from $A$ can be made this way. So 
+\[\frac{n!}{(n-k)!} = n^{\underline{k}} = \size{A^{\underline{\tilde k}}} = \size{A^{[k]}\times {\tilde k}^{\underline{\tilde k}}} = \binom n k\cdot k!.\]
+Consequently,
+\[\binom n k = \frac{n!}{(n-k)!k!}.\]
+
+The values $\binom nk$ are called \emph{binomial coefficient} and is sometimes read out loud as ``$n$ choose $k$''. A binomial of degree $n$ is, of course, a term $(x+y)^n$. This can be ``multiplied out'' to produce a sum of terms of the form $C^n_k x^{n-k}y^k$ for some constants $C^n_k$. Succinctly, $(x+y)^n = \sum_{k=0}^n C^n_kx^{n-k}y^k$ where $C^n_0, \dotsc, C^n_n$ are specific constants.
+
+In a rather simple induction on $n$, it $C^n_k = \binom nk$.  
+
+\section{Permutations and Combinations}
+
+A permutation is an arrangement of elements in which their order matters. 
+A combination is an arrangement of elements in which their order does not matter.
+
+A student club with $20$ members must pick a president, a secretary and a treasurer.
+Which club member is picked for president versus secretary versus treasurer matters. Also, club by-laws forbid anyon from serving in two posts at the same time.
+This is a permutation of $3$ items from $20$. 
+
+In a five card poker hand, the order in which the five cards are dealt does not matter. This is a combination of $5$ items chosen from $52$.
+
+These two kinds of counting problems are not the same, but they are closely related.
+To understand them, we need to think about how they may be modelled in sets.
+
+The leadership of the student club can be modelled as assigning to each of the three leadership positions, a member of the club. 
+So let $L=\{\textsf{p},\textsf{s},\textsf{t}\}$, and let $M$ be a set modelling the membership of the club. 
+Thus a leadership assignment is a function $\fromto aLM$.
+But suppose $a(\textsf{m}) = a(\textsf{s})$.
+This would signify that the same person is assigned to be the president and the secretary, violoating the by-laws.
+To avoid this, $a$ should be a one-to-one function.
+Hence, to count the number of leadership assignments is to count the number of one-to-one functions from $L$ to $M$.
+
+For five car poker hand, let $D$ be the set modelling a dick of cards. Then a hand is modelled as a subset $H\subseteq D$ for which $\lVert H\rVert = 5$.
+
+\begin{defn}
+	For finite sets $A$ and $B$, let $B^{\underline A}$ denote the collection of all one-to-one functions from $A$ to $B$.
+	
+	For finite set $A$ and natural number $n$, an \emph{$n$-subset} is a subset of $A$ of size $n$. Let $A^{[n]}$ denote the collection of all $n$-subsets of $A$.
+\end{defn}
+
+A set modelling all possible leadership assignments for the student club is $M^{\underline L}$. A set modelling all possible poker hands is $D^{[5]}$. So we solve our two problem specifically by figuring how to count $B^{\underline A}$ and $B^{[n]}$ generally.
+
+Consider the number of one-to-one functions from $L$ to $M$. Evidently, we can chose any student from $M$ to be president. So there are $20$ possibilities. After that, we chose a secretary from the remaining $19$, then a treasurer from the remaining $18$. So $20\cdot 19\cdot 18$ is our answer. Pretty obviously, the pattern is to multiply $20\cdot(20-1)\cdot(20-2)$. This generalizes.
+
+\begin{defn}
+	For an integer $a$ and natural number $m$, define the \emph{falling exponent} $a^{\underline m}$ recursively by
+	\begin{align*}
+	a^{\underline 0} &= 1\\
+	a^{\underline{m^\nxt}} &= a\cdot (a-1)^{\underline m}	
+	\end{align*}
+	So $a^{\underline m} = (a-0)\cdot(a-1)\cdots(a-2)\cdots(a-(m-1))$. So there are $m$ terms in this expression.
+\end{defn}
+
+We can now prove that $\lVert B^{\underline A}\rVert$ is indeed calculated by a falling exponent.
+
+\vfil
+\printbreak
+
+\begin{lemma}
+	For finite sets $A$ and $B$, $\lVert B^{\underline A}\rVert = \lVert B\rVert^{\underline{\lVert A\rVert}}$.
+	
+	\begin{proof}
+		Fix a finite set $B$. 
+		Now by induction on $\lVert A\rVert$,
+		\begin{itemize}
+			\item{}[Basis] The set $B^{\underline \emptyset}$ consists of the single function from $\emptyset$ to $B$. 
+			So $\lVert B^{\underline{\emptyset}} = 1$.
+			\item{}[Inductive Hypothesis] Assume that $\lVert B^{\underline X}\rVert = \lVert B\rVert^{\underline{\lVert X\rVert}}$ for any set $X$ for which $\lVert X\rVert = k$.
+			\item{}[Inductive Step] Suppose $\lVert A\rVert = k+1$.
+			Let $a_0$ be an element of $A$. 
+			
+			If $B=\emptyset$, then there are no functions from $A$ to $B$.
+			So $\lVert B^{\underline A}\rVert = 0$. 
+			But also, by the inductive definition of falling exponents, $0^{\underline{k+1}} = 0\cdot (-1)^{\underline k} = 0$.
+			
+			If $B\neq emptyset$, let $b_0\in B$. 
+			We define a bijection between $B^{\underline A}$ and $B\times (B\setminus\{b_0\})^{\underline A\setminus\{a_0\}}$. 
+			Then the result follows directly from the recursive definition of falling exponents.
+			
+			For the needed bijection, first note that for any $b,b'\in B$ there is a bijection $e_{b,b'}$ between $B\setminus\{b\}$ and $B\setminus\{b'\}$ given by 
+			\[e_{b,b'}(x) = \begin{cases}
+			x & \text{if $x\neq b'$}\\
+			b & \text{otherwise}
+			\end{cases}
+			\]
+			It is easily checked that $e_{b,b'}\circ e_{b',b''} = e_{b,b''}$, 
+			and $e_{b,b}$ is identity on $B\setminus\{b\}$.
+			For any one-to-one function $\fromto fAB$, 
+			define $\fromto {h_f}{A\setminus\{a_0\}}{B\setminus\{b_0\}}$ by
+			$h_f(a) = e_{f(a_0),b_0}(f(a))$. Then $f\mapsto (f(a_0),h_f)$ is a function
+			from $B^{\underline A}$ to $B\times (B\setminus\{b_0\})^{\underline{A\setminus\{a_0\}}}$.
+			
+			If $(f(a_0),h_f) = (g(a_0), h_g)$, then $f(a_0)=g(a_0)$ and for every $a\in A\setminus\{a_0\}$, $e_{f(a_0),b_0}(f(a)) = e_{g(a_0),b_0}(g(a))$.
+			If $f(a)\neq b_0$ and $g(a)\neq b_0$ for some $a$, then $f(a)=e_{f(a_0),b_0}(f(a))=f(a) = e_{g(a_0),b_0}(g(a)) = g(a)$.
+			If $f(a)\neq b_0$ and $g(a) = b_0$, then $f(a)= e_{f(a_0), b_0}(f(a)) = b_0 = g(a)$. 
+			Since this is a contradiction, we rule out $f(a)\neq b_0 = g(a)$. Likewise, $f(a)=b_0\neq g(a)$ is impossible. 
+			So $f(a)=g(a)$ for all $a$. This shows that $f\mapsto (f(a_0),h_f)$ is one-to-one. 
+			
+			Consider $(b,k)\in B\times (B\setminus\{b_0\})^{\underline{A\setminus\{a_0\}}}$. Define $\fromto fAB$ by
+			\[
+			f(a) = \begin{cases}
+			b & \text{if $a=a_0$}\\
+			e_{b_0,b}(k(a)) &\text{otherwise}
+			\end{cases}
+			\]
+			Then $f$ is indeed one-to-one, for $e_{b_0,b}(k(a))\neq b$ by definition.
+			And $f(a_0)=b$ and for any $a\in A\setminus\{a_0\}$, 
+			\begin{align*}
+			h_f(a)  &= e_{f(a_0),b_0)}(f(a))\\
+			&= e_{f(a_0),b_0}(e_{b_0,b}(k(a)))\\
+			&= e_{f(a_0),b}(k(a))\\
+			&= k(a)
+			\end{align*}
+			Hence the function $f\mapsto (f(a_0), h_f)$ is also onto.
+		\end{itemize}
+	\end{proof}
+\end{lemma}
+\printbreak
+
+The law of exponents that $a^m\cdot a^n = a^{m+n}$ has an analogue for falling exponents.
+
+\begin{lemma}
+	For any integer $a$ and natural numbers $m$ and $n$, $a^{\underline{m+n}} = a^{\underline m}\cdot (a-m)^{\underline n}$.
+	
+	\begin{proof}
+		Exercise. Use induction on $m$.
+	\end{proof}
+\end{lemma}
+
+Notice that $m^{\underline m} = m!$, and $m^{\underline n} = m!/(m-n)!$.
+
+To determine a formula for $B^{[n]}$ for a finite set $B$ and natural number number $n$, we note that a way to pick an element of $B^{\underline{\tilde{n}}}$ (one-to-one function from $\{0,\ldots,n-1\}$ to $B$)
+is to pick an $n$-subset of $A\subseteq B$, then pick an ordering for that set (one-to-one function from $\{0,\ldots, n-1\}$ to $A$). 
+In other words,
+$B^{\underline{\tilde{n}}}$ is in a bijection with $B^{[n]}\times \tilde{n}^{\underline{\tilde{n}}}$.We have formulas for $B^{\underline{\tilde{n}}}$
+and for $\tilde{n}^{\underline{\tilde{n}}}$. 
+So 
+\[\lVert B\rVert^{\underline n} = \lVert B^{[n]}\rVert \cdot n!\]
+
+\begin{defn}
+	For natural numbers $m$ and $k$ so that $k\leq m$, define $\binom{m}{k}$ to be $\frac{m!}{(m-k)!k!}$. 
+\end{defn}
+
+\begin{lemma}
+	For finite set $B$ and natural number $k$ so thst $k\leq \lVert B\rVert$,
+	$\lVert B^{[n]}\rVert = \binom{\lVert B\rVert}{k}$.
+	
+	\begin{proof}
+		From the obervations we made in the previous paragraph, 
+		$\lVert B^{\underline{\tilde{n}}} = \lVert B^{[n]}\rVert\cdot \lVert \tilde{n}^{\underline{\tilde{n}}}$. Since $\lVert B^{\underline{\tilde{n}}}=\lVert B\rVert^{\underline n}$ and $\lVert \tilde{n}^{\underline{\tilde{n}}}\rVert = n!$, the result follows by solving for $\lVert B^{[n]}\rVert$.
+	\end{proof}	
+\end{lemma}
+
+
+\begin{example}
+	The number of five card hands from a $52$ card deck is $\binom{52}{5}$. That is,
+	$\frac{52!}{47!5!}=\frac{52\cdot51\cdot50\cdot49\cdot48}{5\cdot4\cdot3\cdot2\cdot1} = 52\cdot51\cdot10\cdot49\cdot2 = 2,598,960$.
+\end{example}
+
+\begin{example}
+	At a pub, you and a group of $10$ friends order beer and, as usual, clink your glasses before quaffing. If everyone clinks every one else's glass exactly once, how many separate clink sounds should you hear?
+	
+	We can model the situation by taking $F$ to be aset modelling you and your friends. A ``clink'' corresponds to a $2$-subset because (i) you need two glasses to make a noise and (ii) it does not matter if you think of Tadeusz clinking Suenyung's glass or the other way around. So we merely need to count $F^{[2]}$. Since $\lVert F\rVert = 11$, the answer is $\binom{11}{2}=55$. 
+\end{example}
+
+\subsection{A Useful Relation: Pascal's Triangle}
+
+It is easy to see that $\binom{n}0 = 1$. 
+Combinatorially, this signifies that there is exactly one $0$-subset of any set of size $n$. 
+Likewise,
+$\binom{n}{n} = 1$, signifying that there is exactly one $n$-subset of a set of size $n$.
+For both reasons $\binom00 = 1$.
+More interesting things occur in between, when $n>0$ and $0<k<n$.
+
+Suppose $A = X\cup \{a_0\}$ where $a_0\notin X$ and $k\leq \lVert X\rVert$. 
+Each $k+1$-subset $B\subseteq A$ either contains $a_0$ or not. 
+If $a_0\in B$, then $B\cap X$ is a $k$-subset of $X$. 
+Otherwise $B\cap X$ is a $k+1$-subset of $X$. 
+Moreover, any $k+1$ subset of $X$ is also a $k+1$ subset of $A$. 
+And for any $k$-subset of $X$, $X\cup\{a_0\}$ is a $k+1$-subset of $A$. 
+So there is a bijection between $A^{[k+1]}$ and $X^{[k]}\cup X^{[k+1]}$.
+But $X^{[k]}\cap X^{k+1]} = \emptyset$. So \[\lVert A^{[k+1]}\rVert = \lVert X^{[k]}\rVert + \lVert X^{[k+1]}\rVert.\] Translating this back to combinations, 
+\[\binom{n+1}{k+1} = \binom{n}{k} + \binom{n}{k+1}\]
+This simple relationship is the basis of a famous mathematical figure, known as Pascal's triangle. Written in combination symbols, the first few rows are
+\[\tikz[x=0.75cm,y=0.5cm, 
+pascal node/.style={font=\footnotesize}, 
+row node/.style={font=\footnotesize, anchor=west, shift=(180:1)}]
+\path  
+\foreach \n in {0,...,10} { 
+	%(-\N/2-1, -\n) node  [row node/.try]{Row \n:}
+	\foreach \k in {0,...,\n}{
+		(-\n/2+\k,-\n) node [pascal node/.try] {%
+			%            \pgfkeys{/pgf/fpu}%
+			%            \pgfmathparse{round(\n!/(\k!*(\n-\k)!))}%
+			%            \pgfmathfloattoint{\pgfmathresult}%
+			%            \pgfmathresult%
+			$\binom{\n}{\k}$  
+		}}};
+		\]
+		Written again as numerals, the first few rows
+		\usepgflibrary{fpu}
+		\[\tikz[x=0.75cm,y=0.5cm, 
+		pascal node/.style={font=\footnotesize}, 
+		row node/.style={font=\footnotesize, anchor=west, shift=(180:1)}]
+		\path  
+		\foreach \n in {0,...,10} { 
+			%(-\N/2-1, -\n) node  [row node/.try]{Row \n:}
+			\foreach \k in {0,...,\n}{
+				(-\n/2+\k,-\n) node [pascal node/.try] {%
+					\pgfkeys{/pgf/fpu}%
+					\pgfmathparse{round(\n!/(\k!*(\n-\k)!))}%
+					\pgfmathfloattoint{\pgfmathresult}%
+					\pgfmathresult%
+					%$\binom{\n}{\k}$  
+				}}};
+				\]
+				Notice that the numbers at the edges are all $1$'s and all others are the sum of the two numbers just above. Many other useful relations are part of Pascal's triangle. You will explore some of them in the following exercises.
+				
+				\begin{exercises}
+					\begin{enumerate}
+						\item The Chapman chapter of Students United for Caring has $20$ members.
+						They have decided to form a $5$ person outreach committee. They want to pick the committee by lottery. How many different ways could the committee be formed.
+						\item The Department of Unrepeatible Experiments gives three awrads to it top graduating students: the ``Outstanding Student'' award, the ``Unremarkable Student'' award and the ``Least Likely to Succeed'' award. 
+						This year there are $100$ graduating students. How many ways can the awards be given?
+						\item Suppose you own $25$ pigeons and have constructed a pigeon coup that is a $10$-by-$10$ grid of boxes. 
+						Each box is big enough to fit one pigeon.
+						How many ways can the pigeons nest in the pigeon coup? 
+						Pigeons are individuals. So it matters which pigeon nests in which box.
+						\item Suppose you own $25$ chickens instead of pigeons. 
+						Unlike pigeons, all chickens are identical.
+						How many ways can the chickens nest?
+						\item In Pascal's triangle, add the entries in a row. Notice that the result is always $2^n$ where $n$ is the row number (the apex of the triangle is row $0$). Explain this fact.
+						\item In Pascal's triangle, for any row except row $0$, add every other entry. For example in row $5$, we add $1+10+5$. In row $6$, we add $1+15+15+1$. In every case, the result is $2^{n-1}$ where $n$ is the row number. Explain this fact.
+					\end{enumerate}
+				\end{exercises}
+				
+				\section{Without and With Replacement}
+				
+				Suppose we play a lottery. 
+				There are $50$ balls numbered $1$ to $50$.
+				Then $6$ balls are selected at random. We know that this means there are $\binom{50}{6}$ combinations. But suppose we change the game just a little. After each ball is selected, its number is written down, then it is put back in the hopper before the next ball is selected. So it is possible to get the same ball more than once. Still, the order does not matter. This is called choosing a combination \emph{with replacement}. The usual lottery method is choosing combination \emph{without replacement}.
+				
+				For permutations, a similar distinction is useful. What we have called a permutation of $k$ items from $n$ is \emph{without replacement}. This is modelled mathematically by a one-to-one function. \emph{With replacement} would mean that we pick items $a_0$, $a_1$, \ldots, $a_{k-1}$ from a set of $n$ elements and lift the one-to-one requirement so that $a_i$ may equal $a_j$ without any restriction. We know how to count permutations without replacement ($n^{\underline k}$). It is obvious that permutations with replacement are unrestricted functions, so  we know how to count them too ($n^k$). 
+				
+				For combinations with replacement the analysis is more subtle. At first, we might think that we can merely count the permuttions with replacement ($n^k$) nd divide by the number of permutations of $k$ items from $k$ elements. So $\frac{n^k}{k!}$ seems like a reasonable conjecture. But checking a few easy examples shows this can not be right. 
+				
+				Suppose we have a set of two elements $\{a,b\}$ and wish to choose a combination of $3$ items with replacement. We can simply list them: $aaa$, $aab$, $abb$, and $bbb$. 
+				so the result is $4$. But $2^3/3! /neq 4$. So much for our conjecture. Notice that $2^3/3!$ is not even a natural number. So our formula does not make any sense at all. 
+				
+				Let us try a different tac. 
+				Consider an equation $3 = x + y$. 
+				How many ways can this be solved with natural numbers? The solutions are eas
+				Notice that this is the same as choosing a combination of $3$ items from $2$ elements with replacement. 
+				In fact, the same idea holds up in general. A combination of $k$ items from $n$ elements with replacement is the number of ways to solve an equation $k = x_0 + x_1 +\dotsb + x_{n-1}$ with natural numbers.
+				
+				\begin{lemma}
+					For any natural numbers $n>0$ and $k$, the number of combinations of $k$ items from $n$ elements is $\binom{n+k-1}{k}$.
+					
+					\begin{proof}
+						Before we attempt a formal proof, consider an example of solving $6 = x_0 + x_1 + x_2 + x_3$ in natural numbers, using our successor notation. For example, $0^{\nxt\nxt}+ 0^\nxt + 0^\nxt + 0^{\nxt\nxt}$ is a solution. Notationally, the $0$'s are not telling us anything because the initial $0$ is always there, and all subsequent $0$'s follow a $+$ sign. So we can abbreviate our solution by erasing the $0$'s: $\nxt\nxt\mathord{+}\nxt\mathord{+}\nxt\mathord{+}\nxt\nxt\mathord{+}$.
+						Every solution can be written this way, and every different placemnt of the $+$'s and $\nxt$'s corresponds to a different solution.
+						This amounts to choosing $6$ $\nxt$ symbols and $3$ $+$ symbols for the total of nine positions, so there are $\binom{9}{6}$.
+						
+						The general situation can be proved by induction on $n$.
+						\begin{itemize}
+							\item{}[Basis] For $n=1$, there is exactly one solution of the equation $k = x_0$. And $\binom{n+k-1}{k} = 1$.
+							\item{}[Inductive Hypothesis] Assume that for some $0<n$, it is the case that for all $k$, the number of solutions to $k = x_0 + \dotsb + x_{n-1}$ is $\binom{n+k-1}{k}$.
+							\item{}[Inductive Step] To count the solutions of $k = x_0 + \dotsb + x_{n}$, we proceed by induction on $k$. 
+							\begin{itemize}
+								\item{}[Basis] There is one solution of $0=x_0 + \dotsb + x_n$
+								and $\binom{(n+1)-0-1}{0} =  1$. 
+								\item{}[Inductive Hypothesis] Suppose the number of solutions of
+								$k = x_0 + \dotsb + x_n$ is $\binom{(n+1)+k-1}{k}$.
+								\item{}[Inductive Step] There are two sorts of solution to $k+1 = x_0 + \dotsb + x_n$: either $x_n = 0$ or $x_n>0$. Solutions for which $x_n=0$ are equivalent to solutions of $k+1 = x_0 + \dotsb + x_{n-1}$. The number of such solutions is $\binom{n+(k+1)-1}{k+1}$ by the ``outer'' inductive hypothesis.
+								The solutions for which $x_n > 0$ are equivalent to solutions of $k=x_0+\dotsb + x_n$. 
+								The number of such solutions is $\binom{(n+1)+k-1}{k}$ by the ``inner'' inductive hypothesis. 
+								Since these two sorts of solution cover all cases (and they are disjoint), 
+								the total number of solutions of $k+1=x_0 + \dotsb + x_n$ is $\binom{n+k}{k} + \binom{n+k}{k+1} = \binom{(n+1)+(k+1)-1}{k+1}$ by Pascal's identity $\binom{m}{j} + \binom{m}{j+1} = \binom{m+1}{j+1}$.
+							\end{itemize}
+							The inner induction is complete, so the number of solutions of $k=x_0 + \dotsb + x_n$ is $\binom{(n+1)+k-1}{k}$ for all $k$. This is the needed conclusion for the outer inductive step.
+						\end{itemize}
+					\end{proof} 
+				\end{lemma}
+				
+				\begin{exercises}
+					\begin{enumerate}
+						\item Calculate the number of ways to order dozen donuts in a shop that carries $7$ varieties.
+						You may order any number of donuts of any variety.
+						\item Calculate the number of ways to order a half dozen tacos at a stand that carries thirteen varieties.
+						\item For natural numbers $m$ and $n$, the number of natural number solutions of $m=x_0+\dotsb+x_n$ equals the number of natural number solutions of $n=x_0 +\dotsb+x_m$. 
+						Proof this.
+					\end{enumerate}
+				\end{exercises}
+				
+\chapter{Monomorphisms, Epimorphisms and Isomorphisms}
+
+\begin{goals}
+	\noindent\textbf{Lecture}
+	\begin{itemize}
+		\item Introduce special kinds of functions: monomorphism, epimorphism, injection, surjection.
+		\item Investigate the relations between these.
+	\end{itemize}
+	
+	\noindent\textbf{Study}
+	\begin{itemize}
+		\item Learn to recognize injections and surjections by internal behavior
+		\item Be able to illustrate simple, small examples of injections, non-injections, surjections, non-surjections.
+	\end{itemize}
+\end{goals}
+
+\section{Basics}
+
+Recall that we required that if a natural number has a predecessor, it has exactly one. 
+We wrote that as an axiom: $m^\nxt = n^\nxt$ implies $m=n$.
+Putting this in terms of functions: $\suc(m) = \suc(n)$ implies $m=n$.
+Likewise, the singleton function from $X$ to $\powerset(X)$ given by $x\mapsto \{x\}$ has a similar property that $\{x\}=\{y\}$ implies $x= y$.
+
+Also, recall that we proved that addition is \emph{cancellative}: $m+p = n+p$
+implies $m=n$, and that multiplication by a positive natural number is cancellative:
+$m\cdot p^\nxt = n\cdot p^\nxt = m=n$.
+
+This leads to some definitions.
+
+\begin{defn}
+	For a function $\fromto gBC$, say that
+	\begin{itemize}
+		\item $g$ is an \emph{injection} if $g(x_0)=g(x_1)$ implies $x_0=x_1$ for every $x_0,x_1\in B$;
+		\item $g$ is a \emph{monomorphism} if  $g\circ f_0=g\circ f_1$ implies $f_0=f_1$ for every $\fromto {f_0,f_1}AB$; and
+		\item $g$ is an \emph{epimorphism} if  $h_0\circ g = h_1\circ g$ implies $h_0=h_1$ for every $\fromto {h_0,h_1}CD$.
+	\end{itemize}  
+\end{defn}
+
+So an injection is a function with the property that application of it is cancellative.
+A monomorphism is a function with the property that composition with it on the left is cancellative. 
+An epimorphism is a function with property that composition with it on the right is cancellative.
+
+An injection is also said to be \emph{injective} or \emph{one-to-one}.
+A monomorphism is also said to be \emph{left-cancellable}. 
+An epimorphism is also said to be \emph{right-cancellable}.
+
+We will look at epimorphisms later. For now we concentrate on monomorphisms and injections.
+
+\printbreak
+\begin{example}
+	\begin{enumerate}
+		\item Consider the function $\fromto f\NN\NN$ defined as $f(n) = 2\cdot n  + 2$.
+		Suppose $f(m)=f(n)$, then $2\cdot m + 2=2\cdot n+ 2$. 
+		Addition is cancellative, so $2\cdot m=2\cdot n$. 
+		And multiplication by a positive natural number is cancellative, so $m=n$.
+		Thus $f$ is an injection.
+		\item Consider $\fromto g\RR\RR$ defined as $f(x) = x^2$. 
+		This is not injective because $f(1)=f(-1)$, but $1\neq -1$.
+	\end{enumerate}
+\end{example}
+
+Suppose $\fromto gBC$ is a monomorphism. 
+Then it clearly is also an injection. 
+That is, suppose $g$ is a monomorphism and that $g(b_0)=g(b_1)$. 
+We already know that $\widehat{g(b_0)} = g\circ \widehat{b_0}$.
+So $g\circ \widehat{b_0} = g\circ \widehat{b_1}$.
+Because $g$ cancels on the left, $\widehat{b_0} = \widehat{b_1}$.
+But this implies that $b_0=b_1$.
+The converse of this is also true.
+
+\begin{lemma}
+	A function $\fromto gBC$ is a monomorphism if and only if it is an injection.
+	\begin{proof}
+		The previous paragraph proves that every monomorphism is an injection. To prove the converse, assume that $g$ is an injection. 
+		That is, $g(b_0)=g(b_1)$ implies $b_0=b_1$.
+		For two functions $\fromto {f_0,f_1}AB$, suppose $g\circ f_0=g\circ f_1$. 
+		For any $x\in A$, then $g(f_0(x)) = g(f_1(x))$. So $f_0(x)=f_1(x)$. Hence by the Principle of Function Extensionality, $f_0=f_1$.
+	\end{proof}
+\end{lemma}
+
+As simple as this result seems, it is valuable because it provides an internal characterization (injections deal with elements) for an external property (monomorphisms deal with composition).
+
+Inclusion maps of subsets constitute an important class of monomorphisms. That is,
+if $A\subseteq X$, then the inclusion map $\fromto iAX$ is obviously one-to-one, so it is a monomorphism.
+
+Epimorphisms are also defined externally, but we do not yet have an internal characterization. 
+Taking a closer look at injectivity gives a clue about how we might characterize epimorphisms internally, too.
+
+\begin{lemma}
+	A function $\fromto gBC$ is an injection if and only if for any $y\in C$ there is \emph{at most one} $x\in B$ for which $g(x)=y$.
+	
+	\begin{proof}
+There is nothing to prove here, really. This ``at most one'' formulation is essentially just a rephrasing of the definition of injectivity.
+	\end{proof}
+\end{lemma}
+
+This suggests a sort of ``dual'' definition. To make the connection clear, we repeat the definition of injections.
+
+\begin{defn}
+	For a function $\fromto gBC$, say that
+	\begin{itemize}
+		\item $g$ is an \emph{injection} if for every $y\in C$, there is \emph{at most one} $x\in B$ for which $g(x)=y$;
+		\item $g$ is a \emph{surjection} if for every $y\in C$, there is \emph{at least one} $x\in B$ for which $g(x)=y$;
+		\item $g$ is a \emph{bijection} if it is both an injection and a surjection. That is, for every $y\in C$, there is \emph{exactly one} $x\in B$ for which $g(x)=y$. 
+	\end{itemize}  
+\end{defn}
+
+We already know that injections and monomorphisms are the same things.
+
+\begin{lemma}
+	A function $\fromto gBC$ is an surjection if and only if it is an epimorphism.
+	\begin{proof}
+		Assume that $g$ is a surjection. 
+		Suppose $\fromto {h_0,h_1}BD$ are functions for which $h_0\circ g = h_1\circ g$. 
+		For $y\in C$, pick some $x\in B$ for which $g(x)=y$.
+		This can be done because $g$ is a surjection.
+		So $h_0(y) = h_0(g(x)) = h_1(g(x)) = h_1(y)$.
+		This works for every $y\in C$, so $h_0=h_1$.
+		This proves $g$ is an epimorphism.
+		
+		Assume that $g$ is \emph{not} a surjection.
+		We will prove that it is not an epimorphism.
+		Supposing that $g$ is not a surjection means there is an element $c\in C$ so that $g(x)\neq c$ for all $x\in B$. 
+		Consider the functions $\fromto {h_0}C\Two$ defined by $h_0(y)=\top$ and $\fromto {h_1}C\Two$ defined by 
+		\[h_1(y) = \begin{cases}
+			\top & \text{if  $y=c$}\\
+			\bot &\text {otherwise}
+		\end{cases}
+		\]
+		For every $x\in B$, $h_0(g(x)) = \top = h_1(g(x))$. So $h_0\circ g = h_1\circ g$, but obviously $h_0(c)\neq h_1(c)$. So $h_0\neq h_1$.  
+	\end{proof}
+\end{lemma}
+
+\begin{exercises}
+	\begin{enumerate}
+		\item Prove that for any set $A$, $\id_A$ is a monomorphism.
+		\item Prove that if $\fromto fAB$ and $\fromto gBC$ are monomorphisms, then $g\circ f$ is a monomorphism.
+		\item Formulate and prove analogous claims for epimorphisms.
+	\end{enumerate}
+\end{exercises}
+
+\section{Split Monomorphisms and Split Epimorphisms, the Axiom of Choice}
+
+Suppose $\fromto fAXY$ and $\fromto gYX$ are functions so that $g\circ f =\id_X$.
+That is, $g(f(x)) = x$ for all $x\in X$. Then $f(x) = f(x')$ implies $x=g(f(x))=g(f(x'))=x'$. So $f$ is one-to-one. Also, for any $x\in X$, $g(f(x))=x$
+means that $g$ is onto.
+
+\begin{defn}
+	A function $\fromto fXY$ is a \emph{split monomorphism} if there is a function $\fromto gYX$ for which $g\circ f = \id_X$. In that case, $g$ is called a \emph{left inverse} of $f$. A function $\fromto fXY$ is a \emph{split epimorphism} if there is a function $\fromto gYX$ for which $f\circ g=\id_Y$. In that case, $g$ is called a \emph{right inverse} of $f$.
+\end{defn}
+
+Except for in one special case, every monomorphism is split.
+
+\begin{lemma}
+	If $\fromto fXY$ is a monomorphism, then either $X=\emptyset$ or $f$ is split.
+	
+	\begin{proof}
+		Suppose $\fromto fXY$ is a monomorphism and $X$ is not empty.
+		Let $x_0$ be an element of $X$.
+		Then define the relation $G\subseteq Y\times X$ by $y\mathrel{G} x$ if and only if either (i) $y = f(x)$ or (ii) $y\neq f(x')$ for all $x'\in X$ and $x=x_0$.
+		Evidently, $G$ is a total relation: for each $y\in Y$, either $y=f(x)$ for some $x$, or $y\mathrel{G}x_0$. 
+		Also it is deterministic: If $y\mathrel{G} x$ and $y\mathrel{G} x'$, then either $f(x)=y=f(x')$, hence $x=x'$, or $x=x_0=x'$. 
+		So $G$ determines a function, $\fromto gYX$.
+		Evidently, $g(f(x))=x$ by definition of $g$.
+	\end{proof}
+\end{lemma}
+
+We might hope that the dual fact is also true, that every epimorphism is split. But in fact, this is does not follow from the principles to which we have agreed so far.
+This requires a new principle, called the Axiom of Choice (AC).
+
+\begin{principle}
+	Every epimorphism is split. For an epimorphism $\fromto fXY$, a function $\fromto gYX$ for which $f\circ g = \id_Y$ is called a \emph{choice function}
+	for $f$. This name makes sense, because for each $y\in Y$, $g(y)\in f^-(y)$. So $g$ choices  an element of $f^-(y)$ for each $y$.
+\end{principle}
+
+It is probably not obvious to you why the Axiom of Choice is even necessary. But remember, we intend to be explicit about how sets and functions are built. 
+Without AC, there may not be any other principle by which an epimorphism can be split.
+The principle that epimorphisms are split has many useful consequences, most of which are difficult to state without further development.
+In general, we will not use AC without explicitly discussing how we use it.
+
+\begin{exercises}
+	\begin{enumerate}
+	\item The function $\fromto f\NN\NN$ given by $x\mapsto x^2$ is a monomorphism.
+	Give an epimorphism that splits it.
+	\item Let $\fromto i\ZZ\RR$ be the obvious inclusion function. Let $\fromto {\lfloor\,\rfloor}{\RR}{\NN}$ be the floor function: $\lfloor x\rfloor$ is the largest integer less than or equal to $x$. Is $i$ a left or right inverse of $\lfloor\,\rfloor$?
+	\item The function $x\mapsto e^x$ is a monomorphism. Define a function that splits it.
+	\end{enumerate}
+\end{exercises}
+
+\section{Bijections, Inverses and Cardinality}
+
+\begin{defn}
+	A function $\fromto fXY$ is an \emph{isomorphism} if there is a function $\fromto gYX$ so that $g\circ f = \id_X$ and $f\circ g = \id_Y$. In that case, $g$ is called an \emph{inverse} of $f$. Note that $g$ is both a left and right inverse. 
+\end{defn}
+
+Note that if $f$ is an isomorphism, then it is both a split monomorphism and a split epimorphism. 
+Hence it is one-to-one and onto. 
+The term we have used for this is \emph{bijection}.
+Conversely, if $\fromto fXY$ is a bijection, then the relation $F^{-1}\subseteq Y\times X$ given by $y\mathrel{F^{-1}} x$ if and only if $y = f(x)$ is total and deterministic.
+So it determines a function $f^{-1}$.
+It is routine to check that $f^{-1}$ is an inverse of $f$. In other words, any bijection is invertible.
+
+It is also easy to see that if $f$ has an inverse, that inverse is unique. 
+So we may refer to \emph{the} inverse of $f$, and write $f^{-1}$. 
+
+\begin{exercises}
+	\begin{enumerate}
+		\item Suppose $\fromto fXY$ and $\fromto gYZ$ are isomorphisms. Show that $g\circ f$ is an isomorphism. [Hint: Ask what the inverse of $g\circ f$ is.]
+		\item Show that $\fromto {\id_X}XX$ is an isomorphism. [Hint: Ask what the inverse of $\id_A$ is.]
+		\item Suppose $\fromto fXY$ is an isomorphism. Show that $f^{-1}$ is an isomorphism. [This is quite easy.]
+	\end{enumerate}
+\end{exercises}
+
+%The choice we made to define $\Two$ to be the set $\{\bot,\top\}$ instead of, say,
+%$\{0,1\}$ or $\{\emptyset, \{emptyset\}\}$ or any other two element set, is accidental. 
+%Any two element set would have done to job of defining a subset classifier. 
+%Similarly, $\One$ just needs to be a singleton, not $\{\bullet\}$ specifically.
+%We defined the product $A\times B$ to consist of pairs $(x,y)$ where $x\in A$ and $y\in B$, but we could just as well have defined it to consist of pairs $(y,x)$.
+%The specific order in which we put the pairs seems unimportant, so long as we agree on what we are doing.
+%The set of natural numbers $\NN$ officially consists of $0$, $0^\nxt$, $0^{\nxt\nxt}$ and so on. 
+%But informally, we use $0$, $1$, $2$, and so on as \emph{numerals}.
+%Some one else might think the natural numbers consist of ``null, eins, zwei, und so weiter.''
+%Somehow the particular names we give to the natural numbers does not matter.
+%What matters is that, whatever the specific elements happen to be, they match with the things we think of as the ``actual'' natural numbers.
+%
+%This leads us to suspect that the sets described in Lecture \ref{lec:basic-constructions} are all definable ``up to isomorphism''. That is, any isomorphic sets would do just as well.
+%
+%We illustrate the general idea with products and countably infinite sets, but similar proofs show work for equalizers, and so on. 
+%
+%\begin{lemma}
+%	For any sets $A$ and $B$, if $A\stackrel{p}{\longleftarrow}P\stackrel{q}{\longrightarrow}B$ and
+%	$A\stackrel{p'}{\longleftarrow}P'\stackrel{q'}{\longrightarrow}B$
+%	are both products, then $P$ and $P'$ are isomorphic.
+%	
+%	\begin{proof}
+%		By definition of products, there are unique functions $\fromto fP{P'}$
+%		and $\fromto g{P'}P$ so that $p'\circ f = p$, $q'\circ f=q$, 
+%		$p\circ g = p'$ and $q\circ g = q'$. 
+%		So $p\circ g\circ f = p$
+%		and $q\circ g\circ f = q$. But $\id_P$ also satisfies $p\circ \id_P = p$
+%		and $q\circ \id_P = q$. Since $p$ and $q$ are the projections of a product,
+%		$g\circ f = \id_P$. For the same reason, $f\circ g = \id_{P'}$.
+%	\end{proof}
+%\end{lemma}
+%
+%\begin{lemma}
+%	If $\One\stackrel{z}{\longrightarrow}N\stackrel{s}{\longrightarrow}N$ and $\One\stackrel{z'}{\longrightarrow}N'\stackrel{s'}{\longrightarrow}N'$ are natural numbers sets, then $N$ and $N'$ are isomorphic. 
+%	
+%	\begin{proof}
+%		By definition of natural numbers sets, there are unique functions $\fromto fN{N'}$ and $\fromto g{N'}N$ so that $z'= f\circ z$, $s'\circ f=f\circ s$, $z=g\circ z'$ and $s\circ g=g\circ s'$.
+%		So $z = (g\circ f)\circ z$ and $s\circ (g\circ f) = (g\circ f)\circ s$.
+%		Since $\id_N$ satisfies the same equations, $g\circ f = \id_N$. For the same reason, $f\circ g = \id_{N'}$.
+%	\end{proof}
+%\end{lemma}
+%
+%\begin{exercises}
+%	\begin{enumerate}
+%		\item Show that if $t\in T$ and $s\in S$ are subset classifiers, then $S$ and $T$ are isomorphic.
+%		\item Show that if $\fromto eEA$ is an equalizer for the functions $A\doublerightarrow{f}{g}B$, then there is an isomorphism from $E$ to
+%		$\{x\in A\st f(x)=g(x)\}$.
+%	\end{enumerate}
+%\end{exercises}
+
+The problem of judging which sets are the \emph{same size} seems easy enough when we look at finite sets. But consider, for example, how to compare $\NN$ and $\NN\times \NN$. These are both infinite sets, but are they the same size?
+Cantor realized that bijections are the key to understanding this. That is,
+he \emph{defined} two sets to be the same size if they are bijective.
+This gives us a precise criterion for comparing sets by their size. We introduce the idea formally.
+
+\begin{defn}
+	For sets $A$ and $B$, say that $A$ and $B$ are \emph{equipotent}, written $A\sim B$, if $A$ and $B$ are bijective.
+\end{defn}
+
+Thus ``equipotent,'' ``bijective'' and ``isomorphic'' mean the same thing.
+The usage differs mainly in terms of emphasis.
+When we are interested in merely comparing sets by size, we mostly use the word ``equipotent''. 
+
+%\begin{example}
+%	The sets $\NN$ and $\NN\times \NN$ are equipotent.
+%	
+%	Define $\fromto f{\NN\times \NN}\NN$ by $f(m,n) = ((m+n)^2 + m + 3n)/2$.
+%	Define $\fromto g\NN{\NN\times \NN}$ by a simple recursion as follows.
+%	Also define $\fromto s{\NN\times \NN}{\NN\times \NN}$ by $s(0,n) = (n^\nxt,0)$ and $s(m^\nxt,n) = (m,n^\nxt)$.
+%	Then $(0,0)$ and $s$ define a simple recurrence in $\NN\times \NN$,
+%	so $g = \srec[(0,0),s]$ is a function from $\NN$ to $\NN\times \NN$. 
+%	We claim that $f$ and $g$ are inverses of each other.
+%	As a reminder, $g$ satisfies the two equations:
+%	\begin{align*}
+%		g(0) &= (0,0)\\
+%		g(k^\nxt) &= s(g(k))
+%	\end{align*}
+%	
+%	By induction on $k$, $f(g(k)) = k$. 
+%	\begin{itemize}
+%		\item{}[Basis]  $f(g(0))=f(0,0) = 0$
+%		\item{}[Inductive Hypothesis] Suppose $f(g(k)) = k$ for some $k$. 
+%		\item{}[Inductive Step] By simple recursion, $g(k^\nxt) = s(g(k))$. 
+%		By cases, this is either $(m^\nxt,0)$ for some $m$ or $(m,n^\nxt)$ for some $m$ and $n$. 
+%		In the first case, by the definition of $s$, $g(k) = (0,m)$. So, by the inductive hypothesis, $m(m+1)/2 + m = f(m,0) = k$. 
+%		Some simple algebra shows that $f(m^\nxt,0)= k^\nxt$.
+%		In the second case, by the definition of $s$, $g(k) = (m^\nxt,n)$. So again by the inductive hypothesis, $(m^\nxt + n)(m^\nxt + n + 1)/2 + n = f(m^\nxt,n)=k$, and algebra shows that $f(m,n^\nxt) = k^\nxt$.
+%	\end{itemize}
+%	So $f$ is a left inverse of $g$.
+%	
+%	Now by induction on $p=m+n$,  we claim that $g(f(m,n)) = (m,n)$.
+%	\begin{itemize}
+%		\item{}[Basis] This is immediate from the definitions.
+%		\item{}[Inductive Hypothesis] Suppose that for any $m$ and $n$ for which $m+n=k$, it is the case that $g(f(m,n)) = (m,n)$.
+%		\item{}[Inductive Step] This step of the proof is left as an exercise using induction on $n$.
+%		Remember: at this stage of the main proof, the above inductive hypothesis is already assumed.
+%		\begin{itemize}
+%			\item{}[Basis] Show that if $m=k^\nxt$, then $g(f(m,0)) = (m,0)$.
+%			\item{}[Inductive Hypothesis] Suppose that $m+j = k^\nxt$ implies $g(f(m,j)) = (m,j)$ for some $j$
+%			\item{}[Inductive Step] Show that $m+j = k^\nxt$ implies
+%			$g(f(m,j^\nxt)) = (m,j^\nxt)$.
+%		\end{itemize}
+%	\end{itemize}
+%\end{example}
+%
+%The example illustrates that equipotency can be a bit counter-intuitive. One might have thought that $\NN\times \NN$ is somehow ``bigger'' than $\NN$.
+%
+%Let us turn the question of equipotency on its head and ask what would it take to show that two sets are \emph{not} equipotent? Evidently, it would require that we show that there are no bijections. A simpler condition would be to show that there are no surjections. That is, if no function $\fromto fAB$ is a surjection, we can conclude that $A$ and $B$ are not equipotent. 
+%
+%\begin{theorem}
+%	For any set $X$, no function $\fromto f{X}{\powerset(X)}$ is a surjection.
+%	
+%	\begin{proof}
+%		Consider a function $\fromto fX{\powerset(X)}$. So for each $x\in X$, $f(x)$ is a subset of $X$. 
+%		To show that $f$ is not a surjection, we only need to find a subset $D\subseteq X$ so that $f(x)\neq D$ for all $x\in X$. 
+%		Let $D = \{x\in X\st x\notin f(x)\}$.
+%		Now we compare $D$ to $f(x)$ for some $x\in X$. If $x\in f(x)$, then by definition $x\notin D$. So $D\neq f(x)$. If $x\notin f(x)$, then by definition $x\in D$. So again $D\neq f(x)$. Since this is the case for an arbitrary $x\in X$, we conclude that $D$ is not in the image of $f$.
+%	\end{proof}
+%\end{theorem}
+%
+%This was a profoundly important result for 19th century mathematics. It showed that the notion of ``infinity'' is not fixed. 
+%There are different ``sizes'' of infinity. 
+%In fact, we can now ask ``how many infinities are there?'' 
+%Evidently, the answer is as complicated as it gets. 
+%Namely, for any set $X$, the set $\powerset(X)$ is bigger. 
+%So there are infinitely many infinities.
+%
+%A closely related proof shows that the collection of all sets can not itself be a set. For suppose $U$ is a set that consists of all sets. In particular, $U\in U$, which is not a problem on its own. On the other hand, now consider the subset of $U$ defined by $R = \{X\in U\st X\notin X\}$. Clearly, 
+%$R\in U$ because $R$ is a set. But is it true that $R\in R$? By definition,
+%this can only happen when $R\notin R$. So apparently $R\notin R$. But in that case, $R$ satisfies the criterion for belonging to $R$. So $R\in R$. In other words, it is not possible for $R$ to be an element of $R$, nor to be excluded from $R$. We conclude that $R$ must not be a set, and so $U$ must not be a set.  
+%
+%To compare non-equipotent sets, we need a notion of ``smaller or equipotent''.
+%
+%\begin{defn}
+%	For two sets $X$ and $Y$, write $X\lesssim Y$ if there is a monomorphism $\fromto mXY$.
+%\end{defn}
+%
+%Clearly, $X\sim Y$ implies $X\lesssim Y$ because an isomorphism is a monomorphism. Also $X\lesssim Y$ and $Y\lesssim Z$ implies $Z\lesssim Z$ because the comosition of two monomorphisms is a monomorphism.
+%
+%\begin{theorem}
+%	If $X\leq Y$ and $Y\leq X$, then $X\sim Y$.
+%	
+%	\begin{proof}
+%		Suppose $\fromto fXY$ and $\fromto gYX$ are one-to-one functions.
+%		To understand the proof, it helps to do things slightly out of order.
+%		
+%		Suppose we can define subsets $X_n\subseteq X$ and $Y_n\subseteq Y$ and relations ${B_n}\subseteq {X_n\times Y_{n^\nxt}}$ 
+%		and ${C_n}\subseteq {X_{n^\nxt}\times Y_n}$ so that
+%		$X_n\cap X_m = \emptyset$ whenever $n\neq m$, and likewise for the sets $Y_n$. Let $X_* = X\setminus \bigcup_{n\in \NN}X_n$ and let $Y_* = Y\setminus\bigcup_{n\in\NN}Y_n$. Suppose we can also define a relation
+%		${B_*}\\subseteq {X_*\times Y_*}$.  
+%		
+%		Putting these together, we can define a relation $B$ between $X$ and $Y$ by cases as follows:
+%		\begin{enumerate}
+%			\item If $x\in X_{2n}$ and $x\mathrel{B_{2n}} y$, then $x\mathrel{B} y$
+%			\item If $x\in X_{2n+1}$ and $x\mathrel{C_{2n}}y$, then $x\mathrel{B} y$
+%			\item If $x\in X_*$ and $x\mathrel{B_*} y$, then $x \mathrel{B} y$.
+%		\end{enumerate}
+%		
+%		Suppose each of the constituent relations $B_n$, $C_n$ and $B_*$ are bijective matchings, then we can show that $B$ is a bijective, hence determining a bijection between $X$ and $Y$.
+%		
+%		To see that, under the condition that each $B_n$, $C_n$ and $B_*$ is a bijective matching, $B$ is also a bijective matching, first not that each $x\in X$ is in exactly one of the sets $X_n$ for some $n$ or $X_*$. If it is in $X_*$, then $x\mathrel{B} y$ for exactly one $y\in Y_*$. If $x\in X_{2n}$ for some $n$,
+%		then $x\mathrel{B} y$ for exactly one $y\in Y_{2n+1}$. If $x\in X_{2n+1}$ for some $n$, then $x \mathrel{B} y$ for exactly one $y\in Y_{2n}$. By construction $x\mathrel{B} y$ does not hold for any other $y$. So $B$ is functional. Likewise, each $y\in Y$ belongs to exactly one of the sets $Y_n$ for some $n$ or $Y_*$. A similar analysis shows that there is exactly one $x$
+%		for which $x\mathrel{B} y$. So $B$ is a matching.
+%		
+%		Now for the hard part, we construct the sets $X_n$, $Y_n$ recursively.
+%		\begin{align*}
+%			X_0 &= X\setminus g^+(Y)\\
+%			Y_0 &= Y\setminus f^+(X)\\
+%			X_{n^\nxt} &= g^+(Y_n)\\
+%			Y_{n^\nxt} &= f^+(X_n)\\
+%			X_* &= X\setminus\bigcup_{n\in\NN}X_n\\
+%			Y_* &= Y\setminus\bigcup_{n\in \NN}Y_n
+%		\end{align*}
+%		Define $x \mathrel{B_n} y$ if and only if $f(x)=y$ and $x \mathrel{C_n} y$ if and only if $x=g(y)$. Finally, define for $x\in X_*$ and $y\in Y_*$, define  $x\mathrel{B_*} y$ if and only if $f(x) = y$.
+%		
+%		By induction on $m$ and $n$, $X_m\cap X_{m+n^\nxt} = \emptyset$, and similarly for the sets $Y_m$ and $Y_{m+n^\nxt}$. By definition $X_n\cap X_*=\emptyset$ and $Y_n\cap Y_*=\emptyset$. 
+%		
+%		Since $f$ is one-to-one, each $B_n$ is a matching between $X_n$ and $Y_{n^\nxt}$. Since $g$ is also one-to-one, each $C_n$ is a matching between $X_{n^\nxt}$ and $Y_n$. Finally, suppose $xB_* y$, then $f(x)=y$. So $B_*$ is total and determined. Consider some $y\in Y_*$. Then $y\notin Y_0$. So $f(x)=y$ for exactly one choice of $x\in X$. But this $x$ can not belong to any $X_n$, for then $y$ would have to belong to $Y_{n^\nxt}$. So we can conclude that $f(x)=y$  holds for exactly one $x\in X_*$. 	
+%	\end{proof}
+%\end{theorem}
+
+\section{Countable Sets}
+
+We are often interested in sets that are not too big, i.e., that ar no bigger than $\NN$. 
+
+\begin{defn}
+A set $A$ is \emph{countable} if $A$ is empty, or there is a surjection $\fromto a\NN A$. 
+That is, $a_0$, $a_1$, \ldots, exhaustively ``lists'' the element of $A$.
+\end{defn}
+
+Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
+$A = \{a_0,\ldots a_n\}$, then we define a function $\fromto rAA$ by
+\[r(a_i) = \begin{cases}
+a_{i+1} & \text{if $i<n$}\\
+a_0     &\text{otherwise}
+\end{cases}\]
+So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ determines a function $\srec[a_0,r]$. It is easy to see that this is surjective.
+
+\begin{defn}
+	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
+\end{defn}
+
+\begin{lemma}
+	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
+	\begin{itemize}
+		\item $\mu(A)\in A$.
+		\item if $n\in A$, then $\mu(A)\leq n$.
+	\end{itemize}
+	
+	\begin{proof}
+		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}
+		\Two$
+		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
+		
+		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
+		\begin{itemize}
+			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
+			\item{}[Inductive Step] We claim that $k\notin A$. For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
+		\end{itemize} 
+		Hence for any non empty $A\subseteq \NN$, there is a least element $n$. Thus there is an element $n$ for which $A\mathrel{M}n$. This shows that $M$ is a functional relation. So it determines the function $\mu$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
+	
+	\begin{proof}
+		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
+		
+		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is always monomorphism. Suppose $\fromto f\NN A$ is a surjection. Then 
+		$f^-$ is a function from $A$ to $\powerset_{\text{ne}}(\NN)$. Define $m = \mu\circ f^-$. That is, $m(a)$ is the smallest natural number for which $f(n)=a$. This is obviously a one-to-one function because in fact, $f(m(a))=a$ for each $a$.
+	\end{proof}
+\end{lemma}
+
+
+
+\begin{lemma}
+	If $A$ and $B$ are countable, then so is $A\times B$.
+	If $A$ and $B$ are countable, then so is $A\cup B$.
+	If $I$ is countable and for each $i\in I$, $A_i$ is countable, then $\bigcup_{i\in I}A_i$ is countable.
+	If $A$ is countable, then so is $\List[A]$.
+	
+	\begin{proof}
+		The assumption that $I$ is countable means there is a surjection $\fromto f\NN I$. Likewise, the assumption that each $A_i$ is countable means there is a surjection $\fromto {g_i}\NN{A_i}$ for each $i\in I$. It suffices now to show that there is a surjection fromt $\NN\times \NN$ to $\bigcup_{i\in I}A_i$.
+		
+		Let $\fromto h{\NN\times \NN}\bigcup_{i\in I}A_i$ y defined by $h(m,n) = g_{f(m}(n)$. For $x\in \bigcup_{i\in I}A_i$, $x\in  A_k$ for some $k\in I$. Since $g_k$ is a surjection, $x = g_k(n)$ for some $n\in\NN$. 
+		But likewise, $f$ is a surjection, so $k = f(m)$ for some $m\in\NN$. 
+		Hence $x = g_{f(m)}(n) = h(m,n)$.
+	\end{proof}
+\end{lemma}
+

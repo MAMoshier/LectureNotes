@@ -1,17 +1,58 @@
 \contentsline {chapter}{Contents}{2}{section*.1}
-\contentsline {chapter}{\chapternumberline {1}Sets}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Set Basics}{4}{section.1.1}
-\contentsline {section}{\numberline {1.2}Subsets and Extensionality}{6}{section.1.2}
-\contentsline {chapter}{\chapternumberline {2}Functions}{9}{chapter.2}
-\contentsline {section}{\numberline {2.1}Internal Diagrams}{10}{section.2.1}
-\contentsline {section}{\numberline {2.2}Extensionality}{12}{section.2.2}
-\contentsline {chapter}{\chapternumberline {3}Building Sets and Functions}{15}{chapter.3}
-\contentsline {section}{\numberline {3.1}Elements, Pointers and Constant Functions}{16}{section.3.1}
-\contentsline {section}{\numberline {3.2}Solution Sets, Subsets, Characteristic Functions}{17}{section.3.2}
-\contentsline {section}{\numberline {3.3}Product Sets and Functions of Two Variables}{18}{section.3.3}
-\contentsline {section}{\numberline {3.4}Function Sets, Partial Evaluation}{19}{section.3.4}
-\contentsline {section}{\numberline {3.5}Powersets}{21}{section.3.5}
-\contentsline {chapter}{\chapternumberline {4}The Set of Natural Numbers}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}Sequences and Successions}{24}{section.4.1}
-\contentsline {section}{\numberline {4.2}Primitive Recursion}{24}{section.4.2}
-\contentsline {chapter}{\chapternumberline {5}Monomophisms, Epimorphisms and Isomorphisms}{27}{chapter.5}
+\contentsline {part}{\partnumberline {I}Natural Numbers and Induction}{5}{part.1}
+\contentsline {chapter}{\chapternumberline {1}The Natural Numbers}{7}{chapter.1}
+\contentsline {section}{\numberline {1.1}The Basic Picture}{7}{section.1.1}
+\contentsline {section}{\numberline {1.2}Narrowing the possibilities}{8}{section.1.2}
+\contentsline {chapter}{\chapternumberline {2}Arithmetic}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Basic Arithmetic Operations}{13}{section.2.1}
+\contentsline {chapter}{\chapternumberline {3}Laws of Arithmetic}{17}{chapter.3}
+\contentsline {section}{\numberline {3.1}Basic Laws}{17}{section.3.1}
+\contentsline {section}{\numberline {3.2}Inductive Proofs}{18}{section.3.2}
+\contentsline {chapter}{\chapternumberline {4}Lists}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Lists}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}List Itemization}{29}{section.4.2}
+\contentsline {section}{\numberline {4.3}Lists of a Particular Type}{30}{section.4.3}
+\contentsline {section}{\numberline {4.4}An Efficient Presentation of Natural Numbers and Lists}{33}{section.4.4}
+\contentsline {part}{\partnumberline {II}Basics of Sets and Functions}{35}{part.2}
+\contentsline {chapter}{\chapternumberline {5}Sets}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Set Basics}{38}{section.5.1}
+\contentsline {section}{\numberline {5.2}Subsets and Extensionality}{40}{section.5.2}
+\contentsline {chapter}{\chapternumberline {6}Functions}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}Internal Diagrams}{46}{section.6.1}
+\contentsline {section}{\numberline {6.2}Extensionality}{48}{section.6.2}
+\contentsline {chapter}{\chapternumberline {7}Basic Building Blocks}{51}{chapter.7}
+\contentsline {section}{\numberline {7.1}Elements, Pointers and Constant Functions}{52}{section.7.1}
+\contentsline {section}{\numberline {7.2}The Empty Set}{53}{section.7.2}
+\contentsline {section}{\numberline {7.3}Solution Sets, Subsets, Characteristic Functions}{53}{section.7.3}
+\contentsline {section}{\numberline {7.4}Product Sets and Functions of Two Arguments}{57}{section.7.4}
+\contentsline {section}{\numberline {7.5}Function Sets and Parametric Functions}{58}{section.7.5}
+\contentsline {section}{\numberline {7.6}Relations and Function Graphs}{61}{section.7.6}
+\contentsline {chapter}{\chapternumberline {8}The Set of Natural Numbers}{63}{chapter.8}
+\contentsline {section}{\numberline {8.1}Sequences and Simple Recurrences}{64}{section.8.1}
+\contentsline {section}{\numberline {8.2}Primitive Recursion}{64}{section.8.2}
+\contentsline {section}{\numberline {8.3}Primitive Recursion and ``for'' loops}{66}{section.8.3}
+\contentsline {section}{\numberline {8.4}Lists}{67}{section.8.4}
+\contentsline {chapter}{\chapternumberline {9}Powersets}{69}{chapter.9}
+\contentsline {section}{\numberline {9.1}Intersections, Unions, Residuals, Differences and Negations}{70}{section.9.1}
+\contentsline {section}{\numberline {9.2}Laws of Finitary Set Operations}{72}{section.9.2}
+\contentsline {section}{\numberline {9.3}Quantifiers and Completeness}{73}{section.9.3}
+\contentsline {section}{\numberline {9.4}Atomicity}{75}{section.9.4}
+\contentsline {section}{\numberline {9.5}Forward images}{76}{section.9.5}
+\contentsline {chapter}{\chapternumberline {10}Additional Constructions}{77}{chapter.10}
+\contentsline {section}{\numberline {10.1}Unions}{77}{section.10.1}
+\contentsline {section}{\numberline {10.2}Co-products}{77}{section.10.2}
+\contentsline {section}{\numberline {10.3}Quotients}{78}{section.10.3}
+\contentsline {section}{\numberline {10.4}The Axioms of Choice, Replacement and Beyond}{80}{section.10.4}
+\contentsline {part}{\partnumberline {III}Applications}{81}{part.3}
+\contentsline {chapter}{\chapternumberline {11}Counting Finite Sets}{83}{chapter.11}
+\contentsline {section}{\numberline {11.1}Finite Sets}{83}{section.11.1}
+\contentsline {section}{\numberline {11.2}The Basic Principles}{84}{section.11.2}
+\contentsline {section}{\numberline {11.3}Arrangements}{85}{section.11.3}
+\contentsline {section}{\numberline {11.4}Permutations and Combinations}{87}{section.11.4}
+\contentsline {subsection}{A Useful Relation: Pascal's Triangle}{90}{section*.7}
+\contentsline {section}{\numberline {11.5}Without and With Replacement}{92}{section.11.5}
+\contentsline {chapter}{\chapternumberline {12}Monomorphisms, Epimorphisms and Isomorphisms}{95}{chapter.12}
+\contentsline {section}{\numberline {12.1}Basics}{95}{section.12.1}
+\contentsline {section}{\numberline {12.2}Split Monomorphisms and Split Epimorphisms, the Axiom of Choice}{97}{section.12.2}
+\contentsline {section}{\numberline {12.3}Bijections, Inverses and Cardinality}{98}{section.12.3}
+\contentsline {section}{\numberline {12.4}Countable Sets}{99}{section.12.4}

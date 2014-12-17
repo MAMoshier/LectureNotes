@@ -1,0 +1,80 @@
+\chapter{Summation}
+
+You are probably familiar with notation like $\sum_{i=0}^n 2^i$ to mean $2^0 + 2^1 + \dotsb + 2^n$. We can calculate a few values and guess at a pattern: $\sum_{i=0}^0 2^i= 1$, $\sum_{i=1}^2 2^i = 3$, $\sum_{i=0}^{2}2^i = 7$. It appears that $\sum_{i=0}^n 2^i = 2^{n+1}-1$. We can prove this by induction on $n$, but it would be better to find this without having to guess.
+
+In this lecture, we develop a \emph{Sum Calculus}, exploiting analogies with \emph{Integral Calculus}. For the reader who is already familiar with differentiation and integration, this lecture will look quite familiar. For others, it can serve partly as a preliminary introduction to differentiation and integration.
+
+Consider the function $\fromto f\NN\RR$ defined by $f(n) = \sum_{i=0}^n i$. 
+This is a perfectly good definition, sinec all the parts have precise meaning. 
+And indeed, a sum like this might arise in analysizing some real world situation. 
+But it certainly would be helpful to have a ``closed form'' expression describing $f$, that is, an expression involving basic operations like addition, multiplication, exponentiation, and perhaps factorial and a few others.
+Name of you know that $\sum_{i=0}^n i = (n+1)n/2$. 
+This is an example of a closed form expression that is equal to the summation. 
+The question for us is, how do we discover closed forms for summations for a large and useful class of problems. 
+In other words, we do not want to find just a solution to particular examples. 
+We want a \emph{widely applicable method} for finding solutions.
+
+This is where a mathematician starts looing for a calculus. The word \emph{calculus} means, more or less, ``method of calculation''. There are many calculi for many different applications. The most famous, of course, is what we simply call $\textbf{Calculus}^{\trademark}$, but really that branch of mathematics should be called the Calculus of Differentiation and Integration because the main concern is methods for calculating with differentials and integrals. We seek a Calculus of Summation, which will turn out to have some of the features of integration (but is easier in some respects).
+
+Some simple observations about sums will make life easier and will guide us in figuring out what strange looking things like $\sum_{i=0}{-20} i$ should mean. That is, what should it mean to sum ``backwards'' from $0$ down to $-20$. If you know integral calculus, you might have a good guess, but we can figure it out for ourselves.
+
+Summation can be done ``piece-wise'' if we break on interval into segments. The is no need for a formal proof that
+\[\sum_{i=a}c f(i) = \sum_{i=a}{b-1}f(i) + \sum_{i=b}c.\]
+whenever $a<b\leq c$. We could call this the Law of Associativity for $\sum$. Notice that there is no getting around the $-1$ in the first upper limit of the right side. If we left it out, the result on the right would add $f(c)$ twice. So let us rewrite the entire thing with upper limits always written as $\_ - 1$:
+\[\sum_{i=a}^{c-1}f(i) = \sum_{i=a}{b-1}f(i) + \sum_{i=b}^{c-1} f(i)\]
+This may look more difficult to remember, but after a little practice, it becomes easier to manipulate (remember, we are aiming for methods of calculation).
+
+How many terms are summed in $\sum_{i=a}{b-1}f(i)$? A little thinking will show that $b-a$ terms appear in this expansion. So if we agree to write the upper limit in the form $b-1$, this little calculation becomes trivial.
+For example, $\sum_{i=0}^{10}2^i$ is really $\sum_{i=0}^{11-1} 2^i$ and is the sum of $11-0$ terms. When we calculate with actual constants ($10$ for the upper limit), this convention seems awkward, but getting used to it pays off in the long haul.
+
+Summation is closely connected to analysis of computation. 
+If we want to understand how long a \lstinline|for| loop will take in a Python program, we need to be able to sum the times each iteration will take. 
+So it is worth while to keep programs in mind while we think about a Summation Calculus. To emphasize the point, suppose we wish to compute $\sum_{i=a}^{b-1} f(i)$ in Python, where $f$ is given to us as an argument. The following code will do the job (as long as $a\leq b$).
+
+\begin{listlisting}
+	def sum(f,a,b):
+		result = 0
+		for i in xrange(a,b)
+			result += f(i)
+		return result
+\end{listlisting}
+
+
+The reader who knowns Python is familiar with the construct \lstinline|for i in xrange(a,b):| which iterates over the integers $a, a+1, a+2, dotsc, b-1$. Why not end with $b$? This ending condition is a source of bugs for beginning programmers because the variable $i$ never takes the value $b$. Why is Python designed this way? For essentially the same reason we decided to write $\sum_{i=a}^{b-1}f(i)$. For example, $\xrange(a,b)$ for $a\leq b$
+produces a sequence of $b-a$ integers, starting at $a$. For $a\leq b\leq c$, we can confirm that \lstinline|xrange(a,b)| followed by \lstinline|xrange(b,c)| will produce the same sequence of integers as \lstinline|xrange(a,c)|. So the behavior of \lstinline|xrange| was designed to make it easier to reason about intervals of integers.
+
+We are familiar with the interval notation $[0,1]$ for real numbers. This denotes the set of reals between $0$ and $1$, including the two end points. And $[0,1)$ denotes the interval that goes up to but not including $1$. The other cases are similar.
+The same notation is useful for intervals of integers. In this lecture, we will use this notation to describe sets of integers. For example, $[0,10)$ will mean the set integers starting at $0$ and going up to but not including $10$. Thus, \lstinline!xrange(a,b)! in Python generates the sequence $[a,b)$, not $[a,b]$. 
+of single digit positive integers (greater than or equal to $0$, strictly less that $10$. Of course, this is the same as $[0,9]$ and $(-1,10)$, but we will make the case that $[a,b)$ is the most ``natural'' way to describe an interval. 
+
+Let us try to understand an expression $\sum_{i=a}^b f(i)$ in general. If $a=b$, then this is a trivial sum, with value $f(a)$. So   
+
+We will consider functions $\ZZ\to \RR$. These come with algebraic operations. For example, for $\fromto f\ZZ\RR$ and $\fromto g\ZZ\RR$,
+we write $f+g$ for the function given by $i\mapsto f(i)+g(i)$, and $f\cdot g$ for
+the function given by $i\mapsto f(i)\cdot g(i)$. If $g$ is non-zero $f/g$ $+\circ\langle f,g\rangle$, and $f\cdot g$ for also define $\fromto \suc{\ZZ}{\ZZ}$ to be successor extended to $\ZZ$.
+
+\begin{defn}
+	For $\fromto f\ZZ\RR$, define
+	\begin{align*}
+		E(f) &= f\circ \suc\\
+		\frac{\delta f}{\delta x} &= E(f)-f
+	\end{align*}
+\end{defn}
+
+Let us calculate a few examples. $\delta n/\delta n = n+1-n = 1$,
+$\frac{\delta n^2}{\delta n} = (n+1)^2-n^2 = n^2+2n+1 -n^2 = 2n+1$.
+$\frac{\delta 2^n}{\delta n} = 2^{n+1}-2^n = 2^n(2-1)=2^n$.
+
+$\frac{\delta c}{\delta n} = 0$ for constant $c$.
+$\frac{\delta \alpha f}{\delta n} = \alpha\frac{\delta f}{\delta n}$ for constant $\alpha$.
+$\frac{\delta f+g}{\delta n}=\frac{\delta f}{\delta n}+\frac{\delta g}{\delta n}$
+$\frac{f\cdot g}{\delta n} = f\frac{\delta g}{\delta n}+\frac{\delta f}{\delta n}E(g)$.
+$\frac{\delta a^n}{\delta n} = a^{n+1}-a^n = (a-1)a^n$ for constant $a$.
+
+An \emph{anti-difference} for $f$ is a function $F$ so that $\delta F/\delta n = f$. We denote an anti-difference as $\sum f\delta n$.
+Note that if $\delta F/\delta n=f$, then $\delta F+C/\delta n$.
+And if $F$ and $G$ are both anti-differences for $f$, then $F-G$ is
+a constant.
+
+A definite sum is $\sum_{i=a}^{b-1}f(i)$. We compute $\sum f\delta n$
+and evaluate at $a$ and at $b$. For example, $\sum_{i=10}^{20}2^i = 2^i|_10^{21} = 2^{21}-2^{10}.
