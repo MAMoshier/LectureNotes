@@ -1,0 +1,341 @@
+\chapter{Python as Mathematics}
+
+In the main text, we sometimes want to think about how mathematical ideas connect to computation. 
+In fact, mathematics and computation are so intertwined that I don't see much point in thinking of them as distinct disciplines. 
+We will occasionally need to describe an \emph{algorithm} as part of our mathematics. We use an informal presentation based on Python for this, but many other languages would do as well. The reasons for choosing to base tings on Python are
+
+\begin{itemize}
+	\item Many students in Discrete Math already know a bit of Python.
+	\item Algorithms expressed in Python read very close to the ``natural'' way we would write them.
+\end{itemize}
+
+The reasons not to just use Python directly are
+\begin{itemize}
+	\item We want to be able to use honest mathematical notation where that helps. We should not be able to write $2^n$ wheras Python would require the translation to \lstinline|2**n|.
+	\item Python has many features we simply don't need, or want. So sticking to Python faithfully does not gain anything.
+	\item There are computationally useful constructs that are not part of Python. To handle these, we need to extend Python anyway.
+\end{itemize}
+
+\section{Basics}
+
+Python is a general purpose, interpreted programming language. In this
+course, we will use an informal ``mathified'' version of Python to
+illustrate certain concepts where mathematics and computation
+overlap. We do not need a thorough understanding of the entire
+language. In fact, our main interest will be how to calculate with
+natural numbers, lists and a few other structures.
+
+Examples in these notes will not be executable directly as Python
+programs, but I have tried to strike a balance between readability
+(for us humans) and correctness as programs. You should be able to see
+the obvious changes needed to turn these examples into working code.
+
+A wide variety of introductions to actual Python are available online,
+and of course, at Chapman CPSC230 is the course \emph{Introduction to
+	Computer Science} course that employs Python. If you have taken
+CPSC230, you can safely skim this lecture.  A good, and concise
+introduction to Python for a complete novice is available at
+\url{http://learnpythonthehardway.org}.
+
+An \emph{identifier} in Python is simply a name for something. For
+some purposes, mathematicians typically call these things
+\emph{variables}. For example, we might refer to $x$ as a variable,
+but what we really mean is that $x$ is our (perhaps temporary) name for something. Identifiers are more general than variables. An identifier may name a variable quantity (this is how $x$ is typically used), or it may name a specific gadget that will never change. For example, $\sin$ is the identifier we all use to name the sine function.  In Python, an identifier is
+typically a string of letters and digits, not beginning with a
+digit. Python relies on this fact to distinguish between numerals like
+$123$ and identifiers like $a123$.  An identifier can also include the
+underscore character \verb+_+, but there are subtle conventions about
+identifiers that start with underscores. We are better off avoiding them
+except for certain built-in uses. Also, certain symbols, known as
+\emph{keywords}, that look like identifiers are explicitly ruled
+out. In these note, keywords are typeset in bold fact. So it is easy
+to distinguish them from identifies. Here is a list of some common
+keywords: \lstinline|def|, \lstinline|if|, \lstinline|else|,
+\lstinline|elif|, \lstinline|return|, 
+\lstinline|while|, \lstinline|and|, \lstinline|or|, \lstinline|not|.
+
+Typically, we will use the conventions that we use in the text for
+identifiers. A typical number variable may be named $x$, $y$, $z$ and
+so on. Sometimes we will explicitly define a new function (like
+$\gcd$) and typeset it in the standard ``up shape'' type face.
+
+\ipadbreak
+
+\section{Arithmetic}
+
+For our purposes, we will almost exclusively use natural numbers or integers for numerical data. 
+Python is a syntactically untyped language. 
+So there is no purely syntactic way to tell that one variable $n$ is intended to vary over natural numbers and other variable $x$, say,  over lists of natural numbers. 
+This is not a problem because the context almost always makes things clear. 
+If there is a need, we will indicate the `type' of a variable in comments. 
+We describe typing for function definitions below.
+
+For integers, we will more often need the \emph{integer quotient} than the \emph{rational quotient}. Remember that the for integer $a$ and positive integer $b$, the integer quotient of 
+$a$ divided by $b$ is the largest integer $q$ so that $qb\leq a$. For negative $b$, it is the smallest integer $q$ so that $a\leq qb$. In Python (3.x) integer quotients are indicated by the operator \lstinline|//|. We follow that notation typeset in mathematics as $\ddiv$. So $6\ddiv 5 = 1$ and not $1.2$. 
+
+For the remainder of a division, Python uses a percent sign \lstinline|a\%b|. Mathematicians typically write $a \bmod b$. We will use the mathematical convention. Putting $\ddiv$ and $\bmod$ together amounts to what known as the Division Algorithm. It states that for any integer $a$ and non-zero integer $b$, there is a unique pair integers numbers $q$ and $r$ so that 
+\begin{itemize}
+	\item $a = qb + r$
+	\item $-b < r < b$
+	\item $0\leq rb$
+\end{itemize}
+In our notation, $q = a\ddiv b$ and $r = a\bmod b$.
+
+\section{Assignment and Update}
+
+In Python, we can use an identifier as ``storage'' for a value. 
+That is, \lstinline|$x$ = $3$| acts by storing the number $3$ under the
+name \lstinline|$x$|. 
+This is called an \emph{assignment}. 
+In subsequent arithmetic, \lstinline|$x$| is evaluated as $3$. 
+For example, \lstinline|$y$ = $x + 2$| will store the value $5$ under the name $y$.
+The equal sign in Python (and Pythonish) is \emph{only} used for assignment. 
+It never means anything else.
+
+The same identifier can be assigned and reassigned. 
+So for example,
+\begin{code}
+	\begin{lstlisting}
+	$x = 4$ 
+	$y = x + 2$ 
+	$x = 3$
+	\end{lstlisting}
+\end{code}
+executes the three statements in the order they appear. 
+So in the second line, \lstinline|x| has the value $4$.
+So at the end of execution, $x$ has the value $3$ and $y$ has the value $6$.
+
+We can also increment a value with a statement
+\lstinline|$n \pluseq 1$|.
+If $x$ contains a value $5$ prior this, then it contains $6$ after.
+The same idea works for incrementing or decrementing by anything other than $1$.
+Also decrementing is accomplished by using \lstinline|n\minuseq1|.
+Also other operations like multiplication and division work the same way, but incrementing or decrementing by $1$ is most common.
+
+\ipadbreak
+
+\section{Conditionals}
+
+The following is a very simple example of an algorithm
+illustrating some of the structure of Python(ish). Suppose we have
+numbers in variables $a$ and $b$ and wish to set a new variable $z$ to
+be equal to the larger of the two. This can be accomplished by
+\begin{code}
+	\begin{lstlisting}
+	if $a \geq b$: 
+		$z = a$
+	else: 
+		$z = b$
+	\end{lstlisting}
+\end{code}
+
+The keywords \lstinline|if| and \lstinline|else|, along with the
+punctuation \lstinline|:| and the indentation indicate that $a\geq b$
+is checked. If it is true, then the statement indented after
+\lstinline|if $\ldots$:| is exectuted.  If it is false, the statement
+after \lstinline|else:| is executed. Although this example does not
+illustrate it, the indented code (called a \emph{block}) can consist
+of more than one statement.
+
+\ipadbreak
+
+Suppose we have three numbers in variables $a$, $b$ and $c$ and wish
+to assign the \emph{smallest} value to the variable $z$.  Here is an
+algorithm for doing this.
+\begin{code}
+	\begin{lstlisting}
+	if $a \leq b$: # then $b$ is not smallest 
+		if $a \leq c$:
+			$z = a$
+		else: 
+			$z = c$ 
+		else: # $a$ is not smallest 
+	if $b\leq c$: 
+		$z = b$
+	else: 
+		$z = c$
+	\end{lstlisting}
+\end{code}
+This illustrates that structures like \lstinline|if|\ldots
+\lstinline|else| can be ``nested''. Also, the octothorpe character
+\verb|#| marks the beginning of a comment -- not part of the 
+algorithm itself, but only a bit of explanatory text.
+
+\ipadbreak
+
+Fairly commonly, we see a nesting where and \lstinline|else:|
+statement is immediately followed by an indented \lstinline|if| (as in
+lines 6 and 7 above).  Since this is so common, Python provides a
+simplification. The following code is equivalent to the previous
+example.
+\begin{code}
+	\begin{lstlisting}
+	if $a \leq b$: # then $b$ is not smallest 
+		if $a \leq c$: 
+			$z = a$
+		else: 
+			$z = c$ 
+		elif $b\leq c$: # then $b$ is the smallest 
+			$z = b$
+	else: 
+		$z = c$
+	\end{lstlisting}
+\end{code}
+
+We can also combine test like $a\leq b$ by what are known as \emph{Boolean}
+operators. [We discuss these in more detail in a later lecture.] The
+above code can be simplified using \lstinline|and| as follows:
+\begin{code}
+	\begin{lstlisting}
+	if $a \leq b$ and $a \leq c$: 
+		$z = a$
+	elif $b\leq a$ and $b\leq c$: 
+		$z = b$ 
+	else: 
+		$z = c$
+	\end{lstlisting}
+\end{code}
+
+\section{Function Definitions}
+
+To define a new function, we can write
+\begin{code}
+	\begin{lstlisting}
+	def max($a$,$b$):
+		if $a \geq b$:
+			return $a$
+		else:
+			return $b$
+	
+	$z$ = max($3$,$6$)
+	# Now $z$ contains $6$
+	\end{lstlisting}
+\end{code}
+
+Sometimes it will obvious that the arguments and results of a function are, say, integers and not lists. That is the case for \lstinline|max| above. On the other hand, we might have intended to restrict the definition only to natural numbers, or the tyoes of arguments and results may not be clear. In those cases we ``decorate'' a function definition as in
+
+\begin{code}
+	\begin{lstlisting}
+	def max($a\in\NN$,$b\in\NN$)$\in\NN$:
+		if $a \geq b$:
+			return $a$
+		else:
+			return $b$
+	\end{lstlisting}
+\end{code}
+Now it is clear that this defines a function $\fromto {\lstinline|max|}{\NN\times\NN}\NN$.
+\ipadbreak
+
+\section{Iteration}
+
+To indicate that a block of code is meant to be repeated as long as a certain condition holds, use \lstinline|while|.
+For example, the following code defines a function that computes the factorial of a number:
+\begin{code}
+	\begin{lstlisting}
+	def fact($n\in\NN$)$\in\NN$:
+		$r = 1$
+		while $n > 0$:
+			$r *= n$
+			$n -= 1$
+		return $r$ 
+	
+	$n$ = fact($5$) 
+	# Now $n$ contains $5\cdot 4\cdot 3\cdot 2\cdot 1\cdot 1$ 
+	\end{lstlisting}
+\end{code}
+
+Iteration over each item in a list is accomplished by a \lstinline|for| loop as in the following.
+
+\begin{code}
+	\begin{lstlisting}
+		def sum($L\in\List[\NN]$)$\in\NN$:
+			$r = 0$
+			for $a$ in $L$:
+				$r\pluseq a$
+			return $r$ 
+	\end{lstlisting}
+\end{code}
+
+Iteration for a fixed number of times $n$ is accomplished by iterating over the list $[0,\dotsc,n-1]$. This is produced by the built =in \lstinline|range| function. So for example, factorial can be defined by
+
+\begin{code}
+	\begin{lstlisting}
+		def fact($n\in\NN$)$\in\NN$:
+			$r = 1$
+			for $i$ in range(n):
+				$r *= i+1$
+			return $r$ 
+	\end{lstlisting}
+\end{code}
+
+\ipadbreak
+
+\section{Recursion}
+
+The last feature covered in this quick primer is that a defined function is permitted to refer to itself in its definition.  Here is yet another
+definition of factorial.
+\begin{code}
+	\begin{lstlisting}
+	def fact($n\in\NN$)$\in\NN$:
+		if $n$ == $0$:
+			return $1$
+		else:
+			return $n$*fact($n-1$)
+	\end{lstlisting}
+\end{code}
+A definition like this is said to be \emph{recursive}. 
+
+To evaluate \lstinline|fact($3$)|, the program must evaluate \lstinline|$3$*fact($2$)|.
+In turn, the program must evaluate \lstinline|$3$*$2$*fact($1$)|. In turn, the program
+must evaluate \lstinline|$3$*$2$*$1$*fact($0$)|. Finally, \lstinline|fact($0$)| 
+returns $1$. So the \lstinline|fact($3$)| evaluates \lstinline|$3$*$2$*$1$*$1$|
+and returns $6$.
+
+\begin{exercises}
+	\item   Write a Python function \lstinline|hundred($n$)| that rounds an integer $n$ to its nearest $100$.
+	So \lstinline|hundred($403$)| should return $400$, whereas \lstinline|hundred($451$)| should return $500$.
+	
+	\item Write a Python function \lstinline|median5($a$, $b$, $c$, $d$, $e$)| that returns the median value
+	from its five arguments. For example, if $a\leq b\leq c\leq d\leq e$, then the function should return the
+	value of $c$.
+\end{exercises}
+
+\section{Patterns for Natural Numbers and Lists}
+
+We will use a kind of pattern matching scheme for dealing with natural numbers, especially in recursive definitions. Since a natural number must either be $0$ or $k^\nxt$ for some $k$, we may write 
+\begin{lstlisting}
+	# Suppose $n\in\NN$ 
+	if $n$ == 0:
+		$\ldots$
+	else $k^\nxt$ = $n$:
+		$\ldots$ code using $k \text{ and } n$
+\end{lstlisting}
+
+For example, we may define a function computing factorial by
+
+\begin{lstlisting}
+	def fact($n\in\NN$)$\in\NN$:
+		if $n$ == 0:
+			return $1$
+		else $n$ == $k^\nxt$:
+			return $n\cdot \text{fact}(k)$
+\end{lstlisting}
+
+We have introduced lists in a purely mathematical context, but in
+truth, their centrality to mathematics came to light because of
+computation. Our mathematical notation for lists is borrowed directly
+from languagues like Python. In particular, notation like
+$[4,3,6]$ works equally as a mathematical list and as a list in
+Python. There are differences between our usage and Python that we must be
+take into account.
+
+Just as natural numbers meet the pattern $0$ or $k^\nxt$, lists follow the pattern $[\,]$ or $x:L$. The construction $x:L$ is not part of Python, but we will use it in Pythonish. We use it in analogy with $k^\nxt$.
+
+To illustrate, the following algorithm computes the concatenation of two lists:
+\begin{lstlisting}
+	def concat($l_1$,$l_2$):
+		if $l_1$ == []:
+			return $l_2$
+		else $l_1$ == $x:l'$:
+			return $x$:concat($l'$,$l_2$)
+\end{lstlisting}

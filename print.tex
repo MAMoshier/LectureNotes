@@ -52,10 +52,11 @@
 \tableofcontents
 \clearpage
 
-\part{Introduction}
+\frontmatter
 
 \input{introduction.tex}
 
+\mainmatter
 \part{Natural Numbers and Induction}
 
 \input{NaturalNumbers.tex}
@@ -68,7 +69,7 @@
 
 \part{Applications}
 
-\input{Cardinality.tex}
+%\input{Cardinality.tex}
 
 %\input{Algorithms.tex}
 
@@ -80,6 +81,10 @@
 %\immediate\openout\metafile=meta.tex
 %\immediate\write\metafile{\noexpand\providecommand{\noexpand\Author}{M. A. M.}}
 %\closeout\metafile
+
+\appendix
+
+\input{python.tex}
 
 \end{document}
 
