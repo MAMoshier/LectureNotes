@@ -797,7 +797,11 @@ Using $\Diamond_X$ and $\hat{b}$ for an element $b\in Y$, we can now define a co
 That is $\hat{b}\circ\Diamond_X$ is a function from $X$ to $Y$ given by the rule
 $x\mapsto \hat{b}(\Diamond_X(x))= \hat{b}(\bullet) = b$. 
 In short, this is the function sending all elements of $X$ to the constant $b$. 
+It will be convenient to have a standard name for this function.
 
+\begin{defn}
+	For a sets $X$ and $Y$, and element $b\in Y$, let $\constant_{X,b} = \hat b\circ \Diamond X$. When $X$ is obvious form context, we omit it.
+\end{defn}
 \begin{exercises}
 	\begin{firstexercise}
 		\item Show that for any pointer $\fromto p\One X$, it is the case that $\widehat{p(\bullet)}=p$.
@@ -1282,7 +1286,7 @@ Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
 So this suggests that $\sin$ can be ``co-restricted'' to the smaller codomain of $[-1,1]$. In fact, Principle \ref{ax:subset-char} guarantees this.
-We need, however, to generalize the idea to other situations not covered by the principle as we stated it.
+We need, however, to generalize the idea to situations not covered by the principle as stated.
 
 We are also often interested in concepts that are, in a sense, \emph{duals} of each other. 
 Informally, that means the role of functions is reversed.
@@ -1290,20 +1294,198 @@ It turns out that the dual of ``subset'' is ``quotient'' and is also a useful id
 
 In Lecture \ref{lec:Integers}, the sets $\ZZ$ of integers and $\QQ$ of rational numbers will be constructed as a quotients of $\NN\times \NN$ and $\ZZ\times (\NN\setminus\{\emptyset\})$.
 
+Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. They are related by having the same codomain and moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ in exactly one way ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). So it makes sense to define a function as indicated in \ref{fig:factoring-through}. The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
+
+\begin{figure}
+\[
+  \begin{tikzpicture}[
+  >=stealth,
+  bullet/.style={
+  	fill=black,
+  	circle,
+  	minimum width=1pt,
+  	inner sep=1pt
+  },
+  projection/.style={
+  	->,
+  	thick,
+  	shorten <=2pt,
+  	shorten >=2pt
+  },
+  every fit/.style={
+  	ellipse,
+  	draw,
+  	inner sep=0pt
+  }
+  ]
+  \foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
+  \node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
+  
+  \foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
+  \node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
+  \node (brt) at (6.2,1) {};
+  \node (blt) at (3.8,2) {};
+  
+  \foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
+  \node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
+  \node (clo) at (5.2,5.7) {};
+  \node (chi) at (5.2,6.3) {};
+  
+  \node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
+  \node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
+  \node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
+  
+  \node at (2.5,.5) {$m$};
+  \node at (6.3,3.8) {$f$};
+  
+  \draw[projection] (ad) -- (b1);
+  \draw[projection] (ac) -- (b2);
+  \draw[projection] (ab) -- (b3);
+  \draw[projection] (aa) -- (b4);
+  \draw[projection] (cx) -- (b1);
+  \draw[projection] (cy) -- (b4);
+  \draw[projection] (cz) -- (b4);
+  
+  \end{tikzpicture}
+\]
+	\caption{Function $f$ and $m$ with a common codomain}\label{fig:covariance-example}
+
+\[
+\begin{tikzpicture}[
+>=stealth,
+bullet/.style={
+	fill=black,
+	circle,
+	minimum width=1pt,
+	inner sep=1pt
+},
+projection/.style={
+	->,
+	thick,
+	shorten <=2pt,
+	shorten >=2pt
+},
+every fit/.style={
+	ellipse,
+	draw,
+	inner sep=0pt
+}
+]
+\foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
+\node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
+
+\foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
+\node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
+\node (brt) at (6.2,1) {};
+\node (blt) at (3.8,2) {};
+
+\foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
+\node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
+\node (clo) at (5.2,5.7) {};
+\node (chi) at (5.2,6.3) {};
+
+\node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
+\node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
+\node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
+
+
+\node at (2.5,.5) {$m$};
+\node at (6.3,3.8) {$f$};
+  
+
+\draw[projection] (ad) -- (b1);
+\draw[projection] (ac) -- (b2);
+\draw[projection] (ab) -- (b3);
+\draw[projection] (aa) -- (b4);
+\draw[projection] (cx) -- (b1);
+\draw[projection] (cy) -- (b4);
+\draw[projection] (cz) -- (b4);
+\draw[projection,blue] (cx) -- (ad);
+\draw[projection,blue] (cy) -- (aa);
+\draw[projection,blue] (cz) -- (aa);
+
+\end{tikzpicture}
+\]	
+	\caption{Function $f$ \emph{factors uniquely through $m$}}\label{fig:factoring-through}
+\end{figure}
+
+In these figures, $m$ has a useful special property.
+
 \begin{defn}
-	For functions $Z\stackrel{g}{\longleftarrow}X\stackrel{f}{\longrightarrow}Y$, say that $g$ is {$f$-invariant} if it is that case that for all $W\doublerightarrow{h}{k}X$, $f\circ h=f\circ k$ implies $g\circ h = g\circ k$.
+	For a function $\sfromto mXY$, say that 
+	\begin{itemize}
+		\item $m$ is a \emph{monomorphism} if for any functions $W\doublerightarrow{h}{k}X$, if $m\circ h=m\circ k$ then $h=k$,
+		\item $m$ is an \emph{injection} if for any elements $a,b\in X$, if $m(a)=m(b)$ then $a=b$.
+	\end{itemize}
 	
-	For functions $X\stackrel{f}{\longrightarrow}Y\stackrel{g}{\longleftarrow}W$, say that $g$ is {$f$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ f=k\circ f$ implies $k\circ g = h\circ g$.
-	
-	A function $\sfromto mXY$ is an \emph{monomorphism} if $\id_X$ if $m$-invariant. 	
-	A function $\sfromto eXY$ is an \emph{epimorphism} if $\id_Y$ if $e$-coinvariant. 
+	Injections are also said to be \emph{injective} or \emph{one-to-one} (sometimes written as $1$-$1$ for short).
 \end{defn}
 
-\begin{principle}
-	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{g}{\longleftarrow}W$, if $\id_X$ is $m$-invariant and $g$ is $m$-coinvariant, then there is a unique function $\fromto {m\backslash g}WX$ so that $g=m\circ (m\backslash g)$.
+It is easy to check that $m$ in Figure \ref{fig:covariance-example} is one-to-one.
+
+\begin{lemma}
+	A function is a monomorphism if and only if it is an injection.
 	
-	For functions $Z\stackrel{g}{\longleftarrow}X\stackrel{e}{\longrightarrow}Y$, if $\id_Y$ is $e$-coinvariant and $g$ is $e$-invariant, then there is a unique function $\fromto {g/e}YZ$ so that $g=(g/e)\circ e$.
+	\begin{proof}
+		Assume $\sfromto mXY$ is a monomorphism. Consider $a,b\in X$ so that $m(a)=m(b)$.
+		Then $m\circ \hat{a} = m\circ \hat{b}$. Since $m$ is a monomorphism $\hat{a} = \hat{b}$. Hence $a=b$.
+		
+		Assume $\sfromto mXY$ is not a monomorphism. So there must be some set $W$ and functions $W\doublerightarrow{h}{k}X$ so that $m\circ h=m\circ k$ but $h\neq k$.
+		Since $h\neq k$, there must be an element $w\in W$ so that $h(w)\neq k(w)$. 
+		Let $a=h(w)$ and $b=k(w)$. These witness that $m$ is not an injection because $m(a)=m(b)$ but $a\neq b$.
+	\end{proof}
+\end{lemma}
+
+This lemma relates an external concept (monomorphism) to an internal one (injectivity). 
+In Figure \ref{fig:covariance-example} for example, the function $m$ is an injection, $f$ is not because $f(y)=f(z)$ but $y\neq z$.
+
+Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
+
+\begin{principle}
+	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. In other words, if $\sfromto fWY$ is a function satisfying $\kappa_m(f(w))=\top$ for all $w\in W$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  We say that $f$ \emph{factors through $m$ uniquely}.
+	
+	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
+	\[\kappa_m(y) = \begin{cases}
+	    \top & \text{if $y = m(x)$ for some $x\in X$}\\
+	    \bot & \text{otherwise}.
+	\end{cases}\]
+	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m(f(w)) = \top$ for all $w$. Then $(m\baskslash f)(w) = x$ if and only if $f(w)=m(x)$. 
 \end{principle}
+
+In Figure \ref{fig:covariance-example}, the function $f$ satisfies the precondition, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
+
+To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. The internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
+\begin{defn}
+	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, say that $f$ is {$m$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ m=k\circ m$ implies $k\circ f = h\circ f$.
+\end{defn}
+
+\begin{lemma}
+	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \top$.
+
+\begin{proof}
+	Assume $f$ is $m$-restricted, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$. 
+	Since this works for any $w$, $h\circ f=k\circ f$. 
+	
+	Assume $f$ is not $m$-restricted. So there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{a,b,c\}$ by 
+	\begin{align*}h(y) &= \begin{cases}
+				a &\text{if $y=f(w)$}\\
+				c &\text{otherwise}
+	\end{cases}\\
+	k(y) &= \begin{cases}
+	b & \text{if $y=f(w)}\\
+	c &\text{otherwise.}
+	\end{cases}
+	\end{align*}
+	It is easy to verify that $h\circ m = k\circ m$, but $h\circ f \neq k\circ k$. So $f$ is not $m$-coinvariant.
+\end{proof}
+\end{lemma}
+
+\begin{principle}
+	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, if $m$ is a monomorphism and $f$ is $m$-coinvariant, then there is a unique function $\fromto {m\backslash f}WX$ so that $f=m\circ (m\backslash f)$.
+	
+	The function $m\backslash f$ is defined by $w\mapsto x$ if and only if $f(w)=m(x)$.
+\end{principle}
+
 
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
