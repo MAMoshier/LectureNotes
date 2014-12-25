@@ -1294,10 +1294,19 @@ As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is 
 	\end{itemize}
 \end{defn}
 
-The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture.
+The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphism \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
 
-A function $\sfromto fXY$ \emph{cancels on the right} say it is the case that for every $Y\doublerightarrow{h}{k}, if $h\circ f = k\circ f$ 
-
+\begin{example}
+	For any subset $A\subseteq X$, the inclusion function $\sfromto iAX$ is a monomorphism.
+	
+	For sets $X$ and $Y$, the projection functions $\sfromto {\pi_0}{X\times Y}X$ and $\sfromto {\pi_1}{X\times Y}Y$ are epimorphisms.
+	
+	The functions $\sfromto {\Diamond_X}X\One$ are almost always epimorphisms. The only except is when $X=\emptyset$.
+	
+	All pointers $\sfromto {\hat a}{\One}X$ for $a\in X$ are monomorphisms.
+	
+	
+\end{example}
 Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
