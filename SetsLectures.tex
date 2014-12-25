@@ -802,6 +802,7 @@ It will be convenient to have a standard name for this function.
 \begin{defn}
 	For a sets $X$ and $Y$, and element $b\in Y$, let $\constant_{X,b} = \hat b\circ \Diamond X$. When $X$ is obvious form context, we omit it.
 \end{defn}
+
 \begin{exercises}
 	\begin{firstexercise}
 		\item Show that for any pointer $\fromto p\One X$, it is the case that $\widehat{p(\bullet)}=p$.
@@ -1282,6 +1283,21 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 
 \section{Embeddings and Quotients}
 
+As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. Likewise, multiplication is amost always cancellative ($m\cdot p=n\dcot p$ implies $m=n$ provided $p\neq 0$). And even list concatenation is cancellative. But function composition is not. At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. The role of these special functions is akin to the role that non-$0$'s play in multiplication.
+
+\begin{defn}
+	For a function $\fromto fXY$,
+	\begin{itemize}
+		\item $f$ is called a \emph{monomorphism} if it is the case that for every $W\doublerightarrow{h}{k}$, if $f\circ h=f\circ k$ then $h=k$;
+		\item $f$ is called an \emph{epimorphism} if it is the ase that 
+		for every $Y\doubleleftarrow{h}{k}$, if $h\circ f=k\circ f$ then $h=k$.
+	\end{itemize}
+\end{defn}
+
+The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture.
+
+A function $\sfromto fXY$ \emph{cancels on the right} say it is the case that for every $Y\doublerightarrow{h}{k}, if $h\circ f = k\circ f$ 
+
 Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
@@ -1442,14 +1458,16 @@ In Figure \ref{fig:covariance-example} for example, the function $m$ is an injec
 Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
 
 \begin{principle}
-	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. In other words, if $\sfromto fWY$ is a function satisfying $\kappa_m(f(w))=\top$ for all $w\in W$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  We say that $f$ \emph{factors through $m$ uniquely}.
+	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. 
+	In other words, if $\sfromto fWY$ is a function satisfying $\kappa_m(f(w))=\top$ for all $w\in W$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
+	We say that $f$ \emph{factors through $m$ uniquely}.
 	
 	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
 	\[\kappa_m(y) = \begin{cases}
 	    \top & \text{if $y = m(x)$ for some $x\in X$}\\
 	    \bot & \text{otherwise}.
 	\end{cases}\]
-	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m(f(w)) = \top$ for all $w$. Then $(m\baskslash f)(w) = x$ if and only if $f(w)=m(x)$. 
+	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m(f(w)) = \top$ for all $w$. Then $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
 \end{principle}
 
 In Figure \ref{fig:covariance-example}, the function $f$ satisfies the precondition, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
@@ -1460,19 +1478,22 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 \end{defn}
 
 \begin{lemma}
-	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \top$.
+	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \constant_\top$.
 
 \begin{proof}
-	Assume $f$ is $m$-restricted, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$. 
+	First, note that $\kappa_m\circ f = \constant_\top$ if and only if
+	$\kappa_m(f(w))=\top$ for every $w\in W$. But $\kappa_m(y)=\top$ if and only if there is some $x\in X$ so that $y=m(x)$. Therefore, $\kappa_m\circ f=\top$ if and only if for every $w\in W$ there exists some $x\in X$ for which $f(w)=m(x)$.
+	
+	Assume $\kappa_m\circ f=\constant_\top$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
 	Since this works for any $w$, $h\circ f=k\circ f$. 
 	
-	Assume $f$ is not $m$-restricted. So there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{a,b,c\}$ by 
+	Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{a,b,c\}$ by 
 	\begin{align*}h(y) &= \begin{cases}
 				a &\text{if $y=f(w)$}\\
 				c &\text{otherwise}
 	\end{cases}\\
 	k(y) &= \begin{cases}
-	b & \text{if $y=f(w)}\\
+	b & \text{if $y=f(w)$}\\
 	c &\text{otherwise.}
 	\end{cases}
 	\end{align*}
@@ -1480,13 +1501,16 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 \end{proof}
 \end{lemma}
 
-\begin{principle}
-	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, if $m$ is a monomorphism and $f$ is $m$-coinvariant, then there is a unique function $\fromto {m\backslash f}WX$ so that $f=m\circ (m\backslash f)$.
+The dual concept corresponding to monomorphism is \emph{epimorphism}. The dual of one-to-one is \emph{onto}. And the dual of coinvariant is \emph{invariant}.
+
+\begin{defn}
+	A function $\fromto eXY$ is an \emph{epimorphism} if it is the case that for any $Y\doublerightarrow{h}{k}Z$, if $h\circ e=k\circ e$ then $h=k$.
 	
-	The function $m\backslash f$ is defined by $w\mapsto x$ if and only if $f(w)=m(x)$.
-\end{principle}
-
-
+	A function $\fromto eXY$ is \emph{onto} if it is the case that for every $y\in Y$, there is an $x\in X$ so that $y=e(x)$.
+	
+	For an epimorphism $\sfromto eXY$, a function $\sfromto fXZ$ is \emph{$e$-invariant} if for every $W\doublerightarrow{h}{k}X$, if $e\circ h=e\circ k$ then $f\circ h=f\circ k$.
+	
+\end{defn}
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
