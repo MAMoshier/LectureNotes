@@ -120,36 +120,36 @@ the form $x:L$ where $x$ is the initial item and $L$
 is the rest of the list. This suggests a signature for lists, not so different from
 the signature for natural numbers.
 
-\begin{signature}{sig:list}
+\begin{postulate}\label{sig:list}[Basic Structure of Lists]
 	Lists have the following basic structure.
 	  \begin{itemize}
 	  \item There is a special list, which we call \emph{the empty list} and denote by $[\,]$.
 	  \item For any thing $x$ and any list $L$, there is another list, obtained by \emph{prepending} $x$ to $L$. We denote
 	  the result by $x:L$.
 	  \end{itemize}
-\end{signature}
+\end{postulate}
 
 As with the natural numbers, we need to think about axioms that prevent strange behavior. These are exactly analogous to the
 axioms of natural numbers. First, $[\,]$ can not be obtained by adding a new initial item to another list. So
 
-\begin{axiom}
+\begin{postulate}
 	For any list $L$ and any thing $x$, $[\,]\neq x:L$.
-\end{axiom}
+\end{postulate}
 
 Likewise, a list that is not empty can only be built one way.
 
-\begin{axiom}
+\begin{postulate}
 	For any things $x$ and $y$ and lists $L$ and $M$, if $x:L = y:M$, then $x=y$ and $L=M$.
-\end{axiom}
+\end{postulate}
 
 For example, if I tell you that $[2,3,4,5] = x:L$, then you know immediately that $x=2$ and $L=[3,4,5]$.
 
 Finally, lists need an induction axiom that ensures that all lists are built up from $[\,]$.
 
 
-\begin{axiom}\label{ax:NatInd}
-	[The Axiom of List Induction] No lists can be removed without violating \ref{sig:list}.
-\end{axiom}
+\begin{postulate}\label{ax:ListInd}
+	[The Axiom of List Induction] No lists can be removed without violating Postulate \ref{sig:list}.
+\end{postulate}
 
 This axiom justifies conducting proofs about all lists by a scheme almost identical to simple arithmetic induction.
 That is, to prove some property is true about all lists, it is enough to show
@@ -312,12 +312,24 @@ it. Also, there is no harm in writing something like this: $a_5$,
 $a_6$, $a_7$, $a_8$, where the indices start at
 $5$. The default is to start at $0$, but that is merely a convention.
 
+\begin{lemma}\label{lem:concat-cancellative}
+$\otimes$ is cancellative on the left and on the right. That is,
+\begin{itemize}
+	\item $L\otimes M = L\otimes N$ implies $M=N$; and
+	\item $L\otimes N = M\otimes N$ implies $L=M$.
+\end{itemize}	
+
+\begin{proof}
+	Exercise.
+\end{proof}
+\end{lemma}
+
 \section{List Itemization}
 
 In a list $L$, the items are in order. So we can refer to items by
 their position in the list. There are two standards in mathematics
 for doing this. Either we start counting from $1$ or from $0$.
-Although it may seem unintuitive to start from $0$ (meaning that
+Although it may seem unintuitive at first to start from $0$ (meaning that
 the ``initial'' item of a list is item number $0$), this actually 
 makes many calculations simpler. For that reason, most programming
 languages use this convention for a lists and arrays. So I will consistently
@@ -353,7 +365,9 @@ L_3 &= [a,b,c,d,e]_3\\
     &= d
 \end{align*}
 
-Of course, this is just a very careful (you might even say fussy) way to find item number $3$ in the list. In every day use, we humans would not do this. We would simply count forward
+Of course, this is just a very careful (you might even say fussy) way to find item number $3$ in the list. 
+In every day use, we humans would not do this. 
+We would simply count forward
 from the beginning of the list.
 
 \end{example}
@@ -452,16 +466,17 @@ across lists of lists of natural numbers. Here is a suitable definition.
 	\item Prove that $\sum(\otimes\mathcal L) = \sum(\map_{\sum}(\mathcal L))$ for any list of lists of natural numbers $\mathcal L$.
 \end{exercises}
 
-\section{An Efficient Presentation of Natural Numbers and Lists}
+
+\section{Other Inductively Defined Collections}
 
 The structure of natural numbers and the structure of lists are very similar. This similarity can be exploited to 
 develop a simple way of summarizing their properties.
 
 For natural numbers, $0$ and $n^\nxt$ are the only ways to construct
-natural numbers. Operations like addition and multiplication are
+them. Operations like addition and multiplication are
 defined in terms of $0$ and ${}^\nxt$, so they do not contribute directly
 to the \emph{construction} of natural numbers. So
-we refer to $0$ and $\nxt$ as \emph{constructors}.  
+we refer to $0$ and $\nxt$ as \emph{constructors}.
 
 Axioms \ref{ax:NatZero} and \ref{ax:NatPred} spell out how these
 constructors behave.  Namely, Axiom \ref{ax:NatZero} captures the idea that
@@ -482,7 +497,7 @@ concisely in the following way.
 \begin{defn}
   The \emph{natural numbers} are defined \emph{inductively} by
   \begin{align*}
-    n &= 0 \mathrel{\mid} n^\nxt
+    n &\defeq 0 \mathrel{\mid} n^\nxt
   \end{align*}
 \end{defn}
 
@@ -505,15 +520,16 @@ both $x=y$ and $L=M$. So we can encapsulate the definition of lists similarly.
 \begin{defn}
     The \emph{lists} are defined \emph{inductively} by
     \begin{align*}
-      L &= [\,] \mathrel{\mid} x:L & \text{for any thing $x$}
+      L &\defeq [\,] \mathrel{\mid} x:L & \text{for any thing $x$}
     \end{align*}
 \end{defn}
 
-Later in the course, we will make definitions like this rigorous, and will give other similar ones.
-For now, I just draw your attention to the similarity between natural numbers and lists, and point out that proofs by induction work thanks to the structure of these definitions.
+Notice that $x$ can also be a list.
 
-\ignore{
-\ipadbreak
+Later in the course, we will make these definitions, and many others like them, rigorous.
+For now, we just draw attention to the similarity between natural numbers and lists, and point out that proofs by induction work thanks to the structure of these definitions.
+
+
 
 \section{Binary Trees}
 
@@ -522,7 +538,7 @@ For now, I just draw your attention to the similarity between natural numbers an
 
 \emph{Simple binary trees} are structures that play a role in many parts of computer science and mathematics.
 Figure \ref{fig:BinTree} illustrates an example. There are many variations on the basic idea, but we concentrate
-on the simple version (where there is no extra structure).
+on the simplest version (where there is no extra structure).
 
 \begin{figure}[h]
   \centering
@@ -544,12 +560,11 @@ child {node  {}
   \caption{A simple binary tree}
   \label{fig:BinTree}
 \end{figure}
-Such structures are built up from a \emph{leaf} (denoted here by $\bullet$) and a binary  operation that grafts two smaller trees 
+
+Such structures are built from \emph{leaves} (denoted here by $\bullet$) by ``grafting'' two smaller trees 
 to form a larger one
-as pictured in Figure \ref{fig:BinTreeConstruction}. In this notation, the apex of the new tree is called the \emph{root} of the tree.
-Any element that is not a leaf is an \emph{interior node}. 
-Each interior node has a \emph{left} and \emph{right subtree}, either of which might be a leaf.
-Figure \ref{fig:BinTree} illustrates a simple binary tree. 
+as pictured in Figure \ref{fig:BinTreeConstruction}. Trees are usually depicted ``upside down'', so the \emph{root} is at the top and the leaves are at the bottom. What can you do? It's tradition. 
+ 
 
 \begin{figure}[h]
   \centering
@@ -563,28 +578,30 @@ child {node[draw, thin, isosceles triangle, anchor = apex, shape border rotate =
   \caption{Constructing a tree from subtrees}
   \label{fig:BinTreeConstruction}
 \end{figure}
-Also in addition to drawing pictures of binary trees, we can use a linear notation (something that  can we written 
+
+In addition to drawing pictures of binary trees, we can use a linear notation (something that can we written 
 in the midst of prose). 
 If $T_1$ and $T_2$ are simple binary trees, we may denote the tree constructed by grafting $T_1$ on the left and $T_2$ on the right
-as $(T_1\wedge T_2)$ (as in Figure \ref{fig:BinTreeConstruction}. Thus we define simple binary trees, and two operations
+as $(T_1\curlywedge T_2)$ (as in Figure \ref{fig:BinTreeConstruction}. Thus we define simple binary trees, and two operations
 on them, as follows.
 
 \begin{defn}
 \emph{Simple binary trees} are defined inductively by
-\[T \defeq \bullet \,\mid\, (T_1\wedge T_2)\]
-The \emph{size} of a simple binary tree a natural number defined by the equations
+\[T \defeq \bullet \,\mid\, (T_1\curlywedge T_2)\]
+\end{defn}
+
+The \emph{size} of a simple binary tree is a natural number defined by the equations
 \begin{align*}
   \sz(\bullet) &\defeq 0\\
-  \sz(T_1\wedge T_2) &\defeq 1 + \sz(T_1) + \sz(T_2)
+  \sz(T_1\curlywedge T_2) &\defeq 1 + \sz(T_1) + \sz(T_2)
 \end{align*}
 The \emph{height} of a simply binary tree a natural number is defined
 by the equations
 \begin{align*}
   \hght(\bullet) &\defeq 0\\
-  \hght(T_1\wedge T_2) &\defeq 1 + \max(\hght(T_1),\hght(T_2))
+  \hght(T_1\curlywedge T_2) &\defeq 1 + \max(\hght(T_1),\hght(T_2))
 \end{align*}
 where $\max(m,n)$ is the larger of the two numbers.
-\end{defn}
 
 These definitions suggest a relation between the size and height of a tree.
 \ipadbreak
@@ -599,7 +616,7 @@ and that if it is true for some $T_1$ and $T_2$, then it is true for $(T_1\wedge
 \item{}[Basis] $\hght(\bullet) = 0$, $\sz(\bullet) = 0$ 
 and $2^{\hght(\bullet)} = 1$. So the claim is true for $\bullet$.
 \item{}[Inductive Hypothesis] Suppose the inequalities holds for some $T_1$ and $T_2$.
-\item{}[Inductive Step] We must prove the two inequalities for $T= (T_1\wedge T_2)$.
+\item{}[Inductive Step] We must prove the two inequalities for $T= (T_1\curlywedge T_2)$.
 Without loss of generality, assume that $\hght(T_1)\leq \hght(T_2)$. That is, if 
 this is not so, then we may swap $T_1$ for $T_2$ in the following. 
 \begin{align*}
@@ -626,18 +643,18 @@ So $\sz(T) < 2^{\hght(T)}$
 \begin{exercises}
   \item Calculate the height and size of the following simple binary trees.
     \begin{enumerate}
-    \item $(\bullet\wedge\bullet)$
-    \item $(\bullet\wedge (\bullet\wedge\bullet))$
-    \item $((\bullet\wedge\bullet)\wedge(\bullet\wedge(\bullet\wedge\bullet)))$
-    \item $((\bullet\wedge(\bullet\wedge\bullet))\wedge ((\bullet\wedge\bullet)\wedge(\bullet\wedge(\bullet\wedge\bullet))))$
+    \item $(\bullet\curlywedge\bullet)$
+    \item $(\bullet\curlywedge (\bullet\curlywedge\bullet))$
+    \item $((\bullet\curlywedge\bullet)\curlywedge(\bullet\curlywedge(\bullet\curlywedge\bullet)))$
+    \item $((\bullet\curlywedge(\bullet\curlywedge\bullet))\wedge ((\bullet\curlywedge\bullet)\curlywedge(\bullet\curlywedge(\bullet\curlywedge\bullet))))$
     \end{enumerate}
    \item Draw diagrams (similar to those in Figure \ref{fig:BinTree}) for the following
    simple binary trees.
    \begin{enumerate}
-   \item $((\bullet \wedge \bullet)\wedge(\bullet\wedge\bullet))$
-   \item $(((\bullet\wedge\bullet)\wedge\bullet)\wedge ((\bullet\wedge\bullet)\wedge(\bullet\wedge(\bullet\wedge\bullet))))$
+   \item $((\bullet \curlywedge \bullet)\curlywedge(\bullet\curlywedge\bullet))$
+   \item $(((\bullet\curlywedge\bullet)\curlywedge\bullet)\curlywedge ((\bullet\curlywedge\bullet)\curlywedge(\bullet\curlywedge(\bullet\curlywedge\bullet))))$
    \end{enumerate}
-   \item For each of the following diagrams, write the expression using $\bullet$ and $\wedge$
+   \item For each of the following diagrams, write the expression using $\bullet$ and $\curlywedge$
     defining the same tree.
 \begin{multicols}{2}
     \begin{enumerate}
@@ -683,42 +700,45 @@ child {node  {$\bullet$}};
   \end{multicols}
 \end{exercises}
 
+We will study binary trees in more depth later in the course.
 
-\begin{exercise}
-\newcommand{\unit}{\mathord{\textbf{u}}}
-\newcommand{\B}{\mathord{\textbf{B}}}
-\newcommand{\C}{\mathord{\textbf{C}}}
-\newcommand{\denotation}{\mathord{\textsf{val}}}
+%
+%
+%\begin{exercise}
+%\newcommand{\unit}{\mathord{\textbf{u}}}
+%\newcommand{\B}{\mathord{\textbf{B}}}
+%\newcommand{\C}{\mathord{\textbf{C}}}
+%\newcommand{\denotation}{\mathord{\textsf{val}}}
+%
+%A \emph{widget} is defined inductively by
+%\[M \defeq \unit \mid M\B \,\mid\, M\C\]
+%
+%For two widgets $M$ and $N$, their
+%\emph{merge} is a widget, denoted by $M\oplus N$, defined by
+%\begin{align*}
+%\unit \oplus \unit &\defeq \unit\B\\
+%\unit \oplus N\B &\defeq N\C\\
+%\unit \oplus N\C &\defeq (\unit \oplus N)\B\\ 
+%M\B \oplus \unit &\defeq M\C\\
+%M\B \oplus N\B &\defeq (M\oplus N)\B\\
+%M\B \oplus N\C &\defeq (M\oplus N)\C\\
+%M\C \oplus \unit &\defeq  (M\oplus \unit)\B\\
+%M\C \oplus N\B&\defeq (M\oplus N)\C\\
+%M\C \oplus N\C&\defeq ((M\oplus N) \oplus \unit)\B
+%\end{align*} 
+%
+%For a widget $M$, its \emph{value} is a natural number, denoted by
+%$\llbracket M\rrbracket$, defined by
+%\begin{align*}
+%  \llbracket\unit\rrbracket &\defeq 1\\
+%  \llbracket M\B\rrbracket &\defeq 2\cdot \llbracket M\rrbracket\\
+%  \llbracket M\C\rrbracket &\defeq 2\cdot \llbracket M\rrbracket + 1
+%\end{align*}
+%
+%Show that $\llbracket M\rrbracket + \llbracket N\rrbracket = \llbracket M\oplus N\rrbracket$ for any two
+%widgets $M$ and $N$.
+%\end{exercise}
 
-A \emph{widget} is defined inductively by
-\[M \defeq \unit \mid M\B \,\mid\, M\C\]
-
-For two widgets $M$ and $N$, their
-\emph{merge} is a widget, denoted by $M\oplus N$, defined by
-\begin{align*}
-\unit \oplus \unit &\defeq \unit\B\\
-\unit \oplus N\B &\defeq N\C\\
-\unit \oplus N\C &\defeq (\unit \oplus N)\B\\ 
-M\B \oplus \unit &\defeq M\C\\
-M\B \oplus N\B &\defeq (M\oplus N)\B\\
-M\B \oplus N\C &\defeq (M\oplus N)\C\\
-M\C \oplus \unit &\defeq  (M\oplus \unit)\B\\
-M\C \oplus N\B&\defeq (M\oplus N)\C\\
-M\C \oplus N\C&\defeq ((M\oplus N) \oplus \unit)\B
-\end{align*} 
-
-For a widget $M$, its \emph{value} is a natural number, denoted by
-$\llbracket M\rrbracket$, defined by
-\begin{align*}
-  \llbracket\unit\rrbracket &\defeq 1\\
-  \llbracket M\B\rrbracket &\defeq 2\cdot \llbracket M\rrbracket\\
-  \llbracket M\C\rrbracket &\defeq 2\cdot \llbracket M\rrbracket + 1
-\end{align*}
-
-Show that $\llbracket M\rrbracket + \llbracket N\rrbracket = \llbracket M\oplus N\rrbracket$ for any two
-widgets $M$ and $N$.
-\end{exercise}
-}
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "MainText"
