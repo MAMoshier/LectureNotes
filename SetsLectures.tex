@@ -1360,19 +1360,14 @@ The property of being injective can also be stated by saying that if $f(a_0)=f(a
 		satisfy $h\circ e=k\circ e$. For any $y\in Y$, there is some $x\in X$ so that $e(x)=y$. So $h(y)=h(e(x))=k(e(x))=k(y)$. By function extensionality, $h=k$.
 	\end{proof}
 \end{lemma}
+
 Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
 So this suggests that $\sin$ can be ``co-restricted'' to the smaller codomain of $[-1,1]$. In fact, Principle \ref{ax:subset-char} guarantees this.
 We need, however, to generalize the idea to situations not covered by the principle as stated.
 
-We are also often interested in concepts that are, in a sense, \emph{duals} of each other. 
-Informally, that means the role of functions is reversed.
-It turns out that the dual of ``subset'' is ``quotient'' and is also a useful idea, but not as easy to imagine. we will need to develop the idea in considerable detail.
-
-In Lecture \ref{lec:Integers}, the sets $\ZZ$ of integers and $\QQ$ of rational numbers will be constructed as a quotients of $\NN\times \NN$ and $\ZZ\times (\NN\setminus\{\emptyset\})$.
-
-Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. They are related by having the same codomain and moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ in exactly one way ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). So it makes sense to define a function as indicated in \ref{fig:factoring-through}. The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
+Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. Thhe function $m$ is a monomorphism. The two functions are related by having the same codomain. Moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). So it makes sense to define a function as indicated in \ref{fig:factoring-through}. The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
 
 \begin{figure}
 \[
@@ -1487,24 +1482,6 @@ every fit/.style={
 	\caption{Function $f$ \emph{factors uniquely through $m$}}\label{fig:factoring-through}
 \end{figure}
 
-In these figures, $m$ has a useful special property.
-
-\begin{defn}
-	For a function $\sfromto mXY$, say that 
-	\begin{itemize}
-		\item $m$ is a \emph{monomorphism} if for any functions $W\doublerightarrow{h}{k}X$, if $m\circ h=m\circ k$ then $h=k$,
-		\item $m$ is an \emph{injection} if for any elements $a,b\in X$, if $m(a)=m(b)$ then $a=b$.
-	\end{itemize}
-	
-	Injections are also said to be \emph{injective} or \emph{one-to-one} (sometimes written as $1$-$1$ for short).
-\end{defn}
-
-It is easy to check that $m$ in Figure \ref{fig:covariance-example} is one-to-one.
-
-
-This lemma relates an external concept (monomorphism) to an internal one (injectivity). 
-In Figure \ref{fig:covariance-example} for example, the function $m$ is an injection, $f$ is not because $f(y)=f(z)$ but $y\neq z$.
-
 Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
 
 \begin{principle}
@@ -1520,9 +1497,10 @@ Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the in
 	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m(f(w)) = \top$ for all $w$. Then $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
 \end{principle}
 
-In Figure \ref{fig:covariance-example}, the function $f$ satisfies the precondition, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
+In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\top$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
 
-To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. The internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
+To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. An internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
+
 \begin{defn}
 	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, say that $f$ is {$m$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ m=k\circ m$ implies $k\circ f = h\circ f$.
 \end{defn}
@@ -1537,30 +1515,30 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 	Assume $\kappa_m\circ f=\constant_\top$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
 	Since this works for any $w$, $h\circ f=k\circ f$. 
 	
-	Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{a,b,c\}$ by 
+	Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{0,1,2\}$ by 
 	\begin{align*}h(y) &= \begin{cases}
-				a &\text{if $y=f(w)$}\\
-				c &\text{otherwise}
+				0 &\text{if $y=f(w)$}\\
+				2 &\text{otherwise}
 	\end{cases}\\
 	k(y) &= \begin{cases}
-	b & \text{if $y=f(w)$}\\
-	c &\text{otherwise.}
+	1 & \text{if $y=f(w)$}\\
+	2 &\text{otherwise.}
 	\end{cases}
 	\end{align*}
 	It is easy to verify that $h\circ m = k\circ m$, but $h\circ f \neq k\circ k$. So $f$ is not $m$-coinvariant.
 \end{proof}
 \end{lemma}
 
-The dual concept corresponding to monomorphism is \emph{epimorphism}. The dual of one-to-one is \emph{onto}. And the dual of coinvariant is \emph{invariant}.
+Epimorphisms are dual to monomorphisms (they cancel on the left instead of on the right). The concept of $m$-coinvariance also has a useful dual.
+
 
 \begin{defn}
-	A function $\fromto eXY$ is an \emph{epimorphism} if it is the case that for any $Y\doublerightarrow{h}{k}Z$, if $h\circ e=k\circ e$ then $h=k$.
-	
-	A function $\fromto eXY$ is \emph{onto} if it is the case that for every $y\in Y$, there is an $x\in X$ so that $y=e(x)$.
-	
-	For an epimorphism $\sfromto eXY$, a function $\sfromto fXZ$ is \emph{$e$-invariant} if for every $W\doublerightarrow{h}{k}X$, if $e\circ h=e\circ k$ then $f\circ h=f\circ k$.
-	
+	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$, say that $f$ is {$e$-coinvariant} if it is that case that for all $Z\doublerightarrow{h}{k}Y$, $e\circ h=e\circ k$ implies $f\circ h = f\circ k$.
 \end{defn}
+
+\begin{lemma}
+	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$ where $e$ is an epimorphism and $f$ is $e$-invariant, there is a unique function $\sfromto {f/e}XW$ so that $f = (f/e)\circ e$.
+\end{lemma}
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
