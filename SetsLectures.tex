@@ -1283,30 +1283,48 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 
 \section{Embeddings and Quotients}
 
-As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. Likewise, multiplication is amost always cancellative ($m\cdot p=n\dcot p$ implies $m=n$ provided $p\neq 0$). And even list concatenation is cancellative. But function composition is not. At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. The role of these special functions is akin to the role that non-$0$'s play in multiplication.
+As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. Likewise, multiplication is amost always cancellative ($m\cdot p=n\cdot p$ implies $m=n$ provided $p\neq 0$). And even list concatenation is cancellative. But function composition is not. At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. The role of these special functions is akin to the role that non-$0$'s play in multiplication.
 
 \begin{defn}
-	For a function $\fromto fXY$,
+	A function $\fromto fXY$ is called
 	\begin{itemize}
-		\item $f$ is called a \emph{monomorphism} if it is the case that for every $W\doublerightarrow{h}{k}$, if $f\circ h=f\circ k$ then $h=k$;
-		\item $f$ is called an \emph{epimorphism} if it is the ase that 
-		for every $Y\doubleleftarrow{h}{k}$, if $h\circ f=k\circ f$ then $h=k$.
+		\item a \emph{monomorphism} if it is the case that for every $W\doublerightarrow{h}{k}X$, if $f\circ h=f\circ k$ then $h=k$;
+		\item an \emph{epimorphism} if it is the case that 
+		for every $Y\doublerightarrow{h}{k}Z$, if $h\circ f=k\circ f$ then $h=k$.
 	\end{itemize}
 \end{defn}
 
 The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphism \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
 
 \begin{example}
-	For any subset $A\subseteq X$, the inclusion function $\sfromto iAX$ is a monomorphism.
-	
-	For sets $X$ and $Y$, the projection functions $\sfromto {\pi_0}{X\times Y}X$ and $\sfromto {\pi_1}{X\times Y}Y$ are epimorphisms.
-	
-	The functions $\sfromto {\Diamond_X}X\One$ are almost always epimorphisms. The only except is when $X=\emptyset$.
-	
-	All pointers $\sfromto {\hat a}{\One}X$ for $a\in X$ are monomorphisms.
-	
-	
+	\begin{itemize}
+	\item For any subset $A\subseteq X$, the inclusion function $\sfromto iAX$ is a monomorphism.
+	\item  For sets $X$ and $Y$, the projection functions $\sfromto {\pi_0}{X\times Y}X$ and $\sfromto {\pi_1}{X\times Y}Y$ are epimorphisms.
+	\item The functions $\sfromto {\Diamond_X}X\One$ are almost always epimorphisms. The only except is when $X=\emptyset$.
+	\item All pointers $\sfromto {\hat a}{\One}X$ for $a\in X$ are monomorphisms.
+	\item For any set $X$, $\id_X$ is both a monomorphism and an epimorphism.
+	\end{itemize}
 \end{example}
+
+\begin{exercises}
+	\begin{firstexercise}
+		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are epimorphisms, then so is $g\circ f$. 
+		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$. 
+	\end{firstexercise}
+\end{exercises}
+
+The definitions of mono- and epimorphisms refer to external behavior. The next two lemmas spell out equivalent internal behavior.
+
+\begin{defn}
+	A function $\sfromto fXY$ is called
+	\begin{itemize}
+		\item \emph{one-to-one} or \emph{injective} or \emph{an injection} if it is the case that for every $b\in Y$ there is at most one $a\in X$ so that $f(a)=b$;
+		\item \emph{onto} or \emph{surjective} or \emph{a surjection} if it is the case that for every $b\in Y$ there is at least one $a\in X$ so that $f(a)=b$.
+	\end{itemize}
+\end{defn}
+
+The property of being injective can also be stated by saying that if $f(a_0)=f(a_1)$ then $a_0=a_1$.
+
 Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
