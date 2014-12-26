@@ -1529,16 +1529,43 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 \end{proof}
 \end{lemma}
 
-Epimorphisms are dual to monomorphisms (they cancel on the left instead of on the right). The concept of $m$-coinvariance also has a useful dual.
 
+\begin{lemma}\label{lem:coinvariant-factoring}
+	For functions $W\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}X$ where $m$ is an monomorphism and $f$ is $m$-coinvariant, there is a unique function $\sfromto {m\backslash f}XW$ so that $f = m\circ (m\backslash f)$.
+	
+	\begin{proof}
+		There is nothing new to prove. Lemma \ref{lem} ensures that $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists. 
+	\end{proof}
+\end{lemma}
+
+Epimorphisms are dual to monomorphisms (they cancel on the left instead of on the right). The concept of $m$-coinvariance also has a useful dual.
 
 \begin{defn}
 	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$, say that $f$ is {$e$-coinvariant} if it is that case that for all $Z\doublerightarrow{h}{k}Y$, $e\circ h=e\circ k$ implies $f\circ h = f\circ k$.
 \end{defn}
 
-\begin{lemma}
+\begin{lemma}\label{lem:invariant-factoring}
 	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$ where $e$ is an epimorphism and $f$ is $e$-invariant, there is a unique function $\sfromto {f/e}XW$ so that $f = (f/e)\circ e$.
+	
+	\begin{proof}
+		A full proof is technical and not especially informative. 
+		The idea is that $f/e$ can be defined by a ``rule'': $e(y) \mapsto f(y)$. 
+		Obviously, this does not look like a rule sending elements of $X$ to elements of $W$, but in fact it is. 
+		This is because each $x\in X$ takes the form $e(y)$ for some $y$ because $e$ is onto. 
+		And because $f$ is $e$-invariant, the choice of $y$ so that $e(y)=x$ does not matter for the resulting value $f(y)$.
+		So the rule does indeed pick a single value $(f/e)(x)$ for each $x\in X$.  
+	\end{proof}
 \end{lemma}
+
+Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms are equalizers, so they behave in most respects like subsets. So a question arises as to what should be the analogue of an epimorphism. That is, what things built from elements of a set $X$ correspond to epimorphisms in analogy with the way subsets correspond to monomorphisms.
+
+\begin{defn}
+	For a set $X$, a \emph{partition on of $X$} is a subset $P\subseteq \powerset(X)$ so that
+	\begin{itemize}
+		\item for each $B\in P$, there is an $x\in X$ so that $x\in B$; and 
+		\item for each $x\in X$, there is a $B\in P$ so that $x\in B$.
+	\end{itemize}
+\end{defn}
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
