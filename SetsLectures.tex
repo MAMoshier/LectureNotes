@@ -1325,6 +1325,41 @@ The definitions of mono- and epimorphisms refer to external behavior. The next t
 
 The property of being injective can also be stated by saying that if $f(a_0)=f(a_1)$ then $a_0=a_1$.
 
+\begin{lemma}
+	A function is a monomorphism if and only if it is an injection.
+	
+	\begin{proof}
+		Assume $\sfromto mXY$ is a monomorphism. Consider $a_0,a_1\in X$ so that $m(a_0)=m(a_1)$.
+		Then $m\circ \hat{a_0} = m\circ \hat{a_1}$. Since $m$ is a monomorphism $\hat{a_0} = \hat{a_1}$. Hence $a_0=a_1$.
+		
+		Assume $\sfromto mXY$ is not a monomorphism. 
+		So there must be some set $W$ and functions $W\doublerightarrow{h}{k}X$ so that $m\circ h=m\circ k$ but $h\neq k$.
+		Since $h\neq k$, there must be an element $w\in W$ so that $h(w)\neq k(w)$. 
+		Let $a_0=h(w)$ and $a_1=k(w)$. 
+		These witness that $m$ is not an injection because $m(a_0)=m(a_1)$ but $a_0\neq a_1$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	A function is an epimorphism if and only if it is a surjection.
+	
+	\begin{proof}
+		Assume $\sfromto eXY$ is not onto. So there is some $b\in Y$ for which $e(x)\neq y$ is the case for all $x\in X$. Define $Y\doublerightarrow{h}{k}\{0,1,2\}$ by
+		\begin{align*}h(y) &= \begin{cases}
+			0 &\text{if $y=b$}\\
+			2 &\text{otherwise}
+			\end{cases}\\
+			k(y) &= \begin{cases}
+			1 & \text{if $y=b$}\\
+			2 &\text{otherwise.}
+			\end{cases}
+		\end{align*}
+		It is easy to verify that $h\circ e = k\circ e$, but obviosly $h\neq k$. So $e$ is not an epimorphism.
+		
+		Assume $\sfromto eXY$ is onto. Suppose $Y\doublerightarrow{h}{k}Z$ 
+		satisfy $h\circ e=k\circ e$. For any $y\in Y$, there is some $x\in X$ so that $e(x)=y$. So $h(y)=h(e(x))=k(e(x))=k(y)$. By function extensionality, $h=k$.
+	\end{proof}
+\end{lemma}
 Subsets permit us to concentrate attention on elements with special properties.
 For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
 Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
@@ -1466,18 +1501,6 @@ In these figures, $m$ has a useful special property.
 
 It is easy to check that $m$ in Figure \ref{fig:covariance-example} is one-to-one.
 
-\begin{lemma}
-	A function is a monomorphism if and only if it is an injection.
-	
-	\begin{proof}
-		Assume $\sfromto mXY$ is a monomorphism. Consider $a,b\in X$ so that $m(a)=m(b)$.
-		Then $m\circ \hat{a} = m\circ \hat{b}$. Since $m$ is a monomorphism $\hat{a} = \hat{b}$. Hence $a=b$.
-		
-		Assume $\sfromto mXY$ is not a monomorphism. So there must be some set $W$ and functions $W\doublerightarrow{h}{k}X$ so that $m\circ h=m\circ k$ but $h\neq k$.
-		Since $h\neq k$, there must be an element $w\in W$ so that $h(w)\neq k(w)$. 
-		Let $a=h(w)$ and $b=k(w)$. These witness that $m$ is not an injection because $m(a)=m(b)$ but $a\neq b$.
-	\end{proof}
-\end{lemma}
 
 This lemma relates an external concept (monomorphism) to an internal one (injectivity). 
 In Figure \ref{fig:covariance-example} for example, the function $m$ is an injection, $f$ is not because $f(y)=f(z)$ but $y\neq z$.
