@@ -1283,7 +1283,12 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 
 \section{Embeddings and Quotients}
 
-As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. Likewise, multiplication is amost always cancellative ($m\cdot p=n\cdot p$ implies $m=n$ provided $p\neq 0$). And even list concatenation is cancellative. But function composition is not. At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. The role of these special functions is akin to the role that non-$0$'s play in multiplication.
+As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. 
+Likewise, multiplication is amost always cancellative ($m\cdot p=n\cdot p$ implies $m=n$ provided $p\neq 0$). 
+And even list concatenation is cancellative. 
+But function composition is not. 
+At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. 
+The role of these special functions is akin to the role that non-$0$'s play in multiplication. 
 
 \begin{defn}
 	A function $\fromto fXY$ is called
@@ -1294,7 +1299,7 @@ As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is 
 	\end{itemize}
 \end{defn}
 
-The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphism \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
+The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphisms \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
 
 \begin{example}
 	\begin{itemize}
@@ -1309,11 +1314,12 @@ The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this
 \begin{exercises}
 	\begin{firstexercise}
 		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are epimorphisms, then so is $g\circ f$. 
-		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$. 
+		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$.
+		\item Show that if $\sfromto fXY$ and $\sfromto YX$ satisfy $g\circ f = \id_X$, then $g$ is an epimorphism and $f$ is a monomorphism.
 	\end{firstexercise}
 \end{exercises}
 
-The definitions of mono- and epimorphisms refer to external behavior. The next two lemmas spell out equivalent internal behavior.
+The two lemmas spell out equivalent internal behavior.
 
 \begin{defn}
 	A function $\sfromto fXY$ is called
@@ -1367,7 +1373,11 @@ Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin
 So this suggests that $\sin$ can be ``co-restricted'' to the smaller codomain of $[-1,1]$. In fact, Principle \ref{ax:subset-char} guarantees this.
 We need, however, to generalize the idea to situations not covered by the principle as stated.
 
-Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. Thhe function $m$ is a monomorphism. The two functions are related by having the same codomain. Moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). So it makes sense to define a function as indicated in \ref{fig:factoring-through}. The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
+Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. The function $m$ is a monomorphism. 
+The two functions are related by having the same codomain. 
+Moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). 
+So it makes sense to define a function as indicated in \ref{fig:factoring-through}. 
+The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
 
 \begin{figure}
 \[
@@ -1486,7 +1496,7 @@ Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the in
 
 \begin{principle}
 	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. 
-	In other words, if $\sfromto fWY$ is a function satisfying $\kappa_m(f(w))=\top$ for all $w\in W$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
+	In other words, $\kappa_m\circ m = \constant_\top$ and if $\sfromto fWY$ is a function satisfying $\kappa_m\circ f=\constant_\top$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
 	We say that $f$ \emph{factors through $m$ uniquely}.
 	
 	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
@@ -1494,7 +1504,7 @@ Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the in
 	    \top & \text{if $y = m(x)$ for some $x\in X$}\\
 	    \bot & \text{otherwise}.
 	\end{cases}\]
-	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m(f(w)) = \top$ for all $w$. Then $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
+	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m\circ f = \constant_\top$. Then $(m\backslash f)$ satisfies $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
 \end{principle}
 
 In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\top$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
@@ -1534,7 +1544,7 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 	For functions $W\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}X$ where $m$ is an monomorphism and $f$ is $m$-coinvariant, there is a unique function $\sfromto {m\backslash f}XW$ so that $f = m\circ (m\backslash f)$.
 	
 	\begin{proof}
-		There is nothing new to prove. Lemma \ref{lem} ensures that $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists. 
+		There is nothing new to prove. Lemma \ref{lem} ensures if $f$ is $m$-coinvariant, then $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists.
 	\end{proof}
 \end{lemma}
 
@@ -1551,21 +1561,34 @@ Epimorphisms are dual to monomorphisms (they cancel on the left instead of on th
 		A full proof is technical and not especially informative. 
 		The idea is that $f/e$ can be defined by a ``rule'': $e(y) \mapsto f(y)$. 
 		Obviously, this does not look like a rule sending elements of $X$ to elements of $W$, but in fact it is. 
-		This is because each $x\in X$ takes the form $e(y)$ for some $y$ because $e$ is onto. 
-		And because $f$ is $e$-invariant, the choice of $y$ so that $e(y)=x$ does not matter for the resulting value $f(y)$.
+		This is because $e$ is onto, each $x\in X$ takes the form $e(y)$ for some $y\in Y$. 
+		And because $f$ is $e$-invariant, the choice of $y$ does not matter. That is, $e(y_0)=x$ and $e(y_1)=x$ implies $f(y_0)=f(y_1)$.
 		So the rule does indeed pick a single value $(f/e)(x)$ for each $x\in X$.  
 	\end{proof}
 \end{lemma}
 
-Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms are equalizers, so they behave in most respects like subsets. So a question arises as to what should be the analogue of an epimorphism. That is, what things built from elements of a set $X$ correspond to epimorphisms in analogy with the way subsets correspond to monomorphisms.
+Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms and epimorphisms play dual roles. Also a monomorphism behave in most respects like the inclusion of a subset. So a question arises as to what should be the dual of subset. That is, what completes the formal analogy ``Subsets are to monomorphisms as $\_\_\_$s are to epimorphisms''. 
 
 \begin{defn}
-	For a set $X$, a \emph{partition on of $X$} is a subset $P\subseteq \powerset(X)$ so that
+	For a set $X$, a \emph{partition of $X$} is a subset $P\subseteq \powerset(X)$ so that
 	\begin{itemize}
-		\item for each $B\in P$, there is an $x\in X$ so that $x\in B$; and 
-		\item for each $x\in X$, there is a $B\in P$ so that $x\in B$.
+		\item for each $B\in P$, there is at least one $x\in X$ so that $x\in B$;
+		\item for each $x\in X$, there is exactly one $B\in P$ so that $x\in B$.
 	\end{itemize}
+	The subsets $B\in P$ are called \emph{blocks}.
 \end{defn}
+
+Because each $x$ is in exactly one block, we write $[x]_P$ for that block.
+This means that $x\mapsto [x]_P$ defines a function $\sfromto {[-]}XP$. 
+Furthermore, since each $B\in P$ is inhabited ($x\in B$ for some $x$), the function $[-]_P$ is clearly onto.
+Suppose $\fromto eXY$ is an epimorphism. Then the collection $\{e^-(y)\st y\in Y\}$ is a partition of $X$. That is, each $e^-(y)$ is non-empty because $e$ is onto. Clearly, $x\in e^-(e(x))$. And if $x\in e^-(y)$, then $e(x)=y$,
+so $x$ belongs only to one block. Let $X/e$ denote the partition $\{e^-(y)\st y\in Y\}$. Then $x\mapsto [x]_{X/e}$ simply picks out the set of all $x'$
+so that $e(x)=e(x')$. 
+Putting these observations together, we see that every epimorphism $e$ with domain $X$ determines $X/e$, a partition of $X$. And every partition $P$ of $X$ determines an epimorphism $x\mapsto [x]_P$ of $X$ onto $P$.
+
+A monomorphism also determines characteristic function: $\sfromto mAX$ determines $\sfromto{\kappa_m}X\Two$. What is the analogue of a characteristic function for epimorphisms? The answer is an \emph{equivalence} relation.
+
+For a function $\fromto fXY$ (in practice, usually we expect $f$ to be an epimorphism), define $E_f\subseteq X\times X$ by $\{(x_0,x_1)\in X\times X\st f(x_0)=f(x_1)\}$. We write $x_0\mathrel{E}_f x_1$ instead of $(x_0,x_1)\in E_f$. 
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
@@ -1846,39 +1869,43 @@ The details can be worked out by the reader.
 	
 \end{goals}
 
-The exponential $\Two^X$ for a set $X$ is the set of all characteristic maps on $X$.
-Each $k\in \Two^X$ corresponds to a subset of $X$ by $k^{-1}(\top) = \{x\in X\st k(x)=\top\}$. Vice versa, a subset $A\subseteq X$ determines a characteristic function $\fromto {\kappa_A}X\Two$ by the rule
+In this lecture we look at the structure of the collection of all subsets of a given set. This structure is intimately related to how we \emph{describe} subsets. The result of our investigation leads to \emph{logic} as a means of reasoning about descriptions.  
+
+For this lecture, we concentrate on a fixed set $U$, which we will think of as our ``universe''. For example, if we are currently mainly interested in natural numbers, $U$ could be taken to be $\NN$. If we are interested in poker, it could be $\symbol{Deck}$. If we are interested in functions on the reals, it could be $\RR^\RR$. 
+
+The exponential $\Two^U$ for a set $U$ is the set of all characteristic maps on $U$.
+Each $k\in \Two^U$ corresponds to a subset of $U$ by $k^{-1}(\top) = \{x\in U\st k(x)=\top\}$. Vice versa, a subset $A\subseteq U$ determines a characteristic function $\fromto {\kappa_A}U\Two$ by the rule
 \[x\mapsto \begin{cases}
 			\top &\text{if $x\in A$}\\
 			\bot &\text{otherwise}
 \end{cases}
 \]
-So $\Two^X$ is, in this sense, \emph{representative} of the collection of all subsets of $X$. 
-It is convenient also to suppose that the actual collection of subsets of a set $X$ forms a set.
+So $\Two^U$ is \emph{representative} of the collection of all subsets of $U$. 
+It is convenient also to suppose that the actual collection of subsets of a set $U$ forms a set.
 This should ``behave'' exactly like $\Two^X$, but concretely, consist of subsets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
-	For any set $X$, the collection of subsets of $X$ is a set, denoted by $\powerset(X)$ and called the \emph{power set of $X$}. 
-	Moreover, there is a function $\fromto {\ni_X}{\powerset(X)\times X}\Two$ defined by
-	\[{\mathord\ni}_X(A,x) = \begin{cases}
+	For any set $U$, the collection of subsets of $U$ is a set, denoted by $\powerset(U)$ and called the \emph{power set of $U$}. 
+	Moreover, there is a function $\fromto {\ni_X}{\powerset(U)\times U}\Two$ defined by
+	\[{\mathord\ni}_U(A,x) = \begin{cases}
 	\top, &\text{ if } x\in A\\
 	\bot &\text{otherwise}
 	\end{cases}
 	\]
-	The function $\ni_X$ is an evaluation map, meaning that 
-	for any function $\fromto f{P\times X}\Two$, there is a unique function $\fromto {f^\dagger}P{\powerset(X)}$ for which $f = {\mathord\ni}_X\circ (f^\dagger \times \id_X)$. The function $f^\dagger$ 
-	is given by the rule $p\mapsto \{x\in X\st f(p,x)=\top\}$.
+	The function $\ni_U$ is an evaluation map, meaning that 
+	for any function $\fromto f{P\times U}\Two$, there is a unique function $\fromto {f^\dagger}P{\powerset(U)}$ for which $f = {\mathord\ni}_U\circ (f^\dagger \times \id_U)$. The function $f^\dagger$ 
+	is given by the rule $p\mapsto \{x\in U\st f(p,x)=\top\}$.
 \end{principle}
 
-For a function $\fromto fXY$, ${\mathord\ni}_Y\circ (\id_{\powerset(X)}\times f)$ is a function from $\powerset(Y)\times X$ to $\Two$. So there is a unique function
-from $\powerset(Y)$ to $\powerset(X)$ determined by $f$ according to the above princple.
-This is called \emph{inverse image}.
+For a function $\fromto fUV$, ${\mathord\ni}_V\circ (\id_{\powerset(U)}\times f)$ is a function from $\powerset(V)\times U$ to $\Two$. So there is a unique function
+from $\powerset(V)$ to $\powerset(U)$ determined by $f$ according to the above princple.
+This is called \emph{inverse image}. We introduce notation for this.
 
 \begin{defn}
-	For $\sfromto fXY$, let $\sfromto {f^-}{\powerset(Y)}{\powerset(X)}$ denote
-	the unique function for which ${\mathord\ni}_B\circ (\id_{\powerset(B)}\times f) = {\mathord\ni}_A\circ(f^-\times \id_A)$. In terms of elements, $f^-$ satsifies
+	For $\sfromto fUV$, let $\sfromto {f^-}{\powerset(V)}{\powerset(U)}$ denote
+	the unique function for which ${\mathord\ni}_V\circ (\id_{\powerset(V)}\times f) = {\mathord\ni}_U\circ(f^-\times \id_U)$. In terms of elements, $f^-$ satisfies
 	\[x\in f^-(B) \text{if and only if } f(x)\in B\]
-	for every $B\subseteq Y$.  So $f^-$ is given by the rule $B\mapsto \{x\in X\st f(x)\in B\}$
+	for every $B\subseteq Y$.  So $f^-$ is given by the rule $B\mapsto \{x\in X\st f(x)\in B\}$.
 \end{defn}
 
 This notation clashes slightly with our earlier definition of inverse image of an element, $f^-(b) = \{x\in X\st f(x)=b\}$. But this is harmless because 
