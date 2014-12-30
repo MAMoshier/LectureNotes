@@ -1897,23 +1897,33 @@ This should ``behave'' exactly like $\Two^X$, but concretely, consist of subsets
 	is given by the rule $p\mapsto \{x\in U\st f(p,x)=\top\}$.
 \end{principle}
 
-For a function $\fromto fUV$, ${\mathord\ni}_V\circ (\id_{\powerset(U)}\times f)$ is a function from $\powerset(V)\times U$ to $\Two$. So there is a unique function
-from $\powerset(V)$ to $\powerset(U)$ determined by $f$ according to the above princple.
+The function $\fromto{\curry[\ni_U]}{\powerset(U)}{\Two^U}$ is the unique function satisfying $\ni_U =\appl_{U,\Two}\circ(\curry[\ni_U]\times \id_U)$.
+In particular, this must send $A\in\powerset(U)$ to its characteristic function.
+So this is none other than the rule $A\mapsto \kappa_A$.
+Also, $\fromto{\appl_{U,\Two}^\dagger}{\Two^U}{\powerset(U)}$ is the unique function satisfying $\appl_{U,\Two} = \ni_U\circ(\appl_{U,\Two}^\dagger\times \id_U)$.
+This must send $k\in \Two^U$ to the subset $k^-(\top)$.
+So it is given by the rule $k\mapsto k^-(\top)$.
+In this sense, elements of $\powerset(U)$ and elements of $\Two^U$ are interchangible.
+
+For a function $\fromto fUV$, ${\mathord\ni}_V\circ (\id_{\powerset(U)}\times f)$ is a function from $\powerset(V)\times U$ to $\Two$.
+So there is a unique function from $\powerset(V)$ to $\powerset(U)$ determined by $f$ according to the above princple.
 This is called \emph{inverse image}. We introduce notation for this.
 
 \begin{defn}
 	For $\sfromto fUV$, let $\sfromto {f^-}{\powerset(V)}{\powerset(U)}$ denote
-	the unique function for which ${\mathord\ni}_V\circ (\id_{\powerset(V)}\times f) = {\mathord\ni}_U\circ(f^-\times \id_U)$. In terms of elements, $f^-$ satisfies
-	\[x\in f^-(B) \text{if and only if } f(x)\in B\]
-	for every $B\subseteq Y$.  So $f^-$ is given by the rule $B\mapsto \{x\in X\st f(x)\in B\}$.
+	the unique function given by the rule $B\mapsto \{x\in X\st f(x)\in B\}$.
+	That is, $f^-$ is the unique function for which ${\mathord\ni}_V\circ (\id_{\powerset(V)}\times f) = {\mathord\ni}_U\circ(f^-\times \id_U)$. 
+	In terms of elements, $f^-$ satisfies
+	\[x\in f^-(B) \text{ if and only if } f(x)\in B\]
+	for every $B\subseteq Y$.
 \end{defn}
 
-This notation clashes slightly with our earlier definition of inverse image of an element, $f^-(b) = \{x\in X\st f(x)=b\}$. But this is harmless because 
+This notation clashes slightly with our earlier definition of inverse image of an element, $f^-(b) = \{x\in U\st f(x)=b\}$. But this is harmless because 
 $f^-(b)$ in the earlier usage is the same as $f^-(\{b\})$ in the new usage.
 
 \begin{exercises}
 	\begin{firstexercise}
-		\item For $\fromto f\NN\NN$ defined by $f(n) = x^2$, what is $f^-(\{2,3,4,5,6,7,8\})$?
+		\item For $\fromto f\NN\NN$ defined by $f(n) = x^2$, what is $f^-(\{2,3,4,5,6,7,8,9\})$?
 		\item For $\fromto \sin\RR\RR$, what is $\sin^-(\{-1,1\})$?
 		\item Show that for any two functions $\fromto fXY$ and $\fromto gYZ$, $(g\circ f)^- = f^-\circ g^-$.
 	\end{firstexercise}
@@ -1921,19 +1931,20 @@ $f^-(b)$ in the earlier usage is the same as $f^-(\{b\})$ in the new usage.
 
 \section{Finitary Structure of $\powerset(U)$}
 
-Suppose we are currently interested in a particular set, which we will consider to be the ``universe of discourse.'' For example, for now we might only be interested in natural numbers. So our universe of discourse is $\NN$. Or we might be interested in poker. So our universe of discourse is $\symb{Deck}$, the set we defined earlier in these lectures. For this discussion, let us refer to this set as $U$ (for ``universe''). Then the structure of $\powerset(U)$ is of particular interest.
-
 Suppose $A$ and $B$ are subsets of $U$. 
 Then it makes sense to consider the elements that $A$ and $B$ have in common. 
-For example, for $A\subseteq \NN$ being the set of even natural numbers and $B\subseteq \NN$ the set of perfect squares, we might want to concentrate on the set of even, perfect squares, which is another subset of $\NN$.
+For example, for $A\subseteq \NN$ being the set of even natural numbers and $B\subseteq \NN$ the set of perfect squares, we might want to concentrate on the set of even, perfect squares, another subset of $\NN$.
 In general, for $A\subseteq U$ and $B\subseteq U$, the elements in common constitute another subset of $U$.
 This is called the \emph{intersection} and is denoted by $A\cap B$.
 
 Likewise, we might consider merging $A$ and $B$ into a single set (in our example, the set of numbers that are either even or perfect squares).
 This is called the \emph{union}.
+
+Intersection is defined by ``and'', union is defined by ``or''. That is, $x\in A\cap B$ if and only if $x\in A$ \emph{and} $x\in B$;  $x\in A\cup B$  if and only if $x\in A$ \emph{or} $x\in B$.
+
 Related to intersection, there is a largest set $C$ so that $C\cap A\subseteq B$. 
-This is called the \emph{residual}, and is denoted by $A\Rightarrow B$.
-Flipping things the other way, there is also a smallest set $C$ so that $A\subseteq B\cup C$. This is called the \emph{set difference} and is denoted by $A\setminus B$. 
+This is called the \emph{residual}, and is denoted by $A\Rightarrow B$. This is defined by ``implies''. That is, $x\in A\Rightarrow B$ if it is the case that $x\in A$ implies $x\in B$. 
+Flipping things the other way, there is also a smallest set $C$ so that $A\subseteq B\cup C$. This is called the \emph{set difference} and is denoted by $A\setminus B$. This is defined by ``but not''. So $x\in A\setminus B$ if and only if $x\in A$ but not $x\in B$. 
 
 These operations on subsets of $U$ are closely related to the logic of propositions.
 Imagine that $U$ consists of a ``universe'' of possible worlds. Then subsets of $U$ are collections of worlds where certain things are true.
@@ -1941,9 +1952,9 @@ For example, perhaps $P\subseteq U$ is the set of worlds in which pigs fly;
 $K\subseteq X$ is the set of worlds in which kittens smoke cigars.
 So $P\cap K$ is the set of worlds in which pigs fly \emph{and} kittens smoke cigars.
 Likewise, $P\cup K$ is the set of worlds in which \emph{Either} pigs fly \emph{or} kittens smoke cigars.
-And $P\Rightarrow K$ is the set of worlds in which it is true that if pigs fly, \emph{then} kittens smoke cigars. 
+And $P\Rightarrow K$ is the set of worlds in which it is true that if pigs fly, \emph{then} kittens smoke cigars. Finally, $P\setminus K$ is the set of worlds in which pigs fly, but kittens don't smoke cigars.
 
-Understanding the interaction of $\cap$, $\cup$ and $\Rightarrow$ is closely related to the logic of ``and'', ``or'' and ``implies''. If we add a sentence ``False'' that is never true and another one ``True'' that is always true, then the logic of ``and'', ``or'' and ``implies'' form what is called a \emph{Heyting algebra}.
+Understanding the interaction of $\cap$, $\cup$ and $\Rightarrow$ is closely related to the logic of ``and'', ``or'' and ``implies''. If we add a sentence ``False'' that is never true and another one ``True'' that is always true, then the logic of ``and'', ``or'' and ``implies'' form what is called a \emph{Heyting algebra}. The other operation $\setminus$ is less commonly studied (perhaps because most languages to not have a single word meaning ``but not'').
 
 In fact, ``implies'' interacts with ``False'' in a useful way.
 It turns out that ``$P$ implies False'' is essentially the same as saying ``$P$ is not true''. And if ``$P$ is not true'' is not true, then ``$P$'' must be true. This oservation indicates that the Heyting algebra of subsets is actually a \emph{Boolean algebra}.
@@ -2159,6 +2170,24 @@ Several remarks are in order.
 		\item Prove that $A\setminus B = A\cap B^*$, using any method. 
 	\end{nextexercise}
 \end{exercises}
+
+\section{Binary Relations}
+
+In many situations, we wish to consider how elements of a set are related to elements of another. 
+For example, if $S$ is set modelling the students at Chapman and $M$ is a set modelling majors the university offers, then ``majors in'' is a relation between elements of $S$ and elements of $M$.
+Perhaps ``$\symb{Jethro}$ majors in $\symb{Phrenology}$'' is true, while ``$\symb{Aczel}$ majors in $\symb{Flim-Flam Studies}$'' is not. 
+For a more mathematical example, ``is less than'' is a relation between natural numbers and natural numbers. So for example ``$5$ is less than $6$'' is true while ``$9$ is less than $6$'' is not.
+
+Notice that ``majors in'' can not be modelled obviously by a function because some students may not have a declared major and some students may actually be double majors. 
+So we need a new idea. A binary relation between $X$ and $Y$ determines, for each $x\in X$ and each $y\in Y$, whether or not $x$ is in the relation to $y$. We have several ways to model this that are equivalent.
+
+\begin{defn}
+	A \emph{relation between $X$ and $Y$} is a subset $R\subseteq{X\times Y}$. We can write $x\mathrel{R} y$ instead of $(x,y)\in R$ to mimic familiar examples.
+	
+	A \emph{relation on $X$} is a relation between $X$ and $X$. 
+\end{defn}
+
+
 
 \section{Quantifiers and Completeness}
 
