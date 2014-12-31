@@ -1281,314 +1281,6 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 %	\end{enumerate}
 %\end{exercises}
 
-\section{Embeddings and Quotients}
-
-As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. 
-Likewise, multiplication is amost always cancellative ($m\cdot p=n\cdot p$ implies $m=n$ provided $p\neq 0$). 
-And even list concatenation is cancellative. 
-But function composition is not. 
-At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. 
-The role of these special functions is akin to the role that non-$0$'s play in multiplication. 
-
-\begin{defn}
-	A function $\fromto fXY$ is called
-	\begin{itemize}
-		\item a \emph{monomorphism} if it is the case that for every $W\doublerightarrow{h}{k}X$, if $f\circ h=f\circ k$ then $h=k$;
-		\item an \emph{epimorphism} if it is the case that 
-		for every $Y\doublerightarrow{h}{k}Z$, if $h\circ f=k\circ f$ then $h=k$.
-	\end{itemize}
-\end{defn}
-
-The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphisms \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
-
-\begin{example}
-	\begin{itemize}
-	\item For any subset $A\subseteq X$, the inclusion function $\sfromto iAX$ is a monomorphism.
-	\item  For sets $X$ and $Y$, the projection functions $\sfromto {\pi_0}{X\times Y}X$ and $\sfromto {\pi_1}{X\times Y}Y$ are epimorphisms.
-	\item The functions $\sfromto {\Diamond_X}X\One$ are almost always epimorphisms. The only except is when $X=\emptyset$.
-	\item All pointers $\sfromto {\hat a}{\One}X$ for $a\in X$ are monomorphisms.
-	\item For any set $X$, $\id_X$ is both a monomorphism and an epimorphism.
-	\end{itemize}
-\end{example}
-
-\begin{exercises}
-	\begin{firstexercise}
-		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are epimorphisms, then so is $g\circ f$. 
-		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$.
-		\item Show that if $\sfromto fXY$ and $\sfromto YX$ satisfy $g\circ f = \id_X$, then $g$ is an epimorphism and $f$ is a monomorphism.
-	\end{firstexercise}
-\end{exercises}
-
-The two lemmas spell out equivalent internal behavior.
-
-\begin{defn}
-	A function $\sfromto fXY$ is called
-	\begin{itemize}
-		\item \emph{one-to-one} or \emph{injective} or \emph{an injection} if it is the case that for every $b\in Y$ there is at most one $a\in X$ so that $f(a)=b$;
-		\item \emph{onto} or \emph{surjective} or \emph{a surjection} if it is the case that for every $b\in Y$ there is at least one $a\in X$ so that $f(a)=b$.
-	\end{itemize}
-\end{defn}
-
-The property of being injective can also be stated by saying that if $f(a_0)=f(a_1)$ then $a_0=a_1$.
-
-\begin{lemma}
-	A function is a monomorphism if and only if it is an injection.
-	
-	\begin{proof}
-		Assume $\sfromto mXY$ is a monomorphism. Consider $a_0,a_1\in X$ so that $m(a_0)=m(a_1)$.
-		Then $m\circ \hat{a_0} = m\circ \hat{a_1}$. Since $m$ is a monomorphism $\hat{a_0} = \hat{a_1}$. Hence $a_0=a_1$.
-		
-		Assume $\sfromto mXY$ is not a monomorphism. 
-		So there must be some set $W$ and functions $W\doublerightarrow{h}{k}X$ so that $m\circ h=m\circ k$ but $h\neq k$.
-		Since $h\neq k$, there must be an element $w\in W$ so that $h(w)\neq k(w)$. 
-		Let $a_0=h(w)$ and $a_1=k(w)$. 
-		These witness that $m$ is not an injection because $m(a_0)=m(a_1)$ but $a_0\neq a_1$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	A function is an epimorphism if and only if it is a surjection.
-	
-	\begin{proof}
-		Assume $\sfromto eXY$ is not onto. So there is some $b\in Y$ for which $e(x)\neq y$ is the case for all $x\in X$. Define $Y\doublerightarrow{h}{k}\{0,1,2\}$ by
-		\begin{align*}h(y) &= \begin{cases}
-			0 &\text{if $y=b$}\\
-			2 &\text{otherwise}
-			\end{cases}\\
-			k(y) &= \begin{cases}
-			1 & \text{if $y=b$}\\
-			2 &\text{otherwise.}
-			\end{cases}
-		\end{align*}
-		It is easy to verify that $h\circ e = k\circ e$, but obviosly $h\neq k$. So $e$ is not an epimorphism.
-		
-		Assume $\sfromto eXY$ is onto. Suppose $Y\doublerightarrow{h}{k}Z$ 
-		satisfy $h\circ e=k\circ e$. For any $y\in Y$, there is some $x\in X$ so that $e(x)=y$. So $h(y)=h(e(x))=k(e(x))=k(y)$. By function extensionality, $h=k$.
-	\end{proof}
-\end{lemma}
-
-Subsets permit us to concentrate attention on elements with special properties.
-For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
-Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
-So this suggests that $\sin$ can be ``co-restricted'' to the smaller codomain of $[-1,1]$. In fact, Principle \ref{ax:subset-char} guarantees this.
-We need, however, to generalize the idea to situations not covered by the principle as stated.
-
-Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. The function $m$ is a monomorphism. 
-The two functions are related by having the same codomain. 
-Moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). 
-So it makes sense to define a function as indicated in \ref{fig:factoring-through}. 
-The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
-
-\begin{figure}
-\[
-  \begin{tikzpicture}[
-  >=stealth,
-  bullet/.style={
-  	fill=black,
-  	circle,
-  	minimum width=1pt,
-  	inner sep=1pt
-  },
-  projection/.style={
-  	->,
-  	thick,
-  	shorten <=2pt,
-  	shorten >=2pt
-  },
-  every fit/.style={
-  	ellipse,
-  	draw,
-  	inner sep=0pt
-  }
-  ]
-  \foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
-  \node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
-  
-  \foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
-  \node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
-  \node (brt) at (6.2,1) {};
-  \node (blt) at (3.8,2) {};
-  
-  \foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
-  \node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
-  \node (clo) at (5.2,5.7) {};
-  \node (chi) at (5.2,6.3) {};
-  
-  \node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
-  \node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
-  \node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
-  
-  \node at (2.5,.5) {$m$};
-  \node at (6.3,3.8) {$f$};
-  
-  \draw[projection] (ad) -- (b1);
-  \draw[projection] (ac) -- (b2);
-  \draw[projection] (ab) -- (b3);
-  \draw[projection] (aa) -- (b4);
-  \draw[projection] (cx) -- (b1);
-  \draw[projection] (cy) -- (b4);
-  \draw[projection] (cz) -- (b4);
-  
-  \end{tikzpicture}
-\]
-	\caption{Function $f$ and $m$ with a common codomain}\label{fig:covariance-example}
-
-\[
-\begin{tikzpicture}[
->=stealth,
-bullet/.style={
-	fill=black,
-	circle,
-	minimum width=1pt,
-	inner sep=1pt
-},
-projection/.style={
-	->,
-	thick,
-	shorten <=2pt,
-	shorten >=2pt
-},
-every fit/.style={
-	ellipse,
-	draw,
-	inner sep=0pt
-}
-]
-\foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
-\node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
-
-\foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
-\node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
-\node (brt) at (6.2,1) {};
-\node (blt) at (3.8,2) {};
-
-\foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
-\node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
-\node (clo) at (5.2,5.7) {};
-\node (chi) at (5.2,6.3) {};
-
-\node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
-\node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
-\node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
-
-
-\node at (2.5,.5) {$m$};
-\node at (6.3,3.8) {$f$};
-  
-
-\draw[projection] (ad) -- (b1);
-\draw[projection] (ac) -- (b2);
-\draw[projection] (ab) -- (b3);
-\draw[projection] (aa) -- (b4);
-\draw[projection] (cx) -- (b1);
-\draw[projection] (cy) -- (b4);
-\draw[projection] (cz) -- (b4);
-\draw[projection,blue] (cx) -- (ad);
-\draw[projection,blue] (cy) -- (aa);
-\draw[projection,blue] (cz) -- (aa);
-
-\end{tikzpicture}
-\]	
-	\caption{Function $f$ \emph{factors uniquely through $m$}}\label{fig:factoring-through}
-\end{figure}
-
-Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
-
-\begin{principle}
-	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. 
-	In other words, $\kappa_m\circ m = \constant_\top$ and if $\sfromto fWY$ is a function satisfying $\kappa_m\circ f=\constant_\top$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
-	We say that $f$ \emph{factors through $m$ uniquely}.
-	
-	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
-	\[\kappa_m(y) = \begin{cases}
-	    \top & \text{if $y = m(x)$ for some $x\in X$}\\
-	    \bot & \text{otherwise}.
-	\end{cases}\]
-	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m\circ f = \constant_\top$. Then $(m\backslash f)$ satisfies $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
-\end{principle}
-
-In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\top$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
-
-To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. An internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
-
-\begin{defn}
-	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, say that $f$ is {$m$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ m=k\circ m$ implies $k\circ f = h\circ f$.
-\end{defn}
-
-\begin{lemma}
-	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \constant_\top$.
-
-\begin{proof}
-	First, note that $\kappa_m\circ f = \constant_\top$ if and only if
-	$\kappa_m(f(w))=\top$ for every $w\in W$. But $\kappa_m(y)=\top$ if and only if there is some $x\in X$ so that $y=m(x)$. Therefore, $\kappa_m\circ f=\top$ if and only if for every $w\in W$ there exists some $x\in X$ for which $f(w)=m(x)$.
-	
-	Assume $\kappa_m\circ f=\constant_\top$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
-	Since this works for any $w$, $h\circ f=k\circ f$. 
-	
-	Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{0,1,2\}$ by 
-	\begin{align*}h(y) &= \begin{cases}
-				0 &\text{if $y=f(w)$}\\
-				2 &\text{otherwise}
-	\end{cases}\\
-	k(y) &= \begin{cases}
-	1 & \text{if $y=f(w)$}\\
-	2 &\text{otherwise.}
-	\end{cases}
-	\end{align*}
-	It is easy to verify that $h\circ m = k\circ m$, but $h\circ f \neq k\circ k$. So $f$ is not $m$-coinvariant.
-\end{proof}
-\end{lemma}
-
-
-\begin{lemma}\label{lem:coinvariant-factoring}
-	For functions $W\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}X$ where $m$ is an monomorphism and $f$ is $m$-coinvariant, there is a unique function $\sfromto {m\backslash f}XW$ so that $f = m\circ (m\backslash f)$.
-	
-	\begin{proof}
-		There is nothing new to prove. Lemma \ref{lem} ensures if $f$ is $m$-coinvariant, then $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists.
-	\end{proof}
-\end{lemma}
-
-Epimorphisms are dual to monomorphisms (they cancel on the left instead of on the right). The concept of $m$-coinvariance also has a useful dual.
-
-\begin{defn}
-	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$, say that $f$ is {$e$-coinvariant} if it is that case that for all $Z\doublerightarrow{h}{k}Y$, $e\circ h=e\circ k$ implies $f\circ h = f\circ k$.
-\end{defn}
-
-\begin{lemma}\label{lem:invariant-factoring}
-	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$ where $e$ is an epimorphism and $f$ is $e$-invariant, there is a unique function $\sfromto {f/e}XW$ so that $f = (f/e)\circ e$.
-	
-	\begin{proof}
-		A full proof is technical and not especially informative. 
-		The idea is that $f/e$ can be defined by a ``rule'': $e(y) \mapsto f(y)$. 
-		Obviously, this does not look like a rule sending elements of $X$ to elements of $W$, but in fact it is. 
-		This is because $e$ is onto, each $x\in X$ takes the form $e(y)$ for some $y\in Y$. 
-		And because $f$ is $e$-invariant, the choice of $y$ does not matter. That is, $e(y_0)=x$ and $e(y_1)=x$ implies $f(y_0)=f(y_1)$.
-		So the rule does indeed pick a single value $(f/e)(x)$ for each $x\in X$.  
-	\end{proof}
-\end{lemma}
-
-Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms and epimorphisms play dual roles. Also a monomorphism behave in most respects like the inclusion of a subset. So a question arises as to what should be the dual of subset. That is, what completes the formal analogy ``Subsets are to monomorphisms as $\_\_\_$s are to epimorphisms''. 
-
-\begin{defn}
-	For a set $X$, a \emph{partition of $X$} is a subset $P\subseteq \powerset(X)$ so that
-	\begin{itemize}
-		\item for each $B\in P$, there is at least one $x\in X$ so that $x\in B$;
-		\item for each $x\in X$, there is exactly one $B\in P$ so that $x\in B$.
-	\end{itemize}
-	The subsets $B\in P$ are called \emph{blocks}.
-\end{defn}
-
-Because each $x$ is in exactly one block, we write $[x]_P$ for that block.
-This means that $x\mapsto [x]_P$ defines a function $\sfromto {[-]}XP$. 
-Furthermore, since each $B\in P$ is inhabited ($x\in B$ for some $x$), the function $[-]_P$ is clearly onto.
-Suppose $\fromto eXY$ is an epimorphism. Then the collection $\{e^-(y)\st y\in Y\}$ is a partition of $X$. That is, each $e^-(y)$ is non-empty because $e$ is onto. Clearly, $x\in e^-(e(x))$. And if $x\in e^-(y)$, then $e(x)=y$,
-so $x$ belongs only to one block. Let $X/e$ denote the partition $\{e^-(y)\st y\in Y\}$. Then $x\mapsto [x]_{X/e}$ simply picks out the set of all $x'$
-so that $e(x)=e(x')$. 
-Putting these observations together, we see that every epimorphism $e$ with domain $X$ determines $X/e$, a partition of $X$. And every partition $P$ of $X$ determines an epimorphism $x\mapsto [x]_P$ of $X$ onto $P$.
-
-A monomorphism also determines characteristic function: $\sfromto mAX$ determines $\sfromto{\kappa_m}X\Two$. What is the analogue of a characteristic function for epimorphisms? The answer is an \emph{equivalence} relation.
-
-For a function $\fromto fXY$ (in practice, usually we expect $f$ to be an epimorphism), define $E_f\subseteq X\times X$ by $\{(x_0,x_1)\in X\times X\st f(x_0)=f(x_1)\}$. We write $x_0\mathrel{E}_f x_1$ instead of $(x_0,x_1)\in E_f$. 
 
 \chapter{The Set of Natural Numbers}\label{lec:natural-numbers}
 
@@ -1713,7 +1405,7 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 	\end{align*}
 
 	\begin{proof}
-		The proof of this requires additional ideas that are implict in the way subset classification (using $\Two$) works. We have all the principles we need, but a proof now would involve quite a long development. So we only sketch the rough idea.
+		The proof of this requires additional ideas that are implict in the way subset classification works. We have all the principles we need, but a proof now would involve quite a long development. So we only sketch the rough idea.
 		
 		We use simple recursion to define a sequence of ``approximations'' of the desired function. First, let $D_n = C\times \{0,\dotsc,n\}$ for each $n\in\NN$. Then define 
 		$\fromto {f_n}{D_n}A$ for each $n\in \NN$ by
@@ -2179,64 +1871,84 @@ Perhaps ``$\symb{Jethro}$ majors in $\symb{Phrenology}$'' is true, while ``$\sym
 For a more mathematical example, ``is less than'' is a relation between natural numbers and natural numbers. So for example ``$5$ is less than $6$'' is true while ``$9$ is less than $6$'' is not.
 
 Notice that ``majors in'' can not be modelled obviously by a function because some students may not have a declared major and some students may actually be double majors. 
-So we need a new idea. A binary relation between $X$ and $Y$ determines, for each $x\in X$ and each $y\in Y$, whether or not $x$ is in the relation to $y$. We have several ways to model this that are equivalent.
+So we need a new idea. A binary relation between $X$ and $Y$ determines, for each $x\in X$ and each $y\in Y$, whether or not $x$ is in the relation to $y$. 
+There are several equivalent ways to model the general notion. But traditionally, the following is usually taken to be the official version.
 
 \begin{defn}
-	A \emph{relation between $X$ and $Y$} is a subset $R\subseteq{X\times Y}$. We can write $x\mathrel{R} y$ instead of $(x,y)\in R$ to mimic familiar examples.
+	A \emph{relation between $X$ and $Y$} is a subset $R\subseteq{X\times Y}$. 
+	We can write $x\mathrel{R} y$ instead of $(x,y)\in R$ to mimic familiar examples.
 	
 	A \emph{relation on $X$} is a relation between $X$ and $X$. 
 \end{defn}
 
+Here are two common equivalent formulations.
+\begin{itemize}
+	\item $R\subseteq X\times Y$ determines a characteristic function $\fromto {\kappa_R}{X\times Y}\Two$ so that $R = \{(x,y)\in X\times Y\st \kappa_R(x,y)=\top\}$.
+	\item $R$ determines a function $\fromto {R[-]}{X}{\powerset(Y)}$ so that $R = \{(x,y)\in X\times Y\st y\in R[x]\}$.
+\end{itemize}
+The ability to move between these can be helpful.
+So it is worth practicing.
 
+\begin{exercises}
+	Let $\fromto r{\NN\times\NN}\Two$ be the function defined by \[r(m,n) = \begin{cases}
+	\top & \text{if $m\geq n^2$}\\
+	\bot & \text{otherwise}.
+	\end{cases}
+	\]
+	Consider the relation $R = r^{-}(\top)$. Explain your answers for the following.
+	\begin{nextexercise}
+		\item Is it the case that $3\mathrel{R} 2$?
+		\item Is it the case that $9\mathrel{R} 3$?
+		\item What is $R[5]$?
+		\item What is $\curry[r]$?
+	\end{nextexercise}
+\end{exercises}
+
+We will discuss the structure of relations in more detail in Lecture \ref{lec:Relations}.
 
 \section{Quantifiers and Completeness}
 
 Consider how we might try to define the set of perfect square natural numbers.
-These are the natural numbers of the form $m^2$ for a natural number $m$.
+These are the natural numbers of the form $m^2$ for some natural number $m$.
 So the first few are $0$, $1$, $4$, $9$, $16$ and so on.
 We would be right to define this set by $\{n\in \NN\st \text{for some $m\in\NN$, $m^2=n$}\}$.
-We need to make sense of this, since ``for some $m\in \NN$, \ldots'' does not look like anything we have encountered yet.
-Just as we abbreviated ``and'' with symbol $\wedge$ and ``or'' with $\vee$, we will abbreviate ``for some $n\in\NN$, \ldots'' as $\exists n\in \NN,\ldots$. 
-
-Suppose $\fromto PX\Two$ is a characteristic function on $X$.
-We will write $\{x\in X\st P(x)\}$ instead of $\{x\in X\st P(x)=\top\}$, mostly to avoid some clutter, but also because this allows for more informal descriptions.
-Using this notation, we can form subsets by writing things like $\{x\in X\st P(x)\wedge Q(x)\}$, to denote the subset of elements satisfying two conditions (this is an intersection).
-Similarly, we can also write $\{x\in X\st P(x)\vee Q(x)\}$ for a union,
-$\{x\in X\st P(x)\to Q(x)\}$ for a residual, and $\{x\in X\st \neg P(x)\}$ for a complement.
-
-\begin{defn}
-	For sets $W$ and $X$ and $C\subseteq X$, write $\{(w,x)\in W\times X\st x\in C\}$ for the subset of $W\times X$ defined by $pi_1^-(C)$.
-\end{defn}
+To make sense of this, we need to understand what ``for some $m\in \NN$, \ldots'' means formally.
+Just as we abbreviated ``and'' with symbol $\wedge$ and ``or'' with $\vee$, we will abbreviate ``for some $m\in\NN$, \ldots'' as $\exists m\in \NN,\ldots$. 
 
 \begin{lemma}
-	For sets $W$ and $X$ and subset $R\subseteq{W\times X}$, there is a subset of $X$, denoted by $\{x\in X\st \exists w\in W.(w,x)\in R\}$ so that for all $C\subseteq X$, 
-	\[\text{$\{x\in X\st \exists w\in W.(w,x)\in R\} \subseteq C$ if and only if $R \subseteq \{(w,x)\in W\times X\st x\in C\}$}.\]
-	Also, there is a subset of $X$, denoted by $\{x\in X\st \forall w\in W.(w,x)\in R\}$ so that for all $\fromto PX\Two$,
-	\[\text{$C \subseteq \{x\in X\st \forall w\in W.(w,x)\in R\}$ if and only if $\{(w,x) \in W\times X\st x\in C\}\subseteq R$}.\]
+	For sets $W$ and $U$ and relation $R\subseteq{W\times U}$, there is a subset of $U$, denoted by $\{x\in U\st \exists w\in W. w\mathrel{R}x\}$ so that for all $C\subseteq U$, 
+	\[\text{$\{x\in U\st \exists w\in W.w\mathrel{R}x\} \subseteq C$ if and only if $R \subseteq W\times C$}.\]
+	Also, there is a subset of $U$, denoted by $\{x\in U\st \forall w\in W,w\mathrel{R}x\}$ so that for all $C\subseteq U$,
+	\[\text{$C \subseteq \{x\in U\st \forall w\in W, w\mathrel{R}x\}$ if and only if $W\times C\subseteq R$}.\]
 
 	\begin{proof}
-		The proof of this is fairly technical and not especially informative. A sketch will suffice.
-		
-		The relation $R$ determines a function $r$ from $X$ to $\powerset(W)$ by $x\mapsto \{w\in W\st R(w,x)\}$.
+		The relation $R$ determines a function $r$ from $U$ to $\powerset(W)$ by $x\mapsto \{w\in W\st w\mathrel{R}x\}$.
 		Then 
 		\begin{align*}
-			\{x\in X\st \forall w\in W.R(w,x)\} &= r^-(\{W\})\\
-			\{x\in X\st \exists w\in W.R(w,x)\} &= r^-(\powerset(W)\setminus\{\emptyset\})
+			\{x\in U\st \exists w\in W,w\mathrel{R}x\} &= r^-(\powerset(W)\setminus\{\emptyset\})\\
+						\{x\in U\st \forall w\in W,w\mathrel{R}x\} &= r^-(\{W\})
 		\end{align*}
 		Proving that these sets satisify the desired conditions is technical, but routine.
 		 
-		Concretely, $\{x\in X\st \exists w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x)$ for some $w\in W$;
-		$\{x\in X\st \forall w\in W.R(w,x)\}$ consists of those $x\in X$ so that $R(w,x)$ for all $w\in W$.
-		This justifies our notation: $\exists w\in W,R(w,x)$ is read as ``there \emph{exists} $w\in W$ so that $R(w,x)$;''
-		$\forall w\in W, R(w,x)$'' is read as ``for \emph{all} $w\in W$, $R(w,x)$.''
+		Concretely, $\{x\in U\st \exists w\in W,w\mathrel{R}x\}$ consists of those $x\in U$ so that $w\mathrel{R}x$ for some $w\in W$;
+		$\{x\in U\st \forall w\in W,w\mathrel{R}x\}$ consists of those $x\in U$ so that $w\mathrel{R}x$ for all $w\in W$.
+		This justifies our notation: $\exists w\in W,w\mathrel{R}x$ is read as ``there \emph{exists} $w\in W$ so that $w\mathrel{R}x$;''
+		$\forall w\in W, w\mathrel{R}x$'' is read as ``for \emph{all} $w\in W$, $w\mathrel{R}x$.''
 	\end{proof}
 \end{lemma}
 
-We can use this lemma to generalize $\cup$ and $\cap$ to arbitrary sets of subsets.
+Expressions using $\exists$ and $\forall$ can be nested, so for example suppose we wish to define the set of all functions $\RR\to\RR$ that are continuous at $a$. We can write
+\[\{f\in \RR^\RR\st \forall \epsilon\in \RR^+\exists\delta\in\RR^+,B(a,\delta)\subseteq f^-(B(f(a),\epsilon))\}
+\]
+where $\RR^+ = \{x\in \RR\st 0<x\}$ -- the set of positive real numbers -- and $B(b,\gamma) = \{x\in \RR\st b-\gamma<x<b+\gamma\}$ -- the set of real numbers in the interval $(b-\gamma, b+\gamma)$. 
+So a function $f$ belong to this set if and only if for every $\epsilon>0$ there is a $\delta>0$ so that for all $x\in \RR$, if $a-\delta<x<a+\delta$ then $f(a)-\epsilon<f(x)<f(a)+\epsilon$.
+The reader who is familiar with Calculus will recognize that this is the precise definition of \emph{continuity at $a$}.
+
+We can use $\exists$ and $\forall$ to generalize union and intersection to arbitrary collections.
 
 \begin{defn}
-Let $\fromto AI{\powerset(X)}$ be a function into the powerset of $X$.
-We may write $A_i$ instead  of $A(i)$ to emphasize that each $A_i$ is
+Let $\fromto AI{\powerset(U)}$ be a function into the powerset of $U$.
+We write $A_i$ instead  of $A(i)$ to emphasize that each $A_i$ is
 a set. 
 Then define 
 \begin{align*}
@@ -2245,45 +1957,47 @@ Then define
 \end{align*}
 \end{defn}
 
-According to Lemma \ref{lem:existential-set}, $\bigcup_{i\in I}A_i$ is again a subset of $X$, generalizing $\cup$ to the union of arbitrary families of subsets, rather than just two.
-In this sense, $\powerset(X)$ is \emph{complete}.
-That is, the union of any family of subsets of $X$ exists.
-It is this fact that justifes saying that $\powerset(X)$ is a \emph{complete} Boolean algebra.
+According to Lemma \ref{lem:existential-set}, $\bigcup_{i\in I}A_i$ is again a subset of $U$, generalizing $\cup$ to the union of arbitrary families of subsets of $U$, rather than just two. 
+In this sense, $\powerset(U)$ is \emph{complete}.
+That is, the union of any family of subsets of $U$ exists.
+This justifes saying that $\powerset(U)$ is a \emph{complete} Boolean algebra.
 
 \begin{exercises}
+	In the following, consider the family $\fromto AI{\powerset(U)}$.
 	\begin{nextexercise}
 		\item Show that $\bigcup_{i\in I}A_i\subseteq C$ if and only if $A_k\subseteq C$ holds every $k\in I$.
 		\item Define $\bigcap_{i\in I}A_i$ in analogy with $\bigcup_{i\in I}A_i$.
 		\item For $I=\emptyset$, what is $\bigcup_{i\in I}A_i$?
+		\item For $I=\emptyset$, what is $\bigcap_{i\in I}A_i$?
 	\end{nextexercise}
 \end{exercises}
 
 \section{Atomicity}
 
-The complete Boolean algebras $\powerset(X)$ have one more feature that characterizes powersets among other complete Boolean algebras.
+The complete Boolean algebras $\powerset(U)$ have one more feature that characterizes powersets.
 They are \emph{atomic}. 
 This means, roughly, that all subsets are built from the simplest ones.
 
-An \emph{atom} of $\powerset(X)$ is a subset $A$ with the property that $\emptyset\subseteq B\subseteq A$ implies $B=\emptyset$ or $B=A$. That is, there is nothing strictly between $\emptyset$ and $A$.
-Clearly, the singleton subsets of $X$ are the atoms $\powerset(X)$.
+An \emph{atom} of a Boolean algebra is an element with the property that there is nothing strictly between the smallest element and it.
+A singleton subset $\{x\}\subseteq U$ is an atom of $\powerset(U)$ because there are no other subsets lying between $\emptyset$ and $\{x\}$
 
 \begin{lemma}
-	For any set $X$, the rule $x\mapsto \{x\}$ determines a function from $X$ to $\powerset(X)$.
+	For any set $U$, the rule $x\mapsto \{x\}$ determines a function from $U$ to $\powerset(U)$.
 	
 	\begin{proof}
-		Define the \emph{diagonal} subset of $X\times X$ as $\Delta_X = \{(x,y)\in X\times X \st x= y\}$.
-		This is the equalizer of the functions $\pi_0$ and $\pi_1$.
-		Let $\fromto {\delta_X}{X\times X}\Two$ be the characteristic map for $\Delta_X$. So $\delta_X(x,y)=\top$ if and only if $x=y$. 
-		Let $\fromto sX{\powerset(X)}$ be the unique function for which ${\mathord\in}_X\circ (s\circ \id_X)= \delta_X$.
-		In other words ${\mathord\ni}_X(s(x),y)=\delta_X(x,y)$.
-		Since ${\mathord\ni}_X(s(x),y) =\top$ if and only if $y\in s(x)$, it is the case that $y\in s(x)$ if and only if $x=y$.
+		Recall that the \emph{diagonal} relation on $U$ is $\Delta_U = \{(x,y)\in U\times U \st x= y\}$.
+		Let $\fromto sU{\powerset(U)}$ be the unique function for which ${\mathord\in}_U\circ (s\circ \id_U)= \kappa_{\Delta_U}$.
+		In other words ${\mathord\ni}_U(s(x),y)=\top$ if and only if $x=y$.
+		Since ${\mathord\ni}_U(s(x),y) =\top$ if and only if $y\in s(x)$, it is the case that $y\in s(x)$ if and only if $x=y$.
 		So $s(x) = \{x\}$. 
 	\end{proof}
 \end{lemma}
 
-Now every subset of $X$ is obtained as a union of singletons: $A = \bigcup_{x\in A}\{x\}$. 
-For a complete Boolean algebra, this is what is meant by saying that $\powerset(X)$ is a complete \emph{atomic} Boolean algebra. 
-Although we do not investigate this here, any complete atomic Boolean algebra has the same structure as $\powerset(X)$ for some $X$. The structure of $\powerset(X)$ is even preserved by inverse images.
+Now every subset of $U$ is obtained as a union of singletons: $A = \bigcup_{x\in A}\{x\}$. 
+For a complete Boolean algebra, this is what is meant by saying that $\powerset(U)$ is a complete \emph{atomic} Boolean algebra. 
+Although we do not investigate this here, any complete atomic Boolean algebra has the same structure as $\powerset(U)$ for some $U$. 
+
+The structure of $\powerset(U)$ is even preserved by inverse images.
 
 \begin{lemma}
 	For any function $\fromto fXY$, any $\fromto BI{\powerset(Y)}$, it is the case that $f^{-}(\bigcup_{i\in I}B_i) = \bigcup_{i\in I}f^{-1}(B_i)$
@@ -2337,7 +2051,8 @@ There is also a lower adjoint of $f^-$, but as it is less commonly used, we do n
 The important features of $f^+$ are easily checked. 
 First, $f^+$ preserves atoms.
 That is, $f^+(\{x\}) = \{f(x)\}$. 
-Second, $f^+$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$. Note that $f^+$ does not necessarily preserve intersections.
+Second, $f^+$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in I}f^+(A_i)$.
+Note that $f^+$ does not necessarily preserve intersections.
 
 \begin{exercises}
 	\begin{nextexercise}
@@ -2353,32 +2068,351 @@ Second, $f^+$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in 
 \begin{goals}
 	
 \end{goals}
+
 Many other constructions can be built up using the principles we have discussed. 
 In this lecture, we consider some of the most useful and most general.
 
 \section{Unions}
 
 Although not strictly needed for most purposes, mathematicians generally agree that sets, no matter how they are related, can be merged into a single set with elements taken from the originals. 
-That is, union ($\bigcup$) is meaningful for any set of sets. We take this as an additional principle.
+That is, union ($\bigcup$) is meaningful for any set of sets.
+We take this as an additional principle.
 
 \begin{principle}
 	Suppose $\mathcal X$ is a set and each element of $\mathcal X$ is a set (so $\mathcal X$ is a set of sets).
-	Then there is a set $U$ so that $\mathcal X\subseteq \powerset(U)$ and 
-	for any sets $U$, if $\mathcal X\subseteq\powerset(Z)$, then $U\subseteq Z$.
+	Then there is a set $U$ so that $\mathcal X\subseteq \powerset(U)$ and for any set $Z$, if $\mathcal X\subseteq\powerset(Z)$, then $U\subseteq Z$.
 \end{principle}
 
 Using this principle, the set $U$ is actually the union $\bigcup_{X\in\mathcal X}X$.
 That is, $x\in\bigcup_{X\in\mathcal X}X$ holds if any only if $x\in X$ for some $X\in\mathcal X$.
 
-For a sets of sets $\{A,B\}$, we write $A\cup B$ instead of $\bigcup_{X\in\{A,B\}}X$.
+\section{Monomorphisms and Epimorphisms}
 
+As we know, the fact that addition is cancellative ($m+p=n+p$ implies $m=n$) is quite useful. 
+Likewise, multiplication is amost always cancellative ($m\cdot p=n\cdot p$ implies $m=n$ provided $p\neq 0$). 
+Even list concatenation is cancellative. 
+But function composition is not. 
+At least not generally. It will turn out though that certain functions can indeed by cancelled on the left and others can be cancelled on the right. 
+The role of these special functions is akin to the role that non-$0$'s play in multiplication. 
+
+\begin{defn}
+	A function $\fromto fXY$ is called
+	\begin{itemize}
+		\item a \emph{monomorphism} if it is the case that for every $W\doublerightarrow{h}{k}X$, if $f\circ h=f\circ k$ then $h=k$;
+		\item an \emph{epimorphism} if it is the case that 
+		for every $Y\doublerightarrow{h}{k}Z$, if $h\circ f=k\circ f$ then $h=k$.
+	\end{itemize}
+\end{defn}
+
+The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this Lecture. For now, just commit them to memory: monomorphisms \emph{cancel on the left} of $\circ$, epimorphisms \emph{cancel on the right}.
+
+\begin{example}
+	\begin{itemize}
+		\item For any subset $A\subseteq X$, the inclusion function $\sfromto iAX$ is a monomorphism.
+		\item  For sets $X$ and $Y$, the projection functions $\sfromto {\pi_0}{X\times Y}X$ and $\sfromto {\pi_1}{X\times Y}Y$ are epimorphisms.
+		\item The functions $\sfromto {\Diamond_X}X\One$ are almost always epimorphisms. The only except is when $X=\emptyset$.
+		\item All pointers $\sfromto {\hat a}{\One}X$ for $a\in X$ are monomorphisms.
+		\item For any set $X$, $\id_X$ is both a monomorphism and an epimorphism.
+	\end{itemize}
+\end{example}
+
+\begin{exercises}
+	\begin{firstexercise}
+		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are epimorphisms, then so is $g\circ f$. 
+		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$.
+		\item Show that if $\sfromto fXY$ and $\sfromto YX$ satisfy $g\circ f = \id_X$, then $g$ is an epimorphism and $f$ is a monomorphism.
+	\end{firstexercise}
+\end{exercises}
+
+The two lemmas spell out equivalent internal behavior.
+
+\begin{defn}
+	A function $\sfromto fXY$ is called
+	\begin{itemize}
+		\item \emph{one-to-one} or \emph{injective} or \emph{an injection} if it is the case that for every $b\in Y$ there is at most one $a\in X$ so that $f(a)=b$;
+		\item \emph{onto} or \emph{surjective} or \emph{a surjection} if it is the case that for every $b\in Y$ there is at least one $a\in X$ so that $f(a)=b$.
+	\end{itemize}
+\end{defn}
+
+The property of being injective can also be stated by saying that if $f(a_0)=f(a_1)$ then $a_0=a_1$.
+
+\begin{lemma}
+	A function is a monomorphism if and only if it is an injection.
+	
+	\begin{proof}
+		Assume $\sfromto mXY$ is a monomorphism. Consider $a_0,a_1\in X$ so that $m(a_0)=m(a_1)$.
+		Then $m\circ \hat{a_0} = m\circ \hat{a_1}$. Since $m$ is a monomorphism $\hat{a_0} = \hat{a_1}$. Hence $a_0=a_1$.
+		
+		Assume $\sfromto mXY$ is not a monomorphism. 
+		So there must be some set $W$ and functions $W\doublerightarrow{h}{k}X$ so that $m\circ h=m\circ k$ but $h\neq k$.
+		Since $h\neq k$, there must be an element $w\in W$ so that $h(w)\neq k(w)$. 
+		Let $a_0=h(w)$ and $a_1=k(w)$. 
+		These witness that $m$ is not an injection because $m(a_0)=m(a_1)$ but $a_0\neq a_1$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	A function is an epimorphism if and only if it is a surjection.
+	
+	\begin{proof}
+		Assume $\sfromto eXY$ is not onto. So there is some $b\in Y$ for which $e(x)\neq y$ is the case for all $x\in X$. Define $Y\doublerightarrow{h}{k}\{0,1,2\}$ by
+		\begin{align*}h(y) &= \begin{cases}
+		0 &\text{if $y=b$}\\
+		2 &\text{otherwise}
+		\end{cases}\\
+		k(y) &= \begin{cases}
+		1 & \text{if $y=b$}\\
+		2 &\text{otherwise.}
+		\end{cases}
+		\end{align*}
+		It is easy to verify that $h\circ e = k\circ e$, but obviosly $h\neq k$. So $e$ is not an epimorphism.
+		
+		Assume $\sfromto eXY$ is onto. Suppose $Y\doublerightarrow{h}{k}Z$ 
+		satisfy $h\circ e=k\circ e$. For any $y\in Y$, there is some $x\in X$ so that $e(x)=y$. So $h(y)=h(e(x))=k(e(x))=k(y)$. By function extensionality, $h=k$.
+	\end{proof}
+\end{lemma}
+
+Subsets permit us to concentrate attention on elements with special properties.
+For an informal example, let $[-1,1]\subseteq\RR$ be the set of real numbers satisfying $-1\leq x\leq 1$.
+Then the trigonometric function $\fromto \sin\RR\RR$ has the property that $\sin(x)\in [-1,1]$ is true for every $x\in\RR$.
+So this suggests that $\sin$ can be ``co-restricted'' to the smaller codomain of $[-1,1]$. In fact, Principle \ref{ax:subset-char} guarantees this.
+We need, however, to generalize the idea to situations not covered by the principle as stated.
+
+Consider the two functions depicted in Figure \ref{fig:coinvariance-example}. The function $m$ is a monomorphism. 
+The two functions are related by having the same codomain. 
+Moreover, the elements of the codomain that are reached by the function $f$ are also reached by $m$ ($f(x)=m(d)$, $f(y)=m(a)$ and $f(z)=m(a)$). 
+So it makes sense to define a function as indicated in \ref{fig:factoring-through}. 
+The situations in which this should be possible can be characterized internally via the behavior of functions on elements, or externally via their behavior with other functions. 
+
+\begin{figure}
+	\[
+	\begin{tikzpicture}[
+	>=stealth,
+	bullet/.style={
+		fill=black,
+		circle,
+		minimum width=1pt,
+		inner sep=1pt
+	},
+	projection/.style={
+		->,
+		thick,
+		shorten <=2pt,
+		shorten >=2pt
+	},
+	every fit/.style={
+		ellipse,
+		draw,
+		inner sep=0pt
+	}
+	]
+	\foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
+	\node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
+	
+	\foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
+	\node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
+	\node (brt) at (6.2,1) {};
+	\node (blt) at (3.8,2) {};
+	
+	\foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
+	\node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
+	\node (clo) at (5.2,5.7) {};
+	\node (chi) at (5.2,6.3) {};
+	
+	\node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
+	\node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
+	\node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
+	
+	\node at (2.5,.5) {$m$};
+	\node at (6.3,3.8) {$f$};
+	
+	\draw[projection] (ad) -- (b1);
+	\draw[projection] (ac) -- (b2);
+	\draw[projection] (ab) -- (b3);
+	\draw[projection] (aa) -- (b4);
+	\draw[projection] (cx) -- (b1);
+	\draw[projection] (cy) -- (b4);
+	\draw[projection] (cz) -- (b4);
+	
+	\end{tikzpicture}
+	\]
+	\caption{Function $f$ and $m$ with a common codomain}\label{fig:covariance-example}
+	
+	\[
+	\begin{tikzpicture}[
+	>=stealth,
+	bullet/.style={
+		fill=black,
+		circle,
+		minimum width=1pt,
+		inner sep=1pt
+	},
+	projection/.style={
+		->,
+		thick,
+		shorten <=2pt,
+		shorten >=2pt
+	},
+	every fit/.style={
+		ellipse,
+		draw,
+		inner sep=0pt
+	}
+	]
+	\foreach \x/\y/\l in {0.4/1/a,-0.2/1.5/b,0/2/c,0.5/2.5/d}
+	\node[bullet,label=left:$\l$] (a\l) at (\x,\y) {};
+	
+	\foreach \x/\y/\l in {4.1/3/0,4.6/2.5/1,5.2/2/2,5.7/1.5/3,6.1/1/4}
+	\node[bullet,label=right:$\l$] (b\l) at (\x,\y) {};
+	\node (brt) at (6.2,1) {};
+	\node (blt) at (3.8,2) {};
+	
+	\foreach \x/\y/\l in {4.6/6/x,5.2/6.2/y,5.8/6.1/z}
+	\node[bullet,label=right:$\l$] (c\l) at (\x,\y) {};
+	\node (clo) at (5.2,5.7) {};
+	\node (chi) at (5.2,6.3) {};
+	
+	\node[draw,fit=(aa) (ab) (ac) (ad),minimum width=2cm] {} ;
+	\node[draw,fit=(b0) (b1) (b2) (b3) (b4) (brt) (blt), minimum width=2cm] {} ;
+	\node[draw,fit=(cx) (cy) (cz) (clo) (chi), minimum width=2cm] {} ;
+	
+	
+	\node at (2.5,.5) {$m$};
+	\node at (6.3,3.8) {$f$};
+	
+	
+	\draw[projection] (ad) -- (b1);
+	\draw[projection] (ac) -- (b2);
+	\draw[projection] (ab) -- (b3);
+	\draw[projection] (aa) -- (b4);
+	\draw[projection] (cx) -- (b1);
+	\draw[projection] (cy) -- (b4);
+	\draw[projection] (cz) -- (b4);
+	\draw[projection,blue] (cx) -- (ad);
+	\draw[projection,blue] (cy) -- (aa);
+	\draw[projection,blue] (cz) -- (aa);
+	
+	\end{tikzpicture}
+	\]	
+	\caption{Function $f$ \emph{factors uniquely through $m$}}\label{fig:factoring-through}
+\end{figure}
+
+Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
+
+\begin{principle}
+	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. 
+	In other words, $\kappa_m\circ m = \constant_\top$ and if $\sfromto fWY$ is a function satisfying $\kappa_m\circ f=\constant_\top$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
+	We say that $f$ \emph{factors through $m$ uniquely}.
+	
+	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
+	\[\kappa_m(y) = \begin{cases}
+	\top & \text{if $y = m(x)$ for some $x\in X$}\\
+	\bot & \text{otherwise}.
+	\end{cases}\]
+	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m\circ f = \constant_\top$. Then $(m\backslash f)$ satisfies $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
+\end{principle}
+
+In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\top$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
+
+To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. An internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
+
+\begin{defn}
+	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, say that $f$ is {$m$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ m=k\circ m$ implies $k\circ f = h\circ f$.
+\end{defn}
+
+\begin{lemma}
+	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \constant_\top$.
+	
+	\begin{proof}
+		First, note that $\kappa_m\circ f = \constant_\top$ if and only if
+		$\kappa_m(f(w))=\top$ for every $w\in W$. But $\kappa_m(y)=\top$ if and only if there is some $x\in X$ so that $y=m(x)$. Therefore, $\kappa_m\circ f=\top$ if and only if for every $w\in W$ there exists some $x\in X$ for which $f(w)=m(x)$.
+		
+		Assume $\kappa_m\circ f=\constant_\top$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
+		Since this works for any $w$, $h\circ f=k\circ f$. 
+		
+		Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{0,1,2\}$ by 
+		\begin{align*}h(y) &= \begin{cases}
+		0 &\text{if $y=f(w)$}\\
+		2 &\text{otherwise}
+		\end{cases}\\
+		k(y) &= \begin{cases}
+		1 & \text{if $y=f(w)$}\\
+		2 &\text{otherwise.}
+		\end{cases}
+		\end{align*}
+		It is easy to verify that $h\circ m = k\circ m$, but $h\circ f \neq k\circ k$. So $f$ is not $m$-coinvariant.
+	\end{proof}
+\end{lemma}
+
+
+\begin{lemma}\label{lem:coinvariant-factoring}
+	For functions $W\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}X$ where $m$ is an monomorphism and $f$ is $m$-coinvariant, there is a unique function $\sfromto {m\backslash f}XW$ so that $f = m\circ (m\backslash f)$.
+	
+	\begin{proof}
+		There is nothing new to prove. Lemma \ref{lem} ensures if $f$ is $m$-coinvariant, then $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists.
+	\end{proof}
+\end{lemma}
+
+Epimorphisms are dual to monomorphisms (they cancel on the left instead of on the right). The concept of $m$-coinvariance also has a useful dual.
+
+\begin{defn}
+	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$, say that $f$ is {$e$-coinvariant} if it is that case that for all $Z\doublerightarrow{h}{k}Y$, $e\circ h=e\circ k$ implies $f\circ h = f\circ k$.
+\end{defn}
+
+\begin{lemma}\label{lem:invariant-factoring}
+	For functions $W\stackrel{f}{\longleftarrow}Y\stackrel{e}{\longrightarrow}X$ where $e$ is an epimorphism and $f$ is $e$-invariant, there is a unique function $\sfromto {f/e}XW$ so that $f = (f/e)\circ e$.
+	
+	\begin{proof}
+		A full proof is technical and not especially informative. 
+		The idea is that $f/e$ can be defined by a ``rule'': $e(y) \mapsto f(y)$. 
+		Obviously, this does not look like a rule sending elements of $X$ to elements of $W$, but in fact it is. 
+		This is because $e$ is onto, each $x\in X$ takes the form $e(y)$ for some $y\in Y$. 
+		And because $f$ is $e$-invariant, the choice of $y$ does not matter. That is, $e(y_0)=x$ and $e(y_1)=x$ implies $f(y_0)=f(y_1)$.
+		So the rule does indeed pick a single value $(f/e)(x)$ for each $x\in X$.  
+	\end{proof}
+\end{lemma}
+
+Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms and epimorphisms play dual roles. Also a monomorphism behave in most respects like the inclusion of a subset. So a question arises as to what should be the dual of subset. That is, what completes the formal analogy ``Subsets are to monomorphisms as $\_\_\_$s are to epimorphisms''. 
+
+\begin{defn}
+	For a set $X$, a \emph{partition of $X$} is a subset $P\subseteq \powerset(X)$ so that
+	\begin{itemize}
+		\item for each $B\in P$, there is at least one $x\in X$ so that $x\in B$;
+		\item for each $x\in X$, there is exactly one $B\in P$ so that $x\in B$.
+	\end{itemize}
+	The subsets $B\in P$ are called \emph{blocks}.
+\end{defn}
+
+Because each $x$ is in exactly one block, we write $[x]_P$ for that block.
+This means that $x\mapsto [x]_P$ defines a function $\sfromto {[-]}XP$. 
+Furthermore, since each $B\in P$ is inhabited ($x\in B$ for some $x$), the function $[-]_P$ is clearly onto.
+Suppose $\fromto eXY$ is an epimorphism. Then the collection $\{e^-(y)\st y\in Y\}$ is a partition of $X$. That is, each $e^-(y)$ is non-empty because $e$ is onto. Clearly, $x\in e^-(e(x))$. And if $x\in e^-(y)$, then $e(x)=y$,
+so $x$ belongs only to one block. Let $X/e$ denote the partition $\{e^-(y)\st y\in Y\}$. Then $x\mapsto [x]_{X/e}$ simply picks out the set of all $x'$
+so that $e(x)=e(x')$. 
+Putting these observations together, we see that every epimorphism $e$ with domain $X$ determines $X/e$, a partition of $X$. And every partition $P$ of $X$ determines an epimorphism $x\mapsto [x]_P$ of $X$ onto $P$.
+
+A monomorphism also determines characteristic function: $\sfromto mAX$ determines $\sfromto{\kappa_m}X\Two$. What is the analogue of a characteristic function for epimorphisms? The answer is an \emph{equivalence} relation.
+
+For a function $\fromto fXY$ (in practice, usually we expect $f$ to be an epimorphism), define $\equiv_f\subseteq X\times X$ by $x_0\equiv_f x_1$ if and only if $f(x_0)=f(x_1)$. This relation has three characteristic properties:
+\begin{itemize}
+	\item $\equiv_f$ is \emph{reflexive}: $x\equiv_f x$ for all $x\in X$;
+	\item $\equiv_f$ is \emph{transitive}: if $x_0\equiv_f x_1$ and $x_1\equiv_f x_2$, then $x_0\equiv_f x_1$; and
+	\item $\equiv_F$ is \emph{symmetric}: if $x_0\equiv_f x_1$, then $x_1\equiv_f x_0$.
+\end{itemize}
+
+\begin{defn}
+	A relation $E$ on $X$ is an \emph{equivalence relation on $X$} if it is reflexive, transitive and symmetric.
+\end{defn}
+
+\begin{lemma}
+	Suppose $E$ is an equivalence relation on $X$. Then there is a set $X/E$ and epimorphism $\fromto {[-]}X{X/E}$ so that $E = \equiv_{[-]}$.
+	
+	\begin{proof}
+		For each $x\in X$, let $[x]_E = \{x'\in X\st x\mathrel{E}x'\}$. Since $E$ is reflexive, $x\in [x]_E$ for each $x\in X$. Also, if $[x]_E \cap [x']_E\neq \emptyset$, then $x\mathrel{E} x'$ because $E$ is transitive and symmetric. So the collection $\{[x]_E\st x\in X\}$ is a partition of $X$. The function $x\mapsto [x]_E$ is an epimorphism by construction. And evidently, $[x]_E = [x']_E$ holds if and only if $x \mathrel{E} x'$. So $E = \equiv_{[-]}$. 
+	\end{proof}
+\end{lemma}
+	
 \section{Co-products}
-
-The sets $\emptyset$ and $\One$ behave in opposite ways, in the sense that for any set $X$, (i) there is exactly one function from $\emptyset$ to $X$ and (ii) there is exactly one function from $X$ to $\One$. 
-We signalled this by refering to $\emptyset$ as \emph{initial} and $\One$ as \emph{terminal}. 
-We say that the notion of an initial set is \emph{dual} to the notion of a terminal set. 
-The constructions of equalizers and products have duals called \emph{co-equalizers} and \emph{co-products}. 
-Co-equalizers are indeed definable using the principles we already have, but it turns out that a related notion of \emph{quotients} is more commonly used. We discuss quotients below, and build co-products first.
 
 \begin{defn}
 	For sets $X$ and $Y$, a \emph{co-table} is a set with a pair of functions
@@ -2394,23 +2428,18 @@ Co-equalizers are indeed definable using the principles we already have, but it 
 	Any two sets $X$ and $Y$ have a co-product.
 	
 	\begin{proof}
-		Define $X\uplus Y = \{0\}\times X \cup \{1\}\times Y$.
-		So the set $X\uplus Y$ consists of pairs
-		$(i,w)$ where $i=0$ and $w\in X$ or $i=1$ and $w\in Y$.
-		Think of $X\uplus Y$ has consisting if a copy of $X$ and a completely separate copy of $Y$.
+		Define $X\uplus Y \subeteq \powerset(X)\times\powerset(Y)$ to consist only of pairs of the form $(\{x\},\emptyset)$ for $x\in X$ and 
+		$(\emptyset,\{y\})$ for $y\in Y$. 
 		
-		Define the two functions $\fromto {\inj_0}X{X\uplus Y}$ and $\fromto {\inj_1}Y{X\uplus Y}$ by $\inj_0(x) = (0,x)$ and $\inj_1(y) = (1,y)$. 
+		Define the two functions $\fromto {\inj_0}X{X\uplus Y}$ and $\fromto {\inj_1}Y{X\uplus Y}$ by $\inj_0(x) = (\{x\},\emptyset)$ and $\inj_1(y) = (\emptyset,\{y\})$. 
 		Now, for any pair of functions $X\stackrel{f}{\longrightarrow}C\stackrel{g}{\longleftarrow}Y$
-		define $\fromto {[f,g]}{X\uplus Y}C$ by cases:
-		\[[f,g](i,w) = \begin{cases}
-		f(w) &\text{if $i=0$}\\
-		g(w) &\text{if $i=1$.}
-		\end{cases}\]
-		Evidently, $[f,g]\circ \inj_0 = f$ and $[f,g]\circ\inj_1 = g$. And clearly, no other function than $[f,g]$ has this property.		
+		define $\fromto {[f,g]'}{X\uplus Y}\powerset(C)$ by the rule $(A,B)\mapsto f^+(A)\cup g^+(B)$. Since either $A=\emptyset$ and $B$ is a singleton or $A$ is a singleton and $B=\emptyset$, it is always the case that $[f,g]'(A,B)$ is a singleton. So it factors uniquely through the function sending $c\in C$ to $\{c\}$. That is, there 
+		is a unique function $\fromto {[f,g]}{X\uplus Y}C$ so that $\{[f,g](A,B)\} = [f,g]'(A,B)$. 
+		Now it is easily checked that $[f,g]\circ \inj_0 = f$ and $[f,g]\circ\inj_1 = g$. And no other function has this property.
 	\end{proof}
 \end{lemma}
 
-The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$. It is a union, preceded by ``marking'' each $x\in X$ by putting it into a pair $(0,x)$ and marking each $y\in Y$ differently by putting it into a pair $(1,y)$. Hence it is the union of disjoint copies of $X$ and $Y$.
+The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$. It is a union, preceded by ``marking'' each $x\in X$ by putting it into a pair $(\{x\},\emptyset)$ and marking each $y\in Y$ differently by putting it into a pair $(\emptyset,\{y\})$. Hence it is the union of disjoint copies of $X$ and $Y$.
 
 \begin{exercises}
 	Let $A= \{a,b,c,d,e\}$, $B = \{w,x,y,z,a,b,c,\}$ and $C=\{2,3\}$
