@@ -1,0 +1,108 @@
+\chapter{Countable Sets}
+
+We are often interested in sets that are not too big, i.e., that are no bigger than $\NN$.
+
+\begin{defn}
+An \emph{initial segment of $\NN$} is a subset $S\subseteq \NN$ so that if $n\in S$ and $m\leq n$, then $m\in S$. Clearly, $\NN$ is an initial segment of $\NN$.
+For each $n\in \NN$, let $\overline n = \{k\in \NN\st k<n\}$. So each $\overline n$ is also an initial segment.
+
+A set $A$ is countable if $A\sim S$ for some $S$, an initial segment of $\NN$. Also $A$ is \emph{countably infinite} if $A\sim \NN$.
+\end{defn}
+
+Initial segments of $\NN$ are sets like $\overline 4=\{0,1,2,3\}$, or $\overline 6 = \{0,1,2,3,4,5\}$. 
+The set $\{1,2\}$ is not an initial segment of $\NN$ because $0\leq 1$ but $0\notin \{1,2\}$. In fact, it is easy to see that the only initial segments are $\NN$ itself and the sets $\overline n$ for $n\in\NN$. 
+So a set is countable if and only if either (i) it is finite ($A\sim\overline n$ for some $n\in\NN$) or (ii) it is the same size as $\NN$. 
+Intuitively, a set is countable, if we can count its elements by putting them in a correspondence with the initial counting numbers: $a_0$, $a_1$, \ldots,  
+We already know, for example, that $\powerset(\NN)$ is \emph{not} countable.
+
+Other equivalent characterizations of countability are uaeful.
+
+\begin{theorem}
+	For a set $A$, the following are equivalent.
+	\begin{enumerate}
+		\item $A$ is countable;
+		\item either $A$ is finite or $A\sim \NN$. 
+		\item either $A=\emptyset$ or there is an epimorphism from $\NN$ to $A$; and
+		\item $A\lesssim\NN$;
+	\end{enumerate}
+	
+	\begin{proof}
+		Suppose $\fromto fAS$ is a bijection where $S$ is an initial segment of $\NN$. If $S=\overline n$, then $A$ is finite. Otherwise, $A\sim \NN$.
+		
+		Suppose $A$ is finite and not empty. So $A$ can be written as $\{a_0,a_1,\ldots,a_n\}$. Define $\fromto f\NN{A}$ by 
+		\[f(m) = \begin{cases}
+		 a_m&\text{if $m\leq n$}\\
+		 a_n&\text{otherwise}
+		\end{cases}
+		\]
+		This clearly is an epimorphism. If $A\sim\NN$, then the bijection from $\NN$ to $A$ is an epimorphism.
+		
+		Suppose $A$ is empty. Then obviously, $A\lesssim \NN$. Suppose there is an epimorphism $\fromto e\NN{A}$. For each $a\in A$, then, $e^-(a)$ is not empty. Hence it has a least element. Define $\fromto mA\NN$ by letting $m(a)$ be the least natural number in $e^-(a)$. Since the sets $e^-(a)$ form a partition of $A$, the function $m$ is a monomorphism.
+		
+		Suppose $\fromto mA\NN$ is a monomorphism. If $A=\emptyset$, let $S=\emptyset$. Otherwise, let $a_0$ be the element of $A$ so that $m(a_0)$ is minimized.  
+	\end{proof}
+	
+\end{theorem}
+
+Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
+$A = \{a_0,\ldots a_n\}$, then we define a function $\fromto rAA$ by
+\[r(a_i) = \begin{cases}
+a_{i+1} & \text{if $i<n$}\\
+a_0     &\text{otherwise}
+\end{cases}\]
+So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ determines a function $\srec[a_0,r]$. 
+It is easy to see that this is surjective.
+
+\begin{defn}
+	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
+\end{defn}
+
+\begin{lemma}
+	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
+	\begin{itemize}
+		\item $\mu(A)\in A$.
+		\item if $n\in A$, then $\mu(A)\leq n$.
+	\end{itemize}
+	
+	\begin{proof}
+		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}
+		\Two$
+		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
+		
+		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
+		\begin{itemize}
+			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
+			\item{}[Inductive Step] We claim that $k\notin A$. For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
+		\end{itemize} 
+		Hence for any non empty $A\subseteq \NN$, there is a least element $n$. Thus there is an element $n$ for which $A\mathrel{M}n$. This shows that $M$ is a functional relation. So it determines the function $\mu$.
+	\end{proof}
+\end{lemma}
+
+\begin{lemma}
+	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
+	
+	\begin{proof}
+		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
+		
+		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is always monomorphism. Suppose $\fromto f\NN A$ is a surjection. Then 
+		$f^-$ is a function from $A$ to $\powerset_{\text{ne}}(\NN)$. Define $m = \mu\circ f^-$. That is, $m(a)$ is the smallest natural number for which $f(n)=a$. This is obviously a one-to-one function because in fact, $f(m(a))=a$ for each $a$.
+	\end{proof}
+\end{lemma}
+
+
+
+\begin{lemma}
+	If $A$ and $B$ are countable, then so is $A\times B$.
+	If $A$ and $B$ are countable, then so is $A\cup B$.
+	If $I$ is countable and for each $i\in I$, $A_i$ is countable, then $\bigcup_{i\in I}A_i$ is countable.
+	If $A$ is countable, then so is $\List[A]$.
+	
+	\begin{proof}
+		The assumption that $I$ is countable means there is a surjection $\fromto f\NN I$. Likewise, the assumption that each $A_i$ is countable means there is a surjection $\fromto {g_i}\NN{A_i}$ for each $i\in I$. It suffices now to show that there is a surjection fromt $\NN\times \NN$ to $\bigcup_{i\in I}A_i$.
+		
+		Let $\fromto h{\NN\times \NN}\bigcup_{i\in I}A_i$ y defined by $h(m,n) = g_{f(m}(n)$. For $x\in \bigcup_{i\in I}A_i$, $x\in  A_k$ for some $k\in I$. Since $g_k$ is a surjection, $x = g_k(n)$ for some $n\in\NN$. 
+		But likewise, $f$ is a surjection, so $k = f(m)$ for some $m\in\NN$. 
+		Hence $x = g_{f(m)}(n) = h(m,n)$.
+	\end{proof}
+\end{lemma}
+

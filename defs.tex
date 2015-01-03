@@ -1,3 +1,9 @@
+\makeatletter
+\renewcommand*{\beforepartskip}{\null\vskip4cm}
+\renewcommand*{\afterpartskip}{\par\vfil%
+\@afterindentfalse\@afterheading}
+\makeatother
+
 \def\NN{\mathbb N}
 \def\RR{\mathbb R}
 \def\CC{\mathbb C}
@@ -5,6 +11,8 @@
 \def\ZZ{\mathbb Z}
 \def\One{\mathbb 1}
 \def\Two{\mathbb 2}
+\def\tt{\textsc{t}}
+\def\ff{\textsc{f}}
 
 \newcommand{\printbreak}{\iftoggle{printformatting}{\newpage}{}}
 \newcommand{\ipadbreak}{\iftoggle{ipadformatting}{\newpage}{}}
@@ -53,6 +61,7 @@
 \newcommand{\map}{\mathord{\textsf{map}}}
 \newcommand{\appl}{\mathord{\textsf{appl}}}
 \newcommand{\inj}{\mathord{\textsf{inj}}}
+\newcommand{\constant}{\mathord{\textsf{c}}}
 \newcommand{\List}{\mathord{\textsf{List}}}
 \newcommand{\srec}{\mathord{\textsf{s-rec}}}
 \newcommand{\primrec}{\mathord{\textsf{p-rec}}}
@@ -61,15 +70,25 @@
 \newcommand{\size}[1]{{\lVert #1\rVert}}
 \newcommand{\ddiv}{\mathop{/\mkern-5mu/}}
 
+
 \newcommand{\pluseq}{\mathrel{\mathord+\mathord=}}
 \newcommand{\minuseq}{\mathrel{\mathord-\mathord=}}
 \newcommand{\timeseq}{\mathrel{\mathord*\mathord=}}
 \newcommand{\diveq}{\mathrel{\mathord\ddiv\mathord=}}
 \newcommand{\modeq}{\mathrel{\mathord\%\mathord=}}
+\newcommand{\defeq}{\coloneqq}
 
+\newcommand*{\treewedge}{%
+\mathrel{\vcenter{\offinterlineskip
+\vskip-2ex\hbox{$\wedge$}}}}
 
 \newcommand{\ignore}[1]{}
 
-\newenvironment{firstexercise}{\begin{enumerate}[series=exercises]}{\end{enumerate}}
-\newenvironment{nextexercise}{\begin{enumerate}[resume=exercises]}{\end{enumerate}}
+\newlist{exerciseslist}{enumerate}{1}
+\setlist[exerciseslist]{resume,label=\arabic*.}
+\newenvironment{exerciselist}{\begin{exerciseslist}}{\end{exerciseslist}}
+%\newenvironment{nextexercise}{\begin{enumerate}[resume=exercises]}{\end{enumerate}}
 
+\newenvironment{goal}[1]{\noindent\textbf{#1}\begin{itemize}}{\end{itemize}}
+
+\makeatletter\@addtoreset{exerciseslisti}{chapter}\makeatother

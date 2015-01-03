@@ -1,20 +1,11 @@
-\chapter{The Natural Numbers}
-
-The \emph{natural numbers} have to do with counting: 0, 1, 2, 3, \ldots.
-They do not include negatives
-or fractions or irrationals.
-In this lecture, the structure of natural numbers is the topic.
-To hone in on that structure, we look at structures similar to the natural numbers, but that
-fail to capture some basic aspects of counting. Bogus structures
-are ruled out by axioms that distinguish the structure of natural numbers
-from all others.
+\chapter{The Natural Numbers}\label{lec:NaturalNumbers}
 
 \begin{goals}
 \noindent \textbf{Lecture}
 \begin{itemize}
 \item Present the natural numbers as comprising a structure suited to counting.
 \item Identify similar structures that can not properly represent counting.
-\item Rule out ``bad'' structures via axioms.
+\item Rule out ``bad'' structures via postulates.
 \end{itemize}
 
 \noindent \textbf{Study}
@@ -26,10 +17,15 @@ translating between successor notation and base $10$ notation.
 \end{itemize}
 \end{goals}
 
+The \emph{natural numbers} have to do with counting: $0$, $1$, $2$, $3$, $\ldots$.
+They do not include negatives or fractions or irrationals.
+In this lecture, the structure of natural numbers is the topic.
+To hone in on that structure, we look at structures similar to the natural numbers, but that fail to capture some basic aspects of counting. 
+Bogus structures are ruled out by \emph{postulates} (also known as \emph{axioms}) that distinguish the structure of natural numbers from others.
+
 \section{The Basic Picture}
 
-Natural numbers are pictured like stepping stones in 
-Figure \ref{fig:nat-numbers}.
+Natural numbers are pictured like stepping stones in Figure \ref{fig:nat-numbers}.
 
 \begin{figure}[h]
   \centering
@@ -45,10 +41,12 @@ Figure \ref{fig:nat-numbers}.
   \label{fig:nat-numbers}
 \end{figure}
 
-Figures \ref{fig:NatSigBad1}, \ref{fig:NatSigBad2} and \ref{fig:NatSigBad3} illustrate three
-ways \emph{not} to picture the natural numbers.
+Not all ``stepping stone'' pictures are acceptable.
+Figures \ref{fig:NatSigBad1}, \ref{fig:NatSigBad2} and \ref{fig:NatSigBad3} illustrate three ways \emph{not} to picture the natural numbers.
 
-\begin{figure}[h]
+\printbreak
+
+\begin{figure}
 \centering
 \begin{tikzpicture}
   \node (z) at (-2,0) {\ldots}; 
@@ -105,7 +103,7 @@ These incorrect pictures can be ruled out by explaining the basic structure of c
 \ipadbreak
 
 %\refstepcounter{axiomCnt}
-\begin{signature}{Nat}\label{sig:NatSignature}
+\begin{postulate}\label{sig:NatSignature}[Basic Structure]
 The natural numbers have the following basic structure.
   \begin{itemize}
   \item There is a special natural number. We denote this by $0$.
@@ -113,40 +111,25 @@ The natural numbers have the following basic structure.
     a unique \emph{next} natural number. We call this the \emph{successor of $n$}. 
     In these lectures, we denote the successor of $n$ by $n^\nxt$.
   \end{itemize}
-\end{signature}
-
-%\begin{text-usage}
-%	In these notes, bubbles labelled ``Signature'' introduce new notation meant to capture the essential structure of what we are talking about.
-%	Here are want to talk about natural numbers as the things we use to count. So the essense is that counting ``starts somewhere'' ($0$) and it ``keeps going'' (any $n$ is followed by $n^\nxt$).
-%	Later we will also introduce other notation, for example $+$ for addition and $\leq$ for the greater-than-or-equal-to relation between two numbers. But these are add-ons, not essential to the very idea of counting.
-%\end{text-usage}
-%
-%\begin{usage}
-%  The notation $n^\nxt$ is not standard. We will use it in these notes for pedagogical reasons.
-%After the first few lectures, we will not need it very often. If you use it in another course, you will need to
-%explain it, as it is unlikely that othe professors will know what it means. Clearly, $n^\nxt$ is intended to be the same as $n+1$,
-%but we are talking about \emph{counting} not \emph{adding}.
-%This notation, in which a natural number is written as $0$ followed by some ${}^\nxt$'s, we will call \emph{successor notation}.  For example,
-%$0^{\nxt\nxt\nxt}$ is the successor notation corresponding to the number three.
-%\end{usage}
+\end{postulate}
 
 \begin{exercises}
 \begin{multicols}{2}
 %\begin{itemize}
 \item Convert the following to successor notation.
-  \begin{enumerate}
+  \begin{exerciselist}
   \item $9$
   \item $10$
   \item $4 + 3$
   \item $n + 4$
-  \end{enumerate}
+  \end{exerciselist}
 \item Convert the following to base $10$ notation.
-\begin{enumerate}
+\begin{exerciselist}
 \item $0^{\nxt\nxt\nxt\nxt}$
 \item $n^{\nxt\nxt\nxt\nxt\nxt}$
 \item $5^{\nxt\nxt}$
 \item $0^\nxt + 0^{\nxt\nxt}$
-\end{enumerate}
+\end{exerciselist}
 %\end{itemize}
 \end{multicols}
 \end{exercises}
@@ -156,7 +139,7 @@ The natural numbers have the following basic structure.
 \section{Narrowing the possibilities}
 
 Figures \ref{fig:one-loop} and \ref{fig:two-loop} illustrate 
-problems that \ref{ax:NatSignature} does not avoid.
+problems that Postulate \ref{ax:NatSignature} does not avoid.
 
 \begin{figure}[h]
   \centering
@@ -187,10 +170,9 @@ problems that \ref{ax:NatSignature} does not avoid.
 \end{figure}
 
 \begin{exercises}
-%\begin{itemize}
-\item
-Explain, in one or two sentences each, why Figures \ref{fig:one-loop} and \ref{fig:two-loop} satisfy Axiom \ref{ax:NatSignature}.
-%\end{itemize}
+\begin{exerciselist}
+\item Explain, in one or two sentences each, why Figures \ref{fig:one-loop} and \ref{fig:two-loop} depict systems that agree with the Basic Vocabulary.
+\end{exerciselist}
 \end{exercises}
 \ipadbreak
 
@@ -202,16 +184,16 @@ these flaws do not happen in the natural numbers. That is,
 we rule them out with axioms.
 
 %\refstepcounter{axiomCnt}
-\begin{axiom}\label{ax:NatZero}
+\begin{postulate}\label{ax:NatZero}[Nothing Precedes $0$]
   For every natural number $n$, $n^\nxt\neq 0$.
-\end{axiom}
+\end{postulate}
 
 %\refstepcounter{axiomCnt}
-\begin{axiom}\label{ax:NatPred}
+\begin{postulate}\label{ax:NatPred}[Predecessors are Unique]
   For any natural numbers $m$ and $n$, if $m^\nxt=n^\nxt$ then $m=n$.
-\end{axiom}
+\end{postulate}
 
-These axioms eliminate Figures \ref{fig:one-loop}, \ref{fig:two-loop} and similar pictures.  
+These postulates eliminate Figures \ref{fig:one-loop}, \ref{fig:two-loop} and similar pictures.  
 But there is still a subtle problem. 
 Consider Figure \ref{fig:nonstandard}.
 
@@ -239,23 +221,21 @@ Consider Figure \ref{fig:nonstandard}.
   \label{fig:nonstandard}
 \end{figure}
 
-This picture satisfies the two axioms. Yet, it is certainly not a picture of natural numbers because it
-has ``extra stuff'' in it ($\star$).
+This picture satisfies the first three postulates. 
+Yet, it is not a picture of natural numbers because it has ``extra stuff'' in it ($\star$).
+
 \ipadbreak
 
-To rule out ``extra stuff'', we formulate
-our final axiom for natural numbers.  The idea is to diagnose the problem as follows. Were we to erase
-the circle labelled $\star$ and any the arrows leading to and from it, the remaining part of
-Figure \ref{fig:nonstandard} would still
-satisfy live up to the\ref{sig:Nat}. This is exactly what we
-mean by ``extra stuff'': elements
-that can be removed without violating violating the signature (the essential structure). 
+To rule out ``extra stuff'', we formulate our final postulate for natural numbers.
+We diagnose the problem as follows.
+Were we to erase the circle labelled $\star$ and any the arrows leading to and from it, the remaining part of Figure \ref{fig:nonstandard} would still live up to Postulate \ref{sig:Nat}.
+This is exactly what we mean by ``extra stuff'': 
+elements that can be removed without violating the Postulate \ref{sig:nat} (the essential structure). 
 This leads to our last axiom. 
 
-%\refstepcounter{axiomCnt}
-\begin{axiom}\label{ax:NatInd}
+\begin{postulate}\label{ax:NatInd}
 [The Axiom of Induction] No natural numbers can be removed without violating \ref{sig:Nat}.
-\end{axiom}
+\end{postulate}
 
 %Believe it or not, the four axioms we have stated here completely
 %characterize the standard picture of the natural numbers. In other
@@ -263,69 +243,65 @@ This leads to our last axiom.
 %rigorous proof of this is possible, but not necessary for now.
 
 \begin{exercises}
-%\begin{itemize}
-\item Each of the following pictures fails to satisfy one or more of our axioms. 
+\begin{exerciselist}
+\item Each of the following pictures fails to satisfy either the one or more of our axioms. 
 For each, explain which axioms are violated.
 \begin{multicols}{2}
 \begin{enumerate}
-\item  \begin{tikzpicture}
-    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (2,0)
-    [circle,draw] {\phantom{$0$}}; \node (c) at (4,0) [circle,draw]
-    {\phantom{$0$}}; \node (d) at (6,0) [circle,draw] {\phantom{$0$}};
+\item
+  \begin{tikzpicture}[scale=.75]
+    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (1.5,0)
+    [circle,draw] {\phantom{$0$}}; \node (c) at (3,0) [circle,draw]
+    {\phantom{$0$}}; \node (d) at (4.5,0) [circle,draw] {\phantom{$0$}};
     \draw[->] (a.east) -- (b.west); \draw[->] (b.east) -- (c.west);
     \draw[->] (c.east) -- (d.west);
   \end{tikzpicture}
-
 \item
-  \begin{tikzpicture}
+  \begin{tikzpicture}[scale=.75]
     \node (a) at (0,0) [circle, draw] {\phantom{$0$}};
     \node (b) at (2,0) [circle, draw] {\phantom{$0$}};
     \draw[->] (a.south east) .. controls (1,-.5) .. (b.south west);
     \draw[->] (b.north west) .. controls (1,.5) .. (a.north east);
   \end{tikzpicture}
-
-\item  \begin{tikzpicture}
-    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (2,0)
-    [circle,draw] {\phantom{$0$}}; \node (c) at (4,0) [circle,draw]
-    {\phantom{$0$}}; \node (d) at (6,0) [circle,draw] {\phantom{$0$}};
-    \node (e) at (7,0) [circle,draw] {\phantom{$0$}};
+\item  
+  \begin{tikzpicture}[scale=.75]
+    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (1.5,0)
+    [circle,draw] {\phantom{$0$}}; \node (c) at (3,0) [circle,draw]
+    {\phantom{$0$}}; \node (d) at (4.5,0) [circle,draw] {\phantom{$0$}};
+    \node (e) at (6,0) [circle,draw] {\phantom{$0$}};
     \draw[->] (a.east) -- (b.west); \draw[->] (b.east) -- (c.west);
     \draw[->] (c.east) -- (d.west); \draw[->] (d.north west)
     .. controls (3,1) .. (a.north east);
     \draw[->] (e.west) -- (d.east);
   \end{tikzpicture}
-
 \item
-  \begin{tikzpicture}
-    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (2,0)
-    [circle,draw] {\phantom{$0$}}; \node (c) at (4,0) [circle,draw]
-    {\phantom{$0$}}; \node (d) at (6,0) [circle,draw] {\phantom{$0$}};
-    \node (e) at (7,0) [circle,draw] {\phantom{$0$}};
+  \begin{tikzpicture}[scale=.75]
+    \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (1.5,0)
+    [circle,draw] {\phantom{$0$}}; \node (c) at (3,0) [circle,draw]
+    {\phantom{$0$}}; \node (d) at (4.5,0) [circle,draw] {\phantom{$0$}};
+    \node (e) at (6,0) [circle,draw] {\phantom{$0$}};
     \draw[->] (a.east) -- (b.west); \draw[->] (b.east) -- (c.west);
     \draw[->] (c.east) -- (d.west); \draw[->] (d.north west)
     .. controls (3,1) .. (a.north east);
     \draw[->] (d.east) -- (e.west);    
   \end{tikzpicture}
-
 \end{enumerate}
 \end{multicols}
 
-\item\label{exer:cases} I have in mind a picture for Signature \ref{sig:Nat} and that satisfies Axioms \ref{ax:NatZero}
+\item\label{exer:cases} I have in mind a picture for the Basic Vocabulary \ref{sig:Nat} and that satisfies Axioms \ref{ax:NatZero}
 and \ref{ax:NatPred}. Furthermore, in that picture, I have in mind and element $n$ for which (a) $n\neq 0$
 and (b) $n$ has no predecessor (that is, $n\neq m^\nxt$ for every $m$). Convince me that
 the picture fails to satisfy Axiom \ref{ax:NatInd}.
-%\end{itemize}
+\end{exerciselist}
 \end{exercises}
 
 The latest exercise shows that in the natural numbers, if $n\neq 0$, then $n = m^\nxt$ for some $m$. In other
 words, every non-zero natural number has a predecessor. 
 
 
-\chapter{Arithmetic}
+\chapter{Arithmetic}\label{lec:Arithmetic}
 
-Adding and multiplying arise from counting. In this section, we explore how to define them purely in terms of counting.
 
-\medskip
 \begin{goals}
 \tightlists
 \noindent\textbf{Lecture}
@@ -343,11 +319,13 @@ Adding and multiplying arise from counting. In this section, we explore how to d
 \defaultlists
 \end{goals}
 
+Adding and multiplying arise from counting. In this section, we explore how to define them purely in terms of counting.
+
 \ipadbreak
 
 \section{Basic Arithmetic Operations}
 
-\begin{defn}\label{def:NatArithmetic}
+\begin{defn}[Arithmetic Operations]\label{def:NatArithmetic}
 \noindent The \emph{sum} of two natural numbers, $m$ and $n$, is a natural number (denoted by $m+n$). For every natural number $m$, the following 
 are true:
 \begin{align*}
@@ -366,17 +344,11 @@ are true:
 
 A moment's thought about arithmetic should convince you that these equations are reasonable.
 Certainly $m+0=m$ and $m\cdot 0 = 0$ should be true for any $m$. 
-The second equation for $+$ can be read as saying ``to add $m$ to the successor of $k$,
-simply add $m$ to $k$, then take the successor.'' The second equation for $\cdot$
-can be read as saying ``to multiply $m$ by the successor of $k$, simply
-multiply $m$ by $k$, and add $m$ to the result.''
+The second equation for $+$ can be read as saying ``to add $m$ to the successor of $k$, simply add $m$ to $k$, then take the successor.''
+The second equation for $\cdot$ can be read as saying ``to multiply $m$ by the successor of $k$, simply multiply $m$ by $k$, and add $m$ to the result.''
 
-But it is not the case that any arbitrary pair of equations involving $0$ and $k^\nxt$
-will define anything sensible. In the cases of $+$ and $\cdot$, though, 
-the Axiom of Induction ensures that there are indeed unique operations
-that satisfy the equations. A proof of this fact is not particularly illuminating
-right now, so let us agree to take for granted that the equations 
-spelled out here actually define addition and multiplication.
+The Axiom of Induction ensures that there are indeed unique operations $+$ and $\cdot$ that satisfy the equations.
+A proof of this fact is not particularly illuminating right now, so let us agree to take it for granted.
 
 \begin{example}
 Do the defining equations for addition really explain how to add? Let's use them to calculate
@@ -420,7 +392,7 @@ closely tied to simple counting.
 \ipadbreak
 
 \begin{exercises}
-%\begin{itemize}
+\begin{exerciselist}
 \item Calculate these sums, following the previous example to write
   each step of your calculation explicitly. Include the reason for
   each step (as in the previous example).Take care to lay out the
@@ -433,8 +405,7 @@ closely tied to simple counting.
 \item $0 + 3$
 \end{enumerate}
 
-\item Notice that it takes more steps to calculate $2+4$ than $4+2$, even though we already knew
-they would produce the same answer. Explain why.
+\item Notice that it takes more steps to calculate $2+4$ than $4+2$, even though we know they will produce the same answer. Explain why.
 
 \item Calculate the following values, writing each step explicity. 
  \begin{enumerate}
@@ -446,14 +417,10 @@ they would produce the same answer. Explain why.
     \end{enumerate}
 \item Write a definition of exponentiation via defining equations. Follow the pattern
 of definition I have written for addition and multiplication.
-%\end{itemize}
+\end{exerciselist}
 \end{exercises}
 
-\chapter{Laws of Arithmetic}
-
-Before working the last exercises, you knew that $3\cdot (2+1)$ and $3\cdot 2+ 3\cdot 1$
-would come out the same because of a law of arithmetic known as \emph{distributivity}. 
-Addition and multiplication satisfy several other laws.
+\chapter{Laws of Arithmetic}\label{lec:ArithmeticLaws}
 
 \begin{goals}
 \noindent\textbf{Lecture}
@@ -471,6 +438,10 @@ Addition and multiplication satisfy several other laws.
 \item Prove the remaining laws for yourself.
 \end{itemize}
 \end{goals}
+
+Before working the last exercises, you knew that $3\cdot (2+1)$ and $3\cdot 2+ 3\cdot 1$
+would come out the same because of a law of arithmetic known as \emph{distributivity}. 
+Addition and multiplication satisfy several other laws.
 
 \ipadbreak
 
@@ -501,7 +472,7 @@ similarities between addition and multiplication.
 \medskip
 
 Most of these laws are familiar and are listed with their common names. The Law of Case
-Distinction was the subject of Exercise \ref{exer:cases}. \emph{Go back and look at that exercise again}.
+Distinction was the subject of Lecture \ref{lec:natural-numbers} Exercise \ref{exer:cases}. \emph{Go back and look at that exercise again}.
 The Law of Positivity for multiplication is not a common name, but
 I have used it to emphasize the analogies between addition and multiplication.
 Also Case Distinction does not really have a common name. I made that up.
@@ -755,7 +726,7 @@ Other laws are left as exercises.
 \ipadbreak
 
 \begin{exercises}
-  % \begin{enumerate}
+  \begin{exerciselist}
 \item Prove that $1$ is the identity for multiplication. That is $1\cdot m = m  = m\cdot 1$.
 \item Prove that multiplication distributes over addition [$m\cdot
   (n+p) = m\cdot n + m\cdot p$] by induction on $p$.  You can use the
@@ -779,15 +750,14 @@ Other laws are left as exercises.
   \end{enumerate}
 
 \item Prove that multiplication is commutative. Hint: Use the two facts 
-we proved riht before these exercises.
+we proved right before these exercises.
 
-  % \end{enumerate}
+  \end{exerciselist}
 \end{exercises}
 
 \ipadbreak
 
-For the record, we also prove the cancellation law for multiplication. This is 
-a bit harder than the exercises, but you should try to find your own proof before looking at mine.
+For the record, we also prove the cancellation law for multiplication. This is a bit harder than the exercises, but you should try to find your own proof before looking at the following.
 
 \begin{fact}
 
@@ -812,9 +782,9 @@ a bit harder than the exercises, but you should try to find your own proof befor
     Consequently, $m\neq 0$, for otherwise we would have $m\cdot
     p^\nxt = 0$. Since $m$ is not equal to $0$, it is equal to some
     successor (by the Case Distinction Law). Let $j$ be the predecessor of $m$,
-	so that $j^\nxt=m$.
+	so that $j^\nxt=m$. Then
     \begin{align*}
-      j\cdot p^\nxt + p^\nxt & m\cdot p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
+      j\cdot p^\nxt + p^\nxt & = m\cdot p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
       &= k^\nxt \cdot p^\nxt &&\text{[By supposition]}\\
       &= k\cdot p^\nxt + p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}
     \end{align*}

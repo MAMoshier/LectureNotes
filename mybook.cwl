@@ -6,6 +6,8 @@
 \end{defn}#S
 \begin{lemma}#S
 \end{lemma}#S
+\begin{proof}#S
+\end{proof}#S
 \begin{thm}#S
 \end{thm}#S
 \begin{example}#S
@@ -27,4 +29,6 @@
 \One
 \Two
 \fromto
+\sfromto
 \powerset
+\st

@@ -17,13 +17,12 @@ In these lectures, we investigate the Category of Sets and Functions, so that we
 \chapter{Sets}
 
 \begin{goals}
-\noindent\textbf{Lecture}
-\begin{itemize}
+\begin{goal}{Lecture}
 \item Describe informally the category of sets.
 \item Define list set notation.
 \item Introduce the idea of a subset.
 \item Introduce the axiom of extensionality for sets and some of its consequences.
-\end{itemize}
+\end{goal}
 
 \noindent\textbf{Study}
 \begin{itemize}
@@ -147,7 +146,7 @@ Instead, we introduce them informally along with the standard symbols we use to 
 \end{defn}
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{exerciselist}
   \item Let $A = \{1,\{2,3\},4\}$. Determine which of the following assertions are true.
     \begin{enumerate}
     \item $1\in A$
@@ -164,7 +163,7 @@ Instead, we introduce them informally along with the standard symbols we use to 
   \item $\{0,1,3, 6, 10,\ldots, 55\}$
   \end{enumerate}
   \item $\bullet\in \symb{Suit}$ (the finite set defined above).
-  \end{firstexercise}
+  \end{exerciselist}
 \end{exercises}
 
 \section{Subsets and Extensionality}
@@ -207,12 +206,12 @@ To say $X\subseteq Y$ is exactly to say that for any $x$, if $x\in X$ then $x\in
 \begin{exercises}
 	For each of the following pairs of sets, determine whether or
   not the first is a subset of the second. Explain your answer.
-  \begin{nextexercise}
+  \begin{exerciselist}
   \item $\{0,1\}$ and $\{1,0\}$
   \item $\{a,b,c,d\}$ and $\{a,b,d,e,c\}$
   \item $\{\}$ and $\{\{\}\}$
   \item $\{0,3,6,10\}$ and $\{10,9,8,7,6,5,4,2,1, 0\}$
-  \end{nextexercise}
+  \end{exerciselist}
 \end{exercises}
 \printbreak
 
@@ -294,16 +293,16 @@ matter of drawing a smaller boundary around some of the elements as in the follo
 
 \begin{exercises}
 Draw depictions of the following sets
-  \begin{nextexercise}
+  \begin{exerciselist}
   \item $\{1,4,5,2,3\}$
   \item $\{1,2,3,\ldots, 23\}$
   \item $\{a,b,c,d,e\}$ and $\{c,e,f,g\}$ on the same diagram
   \item $\{a, e, b,c,e\}$ [sic]
   \item $\{1,3,6,7\}$ and $\{1,3,5,6,7,9\}$ on the same diagram
-  \item $\{\bot,\top$
+  \item $\{\ff,\tt$
   \item $\{\bullet\}$
-  \item $\{\top,\bot,3,5,1, \bullet\}$
-  \end{nextexercise}
+  \item $\{\tt,\ff,3,5,1, \bullet\}$
+  \end{exerciselist}
 \end{exercises}
 
 \chapter{Functions}
@@ -379,10 +378,10 @@ There are two fundamental (trivial) types of rules that can be used to build fun
 Notice that $g\circ f$ is only defined when the \emph{domain} of $g$ matches exactly the \emph{codomain} of $f$.
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{exerciselist}
 \item Suppose $\fromto fWX$, $\fromto gXY$ and $\fromto hYZ$ are functions. Then $h\circ(g\circ f)$ and $(h\circ g)\circ f$ are functions
 from $W$ to $Z$. Do you think they are equal? Explain your answer in a few clearly written sentences.	
-\end{firstexercise}
+\end{exerciselist}
 \end{exercises}
 
 \section{Internal Diagrams}
@@ -490,8 +489,8 @@ For example,
 	
 \begin{exercises}
 	Use internal diagrams for the following exercises.
-	\begin{nextexercise}
-		\item Depict four different functions from the set $\{1,2,3\}$ to the set $\{\bot,\top\}$. [Draw four different diagrams.]
+	\begin{exerciselist}
+		\item Depict four different functions from the set $\{1,2,3\}$ to the set $\{\ff,\tt\}$. [Draw four different diagrams.]
 		\item Depict all of the functions from $\{\bullet\}$ to $\{a,b,c\}$
 		\item Depict all of the functions from $\{a,b,c\}$ to $\{\bullet\}$
 		\item Are there any functions from $\{a,b\}$ to $\emptyset$?
@@ -571,13 +570,13 @@ For example,
       \end{tikzpicture}
 	  \end{enumerate}
 	  \end{multicols}
-		\item Let $A = \{1,2,3\}$. Let $B=\{a,b,c,e\}$ and let $C = \{\bot,\top\}$.
+		\item Let $A = \{1,2,3\}$. Let $B=\{a,b,c,e\}$ and let $C = \{\ff,\tt\}$.
 		Depict some functions $\fromto fAB$, $\fromto gBC$, and $g\circ f$. 
 		\item Think about how you might depict a function $\fromto hAA$ using only one picture of the set $A$.
 		Describe what you would do, and provide an example.
 		\item Suppose $\fromto f\RR\RR$ is given by the rule $x\mapsto x^2$, suppose $\fromto g\RR\RR$ is given
 		by the rule $x\mapsto x-1$. Write rules for $f\circ g$ and $g\circ f$ without using the symbols $f$ and $g$. Explain whether or not it is the case that $f\circ g = g\circ f$.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Extensionality}
@@ -648,7 +647,7 @@ In other words, saying that a certain diagram commutes \emph{is} an assertion th
 
 
 \begin{exercises}
-\begin{nextexercise}
+\begin{exerciselist}
 \item  For each of the following pairs of functions $\NN\to\NN$, determine whether they are equal and explain why or why not.
   \begin{enumerate}
   \item $f(n) = 2n + 3$ and $g(m) = 2m + 3$
@@ -662,7 +661,7 @@ Explain why this does \emph{not} define a function from $\RR$ to $\RR$.
   Draw a commutative diagram asserting that $b\circ g\circ f = a$.
 \item Suppose the following functions exist: $\fromto fCA$, $\fromto gCB$, $\fromto hCP$, $\fromto pPA$ and $\fromto qPB$.
  Draw a commutative diagram asserting that $f=p\circ h$ and $g=q\circ h$.
-\end{nextexercise}
+\end{exerciselist}
 \end{exercises}
 
 \chapter{Constructing Sets and Functions}
@@ -701,14 +700,13 @@ For the time being, we merely need to agree on a fixed reference set with one el
 The particular choices we make here will be clearer as we put them to use.
 
 \begin{defn}
-	Let $\bullet$, $\bot$ and $\top$ be fixed symbols. Then define
+	Let $\bullet$, $\ff$ and $\tt$ be fixed symbols. Then define
 	\begin{align*}
 		\One &= \{\bullet\}\\
-		\Two &= \{\bot,\top\}
+		\Two &= \{\ff,\tt\}
 	\end{align*} 
 	The single element of $\One$ is intended to look like a generic point in an internal diagram.
-	The element $\top$ is meant to remind you of the letter `T' (short for `True') and $\bot$ is meant to be the opposite of $\top$ ('False').
-	These symbols are read as ``top'' and ``bottom''.
+	The element $\tt$ is meant to indicate `True' and $\ff$, 'False'.
 \end{defn}
 
 %As mentioned above, the particular choice of elements is not important.
@@ -804,12 +802,12 @@ It will be convenient to have a standard name for this function.
 \end{defn}
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{exerciselist}
 		\item Show that for any pointer $\fromto p\One X$, it is the case that $\widehat{p(\bullet)}=p$.
 		\item Show that any set with exactly one element is a terminal set.
 		\item Show that any terminal set has exactly one element.
 		\item Suppose that $\fromto fXY$ is a function. Show that for every $a\in X$, $\widehat{f(a)} = f\circ \hat{a}$.
-	\end{firstexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{The Empty Set}
@@ -832,12 +830,12 @@ Notice that a function $X\to\emptyset$ is impossible unless $X$ is also empty.
 So $\emptyset$ is the only initial set. 
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item How many functions are there from $\emptyset$ to $\{a,b,c,d\}$? Explain.
 		\item How many functions are there from $\{a,b,c,d\}$ to $emptyset$? Explain.
 		\item How many functions are there from $\One$ to $\{a,b,c,d\}$? Explain.
 		\item How many functions are there from $\{a,b,c,d\}$ to $\One$? Explain.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Solution Sets, Subsets, Characteristic Functions}
@@ -1015,16 +1013,16 @@ This is where the set $\Two$ plays a role.
 \begin{principle}\label{ax:subset-char}
 	\noindent\textbf{$\Two$ and Characteristic Functions}
 	
-	The set $\Two$ with the distinguished element $\top$ is a subset classifier.
+	The set $\Two$ with the distinguished element $\tt$ is a subset classifier.
 	For subset $A\subseteq X$, the function corresponding to $A$, called the \emph{characteristic function of $A$}, is denoted by $\kappa_A$.
-	In other words, $\kappa_A$ is the unique function for which $A = \kappa_A^-(\top)$.
+	In other words, $\kappa_A$ is the unique function for which $A = \kappa_A^-(\tt)$.
 
 	For $A\subseteq X$, the characteristic function is defined by the rule
 	\[
 	x \mapsto
 		\begin{cases}
-			\top &\text{if $x\in A$}\\
-			\bot &\text{otherwise}
+			\tt &\text{if $x\in A$}\\
+			\ff &\text{otherwise}
 		\end{cases}
 	\]
 \end{principle}
@@ -1032,7 +1030,7 @@ This is where the set $\Two$ plays a role.
 Just as Principle \ref{ax:pointers} asserts that elements of $X$ and functions $\One\to X$ are interchangeable, Principle \ref{ax:subset-char} asserts that the subsets of $X$ and the functions $X\to\Two$ are interchangeable.
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 	\item Draw a depiction of $A=\{a,b,c,d,e,f,g\}$ and its subset $B=\{a,c,e,g\}$ in the same internal diagram. Now depict the characteristic map for $B$ as a subset of $A$.
 	
 	\item Define two functions $\NN\doublerightarrow{f}{g}\NN$ so that the set of particular solutions of $f(x)=g(x)$ is $\{1,5\}$. 
@@ -1067,7 +1065,7 @@ Just as Principle \ref{ax:pointers} asserts that elements of $X$ and functions $
 		\end{tikzpicture}
 		\]
 	What additional function is required to exist? What properties is it required to have? [Hint: the result should be that $A$ is an inverse image.]
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Product Sets and Functions of Two Arguments}
@@ -1154,7 +1152,7 @@ Instead of two projections, this would have three projections $(x,y,z)\mapsto x$
 It turns out, however, that binary products are enough because $X\times (Y\times Z)$ behaves just like $X\times Y\times Z$.
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item For the sets $A = \{a,b,c\}$ and $B = \{1,2,3,4\}$, write out $A\times B$ and $B\times A$
 		\item What is $\emptyset \times A$? 
 		\item Write out $\{4,a,0\}\times \Two$.
@@ -1164,7 +1162,7 @@ It turns out, however, that binary products are enough because $X\times (Y\times
 		\item Describe in plain English why it makes sense to refer to $A\times B$ as a ``product.''
 		\item For sets $A=\{a,b\}$, $B=\{0,1,2\}$ and $C=\{c,d\}$, calculate $A\times B\times C$, $A\times (B\times C)$ and $(A\times B)\times C$. Are these sets equal? If not, how do they differ.
 		\item Describe a model of the standard fifty-two card poker deck as a product of two sets.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Function Sets and Parametric Functions}
@@ -1230,7 +1228,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 \end{example}
  
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item  For set $A= \{1,2,3\}$ and $B = \{a,b\}$ 
 			\begin{enumerate}
 				\item draw internal diagrams corresponding to each element of $B^A$ (there are eight of them);
@@ -1241,7 +1239,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 		      $f(m,n) = m^n$. What element of $\NN^\NN$ is $\curry[f](3)$? Use $\lambda$ notation to describe it.
 		\item For the function $\min$ from $\RR\times\RR$ to $\RR$ defined to mean the minimum of $x$ and $y$, define $\curry[\min]$.
 		\item Use $\lambda$ notation to describe the element of $\NN^\NN$ that quadruples the square of the input.
-	\end{nextexercise}	
+	\end{exerciselist}	
 \end{exercises}
 
 %\section{Universal Constructions}
@@ -1276,7 +1274,7 @@ We could make the $\lambda$ notation formal (as did Church), but for our purpose
 %
 %\begin{exercises}
 %	\begin{enumerate}
-%		\item Explain how $\One\stackrel{\hat{\top}}{\longrightarrow}\Two$ is universal. [There is not a single intended correct answer to this. 
+%		\item Explain how $\One\stackrel{\hat{\tt}}{\longrightarrow}\Two$ is universal. [There is not a single intended correct answer to this. 
 %		I want you to think about how $\Two$ fits into a bigger picture.]
 %	\end{enumerate}
 %\end{exercises}
@@ -1429,7 +1427,7 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 \end{example}
 
 \begin{exercises}
-\begin{firstexercise}
+\begin{exerciselist}
 	\item Define addition $\sfromto {+}{\NN\times \NN}\NN$ by primitive recursion. That is, find functions $\sfromto b\NN\NN$ and $\sfromto r{\NN\times\NN\times \NN}\NN$ so that
 	\begin{align*}
 		m+0 &= b(m)\\
@@ -1440,10 +1438,10 @@ Putting things together, we consider a scheme that generalizes simple recursion 
 	\item Define the factorial function by primitive recursion. You may use multiplication in defining the primitive recurrence.	
 	\item For a given function $\fromto f\NN\NN$, find a primitive recurrence that defines the function $n\mapsto \sum_{i=0}^{n-1}f(i)$. That is, result will be the sequence $0$, $f(0)$, $f(0)+f(1)$, $f(0)+f(1)+f(2)$, \ldots.
 	\item The operation of \emph{monus} $m\stackrel{.}{-} n$ is defined to be $m-n$ when $m \geq n$ and to be $0$ otherwise. Define monus by primitive recursion.
-	\item Let $\sfromto p\NN\Two$ be a characteristic function. Show that bounded existential quantification is primitive recursive. That is, define the function $\fromto {\exists^<_p}\NN\Two$ by $\exists^p_<(n) = \top$ iff there is at least one $k<n$ for which $p(k)=\top$.  Show that this can be defined by a primitive recurrence.
-	[Hint: $\exists^p_<(0) = \bot$ because there are no natural numbers below $0$. 
+	\item Let $\sfromto p\NN\Two$ be a characteristic function. Show that bounded existential quantification is primitive recursive. That is, define the function $\fromto {\exists^<_p}\NN\Two$ by $\exists^p_<(n) = \tt$ iff there is at least one $k<n$ for which $p(k)=\tt$.  Show that this can be defined by a primitive recurrence.
+	[Hint: $\exists^p_<(0) = \ff$ because there are no natural numbers below $0$. 
 	Now ask what value is $\exists^p_<(n^\nxt)$ in terms of $p$ and $\exists^p_<(n)$.]
-\end{firstexercise}
+\end{exerciselist}
 \end{exercises}
 
 \section{Primitive Recursion and ``for'' loops}
@@ -1538,7 +1536,7 @@ Like $\NN$, $\List[A]$ supports a form of primitive recursion.
 The details can be worked out by the reader. 
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item For a function $\fromto fXY$, specify a simple $X$- recurrence that defines the function
 			\[\fromto {\map[f]}{\List[X]}{\List[Y]}\] so that \[\map[f]([a_0,a_1,\ldots, a_{n-1}]) = [f(a_0),f(a_1),\ldots, f(a_{n-1})]\]
 		\item For $\map[\cdot]$ as defined in the previous exercise, show that for any $\fromto fXY$ and $\fromto gYZ$, $\map[g\circ f] = \map[g]\circ \map[f]$.
@@ -1552,7 +1550,7 @@ The details can be worked out by the reader.
 		\end{align*}
 		\item Write a scheme for ``primitive $X$-recursion'', specified by functions $P\stackrel{b}{\longrightarrow}A\stackrel{r}{\longleftarrow}P\times \List[X]\times A$. Write the equations involving $b$ and $r$ that should determine a unique function $P\times \List[X]\to A$. 
 		You do not need to prove that your scheme actually defines a function.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \chapter{Powersets}
@@ -1563,38 +1561,37 @@ The details can be worked out by the reader.
 
 In this lecture we look at the structure of the collection of all subsets of a given set. This structure is intimately related to how we \emph{describe} subsets. The result of our investigation leads to \emph{logic} as a means of reasoning about descriptions.  
 
-For this lecture, we concentrate on a fixed set $U$, which we will think of as our ``universe''. For example, if we are currently mainly interested in natural numbers, $U$ could be taken to be $\NN$. If we are interested in poker, it could be $\symbol{Deck}$. If we are interested in functions on the reals, it could be $\RR^\RR$. 
+For this lecture, we concentrate on a fixed set $U$, which we will think of as our ``universe''. For example, if we are currently mainly interested in natural numbers, $U$ could be taken to be $\NN$. If we are interested in poker, it could be $\symb{Deck}$. If we are interested in functions on the reals, it could be $\RR^\RR$. 
 
-The exponential $\Two^U$ for a set $U$ is the set of all characteristic maps on $U$.
-Each $k\in \Two^U$ corresponds to a subset of $U$ by $k^{-1}(\top) = \{x\in U\st k(x)=\top\}$. Vice versa, a subset $A\subseteq U$ determines a characteristic function $\fromto {\kappa_A}U\Two$ by the rule
+The exponential $\Two^U$ is the set of all characteristic maps on $U$.
+Each $k\in \Two^U$ corresponds to a subset of $U$ by $k^{-1}(\tt) = \{x\in U\st k(x)=\tt\}$. Vice versa, a subset $A\subseteq U$ determines a characteristic function $\fromto {\kappa_A}U\Two$ by the rule
 \[x\mapsto \begin{cases}
-			\top &\text{if $x\in A$}\\
-			\bot &\text{otherwise}
+			\tt &\text{if $x\in A$}\\
+			\ff &\text{otherwise}
 \end{cases}
 \]
 So $\Two^U$ is \emph{representative} of the collection of all subsets of $U$. 
 It is convenient also to suppose that the actual collection of subsets of a set $U$ forms a set.
-This should ``behave'' exactly like $\Two^X$, but concretely, consist of subsets rather than characteristic functions.
 
 \begin{principle}\label{ax:powerset}
 	For any set $U$, the collection of subsets of $U$ is a set, denoted by $\powerset(U)$ and called the \emph{power set of $U$}. 
 	Moreover, there is a function $\fromto {\ni_X}{\powerset(U)\times U}\Two$ defined by
 	\[{\mathord\ni}_U(A,x) = \begin{cases}
-	\top, &\text{ if } x\in A\\
-	\bot &\text{otherwise}
+	\tt, &\text{ if } x\in A\\
+	\ff &\text{otherwise}
 	\end{cases}
 	\]
 	The function $\ni_U$ is an evaluation map, meaning that 
 	for any function $\fromto f{P\times U}\Two$, there is a unique function $\fromto {f^\dagger}P{\powerset(U)}$ for which $f = {\mathord\ni}_U\circ (f^\dagger \times \id_U)$. The function $f^\dagger$ 
-	is given by the rule $p\mapsto \{x\in U\st f(p,x)=\top\}$.
+	is given by the rule $p\mapsto \{x\in U\st f(p,x)=\tt\}$.
 \end{principle}
 
 The function $\fromto{\curry[\ni_U]}{\powerset(U)}{\Two^U}$ is the unique function satisfying $\ni_U =\appl_{U,\Two}\circ(\curry[\ni_U]\times \id_U)$.
 In particular, this must send $A\in\powerset(U)$ to its characteristic function.
 So this is none other than the rule $A\mapsto \kappa_A$.
 Also, $\fromto{\appl_{U,\Two}^\dagger}{\Two^U}{\powerset(U)}$ is the unique function satisfying $\appl_{U,\Two} = \ni_U\circ(\appl_{U,\Two}^\dagger\times \id_U)$.
-This must send $k\in \Two^U$ to the subset $k^-(\top)$.
-So it is given by the rule $k\mapsto k^-(\top)$.
+This must send $k\in \Two^U$ to the subset $k^-(\tt)$.
+So it is given by the rule $k\mapsto k^-(\tt)$.
 In this sense, elements of $\powerset(U)$ and elements of $\Two^U$ are interchangible.
 
 For a function $\fromto fUV$, ${\mathord\ni}_V\circ (\id_{\powerset(U)}\times f)$ is a function from $\powerset(V)\times U$ to $\Two$.
@@ -1614,11 +1611,11 @@ This notation clashes slightly with our earlier definition of inverse image of a
 $f^-(b)$ in the earlier usage is the same as $f^-(\{b\})$ in the new usage.
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{exerciselist}
 		\item For $\fromto f\NN\NN$ defined by $f(n) = x^2$, what is $f^-(\{2,3,4,5,6,7,8,9\})$?
 		\item For $\fromto \sin\RR\RR$, what is $\sin^-(\{-1,1\})$?
 		\item Show that for any two functions $\fromto fXY$ and $\fromto gYZ$, $(g\circ f)^- = f^-\circ g^-$.
-	\end{firstexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Finitary Structure of $\powerset(U)$}
@@ -1687,44 +1684,44 @@ It corresponds to``but not'', so $P\setminus K$ is the set of worlds  in which p
 		The four functions corresponding to the subset operations can be given by tables. In these tables, we read the first argument on the left, and the second argument on the top.
 		\begin{center}
 			\begin{tabular}{ c|| c | c |}
-				$\wedge$ & $\bot$ & $\top$ \\
+				$\wedge$ & $\ff$ & $\tt$ \\
 				\hline\hline
-				$\bot$ & $\bot$ & $\bot$ \\ 
+				$\ff$ & $\ff$ & $\ff$ \\ 
 				\hline
-				$\top$ & $\bot$ & $\top$ \\ 
+				$\tt$ & $\ff$ & $\tt$ \\ 
 				\hline
 			\end{tabular}
 			\qquad
 			\begin{tabular}{ c|| c | c |}
-				$\vee$ & $\bot$ & $\top$ \\
+				$\vee$ & $\ff$ & $\tt$ \\
 				\hline\hline
-				$\bot$ & $\bot$ & $\top$ \\ 
+				$\ff$ & $\ff$ & $\tt$ \\ 
 				\hline
-				$\top$ & $\top$ & $\top$ \\ 
+				$\tt$ & $\tt$ & $\tt$ \\ 
 				\hline
 			\end{tabular} 
 			\qquad
 			\begin{tabular}{ c|| c | c |}
-				$\to$ & $\bot$ & $\top$ \\
+				$\to$ & $\ff$ & $\tt$ \\
 				\hline\hline
-				$\bot$ & $\top$ & $\top$ \\ 
+				$\ff$ & $\tt$ & $\tt$ \\ 
 				\hline
-				$\top$ & $\bot$ & $\top$ \\ 
+				$\tt$ & $\ff$ & $\tt$ \\ 
 				\hline
 			\end{tabular} 
 			\qquad
 			\begin{tabular}{ c|| c | c |}
-				$-$ & $\bot$ & $\top$ \\
+				$-$ & $\ff$ & $\tt$ \\
 				\hline\hline
-				$\bot$ & $\bot$ & $\bot$ \\ 
+				$\ff$ & $\ff$ & $\ff$ \\ 
 				\hline
-				$\top$ & $\top$ & $\bot$ \\ 
+				$\tt$ & $\tt$ & $\ff$ \\ 
 				\hline
 			\end{tabular} 
 			
 		\end{center}
 	
-		So for each $h \in \{\wedge,\vee,\to,-\}$, there  is a subset $(h\circ\langle \kappa_A,\kappa_B\rangle)^-(\top)$.
+		So for each $h \in \{\wedge,\vee,\to,-\}$, there  is a subset $(h\circ\langle \kappa_A,\kappa_B\rangle)^-(\tt)$.
 		
 		It is routine to check that for $h=\mathord\wedge$, the result is $A\cap B$;
 		for $h=\mathord\vee$, the result is $A\cup B$; for $h=\mathord\to$, the result is $A \Rightarrow B$; and for $h=\mathord-$, the result is $A \setminus B$.
@@ -1746,8 +1743,8 @@ Then the Law of Double Negation which characterizes Boolean algebras, asserts th
 		Calculating the members of $A^*$, it is easy to check that for every element $x\in X$, either $x\in A$ or $x\in A^*$, but not both. 
 		So $x\in A^{**}$ if and only if $x\notin A^*$ if and only if $x\in A$. 
 		
-		Put differently, define the function $\fromto {\mathord\neg}\Two\Two$ by $\neg\top=\bot$ and $\neg\bot = \top$.
-		Then $A^*$ is defined by $(\neg\circ\kappa_A)^-(\top)$.
+		Put differently, define the function $\fromto {\mathord\neg}\Two\Two$ by $\neg\tt=\ff$ and $\neg\ff = \tt$.
+		Then $A^*$ is defined by $(\neg\circ\kappa_A)^-(\tt)$.
 		Obviously, $\neg\circ \neg = \id_\Two$.
 		As with the other operations, it is now routine to check that $A^{**}=A$.
 	\end{proof}
@@ -1758,9 +1755,9 @@ One can define the term ``Boolean algebra'' to mean ``Heyting algebra that satis
 So $\powerset(X)$ is indeed a Boolean algebra. 
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item An easy consequence of Double Negation is that $A\Rightarrow \emptyset = U\setminus A$. Prove it.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \printbreak
@@ -1851,7 +1848,7 @@ Several remarks are in order.
 
 \begin{exercises}
 	In the following, assume that $U$ is a set, and all other sets are subsets of $U$.
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Prove, using only the Semilattice Laws, the Absorption Laws and the Bounded Lattice Laws, that $A\cap \emptyset = \emptyset$. 
 		Likewise, show that $A\cup U = U$.
 		\item Prove, using only the Semilattice and Lattice Laws, that the two Distribution Laws are equivalent. That is, show that if $A\cap(B\cup C)\subseteq (A\cap B)\cup (A\cap C)$ holds for all $A,B,C$, then
@@ -1860,7 +1857,7 @@ Several remarks are in order.
 		\item Prove, using only the Semilattice, Lattice Laws, Heyting Algebra and Boolean Algebra Laws, that the two de~Morgan's Laws hold.
 		\item Prove that $A\Rightarrow B = A^* \cup B$, using any method. 
 		\item Prove that $A\setminus B = A\cap B^*$, using any method. 
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Binary Relations}
@@ -1883,7 +1880,7 @@ There are several equivalent ways to model the general notion. But traditionally
 
 Here are two common equivalent formulations.
 \begin{itemize}
-	\item $R\subseteq X\times Y$ determines a characteristic function $\fromto {\kappa_R}{X\times Y}\Two$ so that $R = \{(x,y)\in X\times Y\st \kappa_R(x,y)=\top\}$.
+	\item $R\subseteq X\times Y$ determines a characteristic function $\fromto {\kappa_R}{X\times Y}\Two$ so that $R = \{(x,y)\in X\times Y\st \kappa_R(x,y)=\tt\}$.
 	\item $R$ determines a function $\fromto {R[-]}{X}{\powerset(Y)}$ so that $R = \{(x,y)\in X\times Y\st y\in R[x]\}$.
 \end{itemize}
 The ability to move between these can be helpful.
@@ -1891,17 +1888,17 @@ So it is worth practicing.
 
 \begin{exercises}
 	Let $\fromto r{\NN\times\NN}\Two$ be the function defined by \[r(m,n) = \begin{cases}
-	\top & \text{if $m\geq n^2$}\\
-	\bot & \text{otherwise}.
+	\tt & \text{if $m\geq n^2$}\\
+	\ff & \text{otherwise}.
 	\end{cases}
 	\]
-	Consider the relation $R = r^{-}(\top)$. Explain your answers for the following.
-	\begin{nextexercise}
+	Consider the relation $R = r^{-}(\tt)$. Explain your answers for the following.
+	\begin{exerciselist}
 		\item Is it the case that $3\mathrel{R} 2$?
 		\item Is it the case that $9\mathrel{R} 3$?
 		\item What is $R[5]$?
 		\item What is $\curry[r]$?
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 We will discuss the structure of relations in more detail in Lecture \ref{lec:Relations}.
@@ -1964,12 +1961,12 @@ This justifes saying that $\powerset(U)$ is a \emph{complete} Boolean algebra.
 
 \begin{exercises}
 	In the following, consider the family $\fromto AI{\powerset(U)}$.
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Show that $\bigcup_{i\in I}A_i\subseteq C$ if and only if $A_k\subseteq C$ holds every $k\in I$.
 		\item Define $\bigcap_{i\in I}A_i$ in analogy with $\bigcup_{i\in I}A_i$.
 		\item For $I=\emptyset$, what is $\bigcup_{i\in I}A_i$?
 		\item For $I=\emptyset$, what is $\bigcap_{i\in I}A_i$?
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Atomicity}
@@ -1987,8 +1984,8 @@ A singleton subset $\{x\}\subseteq U$ is an atom of $\powerset(U)$ because there
 	\begin{proof}
 		Recall that the \emph{diagonal} relation on $U$ is $\Delta_U = \{(x,y)\in U\times U \st x= y\}$.
 		Let $\fromto sU{\powerset(U)}$ be the unique function for which ${\mathord\in}_U\circ (s\circ \id_U)= \kappa_{\Delta_U}$.
-		In other words ${\mathord\ni}_U(s(x),y)=\top$ if and only if $x=y$.
-		Since ${\mathord\ni}_U(s(x),y) =\top$ if and only if $y\in s(x)$, it is the case that $y\in s(x)$ if and only if $x=y$.
+		In other words ${\mathord\ni}_U(s(x),y)=\tt$ if and only if $x=y$.
+		Since ${\mathord\ni}_U(s(x),y) =\tt$ if and only if $y\in s(x)$, it is the case that $y\in s(x)$ if and only if $x=y$.
 		So $s(x) = \{x\}$. 
 	\end{proof}
 \end{lemma}
@@ -2010,14 +2007,14 @@ The structure of $\powerset(U)$ is even preserved by inverse images.
 \end{lemma}
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Write out $\powerset(\{a,b,c\})$
 		\item Write out $\powerset(\emptyset)$
 		\item Is it the case that $\emptyset \in \powerset(A)$ for any set $A$? Explain. 
 		\item Write out $\powerset(\Two\times \Two)$ and $\powerset(\powerset(\Two))$. Pay attention to writing them in a systematic way, so that it is clear you have actually listed everything.
 		\item I claim that $\powerset(\emptyset)$ is a terminal set (Definition \ref{def:terminal}). Justify the claim.
 		\item I claim that $\powerset(\emptyset)\in \powerset(\powerset(\emptyset))$ is a subset classifier (Definition \ref{def:subset-classifier}). Justify the claim.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Forward images}
@@ -2055,11 +2052,11 @@ Second, $f^+$ preserves all unions So $f^+(\bigcup_{i\in I}A_i) = \bigcup_{i\in 
 Note that $f^+$ does not necessarily preserve intersections.
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Define a function $\fromto fXY$ and two subsets $A,B\subseteq X$ so that $f(X)\cap f(Y) \neq f(X\cap Y)$. Try to find the smallest example you can.
 		\item Prove that for any function $\fromto fXY$ and any $A\subseteq X$, the inclusion $A\subseteq f^-(f^+(A))$ holds.
 		\item Prove that for any function $\fromto fXY$ and any $B\subseteq Y$, the inclusion $f^+(f^-(B))\subseteq B$ holds.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \chapter{Additional Constructions}
@@ -2117,11 +2114,11 @@ The terms \emph{mono-} and \emph{epi-} refer to behavior that we explore in this
 \end{example}
 
 \begin{exercises}
-	\begin{firstexercise}
+	\begin{exerciselist}
 		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are epimorphisms, then so is $g\circ f$. 
 		\item Show that if $\sfromto fXY$ and $\sfromto gYZ$ are monomorphisms, then so is $g\circ f$.
 		\item Show that if $\sfromto fXY$ and $\sfromto YX$ satisfy $g\circ f = \id_X$, then $g$ is an epimorphism and $f$ is a monomorphism.
-	\end{firstexercise}
+	\end{exerciselist}
 \end{exercises}
 
 The two lemmas spell out equivalent internal behavior.
@@ -2300,34 +2297,34 @@ The situations in which this should be possible can be characterized internally 
 Monomorphisms act like subsets, in the sense that if $A\subseteq X$, then the inclusion function $\sfromto iAX$ is a monomorphism. Our next principle stipulates that monomorphisms behave like subsets, also in the sense that they determine characteristic functions.
 
 \begin{principle}
-	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \top$. 
-	In other words, $\kappa_m\circ m = \constant_\top$ and if $\sfromto fWY$ is a function satisfying $\kappa_m\circ f=\constant_\top$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
+	For a monomorphism $\sfromto mXY$ there is a unique function $\sfromto {\kappa_m}Y\Two$ so that $m$ is an equalizer for the equation $\kappa_m(y) = \tt$. 
+	In other words, $\kappa_m\circ m = \constant_\tt$ and if $\sfromto fWY$ is a function satisfying $\kappa_m\circ f=\constant_\tt$, then there is a unique function $\sfromto {m\backslash f}WX$ so that $f = (m\backslash f)\circ m$.  
 	We say that $f$ \emph{factors through $m$ uniquely}.
 	
 	For a monomorphism $\sfromto mXY$, the characteristic function $\kappa_m$ is defined by
 	\[\kappa_m(y) = \begin{cases}
-	\top & \text{if $y = m(x)$ for some $x\in X$}\\
-	\bot & \text{otherwise}.
+	\tt & \text{if $y = m(x)$ for some $x\in X$}\\
+	\ff & \text{otherwise}.
 	\end{cases}\]
-	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m\circ f = \constant_\top$. Then $(m\backslash f)$ satisfies $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
+	Suppose $\sfromto fWY$ is a function satisfying $\kappa_m\circ f = \constant_\tt$. Then $(m\backslash f)$ satisfies $(m\backslash f)(w) = x$ if and only if $f(w)=m(x)$. 
 \end{principle}
 
-In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\top$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
+In Figure \ref{fig:covariance-example}, the function $f$ satisfies $\kappa_m\circ f = \constant_\tt$, so there is indeed a unique function $(m\backslash f)$ as indicated in Figure \ref{fig:factoring-through}.
 
-To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple matter. An internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
+To detect that $f$ is a solution of the equation $\kappa_m(y)=\tt$ is a simple matter. An internal characterization is this: for every $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. An external characterization is also useful.
 
 \begin{defn}
 	For functions $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$, say that $f$ is {$m$-coinvariant} if it is that case that for all $Y\doublerightarrow{h}{k}Z$, $h\circ m=k\circ m$ implies $k\circ f = h\circ f$.
 \end{defn}
 
 \begin{lemma}
-	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \constant_\top$.
+	For function $X\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}W$ where $m$ is a monomorphism, $f$ is $m$-coinvariant if and only if $\kappa_m\circ f = \constant_\tt$.
 	
 	\begin{proof}
-		First, note that $\kappa_m\circ f = \constant_\top$ if and only if
-		$\kappa_m(f(w))=\top$ for every $w\in W$. But $\kappa_m(y)=\top$ if and only if there is some $x\in X$ so that $y=m(x)$. Therefore, $\kappa_m\circ f=\top$ if and only if for every $w\in W$ there exists some $x\in X$ for which $f(w)=m(x)$.
+		First, note that $\kappa_m\circ f = \constant_\tt$ if and only if
+		$\kappa_m(f(w))=\tt$ for every $w\in W$. But $\kappa_m(y)=\tt$ if and only if there is some $x\in X$ so that $y=m(x)$. Therefore, $\kappa_m\circ f=\tt$ if and only if for every $w\in W$ there exists some $x\in X$ for which $f(w)=m(x)$.
 		
-		Assume $\kappa_m\circ f=\constant_\top$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
+		Assume $\kappa_m\circ f=\constant_\tt$, and $h\circ m = k\circ m$. For any $w\in W$, there is some $x\in X$ so that $f(w)=m(x)$. Hence $h(f(w)) = h(m(x)) = k(m(x)) = k(f(w))$ for a suitable choice of $x$. 
 		Since this works for any $w$, $h\circ f=k\circ f$. 
 		
 		Assume there is some $w\in W$ for which $f(w)\neq m(x)$ for all $x\in X$. Define functions $Y\doublerightarrow{h}{k}\{0,1,2\}$ by 
@@ -2349,7 +2346,7 @@ To detect that $f$ is a solution of the equation $\kappa_m(y)=\top$ is a simple 
 	For functions $W\stackrel{m}{\longrightarrow}Y\stackrel{f}{\longleftarrow}X$ where $m$ is an monomorphism and $f$ is $m$-coinvariant, there is a unique function $\sfromto {m\backslash f}XW$ so that $f = m\circ (m\backslash f)$.
 	
 	\begin{proof}
-		There is nothing new to prove. Lemma \ref{lem} ensures if $f$ is $m$-coinvariant, then $\kappa_m\circ f = \constant_\top$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists.
+		There is nothing new to prove. Lemma \ref{lem} ensures if $f$ is $m$-coinvariant, then $\kappa_m\circ f = \constant_\tt$. Principle \ref{princ:subobjects} ensures that $m\backslash f$ exists.
 	\end{proof}
 \end{lemma}
 
@@ -2372,7 +2369,7 @@ Epimorphisms are dual to monomorphisms (they cancel on the left instead of on th
 	\end{proof}
 \end{lemma}
 
-Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms and epimorphisms play dual roles. Also a monomorphism behave in most respects like the inclusion of a subset. So a question arises as to what should be the dual of subset. That is, what completes the formal analogy ``Subsets are to monomorphisms as $\_\_\_$s are to epimorphisms''. 
+Comparing Lemmas \ref{lem:coinvariant-factoring} and \ref{lem:invariant-factoring}, we note that monomorphisms and epimorphisms play dual roles. Also a monomorphism behaves in most respects like the inclusion of a subset. So a question arises as to what should be the dual concept corresponding to subset. That is, what completes the formal analogy ``Subsets are to monomorphisms as $\_\_\_$s are to epimorphisms''. 
 
 \begin{defn}
 	For a set $X$, a \emph{partition of $X$} is a subset $P\subseteq \powerset(X)$ so that
@@ -2411,7 +2408,19 @@ For a function $\fromto fXY$ (in practice, usually we expect $f$ to be an epimor
 		For each $x\in X$, let $[x]_E = \{x'\in X\st x\mathrel{E}x'\}$. Since $E$ is reflexive, $x\in [x]_E$ for each $x\in X$. Also, if $[x]_E \cap [x']_E\neq \emptyset$, then $x\mathrel{E} x'$ because $E$ is transitive and symmetric. So the collection $\{[x]_E\st x\in X\}$ is a partition of $X$. The function $x\mapsto [x]_E$ is an epimorphism by construction. And evidently, $[x]_E = [x']_E$ holds if and only if $x \mathrel{E} x'$. So $E = \equiv_{[-]}$. 
 	\end{proof}
 \end{lemma}
+
+A function $\fromto fXY$ is invariant with respect to $[-]_E$ if it is the case that $x_0\mathrel{E}x_1$ implies $f(x_0)=f(x_1)$. Any function with this property determines a function from $X/E$ to $Y$ defined by
+$[x]_E\mapsto f(x)$. This is defined on all blocks of $X/E$ because each block is $[x]_E$ for some $x$. Moreover, if $[x_0]_E = [x_1]_E$, then $x_0\mathrel{E}x_1$. So $f(x_0)=f(x_1)$. That is, our rule is unambiguous.
+
+\begin{example}
+	We might wish to define a `clock'. Recall that $\ZZ$ denotes the set of all integers. On a clock $1$ and $13$ are the same because one hour after midnight and thirteen hours after midnight read the same on the clock. In fact, $1$, $13$, $25$, and so on all read the same. So let is define the relation $\equiv_{12}$ on $\ZZ$ by saying $a\equiv_{12} b$ if and only if for some integer $m$, it is the case that $a + 12\cdot m = b$. In other words, $a$ and $b$ differ by some even multiple of twelve.
 	
+	Clearly, $a\equiv_{12}a$ is true for all integers $a$ (take $m=0$). And if $a\equiv_{12}b$ and $b\equiv_{12}c$, then $a + 12\cdot m = b$ and $b+12\cdot n = c$ for some $m$ and $n$. Hence $a +12\cdot (m + n) = c$.
+	So $a\equiv_{12}c$. And finally, if $a\equiv_{12}b$, then $a+12\cdot m = b$, so $b + 12\cdot -m = a$. So $b\equiv_{12}a$. This shows that $\equiv_{12}$ is an equivalence relation. Now, $\ZZ/\equiv_{12}$ consists of exactly twelve equivalence blocks: $[0]_{\equiv_{12}}$, \ldots, $[11]_{\equiv_{12}}$. Each block corresponds to an hour on the clock dial.
+	
+	The quotient set $\ZZ/\equiv_{12}$ is usually denoted by $\ZZ_{12}$. Clearly, the same idea works for any positive integer \emph{modulus} $k$ in place of $12$. We investigate this idea in depth in Lecture \ref{lec:ModularArithmetic}, where applications in cryptography arise. 
+\end{example}
+
 \section{Co-products}
 
 \begin{defn}
@@ -2428,7 +2437,7 @@ For a function $\fromto fXY$ (in practice, usually we expect $f$ to be an epimor
 	Any two sets $X$ and $Y$ have a co-product.
 	
 	\begin{proof}
-		Define $X\uplus Y \subeteq \powerset(X)\times\powerset(Y)$ to consist only of pairs of the form $(\{x\},\emptyset)$ for $x\in X$ and 
+		Define $X\uplus Y \subseteq \powerset(X)\times\powerset(Y)$ to consist only of pairs of the form $(\{x\},\emptyset)$ for $x\in X$ and 
 		$(\emptyset,\{y\})$ for $y\in Y$. 
 		
 		Define the two functions $\fromto {\inj_0}X{X\uplus Y}$ and $\fromto {\inj_1}Y{X\uplus Y}$ by $\inj_0(x) = (\{x\},\emptyset)$ and $\inj_1(y) = (\emptyset,\{y\})$. 
@@ -2443,12 +2452,12 @@ The set $X\uplus Y$ is sometimes called the \emph{disjoint union} of $X$ and $Y$
 
 \begin{exercises}
 	Let $A= \{a,b,c,d,e\}$, $B = \{w,x,y,z,a,b,c,\}$ and $C=\{2,3\}$
-    	\begin{firstexercise}
+    	\begin{exerciselist}
 		\item Calculate $A\uplus B$
 		\item Calculate $A\uplus \emptyset$
 		\item Calculate
 		$C\times (A\uplus B)$ and $(C\times A )\uplus (C\times B)$.
-	\end{firstexercise}
+	\end{exerciselist}
 \end{exercises}
 
 \section{Quotients}
@@ -2518,16 +2527,16 @@ Hence $f(x)=f(x')$.
 
 \begin{exercises}
 	On the integers $\ZZ$, define a relation $\equiv_7$ by $i \equiv_7 j$ if and only if there is some integer $k$ so that $i +7k = j$.
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Show that $\equiv_7$ is an equivalence relation.
 		\item Describe the set $[5]_{\equiv_7}$.
 		\item Show that the function $f(n) = n+3$ is $\equiv_7$-invariant.
 		\item Show that the function $g(n) = 2n$ is $\equiv_7$-invariant.
 		\item Determine whether the function $h(n) = 2^n$ is $\equiv_7$-invariant.
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
-\section{Relations and Function Graphs}
+\section{Function Graphs}
 
 Suppose $S$ is a set modelling the students at Chapman and $M$ is a set modelling the academic majors the university offers: $\symb{Mathematics}$, $\symb{Philosophy}$, $\symb{HeadScratching}$, and so on. Then elements of $S$ (students) can be related to elements of $M$ (majors) by `is majoring in' as in
 ``$\symb{Jethro}$ is majoring in $\symb{Phrenology}$.'' 
@@ -2546,7 +2555,7 @@ The same idea, generalized to higher dimensional relations, is at the heart of w
 
 Note that there are other equivalent ways to think about relations. 
 \begin{itemize}
-	\item $R\subseteq X\times Y$ determines a characteristic function $\fromto {\kappa_R}{X\times Y}\Two$ so that $R = \{(x,y)\in X\times Y\st \kappa_R(x,y)=\top\}$
+	\item $R\subseteq X\times Y$ determines a characteristic function $\fromto {\kappa_R}{X\times Y}\Two$ so that $R = \{(x,y)\in X\times Y\st \kappa_R(x,y)=\tt\}$
 	\item $R$ determines a function $\fromto {R[-]}{X}{\powerset(Y)}$ so that $R = \{(x,y)\in X\times Y\st y\in R[x]\}$.
 \end{itemize}
 The ability to move between these can be helpful.
@@ -2554,17 +2563,17 @@ So it is worth practicing.
 
 \begin{exercises}
 	Let $\fromto r{\NN\times\NN}\Two$ be the function defined by \[r(m,n) = \begin{cases}
-	\top & \text{if $m\geq n^2$}\\
-	\bot & \text{otherwise}.
+	\tt & \text{if $m\geq n^2$}\\
+	\ff & \text{otherwise}.
 	\end{cases}
 	\]
-	Consider the relation $R = r^{-}(\top)$.
-	\begin{firstexercise}
+	Consider the relation $R = r^{-}(\tt)$.
+	\begin{exerciselist}
 		\item Is it the case that $3\mathrel{R} 2$?
 		\item Is it the case that $9\mathrel{R} 3$?
 		\item What is $R[5]$?
 		\item What is $\curry[r]$?
-	\end{firstexercise}
+	\end{exerciselist}
 \end{exercises}
 
 Like functions, relations allow a kind of composition and every set has an identity relation.
@@ -2630,9 +2639,9 @@ A relation $R\subseteq {X\times Y}$ is
 		Suppose $R$ is a functional relation. Recall that $\sfromto {\{-\}}Y{\powerset(Y)}$ is the ``singleton'' function. Let \[S(Y) = \{A\in\powerset(Y)\st \exists y\in Y.A = \{y\}\}.\]
 		In other words, $S(Y)$ consists of the collection of singleton subsets of $Y$. 
 		Let $\kappa_{S(Y)}$ be the characteristic function of $S(Y)$.
-		So $S(Y)$ is an equalizer $S(Y) = \{A\in\powerset(Y)\st \kappa_{S(Y)}(A) = \top\}$. But in fact, 
+		So $S(Y)$ is an equalizer $S(Y) = \{A\in\powerset(Y)\st \kappa_{S(Y)}(A) = \tt\}$. But in fact, 
 		Now consider the function $R[-]$ from $X$ to $\powerset(Y)$ given by $R[x] = \{y\in Y\st x\mathrel{R}y\}$. Because $R$ is
-		functional, $\kappa_{S(Y)}(R[x]) = \top$ for each $x$ in 
+		functional, $\kappa_{S(Y)}(R[x]) = \tt$ for each $x$ in 
 		
 	\end{proof} 
 \end{lemma}
@@ -2673,41 +2682,63 @@ So functions from $\sfromto fXY$ correspond exactly to functional relations from
 
 
 \begin{exercises}
-	\begin{nextexercise}
+	\begin{exerciselist}
 		\item Define $T\subseteq \RR\times \RR$ by $x\mathrel{T} y$ if and only if $\tan x = y$. Is $T$ deterministic? Is it total?
 		\item Show that for any relations $R\subseteq X\times Y$, $\Delta_X;R = R = R;\Delta_Y$.
 		\item Show that for any relations $R\subseteq W\times X$, $S\subseteq X\times Y$ and $T\subseteq Y\times Z$, $R;(S;T) = (R;S);T$.
 		\item Show that for any functions $\sfromto fXY$ and $\sfromto gYZ$, 
 		$\Gamma_f;\Gamma_g = \Gamma_{g\circ f}$.
 		Show that for any set $X$, $\Gamma_{\id_X} = \Delta_X$. 
-	\end{nextexercise}
+	\end{exerciselist}
 \end{exercises}
 
-\section{The Axioms of Choice, Replacement and Beyond}
+\section{Splitting and the Axiom of Choice}
 
-There are other axioms of set theory that mathematicians sometimes use, but that do not fit easily into our way of thinking about \emph{constructions}. 
-One such axiom is called the Axiom of Choice. 
-Roughly is says that some how, one can make arbitrarily many choices all at once. 
-A famous example, due to Russel, is having an infinite collection of identical socks. 
-One needs the Axiom of Choice to say that the socks can be put into pairs. 
-The Axiom of Choice is quite useful in mathematics, sometimes to prove something that genuinely needs the axoim, other times to simplify a proof that could have been proved without it. 
-Because of the special role the Axiom of Choice plays in mathematics, we return to discuss the Axiom of Choice in detail after we have some other concepts in place.
+The us start the section with exercises.
 
-Another axiom says, roughly, that if a collection is the same size as a set, then it is a set. 
-This is the Axiom of Replacement (think of replacing the elements of a set with elements of the collection, thus forming a new set). 
-This is an important axiom for dealing with set theory, \emph{per se}, but it does not come up much in practice. 
-We can state a form of the axiom that is technical, but occasionally useful.
+\begin{exercises}
+Suppose functions $\fromto sYX$ and $\fromto rXY$ satisfy $r\circ s = \id_Y$.
+\begin{exerciselist}
+	\item Show that $r$ is an epimorphism.
+	\item Show that $s$ is a monomorphism.
+	\item Show that $s\circ r$ is \emph{idempotent}: $(s\circ r)\circ(s\circ r)=s\circ r$.
+\end{exerciselist}	
+\end{exercises}
+
+\begin{defn}
+	Two functions $\fromto sYX$ and $\fromto rXY$ satisfying $r\circ s = \id_Y$ are called a \emph{section-retract pair}. An idempotent function $fXX$ ($f\circ f = f$) is called a \emph{retraction}.
+\end{defn}
+
+The latest exercise shows that every section-retract pair gives rise to a retraction. Conversely, if $\fromto fXX$ is a retraction, we may define $Y=f^+(X)$  -- the forward image of $X$. Then $f$ restricted to $Y$ is a function $\fromto sYX$ and corestricted to $Y$ is a function $\fromto rXY$. Evidently, $s$ and $r$ form a section-retract pair for which $f=r\circ s$.
+So retractions and section-retract pairs are essentially the same things.
+
+In a section-retract pair, the section is a monomorphism. In fact, nearly all monomorphisms are sections.
+
+\begin{lemma}
+	Suppose $Y\neq\emptyset$. For any monomorphism $\fromto mYX$, there is a function $\fromto rXY$ so that $r\circ m = \id_Y$.
+	
+	\begin{proof}
+		Since $Y\neq \emptyset$, we may pick some $b_0\in Y$. Now define
+		a relation $R\subseteq X\times Y$ by $a\mathrel{R}b$ if and only if either $a=m(b)$ or it is the case that $\forall \in Y.a\neq m(y)$ and $b=b_0$. This is a total relation clearly. And it is deterministic because $m$ is one-to-one. Hence $R$ determines a function $r$ from $X$ to $Y$. Apparently, $r(m(b)) = b$ because $m(b)\mathrel{R}b$. 
+	\end{proof}
+\end{lemma}
+
+This tells us that every monomorphism from a non-empty domain is \emph{split}: it is the section of a section-retract pair.
+
+The dual of this would be that every epimorphism is also split. But it turns out that the dual is not provable without additional assumptions about $Y$. We won't go what additional assumptions would help in general, but a hint is given by the natural numbers. Suppose $\fromto e\NN X$ is an epimorphism. Then each subset $e^-(x)\subseteq \NN$ is not empty. Every non-empty subset of $\NN$ has a least element. So we may define a section corresponding to $e$ by setting $s(x) = \text{the least $n\in \NN$ so that $e(n)=x$}$. The point is that $\NN$ has enough structure (every non-empty subset has a least element) to allow us to \emph{define} a section.
+
+Without additional structure, it seems reasonable that a section might \emph{exist} for an epimorphism, even though we may not be able to \emph{construct} one explicitly. The Axiom of Choice addresses this situation. 
+Roughly is says that some how, one can make arbitrarily many choices all at once, without having an explicit construction of those choices.
+Though we will not need it very often in this course, the Axiom of Choice (AC) is quite useful in other areas of mathematics, sometimes to prove something that genuinely needs the axiom, other times to simplify a proof that could have been proved without it.
 
 \begin{principle}
-	Suppose $I$ is a set, and for each $i\in I$, $a_i$ is a mathematical entity. Then there is a set, denoted by $\{a_i\}_{i\in I}$,satisfying $x\in \{a_i\}_{i\in I}$ if and only if $x=a_i$ for some $i\in I$. The set $\{a_i\}_{i\in I}$ is sometimes called an \emph{indexed set},
-	or \emph{indexed family}. For indexed set $\{a_i\}_{i\in I}$, the rule $i\mapsto a_i$ determines a function from $I$ to $\{a_i\}_{i\in I}$.
+	\noindent\textbf{Axiom of Choice}
+	
+	For every epimorphism $\sfromto eXY$ there is a function $\sfromto cYX$ for which $e\circ c = \id_Y$
 \end{principle}
 
-For example, let $V_i = \NN$ and let $V_{k+1} = \powerset(V_k)$. Then the principle tells us that $\{V_i\}_{i\in \NN}$ is a set.
-Now define $V_\omega = \bigcup_{i\in \NN}V_i$. This is a set that can not be constructed without Replacement. 
-This princple can be made formal by introducing some additional logical machinery, but we will not make use of it in these lectures enough to warrant that attention.
-
-Other stronger and stronger axioms of sets are possible. 
-For these lectures, though, our goal is to have enough set theoretic machinery to do ``ordinary'' mathematics. 
-We can stop here (remembering the promise to come back to the Axiom of Choice later). 
+We will rarely use the Axiom of Choice in this course and will draw attention to it when we do. It is a mainstay, however, of most approaches to analysis and topology. There are many equivalent formulations of the axiom that are useful to those areas of mathematics.
+ 
+Other strong axioms of sets are possible. There are even axioms that inconsistent with AC in the sense that they implies that there actually are epimorphisms that can not be split.
+For these lectures, though, our goal is to have machinery to do ``ordinary'' mathematics. The Axiom of Choice falls into that category.
 The interested student should follow up with a course in Set Theory.

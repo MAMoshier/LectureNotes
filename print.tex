@@ -1,8 +1,9 @@
 \def\topic{SetsLectures}
 \def\format{print}
 
-\documentclass[10pt]{memoir}
-\chapterstyle{ell}
+\documentclass[10pt,twosided,openany]{memoir}
+\chapterstyle{lyhne}
+\renewcommand{\chaptername}{Lecture}
 \input{packages}
 
 \input{meta}
@@ -32,7 +33,7 @@
 			\vspace{1\drop}
 		}
 		\vfill
-		\begin{overview}\Overview\end{overview}\par
+%		\begin{overview}\Overview\end{overview}\par
 		\vfill
 	{\small Version: \Version\ (\today) Format: \format}
 	\endgroup
@@ -52,12 +53,18 @@
 \tableofcontents
 \clearpage
 
-\frontmatter
+%\frontmatter
 
-\input{introduction.tex}
+%\input{introduction.tex}
 
 \mainmatter
 \part{Natural Numbers and Induction}
+\begin{overview}
+	The natural numbers constitute the fundamental structure of discrete mathematics. Moreover, they are the subject of some of your earliest mathematical experiences, when you first learned to count. In this part, we look carefully at how the natural numbers capture our basic intuitions about counting, how we build arithemetic from counting, and how we prove arithmetic laws using the basic structure of counting.
+	
+	Lists also constitute a similar fundamental structure, whereby we can put things in a specific order. We investigate how lists are similar to natural numbers and develop some of the ways we will use lists later.
+\end{overview}
+\newpage
 
 \input{NaturalNumbers.tex}
 
@@ -68,6 +75,9 @@
 \input{SetsLectures.tex}
 
 \part{Applications}
+
+\input{Infinities.tex}
+\input{Countability.tex}
 
 %\input{Cardinality.tex}
 

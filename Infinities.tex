@@ -1,0 +1,115 @@
+\chapter{Infinities}
+
+Evidently $\NN$ is an infinite set. So are $\ZZ$ and $\RR$. Are these sets the same size? Or are there different magnitudes of infinite sets?
+
+For finite sets, it is easy to understand how to compare sizes. We can count the elements in each set and compare the result. But suppose we do not know how to count. We can still compare the two sets by trying to match the elements of the first set to elements of the second. Think of checking whether a pile of pennies is the same size as a pile of nickels. We could simply line up one penny next to one nickel until we run out of one or the other. If every penny lines up with a nickel and vice versa, we know the two collections have the same size without having to count anything.
+
+The same idea works as well for any sets, even infinite ones. That is, if two sets ``match'' they are the same size. we simply need to understand what ``match'' means.
+
+\begin{defn}
+	Sets $X$ and $Y$ are \emph{equipotent} if there is a pair of functions $\sfromto fXY$ and $\sfromto gYX$ s that $g\circ f=\id_X$ and $f\circ g=\id_Y$. When $X$ and $Y$ are equipotent, we write $X\sim Y$.
+\end{defn}
+
+\begin{example}
+	The sets $\NN$ and $\ZZ$ are equipotent. Define $\fromto f\NN\ZZ$ by
+	$f(2n) = n$ and $f(2n+1)=-n-1$. This is easily verified to be one-to-one and onto. So there is an inverse function $\fromto g\ZZ\NN$. Specifically,
+	\[g(a)=\begin{cases}
+	     2a & \text{if $0\leq a$}\\
+	     -2a-1& \text{otherwise}
+	\end{cases}
+	\]
+\end{example}
+
+The fact that $\NN$ and $\ZZ$ are the same size should be surprising. After all, intuitively there are more integers that non-negative integers (natural numbers). But the fact is we can set up a perfect match between the two sets. That matching is not the inclusion of $\NN\subseteq \ZZ$, but it is a matching nonetheless. Sets that are either finite or equipotent to $\NN$ are called \emph{countable}. We will look carefully at countable sets in LEcture \ref{lec:CountableSets}.
+
+For two sets to be equipotent, there must be a one-to-one, onto function between them. So if we can show that between two sets there can not possibly be such a function, then we know definitively that they are not equipotent. 
+The following is an important example.
+
+\begin{theorem}
+	For any set $X$, there is no onto function from $X$ to $\powerset(X)$.
+	
+	\begin{proof}
+		Consider a function $\fromto fX{\powerset(X)}$. We show that $f$ is not an onto function. That is, we must construct an element $D\in\powerset(X)$ so that $D\neq f(x)$ for all $x\in X$. This will show that $f$ ``missed'' the $D$ in the codomain. Any $D\in\powerset(X)$ with this property will do. Note that each $f(x)$ is a subset of $X$. So it makes sense to ask whether or not $x$ is an element of  $f(x)$. 
+		
+		Let $D = \{x\in X\st x\notin f(x)\}$. We claim that $D\neq f(x)$ for every $x\in X$. Consider an arbitrary $x\in X$. Suppose $x\in f(x)$. Then by definition $x\notin D$. So $D\neq f(x)$. On the other hand, suppose $x\notin f(x)$. Then by definition $x\in D$. So again $D=f(x)$. Thus for every $x\in X$, it is the case that $D\neq f(x)$.
+	\end{proof}
+\end{theorem}
+
+This theorem tells us that there is no ``largest'' set. Any set is strictly smaller than its own powerset.
+
+\begin{defn}
+	Write $X\lesssim Y$ if there is a monomorphism from $X$ to $Y$. 
+\end{defn}
+
+We already know that $X\lesssim \powerset(X)$ for any $X$ because the function $x\mapsto \{x\}$ is a monomorphism. Evidently, $X\subseteq Y$ implies $X\lesssim Y$ because inclusion functions are monomorphisms. So $\NN\lesssim\RR$. But suppose $X\lesssim Y$ and $Y\lesssim X$. That means there is a monomorphism from $X$ to $Y$ and, completely separately, a monomorphism from $Y$ to $X$.
+
+\begin{example}
+	The intervals $(0,1)$ and $[0,1]$ satisfy $(0,1)\lesssim[0,1]$ because $(0,1)\subseteq [0,1]$. But $[0,1]\lesssim (0,1)$ is also true because the function $\fromto f{[0,1]}{(0,1)}$ defined by $f(x) = (x+1)/4$ is also a monomorphism. So $(0,1)\lesssim[0,1]$ and $[0,1]\lesssim(0,1)$. The question is, are these two sets equipotent? That is, can we find an actual bijection between the two sets. 
+\end{example}
+
+\begin{lemma}
+	Suppose $\{A_i\}_{i\in I}$ is a partition of $X$ and $\{B_i\}_{i\in I}$ is a partition of $Y$. If for each $i\in I$, $A_i\sim B_i$, then $X\sim Y$.
+	\begin{proof}
+		For each $i\in I$, let $\fromto {f_i}{A_i}{B_i}$ be a bijection. Then define $\fromto hXY$ by $h(x) = f_i(x)$ when $x\in A_i$. Verifying that $h$ is a bijection is easy.
+	\end{proof}
+\end{lemma}
+
+\begin{theorem}\label{thm:cantor-bernstein}
+ For any two sets $X$ and $Y$, if $X\lesssim Y$ and $Y\lesssim X$, then $X\sim Y$. 
+ 
+ \begin{proof}
+ 	We define sequences $X_0$, $X_1$, \ldots and $Y_0$, $Y_1$, \ldots of subsets $X$ and $Y$ by recursion:
+ 	\begin{align*}
+ 		X_0 &= X\setminus g^+(Y)\\
+ 		Y_0 &= Y\setminus f^+(X)\\
+ 		X_{k^\nxt} &= g^+(Y_k)\\ 
+ 		Y_{k^\nxt} &= f^+(X_k).
+ 	\end{align*}
+ 	Then we also define 
+ 	\begin{align*}
+	 	X_e &= \bigcup_{k\in\NN}X_{2k}\\
+	 	Y_e &= \bigcup_{k\in\NN}Y_{2k}\\
+	 	X_o &= \bigcup_{k\in\NN}X_{2k+1}\\
+	 	Y_o &= \bigcup_{k\in\NN}Y_{2k+1}\\
+	 	X_* &= X\setminus\bigcup_{n\in\NN}X_n\\
+	 	Y_* &= Y\setminus \bigcup_{n\in\NN}Y_n.
+ 	\end{align*}
+ 	Thus $X_e$ consists of the elements in some even indexed $X_{2k}$, $X_o$ of the elements in some odd indexed $X_{2k+1}$, and $X_*$ of all the elements not falling in either of those cases. The sets $Y_e$, $Y_o$ and $Y_*$ are defined similarly. 
+ 	
+ 	By induction on $m$, we show that for all $n>m$, it is the case that $X_m\cap X_{n}=\emptyset$ and $Y_m\cap Y_{n}=\emptyset$.
+ 	\begin{itemize}
+ 		\item{}[Basis] By definition $X_0$ is disjoint from the range of $g$. For $n>0$, the set $X_{n}$ is contained in the range of $g$. So $X_0$ and $X_{n}$ are disjoint. 
+ 		The proof for $Y_0$ and $Y_{n}$ is identical.
+ 		\item{}[Inductive Hypothesis] Suppose that for some $m$, it is the case that $X_{m}\cap X_{n}=\emptyset$ and $Y_m \cap Y_{n}=\emptyset$ for all $n>m$.
+ 		\item{}[Inductive Step] We must show that $X_{m^\nxt}\cap X_{n}=\emptyset$ and likewise $Y_{m^\nxt}\cap Y_{n}=\emptyset$ for every $n>m^\nxt$. Since $n>m^\nxt$, it has a predecessor. That is, let $j^\nxt = n$. Then $m > j$. 
+ 		But $X_{m^\nxt} = g^+(Y_m)$ and $X_{n}=g^+(Y_j)$. And $g^+$ preserves intersections because $g$ is one-to-one.
+ 		By the inductive hypothesis, $Y_m\cap Y_{j}=\emptyset$. Hence $X_{m^\nxt}\cap X_n=\emptyset$. 		
+ 		The proof for the $Y$ sets is essentially the same. 
+ 	\end{itemize}
+ 	
+ 	Now it easily follows that $X_e\cap X_o=\emptyset$, and by definition $X_e\cap X_*$ and $X_o\cap X_*=\emptyset$.
+ 	And of course, $X_e\cup X_o\cup X_* = X$.
+ 	Now evidently $f^+(X_e)=Y_o$ and $g^+(Y_e)=X_o$. 
+ 	So $X_e\sim Y_o$ and $X_o\sim Y_e$. 
+ 	We claim that $f^+(X_*)=Y_*$. 
+ 	For $x\in X_*$, $f(x)\notin Y_0$. And if $f(x)\in Y_n$ for some $n>0$, then $x\in X_{n-1}$. But this contradicts $x\in X_*$. So indeed $f(x)\in Y_*$. For $y\in Y_*$, $y\notin Y_0$. So there is some $x\in X$ for which $f(x)=y$. But if $x\in X_n$ for some $n$, then $y\in Y_{n+1}$. Again, this is a contradiction. So $x\in X_*$.
+ 	
+ 	Summarizing, we have $X_e\sim Y_o$, $X_o\sim Y_e$ and $X_*\sim Y_*$. Hence $X\sim Y$.
+ 	\end{proof}
+\end{theorem}
+
+This theorem answers our original question. $[0,1]$ and $(0,1)$ are equipotent. 
+A much more surprising fact is that $\NN\times \NN\sim \NN$. A proof is quite simple. 
+The function $n\mapsto (n,n)$ is a monomorphism. So $\NN\lesssim\NN\times\NN$. 
+But also the function $(m,n)\mapsto 2^m3^n$ is a monomorphism from $\NN\times \NN$ to $\NN$. 
+So $\NN\times \NN\lesssim\NN$. 
+According to Theorem \ref{thm:cantor-bernstein}, the two sets are equipotent.
+
+\begin{exercises}
+	\begin{exerciselist}
+		\item Show that the set of even natural numbers is equipotent to $\NN$ by an explicit bijection. That is, do not use Theorem \ref{thm:cantor-bernstein}.
+		\item Is the set of primes numbers equipotent to $\NN$?
+		\item Show that $\powerset(\NN)$ and $\RR$ are equipotent by finding monomorphisms $\powerset(\NN)\to \RR$ and $\RR\to \powerset(\NN)$.
+		\item Show that $\NN$ and $\RR$ are not equipotent. Hint: Prove that every function $\fromto f\NN\RR$ fails to be onto.
+	\end{exerciselist}
+\end{exercises} 
