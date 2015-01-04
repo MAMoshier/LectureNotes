@@ -2,6 +2,38 @@
 
 We are often interested in sets that are not too big, i.e., that are no bigger than $\NN$.
 
+
+\begin{defn}
+	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
+\end{defn}
+
+\begin{lemma}
+	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
+	\begin{itemize}
+		\item $\mu(A)\in A$.
+		\item if $n\in A$, then $\mu(A)\leq n$.
+	\end{itemize}
+	
+	\begin{proof}
+		We define a relation $M\subseteq{\powerset_{\text{ne}}(\NN)\times \NN}$ by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. 
+		That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists.
+		Clearly, $M$ is deterministic, because $\NN$ is linearly ordered.
+		So no set can have two distinct smallest elements.
+		
+		Suppose $A$ has no least element. By induction, we show that $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
+		\begin{itemize}
+			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
+			\item{}[Inductive Step] We claim that $k\notin A$. 
+			For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. 
+			So $k$ would be the least element of $A$. 
+		\end{itemize} 
+		Hence for any non-empty $A\subseteq \NN$, there is a least element $n$. 
+		Thus there is an element $n$ for which $A\mathrel{M}n$. 
+		This shows that $M$ is total. 
+		So it determines the function $\mu$.
+	\end{proof}
+\end{lemma}
+
 \begin{defn}
 An \emph{initial segment of $\NN$} is a subset $S\subseteq \NN$ so that if $n\in S$ and $m\leq n$, then $m\in S$. Clearly, $\NN$ is an initial segment of $\NN$.
 For each $n\in \NN$, let $\overline n = \{k\in \NN\st k<n\}$. So each $\overline n$ is also an initial segment.
@@ -15,7 +47,7 @@ So a set is countable if and only if either (i) it is finite ($A\sim\overline n$
 Intuitively, a set is countable, if we can count its elements by putting them in a correspondence with the initial counting numbers: $a_0$, $a_1$, \ldots,  
 We already know, for example, that $\powerset(\NN)$ is \emph{not} countable.
 
-Other equivalent characterizations of countability are uaeful.
+Other equivalent characterizations of countability are useful.
 
 \begin{theorem}
 	For a set $A$, the following are equivalent.
@@ -44,66 +76,28 @@ Other equivalent characterizations of countability are uaeful.
 		Define $\fromto mA\NN$ by letting $m(a)$ be the least natural number in $e^-(a)$. 
 		Since the sets $e^-(a)$ form a partition of $A$, the function $m$ is a monomorphism.
 		
-		Suppose $\fromto mA\NN$ is a monomorphism. 
-		For each $n\in\NN$, define an initial segment $S_n$ and function $\fromto {f_n}{S_n}A$ as follows. $S_0=\emptyset$ and $f_0 = \Box_A$.
-		If $f_n^+(S_n) = A$, then $S_{n^\nxt}=S_n$ and $f_n = f_{n^\nxt}$. If $A\setminus f_n^+(S_n)\neq \emptyset$, let $a$ be element of $A\setminus f_n^(S_n)$ so that $m(a)$ is minimial. The define $S_{n^\nxt} = \overline{n^\nxt}$ and
-		\[f_{n^\nxt}(k) = \begin{cases}
-			f_n(k) &\text{if $k<n$}\\
-			a      & \text{otherwise}
-		\end{cases} 
-		\]
-		The induction on $n$, each $f_n$ is one-to-one from $S_n$ to $A$.
-		And if for some $n$, $S_n = S_{n^\nxt}$, then $f_n$ is a bijection between $S_n$ and $A$. 
-		On the other hand, if each $S_n\neq S_{n^\nxt}$ holds for all $n$, then we can define $\fromto f\NN A$ by $f(n) = f_{n^\nxt}(n)$. 
-		Again by induction, $f$ is one-to-one. 
-		Moreover, it is onto because for each $a\in A$, there are only finitely many $b\in A$ for which $m(b)<m(a)$. Hence $f_{n^\nxt}(n) = a$ for some $n$. 
+		Suppose $A\lesssim \NN$, so we may fix a monomorphism $\fromto mA\NN$. 
+		For each $a\in A$, the set $A_a = \{b\in A\st m(b)<m(a)\}$ is finite because $m$ is one-to-one and there are at most $m(a)$ elements $b\in A$ having $m(b)<m(a)$.
+		Define the function $\fromto f A\NN$ by letting $f(a)$ be the size of $A_a$. 
+		Then $f$ is one-to-one. 
+		For suppose $a\neq b$. 
+		Then $m(a)\neq m(b)$. 
+		Without loss of generality, suppose $m(a)<m(b)$.
+		Then $A_a\subseteq A_b$, but $a\in A_b$ and $b\notin A_b$.
+		So $A_a$ has strictly fewer elements than $A_b$.
+		Hence $f(a)<f(b)$. Also, the range of $f$ is an initial segment.
+		By induction on $n$, if $n<f(a)$, then there is some $b\in A$ so that $f(b)=n$.
+		\begin{itemize}
+			\item{}[Basis] If $0<f(a)$, then $A_a$ is not empty. 
+			So there is an element $b \in A_a$ for which $m(b)$ is minimal. 
+			That is, $A_b=\emptyset$.
+			\item{}[Inductive Hypothesis] Assume that for some $k\in\NN$ it is the case that if $k<f(a)$, then there is some $b\in A$ for which $f(b)=k$.
+			\item{}[Inductive Step] Suppose $k^\nxt < f(a)$. 
+			Then $k<f(a)$. 
+			So by the inductive hypothesis, there is an element $c\in A$ for which $f(c)=k$. But also $A_a\setminus A_c \neq \emptyset$. Let $b$ be the element of $A_a\setminus A_c$ so that $m(b)$ is minimal. Then $A_b = A_c\cup\{c\}$. So $f(b)=k^\nxt$.
+		\end{itemize}
 	\end{proof}
 \end{theorem}
-
-Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
-$A = \{a_0,\ldots a_n\}$, then we define a function $\fromto rAA$ by
-\[r(a_i) = \begin{cases}
-a_{i+1} & \text{if $i<n$}\\
-a_0     &\text{otherwise}
-\end{cases}\]
-So the recurrence $\One\stackrel{hat{a_0}}{\longrightarrow}A\stackrel{r}{\longleftarrow}A$ determines a function $\srec[a_0,r]$. 
-It is easy to see that this is surjective.
-
-\begin{defn}
-	For a set $X$, let $\powerset_{\text{ne}}(X)$ denote the set of non-empty subsets of $X$. That is, \[\powerset_{\text{ne}}(X) = \{A\in\powerset(X)\st \exists x\in X.x\in A\}\]
-\end{defn}
-
-\begin{lemma}
-	There is a function $\fromto \mu{\powerset_{\text{ne}}(\NN)}\NN$ so that for each $A\in \powerset_{\text{ne}}(\NN)$, 
-	\begin{itemize}
-		\item $\mu(A)\in A$.
-		\item if $n\in A$, then $\mu(A)\leq n$.
-	\end{itemize}
-	
-	\begin{proof}
-		We define a relation $\fromto M{\powerset_{\text{ne}}(\NN)\times \NN}
-		\Two$
-		by letting $A\mathrel{M} n$ hold if and only if $n\in A$ and for all $m\in A$, $n\leq m$. That is, $A\mathrel{M} n$ holds only for the least element of $A$, if such an element exists. Clearly, $M$ is deterministic, because no set can have two distinct smallest elements.
-		
-		By induction, we show that if $A\subseteq \NN$ has no least element, then $A$ must be empty, i.e., $k\notin A$ for all $k\in \NN$.
-		\begin{itemize}
-			\item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for each $j<k$, $j\notin A$. 
-			\item{}[Inductive Step] We claim that $k\notin A$. For otherwise, by the inductive hypothsis, all natural numbers less than $k$ do not belong to $A$. So $k$ would be the least element of $A$. 
-		\end{itemize} 
-		Hence for any non empty $A\subseteq \NN$, there is a least element $n$. Thus there is an element $n$ for which $A\mathrel{M}n$. This shows that $M$ is a functional relation. So it determines the function $\mu$.
-	\end{proof}
-\end{lemma}
-
-\begin{lemma}
-	A set $A$ is countable if and only if there is a monomorphism $\fromto mA\NN$. 
-	
-	\begin{proof}
-		If $\fromto mA\NN$ is one-to-one, then either $A=\emptyset$, or there is an onto function $\NN\to A$.
-		
-		Suppose $A=\emptyset$, then the unique function from $A$ to $\NN$ is always monomorphism. Suppose $\fromto f\NN A$ is a surjection. Then 
-		$f^-$ is a function from $A$ to $\powerset_{\text{ne}}(\NN)$. Define $m = \mu\circ f^-$. That is, $m(a)$ is the smallest natural number for which $f(n)=a$. This is obviously a one-to-one function because in fact, $f(m(a))=a$ for each $a$.
-	\end{proof}
-\end{lemma}
 
 
 
