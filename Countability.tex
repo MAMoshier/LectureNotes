@@ -37,11 +37,27 @@ Other equivalent characterizations of countability are uaeful.
 		\]
 		This clearly is an epimorphism. If $A\sim\NN$, then the bijection from $\NN$ to $A$ is an epimorphism.
 		
-		Suppose $A$ is empty. Then obviously, $A\lesssim \NN$. Suppose there is an epimorphism $\fromto e\NN{A}$. For each $a\in A$, then, $e^-(a)$ is not empty. Hence it has a least element. Define $\fromto mA\NN$ by letting $m(a)$ be the least natural number in $e^-(a)$. Since the sets $e^-(a)$ form a partition of $A$, the function $m$ is a monomorphism.
+		Suppose $A$ is empty. Then obviously, $A\lesssim \NN$. 
+		Suppose there is an epimorphism $\fromto e\NN{A}$. 
+		For each $a\in A$, then, $e^-(a)$ is not empty. 
+		Hence it has a least element. 
+		Define $\fromto mA\NN$ by letting $m(a)$ be the least natural number in $e^-(a)$. 
+		Since the sets $e^-(a)$ form a partition of $A$, the function $m$ is a monomorphism.
 		
-		Suppose $\fromto mA\NN$ is a monomorphism. If $A=\emptyset$, let $S=\emptyset$. Otherwise, let $a_0$ be the element of $A$ so that $m(a_0)$ is minimized.  
+		Suppose $\fromto mA\NN$ is a monomorphism. 
+		For each $n\in\NN$, define an initial segment $S_n$ and function $\fromto {f_n}{S_n}A$ as follows. $S_0=\emptyset$ and $f_0 = \Box_A$.
+		If $f_n^+(S_n) = A$, then $S_{n^\nxt}=S_n$ and $f_n = f_{n^\nxt}$. If $A\setminus f_n^+(S_n)\neq \emptyset$, let $a$ be element of $A\setminus f_n^(S_n)$ so that $m(a)$ is minimial. The define $S_{n^\nxt} = \overline{n^\nxt}$ and
+		\[f_{n^\nxt}(k) = \begin{cases}
+			f_n(k) &\text{if $k<n$}\\
+			a      & \text{otherwise}
+		\end{cases} 
+		\]
+		The induction on $n$, each $f_n$ is one-to-one from $S_n$ to $A$.
+		And if for some $n$, $S_n = S_{n^\nxt}$, then $f_n$ is a bijection between $S_n$ and $A$. 
+		On the other hand, if each $S_n\neq S_{n^\nxt}$ holds for all $n$, then we can define $\fromto f\NN A$ by $f(n) = f_{n^\nxt}(n)$. 
+		Again by induction, $f$ is one-to-one. 
+		Moreover, it is onto because for each $a\in A$, there are only finitely many $b\in A$ for which $m(b)<m(a)$. Hence $f_{n^\nxt}(n) = a$ for some $n$. 
 	\end{proof}
-	
 \end{theorem}
 
 Notice that any non-empty finite set $A$ is countable. For if we can list the elements,
