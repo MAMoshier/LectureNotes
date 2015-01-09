@@ -1,7 +1,6 @@
-\def\topic{SetsLectures}
-\def\format{print}
-
 \documentclass[10pt,twosided,openany]{memoir}
+\usepackage{lecnotes}
+%\usepackage{mymath}
 \chapterstyle{lyhne}
 \renewcommand{\chaptername}{Lecture}
 \input{packages}
@@ -43,21 +42,46 @@
 %\newcommand{\Date}{October 2014}
 %\newcommand{\Overview}{We will study sets and functions}
 
-%\setTopic{Sets and Functions}
+\setCourse{Math250}
+\setAuthor{M.~Andrew~Moshier}
+\setTopic{Discrete~Mathematics}
+\setDate{{\today}}
+\setVersion{0.0.0}
+\begin{document}
+	
+	\frontmatter
+	\mytitle
+	\clearpage
+	
+	\thispagestyle{empty}
+	\tableofcontents
+	
+	\mainmatter
 
-\begin{document}	
-\pagestyle{empty} 
-\mytitle
-\clearpage
-\pagestyle{simple}
-\tableofcontents
-\clearpage
+\frontmatter
 
-%\frontmatter
-
-%\input{introduction.tex}
+\input{content/introduction.tex}
 
 \mainmatter
+
+\input{content/logic.tex}
+\input{content/naturalNumbers.tex}
+\input{content/lists.tex}
+
+%\import{content/}{sets.tex}
+
+%\import{content/}{cardinality.tex}
+
+%\import{content/}{order.tex}
+
+%\import{modular_arithmetic.tex}
+
+%\import{contents/}{applications.tex}
+
+\appendix
+%\import{contents/}{appendicesPart.tex}
+\end{document}
+
 \part{Natural Numbers and Induction}
 \begin{overview}
 	The natural numbers constitute the fundamental structure of discrete mathematics. Moreover, they are the subject of some of your earliest mathematical experiences, when you first learned to count. In this part, we look carefully at how the natural numbers capture our basic intuitions about counting, how we build arithemetic from counting, and how we prove arithmetic laws using the basic structure of counting.
@@ -66,7 +90,7 @@
 \end{overview}
 \newpage
 
-\input{NaturalNumbers.tex}
+\import{./}{NaturalNumbers.tex}
 
 \input{Lists.tex}
 
