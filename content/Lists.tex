@@ -23,55 +23,7 @@ concatenation of lists.
 \end{itemize}
 \end{goals}
 
-\section{Lists}
-
-\ignore{
-For natural numbers $0$ and $n^\nxt$ are the only ways to construct
-natural numbers. Operations like addition and multiplication are
-defined in terms of $0$ and ${}^\nxt$, so they do not contribute directly
-to the \emph{construction} of natural numbers.
-
-We refer to $0$ and $\nxt$ as \emph{constructors}.  Axioms
-\ref{ax:NatZero} and \ref{ax:NatPred} spell out how these
-constructors behave.  Axiom \ref{ax:NatZero} captures the idea that
-each constructor is entirely different from the other: $0\neq n^\nxt$.
-Axiom \ref{ax:NatPred} captures the idea that ${}^\nxt$ constructs
-distinct natural numbers from distinct natural numbers: $m^\nxt =
-n^\nxt$ implies $m=n$.
-
-So the basic ingredients of natural numbers are the constructors $0$
-and ${}^\nxt$ with the understanding that (a) they each produce
-different results and (b) from different ingredients, ${}^\nxt$
-produces different results. In fact, point (b) also applies to $0$
-trivially, because $0$ does not use any ingredients.
-
-We can summarize everything we want to say about natural numbers
-concisely in the following way.
-
-\begin{definition}
-  The \emph{natural numbers} are defined \emph{inductively} by
-  \begin{align*}
-    n &\defeq 0 \mathrel{\mid} n^\nxt
-  \end{align*}
-\end{definition}
-
-In this notation, the vertical bar separates the different constructors for
-natural numbers.  The first constructor ($0$) does not depend on
-anything else. The second constructor depends on a natural number $n$
-and produces a new one $n^\nxt$. So this gives a very concise description of the signature of natural numbers.
-Implicitly, this notation is meant to
-indicate that the two alternatives are completely distinct. This is
-Axiom \ref{ax:NatZero}.  Also implicitly, ${}^\nxt$ is meant to produce
-distinct results from distinct $n$'s.  This is Axiom
-\ref{ax:NatPred}.  By saying that this defines natural numbers
-\emph{inductively}, we also implicitly include the Axiom of
-Induction. Namely, no natural numbers can be removed without violating
-the structure.
-
-Other kinds of mathematical objects can be defined by inductively by
-describing their construction. Indeed, many important types of data in computing
-are defined inductively. 
-}
+\section{List Basics}
 
 In this section, we concentrate on the fundamental concept of \emph{lists}. The idea is really meant to
 be the familiar one, so a list of ``to do'' items is a list. The alphabetized names on a class roster is a list. 
@@ -120,7 +72,7 @@ the form $x:L$ where $x$ is the initial item and $L$
 is the rest of the list. This suggests a signature for lists, not so different from
 the signature for natural numbers.
 
-\begin{postulate}\label{sig:list}[Basic Structure of Lists]
+\begin{postulate}[Basic Structure of Lists]\label{post:ListSig}
 	Lists have the following basic structure.
 	  \begin{itemize}
 	  \item There is a special list, which we call \emph{the empty list} and denote by $[\,]$.
@@ -147,8 +99,8 @@ For example, if I tell you that $[2,3,4,5] = x:L$, then you know immediately tha
 Finally, lists need an induction axiom that ensures that all lists are built up from $[\,]$.
 
 
-\begin{postulate}\label{ax:ListInd}
-	[The Axiom of List Induction] No lists can be removed without violating Postulate \ref{sig:list}.
+\begin{postulate}[The Axiom of List Induction]\label{post:ListInd}
+	 No lists can be removed without violating Postulate \ref{sig:list}.
 \end{postulate}
 
 This axiom justifies conducting proofs about all lists by a scheme almost identical to simple arithmetic induction.
@@ -374,7 +326,8 @@ from the beginning of the list.
 
 \ipadbreak
 
-\begin{exercises}
+\begin{exer}
+	\begin{exercise}
  % \item Suppose $L$ is a list and $i<\len(L)$. Then it makes sense to 
   %      think about the list in which $L_i$ is removed. For example,
    %     for $L = [a, b, c]$, removing $L_1$ results in the list $[a,c]$.
@@ -396,7 +349,8 @@ from the beginning of the list.
 %  \item $L\setminus 4$.
 %  \item $((M\otimes L)\setminus 3)_5$
   \end{enumerate}
-\end{exercises}
+\end{exercise}
+\end{exer}
 
 \ipadbreak
 
@@ -419,14 +373,16 @@ in the obvious way, so that the sum of the list $[2,3,4]$ is $2+3+4 = 9$. We mak
 
 We will introduce variations and extensions of this notation this later. For now, we look only at lists. 
 
-\begin{exercises}
+\begin{exer}
+	\begin{exercise} 
 \item Prove using list induction that for any lists of natural numbers,
 \[\sum L + \sum M = \sum (L\otimes M)\]
 \item Define the product of lists of natural numbers, following the pattern of our definition for $\sum L$. The standard notation
 for a product is $\prod L$. The result should be that $\prod[2,3,4]$ equals $24$. Pay close attention the base case $\prod[\,]$.
 \item Using your definition of products, prove by list induction that for any lists of natural numbers,
 \[\prod L\cdot \prod M = \prod(L\otimes M)\]. 
-\end{exercises}
+\end{exercise}
+\end{exer}
 
 We can also consider lists of integers, lists of real numbers, and so on. We can even think about lists of lists.
 For example, $[[2,3,4],[4,3,2],[5]]$ is a list consisting of two items: $[2,3,4]$, $[4,3,2]$ and $[5]$. Written this using
@@ -459,12 +415,14 @@ across lists of lists of natural numbers. Here is a suitable definition.
 	\end{align*}
 \end{defn}
 
-\begin{exercises}
+\begin{exer}
+	\begin{exercise} 
 	\item Calculate $\sum(\otimes[[3,4,5],[6,3]])$.
 	\item Calculate $\map_{\sum}([[3,4,5],[6,3]])$.
 	\item Calculate $\sum(\map_{\sum}([[3,4,5],[6,3]]))$.
 	\item Prove that $\sum(\otimes\mathcal L) = \sum(\map_{\sum}(\mathcal L))$ for any list of lists of natural numbers $\mathcal L$.
-\end{exercises}
+	\end{exercise}
+\end{exer}
 
 
 \section{Other Inductively Defined Collections}
@@ -640,7 +598,8 @@ So $\sz(T) < 2^{\hght(T)}$
 
 \ipadbreak
 
-\begin{exercises}
+\begin{exer}
+	\begin{exercise}
   \item Calculate the height and size of the following simple binary trees.
     \begin{enumerate}
     \item $(\bullet\curlywedge\bullet)$
@@ -698,7 +657,8 @@ child {node  {$\bullet$}};
 
     \end{enumerate}
   \end{multicols}
-\end{exercises}
+  \end{exercise}
+\end{exer}
 
 We will study binary trees in more depth later in the course.
 

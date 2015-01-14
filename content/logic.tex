@@ -1,0 +1,71 @@
+\chapter{Proofs}
+
+\begin{goals}
+	\begin{goal}{Lecture}
+		\item Introduce basic techniques of mathematical proofs.
+		\item Give representative examples of the techniques.
+		\item Discuss ``style'' and prosody of proofs.
+	\end{goal}
+	
+	\begin{goal}{Study}
+		\item Be able to recognize general types of proof.
+		\item Begin to be able to construct simple proofs.
+		\item Learn to avoid common mistakes in your proofs.
+	\end{goal}
+\end{goals}
+
+\section{Statements}
+
+The object of a proof is a \newterm{statement}, such as ``for all $m$ and for all $n$, it is the case that $m+n=n+m$''.
+Statements are, roughly speaking,  declarative sentences. 
+Of course, a statement may involve mathematical notation, but it will nevertheless make a propositional claim that such and such is true.
+
+\begin{shout}
+	You should always insist that a statement can be read aloud as a grammatical sentence.
+\end{shout}
+
+\begin{example}
+	Here are some examples of statements.
+	\begin{itemize}
+		\item $9$ is an integer.
+		\item $4$ is a perfect square.
+		\item $7$ is even.
+		\item Addition is commutative.
+		\item Every natural number has a successor.
+		\item For every integer $n$, $3+n=7$.
+	\end{itemize}
+	Some of these are true, some are not. But the point is that they are the sorts of sentences that can be judged to be one or the other.
+	
+	Here are some non-statements.
+	\begin{itemize}
+		\item $5+8$ -- not making an assertion.
+		\item $3+x=7$ -- not a statement because we do not know what $x$ stands for.
+	\end{itemize} 
+\end{example}
+
+Statments can be combined by \emph{logical connectives} to obtain compound statements, the meanings of which are mostly obvious. If $P$ and $Q$ are statments, then so are each of the following:
+\begin{itemize}
+	\item $P$ and $Q$.
+	\item $P$ or $Q$.  
+	\item $P$ implies $Q$.
+	\item $P$ if and only if $Q$.
+	\item It is not the case that $P$.
+	\item $P$, but not $Q$.  
+\end{itemize}
+We can also write ``If $P$ then $Q$'' or ``$Q$, whenever $P$'' or similar formulations in place of ``$P$ implies $Q$''. The phrase ``if and only if'' is often abbreviated ``iff'' (but it is pronounced as ``if and only if'').
+
+Two main things we need to understand about these compound statements are (i) how to prove a compound statement and (ii) how to use a compound statement in proving some other statement. 
+Here is an example of use. 
+Suppose we know that ``$P$ implies $Q$'' (perhaps we know a proof of it), and suppose we also know $P$ (perhaps because we are concentrating on situations where $P$ is true).
+Then we are justified claiming that $Q$ is also true. 
+
+Some declarative sentences are not statements. 
+``$x<y$'' can not be interpreted as being true or false because the values of $x$ and $y$ are not fixed.
+On the other hand, ``When $x=7$ and $y=5$, $x<y$'' does have a definite meaning.
+
+A \newterm{formula} is a sentence with variables appearing in it. 
+
+ So ``implies'' plays an important role in mathematics. A statement ``If $P$ then $Q$'' would tell us that in any situation where $P$ is true, $Q$ is also true. It does not tell us anything about $Q$ in situations where $P$ is not true.
+For example, ``if there is smoke, then there is fire'' makes a claim about the sitations where there is smoke. Namely, there is also fire. It does not tell us anything about situations where there is no smoke.
+
+

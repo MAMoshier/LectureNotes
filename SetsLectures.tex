@@ -2069,6 +2069,15 @@ Note that $f^+$ does not necessarily preserve intersections.
 Many other constructions can be built up using the principles we have discussed. 
 In this lecture, we consider some of the most useful and most general.
 
+\section{Induction}
+
+We now can justify how inductive proofs on natural numbers work from a set theoretic perspective.
+Consider some $P\subseteq \NN$.
+Define $P' = \{n\in\NN\st n^\nxt\in P\}$.
+Now suppose $0\in P$ and $k\in P$ implies $k^\nxt\in P$.
+Then the simple recurrrence $\One\stackrel{\hat 0}{\longrightarrow}P\stackrel{\succ}{\longleftarrow}P$ determines a function $\fromto{\srec[0,\succ]}\NN P$. This is evidently one-to-one: 
+
+
 \section{Unions}
 
 Although not strictly needed for most purposes, mathematicians generally agree that sets, no matter how they are related, can be merged into a single set with elements taken from the originals. 

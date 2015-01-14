@@ -1,11 +1,9 @@
-\makeatletter
-\renewcommand*{\beforepartskip}{\null\vskip4cm}
-\renewcommand*{\afterpartskip}{\par\vfil%
-\@afterindentfalse\@afterheading}
-\makeatother
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lecsymbols}[2015/01/11 math symbols for lecture notes package]
+
 
 % math bold letters
-\newcommand{\AA}{{\mathbb A}}
+\renewcommand{\AA}{{\mathbb A}}
 \newcommand{\BB}{{\mathbb B}}
 \newcommand{\CC}{{\mathbb C}}
 \newcommand{\DD}{{\mathbb D}}
@@ -23,7 +21,7 @@
 \newcommand{\PP}{{\mathbb P}}
 \newcommand{\QQ}{{\mathbb Q}}
 \newcommand{\RR}{{\mathbb R}}
-\newcommand{\SS}{{\mathbb S}}
+\renewcommand{\SS}{{\mathbb S}}
 \newcommand{\TT}{{\mathbb T}}
 \newcommand{\UU}{{\mathbb U}}
 \newcommand{\VV}{{\mathbb V}}
@@ -47,16 +45,12 @@
 \def\tt{\textsc{t}}
 \def\ff{\textsc{f}}
 
-\newcommand{\printbreak}{\iftoggle{printformatting}{\newpage}{}}
-\newcommand{\ipadbreak}{\iftoggle{ipadformatting}{\newpage}{}}
-\newcommand{\kindlebreak}{\iftoggle{kindleformatting}{\newpage}{}}
-
 \newcommand{\newterm}[1]{{\bfseries{#1}}}
 
-\newlength{\proofsep}
-\setlength{\proofsep}{1.5\baselineskip}
-\newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}
-
+%\newlength{\proofsep}
+%\setlength{\proofsep}{1.5\baselineskip}
+%\newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}
+%
 \newcommand{\id}{\textsf{id}}
 
 \newcommand{\st}{\,\mid\,}
@@ -69,21 +63,21 @@
 
 \makeatletter
 \newcommand*{\doublerightarrow}[2]{\mathrel{
-  \settowidth{\@tempdima}{$\scriptstyle#1$}
-  \settowidth{\@tempdimb}{$\scriptstyle#2$}
-  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
-  \mathop{\vcenter{
-    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
-    \rightarrowfill\cr\noalign{\kern-.2ex}
-    \rightarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+		\settowidth{\@tempdima}{$\scriptstyle#1$}
+		\settowidth{\@tempdimb}{$\scriptstyle#2$}
+		\ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+		\mathop{\vcenter{
+				\offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+					\rightarrowfill\cr\noalign{\kern-.2ex}
+					\rightarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
 \newcommand*{\doubleleftarrow}[2]{\mathrel{
-  \settowidth{\@tempdima}{$\scriptstyle#1$}
-  \settowidth{\@tempdimb}{$\scriptstyle#2$}
-  \ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
-  \mathop{\vcenter{
-    \offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
-    \leftarrowfill\cr\noalign{\kern.5ex}
-    \leftarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
+		\settowidth{\@tempdima}{$\scriptstyle#1$}
+		\settowidth{\@tempdimb}{$\scriptstyle#2$}
+		\ifdim\@tempdimb>\@tempdima \@tempdima=\@tempdimb\fi
+		\mathop{\vcenter{
+				\offinterlineskip\ialign{\hbox to\dimexpr\@tempdima+1em{##}\cr
+					\leftarrowfill\cr\noalign{\kern.5ex}
+					\leftarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
 \makeatother
 
 \newcommand{\symb}[1]{{\mathord{\textsf{#1}}}}
@@ -104,6 +98,9 @@
 \newcommand{\suit}{\mathord{\textsf{suit}}}
 \newcommand{\size}[1]{{\lVert #1\rVert}}
 \newcommand{\ddiv}{\mathop{/\mkern-5mu/}}
+\newcommand{\drem}{\bmod}
+
+\DeclareMathOperator{\lcm}{lcm}
 
 
 \newcommand{\pluseq}{\mathrel{\mathord+\mathord=}}
@@ -114,16 +111,5 @@
 \newcommand{\defeq}{\coloneqq}
 
 \newcommand*{\treewedge}{%
-\mathrel{\vcenter{\offinterlineskip
-\vskip-2ex\hbox{$\wedge$}}}}
-
-\newcommand{\ignore}[1]{}
-
-\newlist{exerciseslist}{enumerate}{1}
-\setlist[exerciseslist]{resume,label=\arabic*.}
-\newenvironment{exerciselist}{\begin{exerciseslist}}{\end{exerciseslist}}
-%\newenvironment{nextexercise}{\begin{enumerate}[resume=exercises]}{\end{enumerate}}
-
-\newenvironment{goal}[1]{\noindent\textbf{#1}\begin{itemize}}{\end{itemize}}
-
-\makeatletter\@addtoreset{exerciseslisti}{chapter}\makeatother
+	\mathrel{\vcenter{\offinterlineskip
+			\vskip-2ex\hbox{$\wedge$}}}}

@@ -1,0 +1,128 @@
+\colorlet{chapcolor}{OliveGreen}
+\colorlet{thmcolor}{BrickRed}
+
+\newcommand{\newthm}[2]{
+	\newenvironment{#1}[1][]{%
+		\refstepcounter{factCnt}%
+		\ifstrempty{##1}%
+		{
+			\mdfsetup{%
+				singleextra={%
+					\node[fill=thmcolor, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\ \strut\sffamily\bfseries{#2~\thefactCnt\ \ }};
+				},
+				firstextra={%
+					\node[fill=thmcolor, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\ \strut\sffamily\bfseries{#2~\thefactCnt\ \ }};
+				}
+			}
+		}%
+		{
+			\mdfsetup{%
+				singleextra={%
+					\node[fill=thmcolor, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\strut\sffamily\bfseries{\ #2~\thefactCnt:~##1\ \ }};
+				},
+				firstextra={%
+					\node[fill=thmcolor,text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\ \strut\sffamily\bfseries{\ #2~\thefactCnt:~##1\ \ }};
+				}
+			}
+		}
+		\mdfsetup{%
+			outerlinewidth=0.1em,%
+			linecolor=thmcolor, backgroundcolor=thmcolor!20,
+			leftmargin=1em,rightmargin=1em,%
+			middlelinewidth=0.2em,roundcorner=5pt,%linecolor=\myColor,%
+			splittopskip=2\baselineskip,
+			splitbottomskip=1\baselineskip,
+			innertopmargin=1\baselineskip,
+			innerbottommargin=1\baselineskip,
+			skipabove={\dimexpr0.5\baselineskip+\topskip\relax},
+			skipbelow={1em},
+			needspace=3\baselineskip,
+			middleextra={%
+				\node[fill=thmcolor, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O)
+				{\ \strut\sffamily\bfseries{\ #2~\thefactCnt~(cont.)}\ \ };
+			},
+			secondextra={%
+				\node[fill=thmcolor, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O)
+				{\ \strut\sffamily\bfseries{\ #2~\thefactCnt~(cont.)}\ \ };
+			}
+		}
+		
+		\begin{mdframed}[]\medskip\relax%
+		}{\end{mdframed}}
+}
+
+\newcommand{\newbubble}[3]{
+	\newenvironment{#1}[1][]{%
+		\ifstrempty{##1}%
+		{
+			\mdfsetup{%
+				singleextra={%
+					\node[fill=#3, text=white, signal, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\ \strut\sffamily\bfseries{#2\ \ }};
+				},
+				firstextra={%
+					\node[fill=#3, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {\ \strut\sffamily\bfseries{#2\ \ }};
+				}
+			}
+		}%
+		{
+			\mdfsetup{%
+				singleextra={%
+					\node[fill=#3, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,
+					xshift=1cm] at (P-|O) {\strut\sffamily\bfseries{\ #2:~##1\ \ }};
+				},
+				firstextra={%
+					\node[fill=#3, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) {strut\sffamily\bfseries{\ #2:~##1\ \ }};
+				}
+			}
+		}
+		\mdfsetup{%
+			outerlinewidth=0.1em,%
+			linecolor=#3, backgroundcolor=#3!15,
+			leftmargin=1em,rightmargin=1em,%
+			middlelinewidth=0.2em,roundcorner=5pt,%linecolor=\myColor,%
+			splittopskip=2\baselineskip,
+			splitbottomskip=1\baselineskip,
+			innertopmargin=1\baselineskip,
+			innerbottommargin=1\baselineskip,
+			skipabove={\dimexpr0.5\baselineskip+\topskip\relax},
+			skipbelow={1em},
+			needspace=3\baselineskip,
+			middleextra={%
+				\node[fill=#3, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) %
+				{\ \strut\sffamily\bfseries{\ #2~(cont.)}\ \ };
+			},
+			secondextra={%
+				\node[fill=#3, text=white, rectangle, rounded corners, right, minimum height=1.25\baselineskip,xshift=1cm] at (P-|O) %
+				{\ \strut\sffamily\bfseries{\ #2~(cont.)}\ \ };
+			}
+		}
+		
+		\begin{mdframed}[]\medskip\relax%
+		}{\end{mdframed}}
+}
+
+
+
+\newthm{thm}{Theorem}
+\newthm{lem}{Lemma}
+\newthm{cor}{Corollary}
+\newthm{prop}{Proposition}
+\newthm{defn}{Definition}
+\newthm{postulate}{Postulate}
+\newthm{example}{Example}
+\newthm{laws}{Laws}
+\newthm{code}{Algorithm}
+
+\newbubble{goals}{Goals}{chapcolor}
+\newenvironment{goal}[1]{%
+\noindent\textbf{#1}\begin{itemize}}{\end{itemize}}
+
+\newbubble{exer}{Exercises~for~\chaptername~\thechapter}{chapcolor}
+\newlist{exerlst}{enumerate}{1}
+\setlist[exerlst]{resume,label=\arabic*.}
+\newenvironment{exercise}{\begin{exerlst}}{\end{exerlst}}
+\makeatletter\@addtoreset{exerlsti}{chapter}\makeatother
+
+\newlength{\proofsep}
+\setlength{\proofsep}{1.5\baselineskip}
+\newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}

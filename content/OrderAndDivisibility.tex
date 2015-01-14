@@ -1,0 +1,834 @@
+\chapter{Ordering the Natural Numbers by Addition}
+
+We have used the ordering of numbers informally without much comment
+because $\leq$ has its obvious meaning. In this lecture 
+we exploit the fact that $\leq$ on the natural numbers is defined by addition, setting the stage for an
+analogous concept defined by multiplication. The multiplicative
+analogue of ``$m$ is less than or equal $n$'' is ``$m$ divides $n$''.
+
+\begin{goals}
+\begin{goal}{Lecture}
+\item Introduce a formal definition of $\leq$ on natural numbers, and discuss simple facts about order
+%\item Introduce formal definitions $\min$ and $\max$ as dual concepts
+\item Review basic laws involving $\min$ and $\max$.
+\item Introduce Strong Induction and the Principle of Well-foundedness as alternatives to Simple Induction.
+\end{goal}
+
+\begin{goal}{Study}
+\item Prove basic facts about $\leq$, $\min$ and $\max$.
+\item Commit to memory the concepts of reflexivity, transitivity, anti-symmetry and linearity.
+\item Practice using Strong Induction.
+\end{goal}
+\end{goals}
+
+
+\section{Less or Equal}
+
+For the natural numbers, $\leq$ has a particularly simple definition.
+
+\begin{defn}
+  For natural numbers $n$ and $m$, say that \emph{$m$ is less than or equal to $n$} (written $m\leq n$)
+  if and only if there is a
+  natural number $d$ so that $m+d = n$.  [I've used the letter $d$
+  because $d$ is the \emph{difference} of $m$ from $n$.]
+  
+  Also, say that \newterm{$m$ is (strictly) less than $n$} if and only if there is a natural number $d$ so that $m + d^\nxt = n$.
+\end{defn}
+
+All of the usual properties of $\leq$ for natural numbers follow
+easily from this definition using only the laws of
+addition. The important properties have names.
+
+\begin{laws} 
+\begin{description}
+	\item[Reflexivity] $\leq$ is \emph{reflexive}: $m\leq
+m$ is true for any $m$. This is simply because because $m + 0 =
+m$. 
+    \item[Transitivity] $\leq$ is \emph{transitive}: if $m\leq
+n$ and $n\leq p$, then $m\leq p$. Transitivity follows from the law of
+associativity for addition (you will prove this as an exercise).
+    \item[Anti-symmetry] $\leq$ is \emph{anti-symmetric}: if $m\leq n$ and $n\leq m$, then
+	$m=n$. This follows from cancellativity and positivity (another exercise).
+	\item[Linearity] $\leq$ is \emph{linear}: for any $m$ and $n$, either $m\leq n$ or $n\leq m$. This requires a separate proof using induction, dealt with below.
+\end{description}
+\end{laws} 
+
+Clearly, $\leq$ is also meaningful for integers, rational numbers and real numbers, and is still reflexive, transitive and anti-symmetric and linear for them.
+For our purposes, though, the interesting features are already present in the natural numbers.
+For one thing, if $m+d = n$ and $m+e = n$ then $d=e$ (why?). This tells us that $m\leq n$ can only be true for one reason.
+
+\ipadbreak
+
+\begin{exer}
+	In the following you will use the Laws of Arithmetic from Lecture \ref{lec:ArithmeticLaws} to prove the basic facts about $\leq$.
+	\begin{exercise} 
+    \item Show that $\leq$ is transitive by the following steps.
+    \begin{enumerate}
+    \item Assume that $m\leq n$. By definition, there is some $d_0$ so
+      that $m+d_0 = n$
+    \item Assume that $n\leq p$. Write out what this means. ``By
+      definition, there is some \ldots''
+    \item Now find an $e$ so that $m+e = p$.
+    \item Write out the conclusion.
+    \end{enumerate}
+
+    \item Show that $\leq$ is anti-symmetric by the following steps.
+    \begin{enumerate}
+    \item Assume $m\leq n$. Write out what this means: ``There is some
+      $d_0$ so that \ldots.''
+    \item Assume $n\leq m$. Write out what this means. ``There is some
+      $d_1$ so that \ldots.''
+    \item Show that $d_0 + d_1 = 0$. [Think about using
+      cancellativity.]
+    \item Conclude that $d_0 = 0$. [Which law justifies this?]
+    \item Conclude that $m = n$.
+    \end{enumerate}
+	\end{exercise}
+\end{exer}
+
+As we mentioned, $\leq$ is \emph{linear}, meaning
+that for any $m$ and $n$, either $m\leq n$ or $n\leq m$. A proof of
+this is not terribly difficult, but is more subtle than transitivity and anti-symmetry.
+
+\begin{lem}
+  \emph{$\leq$ is linear.}
+
+  \begin{proof}
+  	Note that we defined linearity in terms of $\leq$, but it is equivalent to saying that for any $m$ and $n$, either $m<n$ )or $n\leq m$. After all, if $m<n$ then $m\leq n$. And if $m\leq n$, then either $m=n$ and hence $n\leq n$, or $m<n$.  
+    A proof is by induction on $m$.
+    \begin{itemize}
+    \item{}[Basis] $0 + n = n$ is always true. So $0\leq n$.
+    \item{}[Inductive Hypothesis] Suppose that for some $k$, it
+      is the case that either
+      $k\leq n$ or $n\leq k$ (but we do not know which comparison is true).
+    \item{}[Inductive Step] We must show that either $k^\nxt \leq n$ or
+      $n\leq k^\nxt$.  According to the Inductive Hypothesis, there
+      are two cases to consider. Either $k\leq n$ or $n\leq k$. We take them in reverse.
+      \begin{enumerate}
+      	\item Suppose $n\leq k$. 
+	      	Then obviously $n\leq k^\nxt$ (meaning, it is so obvious that we do not bother to fill in the details).
+		    \item Suppose $k< n$. So for some $d$, $k+d^\nxt =n$. Hence $k^\nxt+d=n$. if $d=0$, then $k^nxt = n$, so $n\leq k^\nxt$. Otherwise, $k^\nxt < n$.
+      \end{enumerate}
+    \end{itemize}
+  \end{proof}
+\end{lem}
+
+\begin{exer}
+	The following proofs should require you only to refer to the definition of $\leq$ and to the basic Laws of Arithmetic.
+	\begin{exercise}
+		\item Prove that addition is \newterm{monotonic} with respect to $\leq$. This means that $m\leq n$ implies $m+p\leq n+p$ for all natural numbers $m$, $n$ and $p$.
+		\item Prove that addition is \newterm{order reflectiing} with respect to $\leq$. This means that if $m+p\leq n+p$, then $m\leq n$.
+	\end{exercise}
+\end{exer}
+
+\section{Other Forms of Induction}
+
+Using $\leq$, we can formulate a more flexible method of proof by induction.
+
+Suppose we wish to prove that all natural numbers are \emph{outgrabe}.
+Again this is nonsense, but let's try anyway. We prove the basis with no trouble; formulate the Inductive Hypothesis; get stuck on the Inductive Step.
+Here is a simple idea that can help. 
+Define a \emph{hypergrabe} number to be a natural number $k$ so that for every $j<k$, $j$ is outgrabe.
+In other words, $k$ does not necessarily have the property we really care about, but all the numbers below it do.
+Now suppose every natural number is outgrabe.
+Then clearly, every natural number is also hypergrabe.
+Likewise, if every natural number is hypergrabe, then every natural number is outgrabe.
+So proving either property by induction will suffice to prove the other.
+A proof by simple induction that all natural numbers are hypergrabe amounts to this:
+\begin{itemize}
+	\item{}[Basis] Show that every natural number $j<0$ is outgrabe. But since there are no such numbers, this is trivially true no matter what outgrabe happens to mean.
+	\item{}[Inductive Hypothesis] Suppose that $k$ is hypergrabe for some $k$.
+	That is, suppose that for all $j<k$, $j$ is outgrabe.
+	\item{}[Inductive Step] Prove that $k^\nxt$ is hypergrabe.
+	By the Inductive Hypothesis, all $j<k$ are outgrabe.
+	So to prove that every $j<k^\nxt$ is outgrabe just amounts to
+  proving it for $k$.
+  So the Inductive Step (for proving that $k^\nxt$ is hypergrabe) amounts to proving that $k$ is outgrabe. 
+\end{itemize}
+
+This can now be reformulated without mentioning \emph{hypergrabe} at
+all.  
+The Basis is not needed, because it is true automatically.  
+The Inductive Hypothesis can be reformulated as supposing that for all $j<k$, $j$ is outgrabe. 
+The proof of the Inductive Step amounts to proving that $k$ is outgrabe.
+
+This leads to a formulation of induction that is typically called
+\emph{Strong Induction}, even though it is not really any stronger (i.e., it is not able to prove more facts).
+A proof of property $P$ by Strong Induction has the outline:
+\begin{itemize}
+\item{}[Strong Inductive Hypothesis] Suppose that $P(j)$ is true for all $j<k$.
+\item{}[Strong Inductive Step] Prove that $P(k)$ is true.
+\end{itemize}
+
+Exercises involving strong inductive proofs are not easy to come by right now.
+We will see a very important example when we prove that every positive natural number can be factored into primes.
+
+\begin{example}
+Here is an example that uses strong induction to prove something. Define Fibonnacci number $f_n$ by the equations
+\begin{align*}
+  f_0 &= 0\\
+  f_1 &= 1\\
+  f_{n+2} &= f_{n+1} + f_n & \text{for any $n$}
+\end{align*}
+We claim that for all $n$, $2f_n \leq f_{n+2}$.
+
+\begin{itemize}
+\item{}[Strong Inductive Hypothesis] Suppose that for all $j<k$, $2f_j \leq f_{j+2}$.
+\item{}[Strong Inductive Step]. We need to show that the claim also holds 
+for $k$.
+In case $k=0$, this is obviously true because $2f_0 = 0$. In case
+$k=1$, it is also obviously true because $2f_1 = 2 = f_3$. 
+In all other cases $k=i+2$ for some $i$. So 
+\begin{align*}
+2f_k  &= 2f_i + 2f_{i+1}&&\text{[By definition of $f$ and distributivity]}\\ 
+      &\leq f_{i+2} + f_{i+3}&&\text{[By Inductive Hypothesis]}\\
+      &= f_k + f_{k+1}&&\text{[$i+2=k$]}\\
+      &= f_{k+2}&&\text{[By definition of $f$]}
+    \end{align*}
+\end{itemize}
+\end{example}
+
+We close this section with another method for using induction that is sometimes useful. 
+
+\begin{lemma}\label{lem:N-well-ordered}
+Suppose $P(-)$ is a property that makes sense for natural numbers. Suppose, furthermore, that $P(m)$ is
+true for some $m$. Then there is a smallest $m$ for which $P(m)$ is true. That is, there is
+a natural number $m_0$ so that $P(m_0)$ and so that $P(n)$ implies $m_0\leq n$. 
+\begin{proof}
+  Suppose $P(-)$ is a property that makes sense for natural numbers and that there is no
+minimal $m$ for which $P(m)$ is true. We will show that $P(m)$ is false for all $m$ by strong induction.
+\begin{itemize}
+\item{}[Strong Inductive Hypothesis] Assume that $P(j)$ is false for all $j<k$.
+\item{}[Inductive Step] We must show that $P(k)$ is also false. Suppose $P(k)$
+were true. By the strong inductive hypothesis, $P(j)$ is false for all $j<k$. So $k$ would be the smallest
+natural number for which $P(k)$ is true. This contradicts the assumption that there is no minimal value
+for which $P(m)$ is true. So $P(k)$ must not be true.
+\end{itemize}
+\end{proof}
+\end{lemma}
+
+\begin{exer}
+	\begin{exercise}
+		\item Define the ``tribonacci'' numbers as follows:
+		\begin{align*}
+			t_0 &= 0\\
+			t_1 &= 1\\
+			t_2 &= 2\\
+			t_{n+3}& = t_{n+2} + t_{n+1} + t_n & \text{for each $n$} 
+		\end{align*}
+		Prove by strong induction that $t_n < 2^{n-1}$ is true for all natural numbers $n$. [Recall that $2^{-1} = \frac{1}{2}$.]
+		\item Prove that $n^3<3^n$ for all natural numbers $n$.
+	\end{exercise}
+\end{exer}
+
+\section{Minimum and Maximum}
+
+The minimum of two numbers $m$ and $n$ is, of course, the smaller of the two. 
+We write $\min(m,n)$ for this. The maximum is written as $\max(m,n)$. To make this
+precise, we can write a formal definition.
+
+\begin{defn}
+  For natural numbers $m$ and $n$, $\min(m,n)$ is a natural number satisfying:
+  \begin{itemize}
+  \item $\min(m,n)\leq m$ and $\min(m,n)\leq n$;
+  \item for any natural number $p$, if $p\leq m$ and $p\leq n$, then $p\leq \min(m,n)$.
+  \end{itemize}
+
+Also, $\max(m,n)$ is defined \emph{dually}. For natural numbers $m$ and $n$, $\max(m,n)$ is a natural number satisfying:
+\begin{itemize}
+	\item $m\leq \max(m,n)$ and $n\leq \max(m,n)$;
+	\item for any natural number $p$, if $m\leq p$ and $n\leq p$, then $\max(m,n)\leq p$.
+\end{itemize}
+\end{defn}
+
+
+Both $\min$ and $\max$ are characterized by what we may call an ``adjoint situation''.
+\begin{align*}
+  p\leq \min(m,n) &\iff \text{$p\leq m$ and $p\leq n$}\\
+  \max(m,n) \leq p&\iff \text{$m\leq p$ and $n\leq p$}
+\end{align*}
+This shows that comparing $p$ to two numbers on the right is the same as comparing $p$ to their minimum on the right; and similarly for comparison on the left and maximum.
+We say that $\min(m,n)$ is the \emph{greatest lower bound} of $m$ and $n$ and that $\max(m,n)$ is the \emph{least upper bound} of $m$ and $n$. 
+
+Some simple facts about $\min$ and $\max$ derive directly from this characterization by adjointness.
+The two operations, $\min$ and $\max$, have many useful properties,
+all of which can be proved using the above characterizations plus some facts about addition.
+
+In particular, together with addition,  $\min$ and $\max$ make the natural numbers into something called a \emph{distributive lattice ordered monoid}.
+Basically, this means that addition together with $\min$ and $\max$ cooperate in specific ways that are akin to the basic laws of arithmetic.
+The most useful laws having to do with $\min$ and $\max$ are:
+
+
+\begin{laws}
+For all natural numbers $m$, $n$ and $p$:
+	\begin{description} 
+\item[Commutativity]
+  \begin{align*}
+    \min(m,n) &= \min(n,m)
+    & \max(m,n) &= \max(n,m)\\
+  \end{align*}
+\item[Associativity]
+  \begin{align*}
+    \min(\min(m,n),p) &= \min(m,\min(n,p)) & \max(\max(m,n),p) &=
+    \max(m,\max(n,p))
+  \end{align*}
+\item[Idempotency]
+  \begin{align*}
+    \min(m,m) &= m & \max(m,m) = m\\
+  \end{align*}
+\item[Absorption]
+  \begin{align*}
+    \min(m,\max(n,m)) &= m &\max(m,\min(n,m)) &= m
+  \end{align*}
+\item[Distributivity]
+  \begin{align*}
+    m + \min(n,p) &= \min(m+n,m+p) & m + \max(n,p) &= \max(m+n,m+p)\\
+    \max(m,\min(n,p)) &= \min(\max(m,n),\max(m,p)) & \min(m,\max(n,p)
+    &= \max(\min(m,n),\min(m,p))
+  \end{align*}
+\item[Modularity]
+  \begin{align*}
+    m + n &= \min(m,n) + \max(m,n)
+  \end{align*}
+  \end{description}
+\end{laws}
+
+We will not prove most of these as they follow easily from arithmetic laws. But the most subtle is worth looking at.
+
+\begin{lemma}
+$m + \min(n,p) = \min(m+n, m+p)$ for all $m,n,p\in\NN$.
+\begin{proof}
+By definition, $\min(n,p)\leq n$. Because addition is monotonic, $m+\min(n,p) \leq m+n$. Likewise $m+\min(n,p)\leq m+p$. So $m+\min(n,p)\leq \min(m+n,m+p)$.
+
+So to complete the proof, we must show that $\min(m+n,m+p)\leq m+\min(n,p)$. 
+Suppose $k\leq \min(m+n,m+p)$. Then if $k\leq m$, then $k\leq m+\min(n,p)$ obviously.
+Otherwise, $m\leq k$ by Linearity. So $m+d = k$ for some $d$. Hence $m+d \leq m+n$ and $m+d \leq m+p$. Since $\leq$ is order reflecting, $d\leq \min(n,p)$. Consequently, $k=m+d \leq m+\min(n,p)$. We have thus shown that $k\leq \min(m+n,m+p)$ implies $k\leq m+\min(n,p)$. 
+In particular, this applies to $\min(m+n,m+p)$.
+\end{proof}
+\end{lemma}
+
+\begin{exer}
+\begin{exercise}
+	\item Calculate the following values. Show work.
+  \begin{enumerate}
+  \item $\min(5,\min(4,6))$
+  \item $\min(5, \max(4,6))$
+  \item $\min(340, \max(234, 340))$
+  \item $\min(5,\max(3,\min(\max(1,2),7)))$
+  \item $\min(5+\max(4 + \min(3 + \max(7,8), 3+ \min(7,8)), 6), 7)$
+  \end{enumerate}
+  \item Prove that $\min$ distributes over $\max$.
+\end{exercise}
+\end{exer}
+
+\chapter{Divisibility}
+
+\begin{goals}
+	\begin{goal}{Lecture}
+		\item Develop the analogue of $\leq$ defined by multiplication instead of by addition.
+		\item Illustrate the value of the analogy to prove useful properties of divisibility.
+		\item Introduce general division for natural numbers.
+	\end{goal}
+	
+	\begin{goal}{Study}
+		\item Demonstrate competence in determining divisibility and division facts.
+	\end{goal}{Study}
+\end{goals}
+
+For natural numbers, $m\leq n$ \emph{means} that $m+d = n$ for some $d$.
+Since multiplication satisfies many of the same laws (it is commutative, associative, etc.), a similar definition is possible in terms of multiplication.
+
+\begin{defn}
+  For natural numbers $m$ and $n$, say that \newterm{$m$ divides $n$}, if and only if $m\cdot q = n$ for some natural
+  number $q$.
+  We write $m\mid n$ when $m$ divides $n$.
+\end{defn}
+
+We have an analogy between ``$m$ is less than  or equal to $n$'' and ``$m$ divides $n$.'' 
+The difference is precisely that the former is defined by addition and the latter by multiplication.
+This is useful because we can sometimes transfer a fact about $\leq$ to a fact about $\mid$ simply by noticing that they both depend on analogous laws of arithmetic.
+
+For example, the relation $\leq$ is reflexive \emph{because} $0$ is the identity for addition.
+The relation $\mid$ is reflexive because $1$ is the identity for multiplication.
+Likewise, $\leq$ is transitive \emph{because} addition is associative; 
+so $\mid$ is transitive because multiplication is associative. 
+
+Anti-symmtry is also true, but a proof hints at why our analogy is not perfect. 
+Recall that we proved that $m\leq n$ and $n\leq m$ implies $m=n$. using cancellativity of addition.
+But multiplication is only cancellative for non-zeros.
+That is, $m\cdot p = n\cdot p$ implies $m=n$ only when $p\neq 0$. 
+This means that we need to treat $0$ as a special case. 
+Suppose $m\cdot q = n$ and $n\cdot r = m$. If $m=0$, then obviously $n=0$.
+So $m=n$.
+If $m\neq 0$, then $m\cdot q\cdot r = m$ and $m\neq 0$.
+So by cancellativity $q\cdot r = 1$, and so $q=1$. 
+Hence $m = m\cdot 1 = n$.
+
+The divisibility relation begins to be more interesting
+when we realize that it is \emph{not} linear. For example,
+$4$ does not divide $13$ and $13$ does not divide $4$.
+Apparently, the structure of the natural numbers with respect
+to $\mid$ is much more complicated that with respect to $\leq$.
+
+Note that $1\mid m$ is true for any $m$, simply because $1\cdot m = m$.
+And $m\mid 0$ is true for any $m$ because $m\cdot 0 = 0$.
+So $1$ is ``at the bottom'' of the divisibility relation and $0$ is  ``at the top''. 
+This may seem strange. Some people find it so irritating that they simply rule $0$ out of consideration, and declare that $0\mid 0$ is undefined. 
+This is fine, but
+I prefer to understand $0\mid 0$ to mean $0 \cdot q = 0$ for \emph{some $q$}.
+
+Figure \ref{fig:Divisibility} shows a fragment of the natural numbers with respect to divisibility. 
+
+\ipadbreak
+ 
+\usetikzlibrary{3d}
+\newcommand{\xangle}{19}
+\newcommand{\yangle}{139}
+\newcommand{\zangle}{90}
+\newcommand{\xlength}{3}
+\newcommand{\ylength}{2.5}
+\newcommand{\zlength}{1.4}
+\newcommand{\dimension}{3}% actually dimension-1
+\pgfmathsetmacro{\xx}{\xlength*cos(\xangle)}
+\pgfmathsetmacro{\xy}{\xlength*sin(\xangle)}
+\pgfmathsetmacro{\yx}{\ylength*cos(\yangle)}
+\pgfmathsetmacro{\yy}{\ylength*sin(\yangle)}
+\pgfmathsetmacro{\zx}{\zlength*cos(\zangle)}
+\pgfmathsetmacro{\zy}{\zlength*sin(\zangle)}
+\begin{figure}[h]\label{fig:Divisibility}
+\centering
+\begin{tikzpicture}
+[   x={(\xx cm,\xy cm)},
+    y={(\yx cm,\yy cm)},
+    z={(\zx cm,\zy cm)},
+    scale=0.75
+]
+\foreach \a in {0,...,\dimension}
+{   \foreach \b in {0,...,\dimension}
+    {   \pgfmathsetmacro{\c}{100-\a*7-\b*7}
+        \draw[canvas is xy plane at z=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+        \draw[canvas is xz plane at y=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+        \draw[canvas is yz plane at x=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+    }
+}
+\foreach \a in {0,...,\dimension}
+{   \foreach \b in {0,...,\dimension}
+    {   \foreach \c in {0,...,\dimension}
+        {  \pgfmathtruncatemacro{\d}{(5^\a)*(2^\b)*(3^\c)} 
+           \node at (\a,\b,\c) [circle,draw, fill= white] {\tiny$\d$};
+        }
+    }
+}
+
+\node at (\dimension+1, \dimension+1, \dimension+1) [circle,draw, fill=white] {\tiny$0$};
+\foreach \a in {0,...,\dimension} {
+   \node at (\a, \dimension, \dimension+1) {$\vdots$};
+}
+\foreach \b in {0,...,\dimension} {
+   \node at (\dimension, \b, \dimension+1) {$\vdots$};
+}
+
+\end{tikzpicture}
+\caption{Part of the divisibility relation}
+\end{figure}
+
+\ipadbreak
+
+\begin{exer}
+    For each of the following pairs $(m,n)$ of natural numbers, determine whether or not $m\mid n$.
+    \begin{exercise}
+    \item $(4,202)$
+    \item $(7, 49)$
+    \item $(11, 1232)$
+    \item $(9, 19384394)$
+    \item $(n,6n)$
+    \item $(26,65)$
+    \end{exercise}
+\end{exer}
+
+Divisibility also makes sense for integers, but it is no longer anti-symmetric for a somewhat trivial reason.
+For example, $5\mid -5$ and $-5\mid 5$, but obviously $5\neq -5$. In short, divisibility ignores the sign of an integer.
+This is a good reason to concentrate our attention on natural numbers, but bear in mind that most of what we can say about divisibility is true for integers as well.
+
+Before closing this section, we note additional facts about how $\mid$ interacts with arithmetic.
+
+\begin{prop}
+  \begin{enumerate}
+    \item $m\mid n$ implies $m\mid np$
+    \item $m\mid n$ and $m\mid p$ implies $m\mid (n+p)$
+    \item $0<n<m$ implies $m\nmid pm+n$
+    \item $m\mid n$ and $n>0$ implies $0< m\leq n$.
+  \end{enumerate}
+
+  \begin{proof}
+  	\begin{enumerate}
+    \item is true by associativity.
+    \item is due to distributivity.
+    \item can be proved by showing that $mq\neq pm + n$ for all $q$.
+    We leave this as a voluntary exercise.
+    \item uses (3). That is, suppose $m\mid n$ and $n>0$. 
+    Then we can write this as $m \mid 0\cdot m + n$. Thus $0<m$.
+    And according to (3), $0<n<m$ has to fail.
+    Since $0<n$ holds by assumption, $m\leq n$.
+    \end{enumerate}
+  \end{proof}
+\end{prop}
+
+\section{Quotients and Remainders}
+
+Without rational numbers, division still makes sense. 
+We only need to account for the fact that sometimes numbers don't divide evenly.
+To make this work properly, we can speak of a \emph{quotient} and \emph{remainder}. 
+For example, dividing $23$ by $7$ results in a quotient of $3$ and a remainder of $2$. 
+That is, $3\cdot 7 + 2 = 23$. 
+Let us make this precise.
+
+\begin{thm}[Natural Number Division]
+	For any natural number $m$ and any positive natural number $n$, there is a unique pair of natural numbers $q$ and $r$ 
+	satisfying
+	\[m=qn + r\]
+	and
+	\[r < n\]
+ 
+\begin{proof}
+	First, we prove that if $q$ and $r$ satisfy the stated conditions, and so do $q'$ and $r'$, then $q=q'$ and $r=r'$.
+	This will prove that there can be at most one pair of natural numbers satisfying the stated conditions.
+	Suppose $qn+r = q'n+ r'$ and $r<n$ and $r'<n$. If $r<r$,
+	then there is some positive $e$ so that $r+e=r'$. Hence $qn = q'n+e$. But this means that $n \mid q'n+e$. Clearly,
+	$e<n$, so is
+	impossible. Thus it can not be the case that $r<r'$. For the same reason, it can not be the case that $r'<r$. So $r=r'$. 
+	
+	Now we prove that there actually is a pair of numbers $q$ and $r$ satisfying the condtions. For this, we proceed by induction
+	on $m$.
+	\begin{itemize}
+		\item{} [Basis] $0=0\cdot n = 0$. So $q=0$ and $r=0$ do the job.
+		\item{} [Inductive hypothesis] Assume that for some $k$, natural numbers $p$ and $s$ exist for which $k=p\cdot n+s$ and $s<n$.
+		\item{} [Inductive Step] We must find $q$ and $r$ so that $m^\nxt = q\cdot n+r$ and $r<n$. There are two cases: either $s^\nxt = n$
+		or $s^\nxt < n$.
+		Suppose $s^\nxt < n$. Then $m^\nxt = p\cdot n + s^\nxt$. So let $q=p$ and let $r=s^\nxt$. Suppose $s^\nxt = n$. Then $p\cdot n + s^\nxt = p^nx\cdot n + 0$. So let $q=p^\nxt$ and $r=0$.
+	\end{itemize} 
+\end{proof}
+\end{thm}
+
+This theorem indicates that division of natural numbers works, as long as we account for both the quotient and the remainder. It is useful to have notation for both of these.  So we will sometimes use the same notation for an integer divided by a positive natural number.
+
+\begin{defn}
+	For any integer $a$ and positive natural number $n$, let $a\ddiv n$ denote the \emph{quotient} and $a\drem n$ the \emph{remainder} of
+	dividing $a$ by $n$. That is, $a\ddiv n$ and $a\drem n$ are the unique two integers so that
+	\[a = (a\ddiv n)\cdot n + (a\drem n)\]
+	and 
+	\[0\leq a\drem n < n\] 
+\end{defn}
+
+The notation $\ddiv$ is borrowed from the programming langauge Python. It is intended to avoid confusion with real number division $x/y$.
+Python, Java, C and many other languages use a percent sign for remainder,
+but unfortunately, its precise meaning differs from langauge to language. The notation $\drem$ avoids this ambiguity.
+
+\begin{exer}
+\begin{exercise}
+	\item Calculate the following:
+		\begin{enumerate}
+			\item $24\ddiv 7$
+			\item $10000000\drem 10000001$
+			\item $13\drem 8$
+			\item $8\drem 5$
+			\item $5\drem 3$
+			\item $3\drem 2$
+			\item $2\drem 1$
+		\end{enumerate}
+	\item Show that for any natural number $m$, any positive natural number $n$ and any positive natural number $p$, 
+	it is the case that $pm\ddiv pn = m\ddiv n$ 
+	and that $pm\drem pn = p(m\drem n)$.
+\end{exercise}
+\end{exer}
+
+\chapter{Prime Numbers}
+
+\begin{goals}
+	\begin{goal}{Lecture}
+		\item Prove the Fundamental Theorem of Arithmetic
+		\item Prove that the prime numbers are unbounded in the natural numbers.
+	\end{goal}
+	
+	\begin{goal}{Study}
+		\item Demonstrate competence in prime factorization.
+	\end{goal}
+\end{goals}
+
+
+We all know what a prime number is. It is a number that is not $1$ and has no non-trivial 
+factors. One might ask why $1$ does not count as a prime number since it seems
+like an arbitrary thing to exclude.
+We settle that question here. The key insight (from an earlier lecture)
+is that an \emph{empty product} is $1$.
+
+Recall that the product of a list of natural numbers is defined inductively by
+\begin{itemize}
+\item $\prod [\,] = 1$
+\item $\prod n:L = n \cdot \prod L$
+\end{itemize}
+
+\begin{defn}
+  A \newterm{prime number} is a positive natural number $p$ so that for any list $L$ of natural numbers, if $p \mid \prod L$ holds, then $p \mid L_i$
+holds for some $i<\len(L)$. In other words, if $p$ divides a product of natural numbers, it divides one of them.
+\end{defn}
+
+With this definition, $1$ is not prime for exactly the same reason that $6$
+is not prime.
+That is, $6$ is not prime because, for example, $6 \mid  \prod[2,3]$ but $6$ does not divide any item on the list $[2,3]$.
+Likewise, $1 \mid  \prod [\,]$ but $1$ does not divide any item on the list $[\,]$ because there are no items on the empty list.
+In contrast, $2$ is prime because if $2\mid\prod L$ with $L$ being a list of natural numbers, at least one of the items on the list must be even.
+It is not hard to check that this definition of primality agrees with the more familiar one.
+
+Our first task involving primes is to remind ourselves of the \emph{Fundamental Theorem of Arithmetic}, that every positive natural number factors uniquely into primes. 
+We split the proof of this into two separate parts.
+
+\begin{lem}\label{lem:prime-factorization}
+  For any positive natural number $m$, there is a list $P$
+consisting only of primes so that $m = \prod P$.
+
+\begin{proof}
+  Here we use strong induction. 
+  \begin{itemize}
+  \item{}[Strong Inductive Hypothesis] Assume that for some $k$, it is the case that for every $0<j<k$,
+   there is a list of primes $P$ so that $j=\prod P$.
+  \item{}[Strong Inductive Step] There are three cases to consider. Either $k=1$,
+or $k = i\cdot j$ for some positive $i$ and $j$ strictly less than $k$, or neither of these holds.
+
+Suppose $k = 1$. Then we let $P=[\,]$. This is
+a (trivial) list of primes whose product is $k$.
+
+  Suppose $k = i\cdot j$ where $i$ and $j$
+  are both positive and strictly less than $k$. By the inductive hypothesis, 
+  there are lists of primes $Q$ and $R$ so that $i=\prod Q$ and $j=\prod R$.
+  Hence $k = \prod Q\cdot \prod R = \prod (Q\otimes R)$.
+
+  Suppose $k$ is neither equal to $1$, nor equal to $i\cdot j$ for
+any two natural numbers strictly less than $k$. Then $k$ itself is 
+  prime. So $k = \prod [k]$. 
+
+These are the only possible cases.
+  \end{itemize}
+\end{proof}
+\end{lem}
+
+The list of primes we constructed in the Lemma \ref{lem:prime-factorization} is
+called a \newterm{prime factorization of $m$}. Generally, a composite has
+more than one prime factorization for trivial reasons. For example, 
+$[2,3]$ and $[3,2]$ both are prime factorizations of $6$. But the \emph{only} way 
+two prime factorizations of the same number can differ is by the order 
+in which the factors are listed. 
+If we insist that our lists are sorted in increasing order, this ambiguity is avoided. 
+That is, say $P$ is a \emph{sorted} list of natural numbers if $P_i\leq P_j$ whenever $i\leq j <\len(P)$.
+
+\begin{lem}
+For every positive natural number $m$, there is at most one sorted prime factorization of $m$.
+\begin{proof}
+Suppose $P$ and $Q$ are sorted prime factorizations of $m$. We need to show that they are equal.
+We do this by structural induction on $P$. That is, we show that for all sorted lists of primes $Q$, 
+if $\prod P = \prod Q$, then $P=Q$.
+\begin{itemize}
+\item{}[Basis] If $\prod [\,] = \prod Q$,
+then $Q$ must also be the empty list because no non-empty list of primes has a
+product of $1$.
+\item{}[Inductive hypothesis] Assume that, for some fixed sorted list of primes $K$, it is the case that
+for all sorted lists of primes $R$, if $\prod K = \prod R$, then $K=R$.
+\item{}[Inductive Step] Suppose $\prod p:K = \prod Q$ where $p:K$ and $Q$ are
+sorted lists of primes. Then $p\mid \prod Q$.
+But $p$ is prime, so $p$ must appear somewhere in the list $Q$. There are two cases:
+either $p$ is the initial item of $Q$, or not.
+
+If $p$ is the initial element of $Q$, then we can write $Q = p:R$ for some list $R$.
+By cancellativity, $\prod K = \prod R$. So by the inductive hypothesis, $K = R$.
+So $p:K = Q$.
+
+On the other hand, suppose $p$ is not the initial item on the list $Q$. We show that this leads to a contradiction, so the previous case is
+the only possibility. Since $p$ is prime, it is somewhere on the list $Q$. So $Q$ is not empty. That is,
+$Q$ can be written as $q:Q'$
+where $q$ is a prime strictly less than $p$. But $q$ is also prime, so it must appear somewhere on the list $P$. But that violates
+the assumption that $p:P$ is sorted, for it means that the smaller value $q$ appears later in the list that $p$.  
+\end{itemize}
+\end{proof}
+\end{lem}
+
+The two preceeding lemmas show that every positive $m$ has a unique sorted 
+prime factorization, typically called \emph{the} prime factorization.
+
+\begin{thm}[Fundamental Theorem of Arithmetic]
+  Every positive natural number has a unique sorted prime factorization.
+
+  \begin{proof}
+   All that remains is to the remark that if $P$ is a prime factorization of $m$,
+   then $P$ can be sorted into increasing order. The result has the same product
+   $P$ because of commutativity.  
+  \end{proof}
+\end{thm}
+
+For example, $24$ is factored as $[2,2,2,3]$. Likewise, $800$ is factored as $[2,2,2,2,2,5,5]$.
+We can get a simpler representation by listing the number of times each prime is repeated.
+So we can represent $800$ by $[5,0,2]$, signifying that $800 = 2^53^05^2$. Notice that in
+this notation, we need the middle $0$ as a ``place holder'' to indicate that our number does
+not have any $3$ factors. Also notice that ``trailing zeros'' in this notation do not make a difference.
+$[5,0,3,0]$ also represents $800$. The extra $0$ at the end simply tells us that $800$ is not
+divisible by the next prime ($7$). We will investigate this notation after establishing that
+we have a plentiful supply of primes.
+
+\begin{thm}
+There are infinitely many primes.
+
+\begin{proof}
+We prove this by showing that no finite list of primes exhausts all
+the possible primes.
+
+Suppose $L$ is a non-empty list consisting of primes. 
+To show that $L$ is missing a prime, consider the number $m=1 + \prod L$.
+Since $\prod L\geq 1$, $m > 1$. So $m$ has a non-empty prime factorization, say $M$.
+Clearly $M$ does not have any item in common with $L$ (this could be proved explicitly
+by induction on $L$).
+So we have found a prime number (namely, any item of $M$) that is missing from $L$.
+Thus $L$ can not be an exhaustive list of all primes.
+\end{proof}
+\end{thm}
+
+\begin{defn}
+We can enumerate the primes: $2,3,5,7,\ldots$ in increasing order. For every natural number $k$, let $p_k$ be the $k^{\text{th}}$ prime. That is, the numbers $p_k$ satisfy
+\begin{align*}
+  p_0 &= 2\\
+  p_{k^\nxt}) &= \text{the smallest prime $q$ so that $p_k<q$}
+\end{align*}
+Notice that this is well-defined because for any $m$ there is a prime greater than $m$.
+We would not know this if we did not know there are infinitely many primes.
+\end{defn}
+
+\begin{exer}
+\begin{exercise}
+	\item What is $p_10$?
+	\item What is the prime factorization of $1440$?
+\end{exercise}
+\end{exer}
+
+Using $p_k$, we can succinctly represent any positive natural number by a list of exponents of primes.
+Namely, for a list $R$ of natural numbers, define $R_{pr}$ (for ``prime representation'') to be 
+\[R_{pr} \defeq \prod_{i<\len R}p_i^{R_i}.\]
+For example, $[1,2,0,2]_{pr} = 2^13^25^07^2 = 882$.
+
+For a positive natural number $n$, let $\mathord{\textsf{PR}}(n)$ denote the unique list so that $\mathord{\textsf{PR}}(n)_{pr}=n$.
+
+Recall that we defined $P \overline+ Q$ for two lists of natural numbers by adding the items of the two lists itemwise.
+\begin{align*}
+	P\overline+ [] &= P\\
+	[]\overline+ Q &= Q\\
+	m:P\overline+ n:Q &= (m+n):(P\overline+ Q)
+\end{align*}
+Then it is clear (we will not give a proof) that 
+$P_{pr}\cdot Q_{pr} = (P\overline+ Q)_{pr}$.
+Also  define a relation $P\preceq Q$ on lists of natural numbers by $[]\preceq Q$ always,
+$m:P\preceq []$ never, and $m:P\preceq n:Q$ if $m\leq n$ and $P\preceq Q$. Then $P_{pr}\mid Q_{pr}$ if and only if $P\preceq Q$.
+
+
+\section{Greatest Common Divisor and Least Common Multiple}
+
+Recall that $\min$ and $\max$ are defined in terms of $\leq$ (which
+is defined in terms of addition). They
+have analogues defined in terms of $\mid$ (which  is defined in
+terms of multiplication).
+
+\begin{defn}
+  For natural numbers $m$ and $n$, a \emph{common divisor of $m$
+    and $n$} is a natural number $c$ satisfying $c\mid m$ and $c\mid n$;
+   a  \emph{greatest common divisor of $m$ and $n$} is a natural number $g$ so that
+  \begin{itemize}
+  \item $g$ is a common divisor of $m$ and $n$, and
+  \item if $p$ is a common divisor of $m$ and $n$
+    then $p\mid g$.
+  \end{itemize}
+
+  For natural numbers $m$ and $n$, a \emph{common multiple of $m$ and
+    $n$} is a natural number $c$ satisfying $m\mid c$ and $n\mid c$;
+    a \emph{least common multiple of $m$ and $n$} is a natural number $\ell$ so that
+  \begin{itemize}
+  \item $\ell$ is a common mulitple of $m$ and $n$; and
+  \item if $p$ is a common multiple of $m$ and $n$,
+    then $\ell\mid p$.
+  \end{itemize}
+\end{defn}
+
+For now, let us at least see that \emph{if} a greatest common divisor or a least common multiple exists, then it is unique. The pattern of the proof is important because it sows up in many other places in mathematics. So it is worth noting here.
+
+\begin{lemma}
+  For any natural numbers $m$ and $n$, there is at most one greatest common divisor
+and at most one least common multiple.
+
+\begin{proof}
+ Suppose $g$ and $g'$ are both greatest common divisors of $m$ and $n$. Then $g\mid m$ and $g\mid n$. Since $g'$ is a greatest common divisor, $g\mid g'$ according to the second requirement in the definition. Similarly, $g'$ is a common divisor of $m$ and $n$, so $g'\mid g$. But divisibility
+is anti-symmetric, so $g=g'$. The proof for least common multiples is \emph{dually similar} meaning the role of ``divides'' is replaced by the opposite, ``is divided by''.
+\end{proof}
+\end{lemma}
+
+This justifies writing $\gcd(m,n)$ for \emph{the} greast common divisor and $\lcm(m,n)$ for \emph{the} least common multiple, because if some gretest common divisor exists, it is unique and likewise for a least common multiple. So when does a greatest common divisor exist? The following proof that the answer is ``always'' is of practical value because it actually provides an algorithm (due essentially to the Greek mathematician Euclid) for calculating $gcd(m,n)$ for any $m$ and $n$.
+
+
+\begin{thm}[Euclid's Algorithm]
+ For any two natural numbers $m$ and $n$, $\gcd(m,n)$ exists.
+
+\begin{proof}
+  Without loss of generality, we may
+  assume that $m\leq n$ because the requirements for $\gcd(m,n)$ to exist are the
+same as for $\gcd(n,m)$.
+
+To simplify the notation, we write $P(i)$ to mean that for all $j\geq i$, the greatest common divisor $\gcd(i,j)$ exists.
+We proceed by strong induction on to show that for all $m$, $P(m)$ holds.
+  \begin{itemize}
+  \item{}[Strong Inductive Hypothesis] Assume that for some natural number $a$ it the case that for all natural numbers $k<a$, $P(k)$ holds.
+
+  \item{}[Strong Inductive step] We must show that for every $P(a)$ holds. That is, for every $b\geq a$, the  
+a greatest common divisor of $a$ and $b$ exists. Consider any $b\geq a$. 
+   We consider two cases: $a=0$ or not.  In
+    case $a=0$, then $b$ can be any natural number. Evidently $b$ divides both $0$ and $b$. And since   
+    any natural number is a divisor of $0$, $b$ is the greatest common divisor of $0$ and $b$.
+	
+    In case $a>0$, the division algorithm provides a remainder
+    $b\drem a$.  Since $b\drem a < a$, the Strong Inductive
+    Hypothesis ensures $P(b\drem a)$ is true. In particular, $\gcd(b\drem a, a)$ exists.   
+    Let $g=\gcd(b\drem a,b)$.
+    We claim that $g$ is also a greatest common divisor of $a$ and $b$.
+
+    Clearly, $g\mid a$. And since $b= a\cdot (b\ddiv a) + (b\drem a)$, and $g$ divides both summands separately,  $g\mid b$. 
+	So $g$ is a common divisor of $a$ and $b$. Now, suppose $c$ divides both $a$ and $b$, then $c$ also divides
+	$b\drem a$. Hence $c\mid g$, because $g$ is the greatest common divisor of $b\drem a$ and $a$.
+  \end{itemize}
+\end{proof}
+\end{thm}
+
+The proof of this lemma gives us an algorithm (a method)
+for calculating $\gcd(a,b)$. Namely, 
+\begin{align*}
+  \gcd(0,b) &\defeq b\\
+  \gcd(a,b) &\defeq \gcd(b\drem a, a) &\text{for $a > 0$}
+\end{align*}
+
+If you are interested, this translates to Python.
+\begin{code}
+\begin{lstlisting}
+def gcd($a$,$b$):
+    if $a$ == $0$:
+        return $b$
+    else:
+        return gcd($b\texttt{\%} a$, $a$)
+\end{lstlisting}
+\end{code}
+
+Another way to understand $\gcd$ and $\lcm$ for positive natural numbers is via prime factorizations. 
+Recall that we can express any positive natural number $n$ as a product of primes: 
+$n = 2^{k_0}2^{k_1}3^{k_2}\dots p_{m-1}^{k_{m-1}}$ for some list of natural numbers $\mathord{\textsf{PR}}(n) = [k_0,k_1,k_2,\dots,k_{m-1}]$. Here $p_0=2$, $p_1=3$ and so on, enumerating the primes in increasing order. Also, recall that for any list of natural numbers, we let $R_{pr}$ denote
+the product $\prod_{i<\len(R)} p_i^{R_i}$. 
+
+As an example, consider writing $\gcd(42,180)=6$ in prime factorized form. 
+This is $\gcd(2^13^15^07^1, 2^23^25^17^0) = 2^13^15^07^0$. 
+Notice that each exponent in the result is the minimum of the corresponding exponents in the arguments. 
+This makes sense because $m\mid n$ is true if and only if each entry $i$ in $\mathord{\textsf{PR}}(n)$ is less than or equal to entry $i$ in $\mathord{\textsf{PR}}(m)$.
+By taking the minimum in each position, the result is the greatest common divisor.
+
+A similar observation indicates that $\lcm(a,b)$ can be obtained from prime factorization by taking the maximumm in each position instead of the minimum. In our example,
+$\lcm(42,180) = 2^23^25^17^1 = 1260$.
+

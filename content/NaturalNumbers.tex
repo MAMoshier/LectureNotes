@@ -1,20 +1,18 @@
 \chapter{The Natural Numbers}\label{lec:NaturalNumbers}
 
 \begin{goals}
-\noindent \textbf{Lecture}
-\begin{itemize}
+\begin{goal}{Lecture}
 \item Present the natural numbers as comprising a structure suited to counting.
 \item Identify similar structures that can not properly represent counting.
 \item Rule out ``bad'' structures via postulates.
-\end{itemize}
+\end{goal}
 
-\noindent \textbf{Study}
-\begin{itemize}
+\begin{goal}{Study}
 \item Gain facility in the course's \emph{successor} notation, including
 translating between successor notation and base $10$ notation.
-\item Commit to memory the axioms of natural numbers.
-\item Demonstrate ability to recognize failures of the axioms. 
-\end{itemize}
+\item Commit to memory the postulates of natural numbers.
+\item Demonstrate ability to recognize failures of the postulates. 
+\end{goal}
 \end{goals}
 
 The \emph{natural numbers} have to do with counting: $0$, $1$, $2$, $3$, $\ldots$.
@@ -24,6 +22,9 @@ To hone in on that structure, we look at structures similar to the natural numbe
 Bogus structures are ruled out by \emph{postulates} (also known as \emph{axioms}) that distinguish the structure of natural numbers from others.
 
 \section{The Basic Picture}
+
+Our first task is to look back to one of the very first mathematical concepts we all learned, namely, \emph{counting}. Some numbers obviously are meant for conuting. $1$, $2$, $3$, and so on are counting numbers, whereas $-1$, $\frac{1}{2}$ and $\sqrt{2}$  are not. So let's start with a basic intuitive definition: a \emph{counting} or \emph{natural} number is a number that can be used to answer a qeustion of the form ``How many $x$ are there?''
+This is distinct, somehow, from ``How \emph{much} $x$?'' The latter sort of question could be answered with $\frac{1}2$ (as long as we know how we are measuring). On the other hand, the answer to a ``how many'' question could be $0$ (``how many professors own unicorns?''). So $0$ shoud be included in our thinking.
 
 Natural numbers are pictured like stepping stones in Figure \ref{fig:nat-numbers}.
 
@@ -41,12 +42,11 @@ Natural numbers are pictured like stepping stones in Figure \ref{fig:nat-numbers
   \label{fig:nat-numbers}
 \end{figure}
 
+
 Not all ``stepping stone'' pictures are acceptable.
 Figures \ref{fig:NatSigBad1}, \ref{fig:NatSigBad2} and \ref{fig:NatSigBad3} illustrate three ways \emph{not} to picture the natural numbers.
 
-\printbreak
-
-\begin{figure}
+\begin{figure}[h]
 \centering
 \begin{tikzpicture}
   \node (z) at (-2,0) {\ldots}; 
@@ -98,50 +98,54 @@ Figures \ref{fig:NatSigBad1}, \ref{fig:NatSigBad2} and \ref{fig:NatSigBad3} illu
 \caption{Forks in the path}\label{fig:NatSigBad3}
 \end{figure}
 
-These incorrect pictures can be ruled out by explaining the basic structure of counting.
-
-\ipadbreak
+These incorrect pictures can be ruled out by explaining the basic structure of counting. We will ``explain the obvious'' by stating things like this as \emph{postulates}.
 
 %\refstepcounter{axiomCnt}
-\begin{postulate}\label{sig:NatSignature}[Basic Structure]
-The natural numbers have the following basic structure.
+\begin{postulate}[Basic Structure of Natural Numbers]\label{post:NatSig}
+The \newterm{natural numbers} have the following basic structure.
   \begin{itemize}
   \item There is a special natural number. We denote this by $0$.
   \item For any natural number $n$, there is
-    a unique \emph{next} natural number. We call this the \emph{successor of $n$}. 
+    a unique \emph{next} natural number. We call this the \newterm{successor of $n$}. 
     In these lectures, we denote the successor of $n$ by $n^\nxt$.
   \end{itemize}
 \end{postulate}
 
-\begin{exercises}
+According to Postulate \ref{post:NatSig}, $0$, $0^\nxt$, $0^{\nxt\nxt}$, $0^{\nxt\nxt\nxt}$ each denote a natural number. 
+Of course, we usually abbreviate them by writing $0$, $1$, $2$, $3$.
+But the \emph{characters} $1$, $2$, $3$, etc., are not related to each other in any way.
+The notation we are using here makes it completely clear that $0^\nxt$ is the number after $0$, and so on. 
+We will want to be able to switch between the familiar ``decimal' notation and ``successor'' notation whenever it is convenient.
+
+\begin{exer}
 \begin{multicols}{2}
 %\begin{itemize}
-\item Convert the following to successor notation.
-  \begin{exerciselist}
+\item Convert the following from decimal notation to successor notation.
+  \begin{exercise}
   \item $9$
   \item $10$
   \item $4 + 3$
   \item $n + 4$
-  \end{exerciselist}
-\item Convert the following to base $10$ notation.
-\begin{exerciselist}
+  \end{exercise}
+\item Convert the following to from successor notation to decimal notation.
+\begin{exercise}
 \item $0^{\nxt\nxt\nxt\nxt}$
 \item $n^{\nxt\nxt\nxt\nxt\nxt}$
 \item $5^{\nxt\nxt}$
 \item $0^\nxt + 0^{\nxt\nxt}$
-\end{exerciselist}
+\end{exercise}
 %\end{itemize}
 \end{multicols}
-\end{exercises}
+\end{exer}
 
-\ipadbreak
+\printbreak
 
 \section{Narrowing the possibilities}
 
 Figures \ref{fig:one-loop} and \ref{fig:two-loop} illustrate 
-problems that Postulate \ref{ax:NatSignature} does not avoid.
+problems that Postulate \ref{post:NatSig} does not avoid.
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{tikzpicture}
     \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (2,0)
@@ -155,7 +159,7 @@ problems that Postulate \ref{ax:NatSignature} does not avoid.
   \label{fig:one-loop}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[ht]
   \centering
   \begin{tikzpicture}
     \node (a) at (0,0) [circle, draw] {$0$}; \node (b) at (2,0)
@@ -168,12 +172,13 @@ problems that Postulate \ref{ax:NatSignature} does not avoid.
   \caption{Another strange way to count}
   \label{fig:two-loop}
 \end{figure}
+\clearpage
 
-\begin{exercises}
-\begin{exerciselist}
-\item Explain, in one or two sentences each, why Figures \ref{fig:one-loop} and \ref{fig:two-loop} depict systems that agree with the Basic Vocabulary.
-\end{exerciselist}
-\end{exercises}
+\begin{exer}
+\begin{exercise}
+\item Explain, in one or two sentences each, why Figures \ref{fig:one-loop} and \ref{fig:two-loop} depict systems that agree with Postulate \ref{post:NatSig}.
+\end{exercise}
+\end{exer}
 \ipadbreak
 
 Figure \ref{fig:one-loop} is flawed because $0$ has a
@@ -228,13 +233,13 @@ Yet, it is not a picture of natural numbers because it has ``extra stuff'' in it
 
 To rule out ``extra stuff'', we formulate our final postulate for natural numbers.
 We diagnose the problem as follows.
-Were we to erase the circle labelled $\star$ and any the arrows leading to and from it, the remaining part of Figure \ref{fig:nonstandard} would still live up to Postulate \ref{sig:Nat}.
+Were we to erase the circle labelled $\star$ and any the arrows leading to and from it, the remaining part of Figure \ref{fig:nonstandard} would still live up to Postulate \ref{post:NatSig}.
 This is exactly what we mean by ``extra stuff'': 
-elements that can be removed without violating the Postulate \ref{sig:nat} (the essential structure). 
+elements that can be removed without violating the Postulate \ref{post:NatSig} (the essential structure). 
 This leads to our last axiom. 
 
 \begin{postulate}\label{ax:NatInd}
-[The Axiom of Induction] No natural numbers can be removed without violating \ref{sig:Nat}.
+[The Axiom of Induction] No natural numbers can be removed without violating \ref{post:NatSig}.
 \end{postulate}
 
 %Believe it or not, the four axioms we have stated here completely
@@ -242,8 +247,8 @@ This leads to our last axiom.
 %words, any picture that satisfies these axioms will look the same. A
 %rigorous proof of this is possible, but not necessary for now.
 
-\begin{exercises}
-\begin{exerciselist}
+\begin{exer}
+\begin{exercise}
 \item Each of the following pictures fails to satisfy either the one or more of our axioms. 
 For each, explain which axioms are violated.
 \begin{multicols}{2}
@@ -288,12 +293,12 @@ For each, explain which axioms are violated.
 \end{enumerate}
 \end{multicols}
 
-\item\label{exer:cases} I have in mind a picture for the Basic Vocabulary \ref{sig:Nat} and that satisfies Axioms \ref{ax:NatZero}
+\item\label{exer:cases} I have in mind a picture for the Basic Vocabulary \ref{post:NatSig} and that satisfies Axioms \ref{ax:NatZero}
 and \ref{ax:NatPred}. Furthermore, in that picture, I have in mind and element $n$ for which (a) $n\neq 0$
 and (b) $n$ has no predecessor (that is, $n\neq m^\nxt$ for every $m$). Convince me that
 the picture fails to satisfy Axiom \ref{ax:NatInd}.
-\end{exerciselist}
-\end{exercises}
+\end{exercise}
+\end{exer}
 
 The latest exercise shows that in the natural numbers, if $n\neq 0$, then $n = m^\nxt$ for some $m$. In other
 words, every non-zero natural number has a predecessor. 
@@ -325,15 +330,17 @@ Adding and multiplying arise from counting. In this section, we explore how to d
 
 \section{Basic Arithmetic Operations}
 
+We know that addition ``works'' by counting ahead. For example, to \emph{add} $4+5$, we can start with $4$ and then count up five more. Likewise, multiplication ``works'' by counting a number of additions. For example, to multiply $2\cdot 3$ we can add $2$ three times: $2+2+2$. The following definitions capture the idea.
+ 
 \begin{defn}[Arithmetic Operations]\label{def:NatArithmetic}
-\noindent The \emph{sum} of two natural numbers, $m$ and $n$, is a natural number (denoted by $m+n$). For every natural number $m$, the following 
+\noindent The \newterm{sum} of two natural numbers, $m$ and $n$, is a natural number (denoted by $m+n$). For every natural number $m$, the following 
 are true:
 \begin{align*}
     m + 0     &= m\\
     m + k^\nxt &= (m + k)^\nxt &&\text{for any natural number $k$}
 \end{align*}
 
-\noindent The \emph{product} of two natural numbers, $m$ and $n$, is a natural number 
+\noindent The \newterm{product} of two natural numbers, $m$ and $n$, is a natural number 
 (denoted by $m\cdot n$). For every natural number $m$, the following are true:
 \begin{align*}
   m\cdot 0 &= 0\\
@@ -391,8 +398,8 @@ closely tied to simple counting.
 
 \ipadbreak
 
-\begin{exercises}
-\begin{exerciselist}
+\begin{exer}
+\begin{exercise}
 \item Calculate these sums, following the previous example to write
   each step of your calculation explicitly. Include the reason for
   each step (as in the previous example).Take care to lay out the
@@ -417,8 +424,8 @@ closely tied to simple counting.
     \end{enumerate}
 \item Write a definition of exponentiation via defining equations. Follow the pattern
 of definition I have written for addition and multiplication.
-\end{exerciselist}
-\end{exercises}
+\end{exercise}
+\end{exer}
 
 \chapter{Laws of Arithmetic}\label{lec:ArithmeticLaws}
 
@@ -472,7 +479,7 @@ similarities between addition and multiplication.
 \medskip
 
 Most of these laws are familiar and are listed with their common names. The Law of Case
-Distinction was the subject of Lecture \ref{lec:natural-numbers} Exercise \ref{exer:cases}. \emph{Go back and look at that exercise again}.
+Distinction was the subject of Lecture \ref{lec:NatNumbers} Exercise \ref{exer:cases}. \emph{Go back and look at that exercise again}.
 The Law of Positivity for multiplication is not a common name, but
 I have used it to emphasize the analogies between addition and multiplication.
 Also Case Distinction does not really have a common name. I made that up.
@@ -494,9 +501,9 @@ checking infinitely many individual cases.
 The Axiom of Induction provides a way forward in spite of our
 limitations.  Suppose we were to show that the mimsy natural numbers
 all by themselves constitute a picture of Signature
-\ref{sig:NatSig}.  Then there could not be any natural numbers
+\ref{post:NatSig}.  Then there could not be any natural numbers
 left out, for otherwise, we could erase all the non-mimsy natural
-numbers and still have a picture of \ref{sig:Nat}. This
+numbers and still have a picture of \ref{post:NatSig}. This
 is exactly what the Axiom of Induction forbids: we can not erase
 \emph{anything} without breaking the signature.
 
@@ -506,7 +513,7 @@ prove that
 \item $0$ is mimsy, and
 \item for all natural numbers $k$, if $k$ is mimsy so is $k^\nxt$.
 \end{itemize}
-From these, we conclude that the mimsy natural numbers by themselves form a picture of \ref{sig:Nat}. So the Axiom of Induction ensures that all natural numbers
+From these, we conclude that the mimsy natural numbers by themselves form a picture of \ref{post:NatSig}. So the Axiom of Induction ensures that all natural numbers
 are mimsy.
 
 %\begin{usage}
@@ -527,9 +534,7 @@ using a three step outline, as illustrated here.
 
 More practical examples are next.
 
-\ipadbreak
-
-\begin{fact}
+\begin{prop}
 
   \emph{Addition is associative.}
 
@@ -537,7 +542,7 @@ More practical examples are next.
   We need to show that $m + (n+p) = (m+n)+p$ for all $m$, $n$ and $p$.
   Let us suppose that $m$ and $n$ are fixed values (not known to us).
   We now prove that the values $p$ for which $m+(n+p) = (m+n)+p$ holds
-  form a picture of \ref{sig:Nat}.
+  form a picture of \ref{post:NatSig}.
   \begin{itemize}
   \item{}[Basis] $m+(n+0) = m+n = (m+n)+0$. Both steps are due to the
     defining equations of $+$.
@@ -555,20 +560,15 @@ More practical examples are next.
   all $p$. Since the argument does not depend on any extra assumptions
   about $m$ and $n$, it holds for all $m$ and $n$.
 \end{proof}
-\end{fact}
+\end{prop}
 
-%\begin{usage}
-  We say this proof is \emph{by induction on $p$} to emphasize that
-  the variable $p$ is the focus of attention. The other variables are
-  not directly involved in the structure of the proof.
-%\end{usage}
+\printbreak
 
-The remainder of this section further illustrates the technique of
-simple arithmetic induction via proofs of other laws of arithmetic.
+In the remainder of this section, we further illustrate the technique of simple arithmetic induction via proofs of other laws of arithmetic.
 
 \ipadbreak
 
-\begin{fact}\label{lem:AddZero}
+\begin{prop}\label{prop:AddZero}
   $0$ is the identity for addition.
 
 \begin{proof}
@@ -585,14 +585,17 @@ simple arithmetic induction via proofs of other laws of arithmetic.
   \end{itemize}
   Therefore, $0+m=m$ holds for all $m$.
 \end{proof}
-\end{fact}
+\end{prop}
 
 \ipadbreak
 
 To prove that addition is commutative, we need an additional fact
-about how successor and addition interact.
+about how successor and addition interact. 
+Mathematicians use the word \emph{lemma} to indicate that a certain fact is only needed to make others proofs easier and is not necessarily valuable in its own right.
 
-\begin{lemma}\label{lem:AddSucc}
+\printbreak
+
+\begin{lem}\label{lem:AddSucc}
   For any $m$ and $n$, $(m + n)^\nxt = m^\nxt + n$.
 
  \begin{proof}
@@ -616,11 +619,13 @@ about how successor and addition interact.
 So $(m + n)^\nxt = m^\nxt + n$. Because the proof does not depend on any assumption about $m$, it is valid
 for all $m$.
  \end{proof}
-\end{lemma}
+\end{lem}
 
-\ipadbreak
+Roughly speaking this lemma permits us to move $\nxt$ anywhere within an addition: $m^\nxt + n = (m+n)^\nxt = m+n^\nxt$. So we are free to move a successor ``out of the way'' whenever we need to. The next proof illustrates the point.
 
-\begin{fact}
+\printbreak
+
+\begin{prop}
 
   \emph{Addition is commutative.}
 
@@ -628,8 +633,8 @@ for all $m$.
   We need to show that $m+n = n + m$ for all $m$ and $n$.  This time,
   the proof is by induction on $m$. Fix a value for $n$.
   \begin{itemize}
-  \item{}[Basis] $0 + n = n = n + 0$ holds because of Fact
-    \ref{lem:AddZero} and the definition of $+$.
+  \item{}[Basis] $0 + n = n = n + 0$ holds because of Proposition
+    \ref{prop:AddZero} and the definition of $+$.
   \item{}[Inductive Hypothesis] Assume that $k + n = n + k$ for some
     $k$.
   \item{}[Inductive Step] We must show that $k^\nxt + n = n + k^\nxt$.
@@ -642,10 +647,13 @@ for all $m$.
   Therefore, $m + n = n + m$ for all $m$. Since this argument does not
   depend on any assumptions about $n$, it is valid for all $n$.
 \end{proof}
-\end{fact}
-\ipadbreak
+\end{prop}
 
-\begin{fact}
+The next law may be less familiar to you. Roughly, it says that we can ``subtract'' equals and get equals. But note that actual subtraction does not always make sense for natural numbers. We can not, for example, say what $5-7$ means without introducing negative numbers.
+
+\printbreak
+
+\begin{prop}
   \emph{Addition is cancellative.}
 
 \begin{proof}
@@ -669,15 +677,15 @@ for all $m$.
   Therefore, $m + p = n + p$ implies $m = n$ for all $p$. Since this argument does not
 depend on any assumptions regarding $m$ and $n$, it is valid for all $m$ and $n$.
 \end{proof}
-\end{fact}
+\end{prop}
 \ipadbreak
 
 To prove that multiplication is commutative and cancellative, we will
-need the following technical facts (analogous to Lemmas
-\ref{lem:AddZero} and \ref{lem:AddSucc}).
+need the following technical facts (analogous to Proposition
+\ref{prop:AddZero} and Lemma \ref{lem:AddSucc}).
 
-\begin{lemma}\label{lem:MultZero}
-  $0\cdot n = 0$
+\begin{lem}\label{lem:MultZero}
+  For any $n$, $0\cdot n = 0$
 
   \begin{proof}
     The proof is by induction on $n$.
@@ -693,12 +701,12 @@ need the following technical facts (analogous to Lemmas
       \end{align*}
     \end{itemize}
   \end{proof}
-\end{lemma}
+\end{lem}
 
 \ipadbreak
 
-\begin{lemma}\label{lem:MultSucc}
-  $m^\nxt \cdot n = m\cdot n + n$
+\begin{lem}\label{lem:MultSucc}
+  For any $m$ and $n$, $m^\nxt \cdot n = m\cdot n + n$
 
  \begin{proof}
    The proof is by induction on $n$.
@@ -710,28 +718,28 @@ need the following technical facts (analogous to Lemmas
    \item{}[Inductive Step] We must show that $m^\nxt\cdot k^\nxt =
      m\cdot k^\nxt + k^\nxt$.
      \begin{align*}
-       m^\nxt\cdot k^\nxt &= m^\nxt + m^\nxt\cdot k &&\text{[Def. of $\cdot$]}\\
-       &= (m + m^\nxt\cdot k)^\nxt &&\text{[Lemma \ref{lem:AddSucc}]}\\
-       &= (m + (m\cdot k + k))^\nxt && \text{[Inductive Hypothesis]}\\
-       &= ((m+ m\cdot k) + k)^\nxt &&\text{[Associativity of $+$]}\\
-       &= (m\cdot k^\nxt + k)^\nxt &&\text{[Def. of $\cdot$]}\\
-       &= m\cdot k^\nxt + k^\nxt &&\text{[Def. of $+$]}
+       m^\nxt\cdot k^\nxt &= m^\nxt + m^\nxt\cdot k &&\text{[Exercise]}\\
+       &= (m + m^\nxt\cdot k)^\nxt &&\text{[Exercise]}\\
+       &= (m + (m\cdot k + k))^\nxt && \text{[Exercise]}\\
+       &= ((m+ m\cdot k) + k)^\nxt &&\text{[Exercise]}\\
+       &= (m\cdot k^\nxt + k)^\nxt &&\text{[Exercise]}\\
+       &= m\cdot k^\nxt + k^\nxt &&\text{[Exercise]}
      \end{align*}
    \end{itemize}
  \end{proof}
-\end{lemma}
+\end{lem}
 
-Other laws are left as exercises.
+Some of the other laws are left as exercises.
 
-\ipadbreak
+\printbreak
 
-\begin{exercises}
-  \begin{exerciselist}
+\begin{exer}
+  \begin{exercise}
 \item Prove that $1$ is the identity for multiplication. That is $1\cdot m = m  = m\cdot 1$.
+\item Write out the entire proof of Lemma \ref{lem:MultSucc} providing the justifications for each line of the equational calculation in the Inductive Step.
 \item Prove that multiplication distributes over addition [$m\cdot
-  (n+p) = m\cdot n + m\cdot p$] by induction on $p$.  You can use the
-  fact that addition is associative and commutative because we have
-  already proved those.
+  (n+p) = m\cdot n + m\cdot p$] by induction on $p$.  You can use the any of the lemmas and propositions we have
+  already proved.
   \begin{enumerate}
   \item Prove the basis: $m\cdot(n+0) = m\cdot n + m\cdot 0$.
   \item Write the inductive hypothesis.
@@ -745,57 +753,50 @@ Other laws are left as exercises.
   \item Prove the basis: $m\cdot (n\cdot 0) = (m\cdot n)\cdot 0$.
   \item Write the inductive hypothesis.
   \item Prove the Inductive Step: $m\cdot (n\cdot k^\nxt) = (m\cdot
-    n)\cdot k^\nxt$. Hint: Use the Law of Distribution, which you just
+    n)\cdot k^\nxt$. 
+    Hint: Use the Law of Distribution, which you just
     proved.
   \end{enumerate}
 
-\item Prove that multiplication is commutative. Hint: Use the two facts 
-we proved right before these exercises.
+\item Prove that multiplication is commutative. 
+Hint: Use the two Lemmas we proved right before these exercises.
 
-  \end{exerciselist}
-\end{exercises}
-
-\ipadbreak
-
-For the record, we also prove the cancellation law for multiplication. This is a bit harder than the exercises, but you should try to find your own proof before looking at the following.
-
-\begin{fact}
-
-  \emph{If $m\cdot p^\nxt = n\cdot p^\nxt$, then $m=n$.}
-
-\begin{proof}
-  The proof is by induction on $n$.
-  \begin{itemize}
-  \item{}[Basis] Suppose $m\cdot p^\nxt = 0\cdot p^\nxt$. From Fact
-    \ref{lem:MultZero}, $m+ m\cdot p = m\cdot p^\nxt = 0$. So the Law of
-    Positivity for addition ensures that $m=0$.
-  \item{}[Inductive Hypothesis] Assume that for some $k$, the following is true:
-    if $m\cdot p^\nxt = k\cdot p^\nxt$, then $m=k$.
-  \item{}[Inductive Step] Suppose that $m\cdot p^\nxt = k^\nxt \cdot
-    p^\nxt$. Then
-    \begin{align*}
-      m\cdot p^\nxt &= k^\nxt\cdot p^\nxt &&\text{[By assumption]}\\
-      &= k\cdot p^\nxt + p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
-      &= (k\cdot p^\nxt + p)^\nxt &&\text{[Definition of $+$]}\\
-      &\neq 0 &&\text{[Axiom Nat \ref{ax:NatZero}]}
-    \end{align*}
-    Consequently, $m\neq 0$, for otherwise we would have $m\cdot
-    p^\nxt = 0$. Since $m$ is not equal to $0$, it is equal to some
-    successor (by the Case Distinction Law). Let $j$ be the predecessor of $m$,
-	so that $j^\nxt=m$. Then
-    \begin{align*}
-      j\cdot p^\nxt + p^\nxt & = m\cdot p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
-      &= k^\nxt \cdot p^\nxt &&\text{[By supposition]}\\
-      &= k\cdot p^\nxt + p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}
-    \end{align*}
-    Because addition is cancellative, $j\cdot p^\nxt = k\cdot
-    p^\nxt$. Now, the Inductive Hypothesis ensures that $j=k$. Hence
-    $m = j^\nxt = k^\nxt$.
-  \end{itemize}
-\end{proof}
-\end{fact}
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "MainText"
-%%% End: 
+  \end{exercise}
+\end{exer}
+%\ipadbreak
+%
+%For the record, we don't prove the cancellation law for multiplication here. It is similar to the others but a bit trickier. Nevertheless, the proof does not provide a new insight, so we omit it. 
+%
+%\begin{prop}
+%
+%  \emph{If $m\cdot p^\nxt = n\cdot p^\nxt$, then $m=n$.}
+%
+%\begin{proof}
+%  The proof is by induction on $p$.
+%  \begin{itemize}
+%  \item{}[Basis] Suppose $m\cdot 0^\nxt = n\cdot 0^\nxt$. That is, $m\cdot 1=n\cdot 1$. Direct calculations show that $1$ is the identity for multiplication, so $m=n$. 
+%  \item{}[Inductive Hypothesis] Assume that for some $k$, the following is true:
+%    if $m\cdot k^\nxt = n\cdot k^\nxt$, then $m=n$.
+%  \item{}[Inductive Step] Suppose that $m\cdot k^{\nxt\nxt} = n\cdot
+%    k^{\nxt\nxt}$. Then
+%    \begin{align*}
+%      m\cdot k^{\nxt} + m &= k^\nxt\cdot p^\nxt &&\text{[By assumption]}\\
+%      &= k\cdot p^\nxt + p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
+%      &= (k\cdot p^\nxt + p)^\nxt &&\text{[Definition of $+$]}\\
+%      &\neq 0 &&\text{[Axiom Nat \ref{ax:NatZero}]}
+%    \end{align*}
+%    Consequently, $m\neq 0$, for otherwise we would have $m\cdot
+%    p^\nxt = 0$. Since $m$ is not equal to $0$, it is equal to some
+%    successor (by the Case Distinction Law). Let $j$ be the predecessor of $m$,
+%	so that $j^\nxt=m$. Then
+%    \begin{align*}
+%      j\cdot p^\nxt + p^\nxt & = m\cdot p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}\\
+%      &= k^\nxt \cdot p^\nxt &&\text{[By supposition]}\\
+%      &= k\cdot p^\nxt + p^\nxt &&\text{[Lemma \ref{lem:MultSucc}]}
+%    \end{align*}
+%    Because addition is cancellative, $j\cdot p^\nxt = k\cdot
+%    p^\nxt$. Now, the Inductive Hypothesis ensures that $j=k$. Hence
+%    $m = j^\nxt = k^\nxt$.
+%  \end{itemize}
+%\end{proof}
+%\end{prop}

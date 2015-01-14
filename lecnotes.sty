@@ -1,0 +1,52 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{lecnotes}[2014/08/21 lecnotes package]
+
+% Basics
+%\LoadClass{memoir}
+\RequirePackage{etoolbox}
+\RequirePackage{mathtools}
+\RequirePackage[dvipsnames]{xcolor}
+
+
+\chapterstyle{lyhne}
+\renewcommand{\chaptername}{Lecture}
+
+\DeclareOption{print}{\def\Format{print}}
+\DeclareOption{kindle}{\def\Format{kindle}}
+\DeclareOption{ipad}{\def\Format{iPad}}
+\DeclareOption*{\PackageWarning{examplepackage}{Unknown ‘\CurrentOption’}}
+\ProcessOptions\relax
+
+
+\newcommand{\setTopic}[1]{\def\Topic{#1}}
+\newcommand{\setAuthor}[1]{\def\Author{#1}}
+\newcommand{\setDate}[1]{\def\Date{#1}}
+\newcommand{\setCourse}[1]{\def\Course{#1}}
+\newcommand{\setVersion}[1]{\def\Version{#1}}
+
+\newlength{\drop}
+\newcommand*{\mytitle}{
+	\begingroup%
+	\drop=0.1\textheight
+	\fboxsep 0.5\baselineskip
+	\sffamily
+	{\centering
+		{\Large \Course}\par
+		\vspace{0.3\drop}
+		{\Large Lecture Notes}\par
+		\vspace{0.3\drop}
+		{\Large on}\par
+		\vspace{0.3\drop}
+		{\Large \Topic}\par
+		\vspace{0.9\drop}
+		{\large \Author}\par
+		\vspace{0.3\drop}
+		{\Date}\par
+		\vspace{1\drop}
+	}
+	\vfill
+	%		\begin{overview}\Overview\end{overview}\par
+	\vfill
+	{\small Version: \Version\ (\Date) Format: \Format}
+	\endgroup
+}
