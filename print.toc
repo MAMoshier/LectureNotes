@@ -1,23 +1,57 @@
 \contentsline {chapter}{Contents}{ii}{section*.1}
-\contentsline {chapter}{\chapternumberline {1}The Natural Numbers}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}The Basic Picture}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Narrowing the possibilities}{4}{section.1.2}
-\contentsline {chapter}{\chapternumberline {2}Arithmetic}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}Basic Arithmetic Operations}{7}{section.2.1}
-\contentsline {chapter}{\chapternumberline {3}Laws of Arithmetic}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}Basic Laws}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Inductive Proofs}{13}{section.3.2}
-\contentsline {chapter}{\chapternumberline {4}Lists}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}List Basics}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}List Itemization}{27}{section.4.2}
-\contentsline {section}{\numberline {4.3}Lists of a Particular Type}{28}{section.4.3}
-\contentsline {section}{\numberline {4.4}Other Inductively Defined Collections}{30}{section.4.4}
-\contentsline {section}{\numberline {4.5}Binary Trees}{31}{section.4.5}
-\contentsline {chapter}{\chapternumberline {5}Ordering the Natural Numbers by Addition}{35}{chapter.5}
-\contentsline {section}{\numberline {5.1}Less or Equal}{35}{section.5.1}
-\contentsline {section}{\numberline {5.2}Other Forms of Induction}{40}{section.5.2}
-\contentsline {section}{\numberline {5.3}Minimum and Maximum}{42}{section.5.3}
-\contentsline {chapter}{\chapternumberline {6}Divisibility}{47}{chapter.6}
-\contentsline {section}{\numberline {6.1}Quotients and Remainders}{50}{section.6.1}
-\contentsline {chapter}{\chapternumberline {7}Prime Numbers}{54}{chapter.7}
-\contentsline {section}{\numberline {7.1}Greatest Common Divisor and Least Common Multiple}{58}{section.7.1}
+\contentsline {part}{\partnumberline {I}Natural Numbers}{1}{part.1}
+\contentsline {chapter}{\chapternumberline {1}The Natural Numbers}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}The Basic Picture}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Narrowing the possibilities}{5}{section.1.2}
+\contentsline {chapter}{\chapternumberline {2}Arithmetic}{8}{chapter.2}
+\contentsline {section}{\numberline {2.1}Basic Arithmetic Operations}{8}{section.2.1}
+\contentsline {chapter}{\chapternumberline {3}Laws of Arithmetic}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Basic Laws}{12}{section.3.1}
+\contentsline {section}{\numberline {3.2}Inductive Proofs}{14}{section.3.2}
+\contentsline {chapter}{\chapternumberline {4}Lists}{22}{chapter.4}
+\contentsline {section}{\numberline {4.1}List Basics}{22}{section.4.1}
+\contentsline {section}{\numberline {4.2}List Itemization}{28}{section.4.2}
+\contentsline {section}{\numberline {4.3}Lists of a Particular Type}{29}{section.4.3}
+\contentsline {section}{\numberline {4.4}Other Inductively Defined Collections}{31}{section.4.4}
+\contentsline {section}{\numberline {4.5}Binary Trees}{32}{section.4.5}
+\contentsline {chapter}{\chapternumberline {5}Ordering the Natural Numbers by Addition}{36}{chapter.5}
+\contentsline {section}{\numberline {5.1}Less or Equal}{36}{section.5.1}
+\contentsline {section}{\numberline {5.2}Other Forms of Induction}{41}{section.5.2}
+\contentsline {section}{\numberline {5.3}Minimum and Maximum}{43}{section.5.3}
+\contentsline {chapter}{\chapternumberline {6}Divisibility}{48}{chapter.6}
+\contentsline {section}{\numberline {6.1}Quotients and Remainders}{51}{section.6.1}
+\contentsline {chapter}{\chapternumberline {7}Prime Numbers}{55}{chapter.7}
+\contentsline {section}{\numberline {7.1}Greatest Common Divisor and Least Common Multiple}{59}{section.7.1}
+\contentsline {part}{\partnumberline {II}Sets and Functions}{63}{part.2}
+\contentsline {chapter}{\chapternumberline {8}Sets}{64}{chapter.8}
+\contentsline {section}{\numberline {8.1}Set Basics}{65}{section.8.1}
+\contentsline {section}{\numberline {8.2}Subsets and Extensionality}{68}{section.8.2}
+\contentsline {chapter}{\chapternumberline {9}Functions}{73}{chapter.9}
+\contentsline {section}{\numberline {9.1}Internal Diagrams}{75}{section.9.1}
+\contentsline {section}{\numberline {9.2}Extensionality}{77}{section.9.2}
+\contentsline {chapter}{\chapternumberline {10}Constructing Sets and Functions}{79}{chapter.10}
+\contentsline {section}{\numberline {10.1}Elements, Pointers and Constant Functions}{80}{section.10.1}
+\contentsline {section}{\numberline {10.2}The Empty Set}{82}{section.10.2}
+\contentsline {section}{\numberline {10.3}Solution Sets, Subsets, Characteristic Functions}{82}{section.10.3}
+\contentsline {section}{\numberline {10.4}Product Sets and Functions of Two Arguments}{87}{section.10.4}
+\contentsline {section}{\numberline {10.5}Function Sets and Parametric Functions}{89}{section.10.5}
+\contentsline {chapter}{\chapternumberline {11}The Set of Natural Numbers}{92}{chapter.11}
+\contentsline {section}{\numberline {11.1}Sequences and Simple Recurrences}{93}{section.11.1}
+\contentsline {section}{\numberline {11.2}Primitive Recursion}{95}{section.11.2}
+\contentsline {section}{\numberline {11.3}Primitive Recursion and ``for'' loops}{97}{section.11.3}
+\contentsline {section}{\numberline {11.4}Lists}{99}{section.11.4}
+\contentsline {chapter}{\chapternumberline {12}Powersets}{101}{chapter.12}
+\contentsline {section}{\numberline {12.1}Finitary Structure of ${\EuScript {P}}(U)$}{102}{section.12.1}
+\contentsline {section}{\numberline {12.2}Laws of Finitary Set Operations}{106}{section.12.2}
+\contentsline {section}{\numberline {12.3}Binary Relations}{108}{section.12.3}
+\contentsline {section}{\numberline {12.4}Quantifiers and Completeness}{109}{section.12.4}
+\contentsline {section}{\numberline {12.5}Atomicity}{111}{section.12.5}
+\contentsline {section}{\numberline {12.6}Forward images}{112}{section.12.6}
+\contentsline {chapter}{\chapternumberline {13}Additional Constructions}{115}{chapter.13}
+\contentsline {section}{\numberline {13.1}Induction}{115}{section.13.1}
+\contentsline {section}{\numberline {13.2}Unions}{115}{section.13.2}
+\contentsline {section}{\numberline {13.3}Monomorphisms and Epimorphisms}{116}{section.13.3}
+\contentsline {section}{\numberline {13.4}Co-products}{125}{section.13.4}
+\contentsline {section}{\numberline {13.5}Quotients}{126}{section.13.5}
+\contentsline {section}{\numberline {13.6}Function Graphs}{128}{section.13.6}
+\contentsline {section}{\numberline {13.7}Splitting and the Axiom of Choice}{132}{section.13.7}

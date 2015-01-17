@@ -395,7 +395,7 @@ Figure \ref{fig:Divisibility} shows a fragment of the natural numbers with respe
 \pgfmathsetmacro{\yy}{\ylength*sin(\yangle)}
 \pgfmathsetmacro{\zx}{\zlength*cos(\zangle)}
 \pgfmathsetmacro{\zy}{\zlength*sin(\zangle)}
-\begin{figure}[h]\label{fig:Divisibility}
+\begin{figure}[ht]\label{fig:Divisibility}
 \centering
 \begin{tikzpicture}
 [   x={(\xx cm,\xy cm)},
@@ -448,7 +448,7 @@ Figure \ref{fig:Divisibility} shows a fragment of the natural numbers with respe
 
 Divisibility also makes sense for integers, but it is no longer anti-symmetric for a somewhat trivial reason.
 For example, $5\mid -5$ and $-5\mid 5$, but obviously $5\neq -5$. In short, divisibility ignores the sign of an integer.
-This is a good reason to concentrate our attention on natural numbers, but bear in mind that most of what we can say about divisibility is true for integers as well.
+This is a good reason for us to concentrate our attention on natural numbers, bearing in mind that much of what we can say about divisibility is true for integers as well.
 
 Before closing this section, we note additional facts about how $\mid$ interacts with arithmetic.
 
@@ -483,7 +483,7 @@ For example, dividing $23$ by $7$ results in a quotient of $3$ and a remainder o
 That is, $3\cdot 7 + 2 = 23$. 
 Let us make this precise.
 
-\begin{thm}[Natural Number Division]
+\begin{thm}[Natural Number Division]\label{thm:division}
 	For any natural number $m$ and any positive natural number $n$, there is a unique pair of natural numbers $q$ and $r$ 
 	satisfying
 	\[m=qn + r\]
@@ -664,7 +664,7 @@ prime factorization, typically called \emph{the} prime factorization.
   \end{proof}
 \end{thm}
 
-For example, $24$ is factored as $[2,2,2,3]$. Likewise, $800$ is factored as $[2,2,2,2,2,5,5]$.
+For example, $24$ is factored as $[2,2,2,3]$ and $800$ is factored as $[2,2,2,2,2,5,5]$.
 We can get a simpler representation by listing the number of times each prime is repeated.
 So we can represent $800$ by $[5,0,2]$, signifying that $800 = 2^53^05^2$. Notice that in
 this notation, we need the middle $0$ as a ``place holder'' to indicate that our number does
@@ -708,11 +708,11 @@ We would not know this if we did not know there are infinitely many primes.
 \end{exer}
 
 Using $p_k$, we can succinctly represent any positive natural number by a list of exponents of primes.
-Namely, for a list $R$ of natural numbers, define $R_{pr}$ (for ``prime representation'') to be 
-\[R_{pr} \defeq \prod_{i<\len R}p_i^{R_i}.\]
+Namely, for a list $R$ of natural numbers, define $R_{\pe}$ (for ``prime representation'') to be 
+\[R_{\pe} \defeq \prod_{i<\len R}p_i^{R_i}.\]
 For example, $[1,2,0,2]_{pr} = 2^13^25^07^2 = 882$.
 
-For a positive natural number $n$, let $\mathord{\textsf{PR}}(n)$ denote the unique list so that $\mathord{\textsf{PR}}(n)_{pr}=n$.
+For a positive natural number $n$, let $\mathord{\textsf{PR}}(n)$ denote the unique list so that (i) $\PE(n)_{\ne}=n$ and (ii) $\PE(n)$ does not contain any trailing zeroes.
 
 Recall that we defined $P \overline+ Q$ for two lists of natural numbers by adding the items of the two lists itemwise.
 \begin{align*}
@@ -721,9 +721,9 @@ Recall that we defined $P \overline+ Q$ for two lists of natural numbers by addi
 	m:P\overline+ n:Q &= (m+n):(P\overline+ Q)
 \end{align*}
 Then it is clear (we will not give a proof) that 
-$P_{pr}\cdot Q_{pr} = (P\overline+ Q)_{pr}$.
+$P_{\pe}\cdot Q_{\pe} = (P\overline+ Q)_{\pe}$.
 Also  define a relation $P\preceq Q$ on lists of natural numbers by $[]\preceq Q$ always,
-$m:P\preceq []$ never, and $m:P\preceq n:Q$ if $m\leq n$ and $P\preceq Q$. Then $P_{pr}\mid Q_{pr}$ if and only if $P\preceq Q$.
+$m:P\preceq []$ never, and $m:P\preceq n:Q$ if $m\leq n$ and $P\preceq Q$. Then $P_{\pe}\mid Q_{\pe}$ if and only if $P\preceq Q$. In other words, if we list the exponents of primes that constitute given numbers $m$ and $n$, we can compare them for divisibility simply by comparing the exponents by $\leq$.
 
 
 \section{Greatest Common Divisor and Least Common Multiple}
@@ -765,29 +765,28 @@ is anti-symmetric, so $g=g'$. The proof for least common multiples is \emph{dual
 \end{proof}
 \end{lemma}
 
-This justifies writing $\gcd(m,n)$ for \emph{the} greast common divisor and $\lcm(m,n)$ for \emph{the} least common multiple, because if some gretest common divisor exists, it is unique and likewise for a least common multiple. So when does a greatest common divisor exist? The following proof that the answer is ``always'' is of practical value because it actually provides an algorithm (due essentially to the Greek mathematician Euclid) for calculating $gcd(m,n)$ for any $m$ and $n$.
+This justifies writing $\gcd(m,n)$ for \emph{the} greast common divisor and $\lcm(m,n)$ for \emph{the} least common multiple, because if some gretest common divisor or least common multiple exists, it is unique. So when does a greatest common divisor exist? The following proof (due essentially to the Greek mathematician Euclid) for calculating $gcd(m,n)$ for any $m$ and $n$ answers the question.
 
 
-\begin{thm}[Euclid's Algorithm]
+\begin{thm}[Euclid's Algorithm (modern version)]
  For any two natural numbers $m$ and $n$, $\gcd(m,n)$ exists.
 
 \begin{proof}
-  Without loss of generality, we may
-  assume that $m\leq n$ because the requirements for $\gcd(m,n)$ to exist are the
+  Without loss of generality, we may assume that $m\leq n$ because the requirements for $\gcd(m,n)$ to exist are the
 same as for $\gcd(n,m)$.
 
 To simplify the notation, we write $P(i)$ to mean that for all $j\geq i$, the greatest common divisor $\gcd(i,j)$ exists.
-We proceed by strong induction on to show that for all $m$, $P(m)$ holds.
+We proceed by strong induction on $m$ to show that for all $m$, $P(m)$ holds. The result follows immediately from that.
   \begin{itemize}
   \item{}[Strong Inductive Hypothesis] Assume that for some natural number $a$ it the case that for all natural numbers $k<a$, $P(k)$ holds.
 
-  \item{}[Strong Inductive step] We must show that for every $P(a)$ holds. That is, for every $b\geq a$, the  
+  \item{}[Strong Inductive step] We must show that $P(a)$ holds. That is, for every $b\geq a$, the  
 a greatest common divisor of $a$ and $b$ exists. Consider any $b\geq a$. 
-   We consider two cases: $a=0$ or not.  In
-    case $a=0$, then $b$ can be any natural number. Evidently $b$ divides both $0$ and $b$. And since   
+   We consider two cases depending on whether $a=0$ or not.  In
+    case $a=0$, then $b$ could be any natural number. Evidently $b$ divides both $0$ and $b$. And since   
     any natural number is a divisor of $0$, $b$ is the greatest common divisor of $0$ and $b$.
 	
-    In case $a>0$, the division algorithm provides a remainder
+    In case $a>0$, then natural number division (Theorem \label{thm:division}) provides a remainder
     $b\drem a$.  Since $b\drem a < a$, the Strong Inductive
     Hypothesis ensures $P(b\drem a)$ is true. In particular, $\gcd(b\drem a, a)$ exists.   
     Let $g=\gcd(b\drem a,b)$.
@@ -795,7 +794,7 @@ a greatest common divisor of $a$ and $b$ exists. Consider any $b\geq a$.
 
     Clearly, $g\mid a$. And since $b= a\cdot (b\ddiv a) + (b\drem a)$, and $g$ divides both summands separately,  $g\mid b$. 
 	So $g$ is a common divisor of $a$ and $b$. Now, suppose $c$ divides both $a$ and $b$, then $c$ also divides
-	$b\drem a$. Hence $c\mid g$, because $g$ is the greatest common divisor of $b\drem a$ and $a$.
+	$b\drem a$. Hence $c\mid g$, because $g=\gcd(b\drem a,a)$.
   \end{itemize}
 \end{proof}
 \end{thm}
@@ -807,7 +806,7 @@ for calculating $\gcd(a,b)$. Namely,
   \gcd(a,b) &\defeq \gcd(b\drem a, a) &\text{for $a > 0$}
 \end{align*}
 
-If you are interested, this translates to Python.
+This translates to Python.
 \begin{code}
 \begin{lstlisting}
 def gcd($a$,$b$):
@@ -816,19 +815,43 @@ def gcd($a$,$b$):
     else:
         return gcd($b\texttt{\%} a$, $a$)
 \end{lstlisting}
+
+\noindent Note that in python $\texttt{\%}$ is the symbol used for the remainder operation.
 \end{code}
 
+Variants of this algorithm have many important applications, including in cryptography. We look at some of those applications in Lecture \ref{lec:cryptography}.
+
 Another way to understand $\gcd$ and $\lcm$ for positive natural numbers is via prime factorizations. 
+This is not a practical way to \emph{calculate} them because it requires a lot of work simply to find all of number's prime factors -- a fact that may not be obvious from looking at small examples. Nevertheless, it is useful in another way. We can very easily prove facts about $\gcd$ and $\lcm$ when we shift our thinking to regard a positive natural number $n$ as being represented by its prime factorization.
+
 Recall that we can express any positive natural number $n$ as a product of primes: 
-$n = 2^{k_0}2^{k_1}3^{k_2}\dots p_{m-1}^{k_{m-1}}$ for some list of natural numbers $\mathord{\textsf{PR}}(n) = [k_0,k_1,k_2,\dots,k_{m-1}]$. Here $p_0=2$, $p_1=3$ and so on, enumerating the primes in increasing order. Also, recall that for any list of natural numbers, we let $R_{pr}$ denote
-the product $\prod_{i<\len(R)} p_i^{R_i}$. 
+$n = 2^{k_0}2^{k_1}3^{k_2}\dots p_{m-1}^{k_{m-1}}$ where the primes here are used in their standard order. The list of exponents $\PE(n) = [k_0,k_1,k_2,\dots,k_{m-1}]$ is all the information we need to reconstruct $n$. Recall that for any list of natural numbers, we let $R_{\pe}$ denote
+the product $\prod_{i<\len(R)} p_i^{R_i}$, where $p_i$ is the $i^{\text{th}}$ prime number.
 
 As an example, consider writing $\gcd(42,180)=6$ in prime factorized form. 
-This is $\gcd(2^13^15^07^1, 2^23^25^17^0) = 2^13^15^07^0$. 
-Notice that each exponent in the result is the minimum of the corresponding exponents in the arguments. 
-This makes sense because $m\mid n$ is true if and only if each entry $i$ in $\mathord{\textsf{PR}}(n)$ is less than or equal to entry $i$ in $\mathord{\textsf{PR}}(m)$.
+This is \[\gcd(2^13^15^07^1, 2^23^25^17^0) = 2^13^15^07^0.\] 
+Each exponent in the result is the minimum of the corresponding exponents in the arguments. 
+This makes sense because $m\mid n$ is true if and only if each entry $i$ in $\PE(n)$ is less than or equal to entry $i$ in $\PE(m)$.
 By taking the minimum in each position, the result is the greatest common divisor.
 
 A similar observation indicates that $\lcm(a,b)$ can be obtained from prime factorization by taking the maximumm in each position instead of the minimum. In our example,
 $\lcm(42,180) = 2^23^25^17^1 = 1260$.
 
+This leads to simple algorithms computing $\gcd$ and $\lcm$ if we are given two positive natural numbers in prime exponent form. That is, define the following operations on lists of natural numbers.
+
+\begin{align*}
+	\overline{\gcd}(P,[]) &= []\\
+	\overline{\gcd}([],Q) &= []\\
+	\overline{\gcd}(m:P, n:Q) &= min(m,n):\overline{\gcd}(P,Q)\\
+	\overline{\lcm}(P,[]) &= P\\
+	\overline{\lcm}([],Q) &= Q\\
+	\overline{\lcm}(m:P,n:Q) &= \max(m,n):\overline{lcm}(P,Q)
+\end{align*}
+
+Now it is straightforward to show that the following equations are true for any two lists of natural numbers.
+
+\begin{align*}
+P\overline{+} Q &= \overline{\gcd}(P,Q) \overline+ \overline{\lcm}(P,Q)\\
+\gcd(P_{\pe}, Q_{\pe}) &= \overline{\gcd}(P,Q)\\
+\lcm(P_{\pe}, Q_{\pe}) &= \overline{\lcm}(P,Q)
+\end{align*}
