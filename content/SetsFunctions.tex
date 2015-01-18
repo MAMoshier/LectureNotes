@@ -2,7 +2,7 @@
 
 \begin{goals}
 \begin{goal}{Lecture}
-\item Describe the basic strcture of sets.
+\item Describe the basic structure of sets.
 \item Define list set notation.
 \item Introduce the idea of a subset.
 \item Introduce the axiom of extensionality for sets and some of its consequences.
@@ -24,7 +24,7 @@ An simple example is a set representing poker cards. We may denote it by
 \end{align*}
 The elements are arranged here conveniently, but we could just as well have listed the cards in any ``shuffled'' order. The set of them would be the same.
 
-\emph{Functions}, introduced in Lecture \ref{lec:functions} are the mathematicians way of thinking about attributes of the things in a collection, like ``the color of'', ``the mass of'', ``the location of'', ``the father of'', ``the favorite book of the person to the left of'' and so on.
+\emph{Functions}, introduced formally in Lecture \ref{lec:functions} are the mathematicians way of thinking about attributes of the things in a collection, like ``the color of'', ``the mass of'', ``the location of'', ``the father of'', ``the favorite book of the person to the left of'' and so on.
 For our example of cards in a poker deck, ``rank of'' or ``suit of'' are two attributes. So we might write $\rank(A\diamondsuit) = A$ and $\suit(A\diamondsuit)=\diamondsuit$.
 In general, $\rank(x)$ and $\suit(x)$ pick out these attributes of a card $x$.
 The values these atrributes can take are also set $\symb{Rank} = \{A,1,2,3,4,5,6,7,8,9,10,J,Q,K\}$ 
@@ -48,13 +48,13 @@ To understand sets and functions as they are used in every day mathematics, we n
 	\item What do we mean by saying that two functions are equal?
 	\item How do we construct sets and functions?
 \end{itemize}
-The answers to these questions lead to some basic principles. Namely, the ways that mathematicians actually use sets are generally governed by these principles.
-We could be more formal and present these principles as \emph{axioms}, but the word ``axiom'' is used in mathematics to suggest that we intend these principles to be formal and to express everything in a minimal way.  We do not either the formality or the minimality here.
+The answers to these questions lead to some basic principles governing the ways that mathematicians actually use sets and functions.
+We could be more formal and present these principles as \emph{axioms}, but the word ``axiom'' is used in mathematics to suggest that we intend the principles to be formal and to express everything in a minimal way.  We do not need either the formality or the minimality here.
 Nevertheless, everything we say in these lectures could be presented that way.  
 
 \section{Set Basics}\label{sec:SetBasics}
 
-A set consists of things that are ``in'' the set. All other things are ``not in'' the set. In our running example, $A\spadesuit$ is in the set $C$, but $25$ is not in $C$. Let us make the idea precise.
+A set consists of things that are ``in'' the set. All other things are ``not in'' the set. In our running example, $A\spadesuit$ is in the set $\symb{Deck}$, but $25$ is not in $\symb{Deck}$. Let us make the idea precise.
 
 \begin{principle}[Basic Structure of Sets]\label{sig:SetSignature}
   A \newterm{set} is a mathematical entity $X$ with the following feature. 
@@ -110,8 +110,7 @@ The study of finite sets is surprisingly complex, and comprises a large part of 
 We will touch on the basics of combinatorics later in the course. 
 
 Various infinite sets of numbers also exist, but these follow from general principles we have not discussed yet. 
-We do not try to justify anything for now.
-Instead, we introduce them informally along with the standard symbols we use to denote them.
+We do not try to justify anything for now, but introduce them informally along with the standard symbols used to denote them.
 
 \begin{defn}
 	The following sets are denoted by the special symbols:

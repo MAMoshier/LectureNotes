@@ -22,36 +22,41 @@
 \contentsline {section}{\numberline {6.1}Quotients and Remainders}{51}{section.6.1}
 \contentsline {chapter}{\chapternumberline {7}Prime Numbers}{55}{chapter.7}
 \contentsline {section}{\numberline {7.1}Greatest Common Divisor and Least Common Multiple}{59}{section.7.1}
-\contentsline {part}{\partnumberline {II}Sets and Functions}{63}{part.2}
-\contentsline {chapter}{\chapternumberline {8}Sets}{64}{chapter.8}
-\contentsline {section}{\numberline {8.1}Set Basics}{65}{section.8.1}
-\contentsline {section}{\numberline {8.2}Subsets and Extensionality}{68}{section.8.2}
-\contentsline {chapter}{\chapternumberline {9}Functions}{73}{chapter.9}
-\contentsline {section}{\numberline {9.1}Internal Diagrams}{75}{section.9.1}
-\contentsline {section}{\numberline {9.2}Extensionality}{77}{section.9.2}
-\contentsline {chapter}{\chapternumberline {10}Constructing Sets and Functions}{79}{chapter.10}
-\contentsline {section}{\numberline {10.1}Elements, Pointers and Constant Functions}{80}{section.10.1}
-\contentsline {section}{\numberline {10.2}The Empty Set}{82}{section.10.2}
-\contentsline {section}{\numberline {10.3}Solution Sets, Subsets, Characteristic Functions}{82}{section.10.3}
-\contentsline {section}{\numberline {10.4}Product Sets and Functions of Two Arguments}{87}{section.10.4}
-\contentsline {section}{\numberline {10.5}Function Sets and Parametric Functions}{89}{section.10.5}
-\contentsline {chapter}{\chapternumberline {11}The Set of Natural Numbers}{92}{chapter.11}
-\contentsline {section}{\numberline {11.1}Sequences and Simple Recurrences}{93}{section.11.1}
-\contentsline {section}{\numberline {11.2}Primitive Recursion}{95}{section.11.2}
-\contentsline {section}{\numberline {11.3}Primitive Recursion and ``for'' loops}{97}{section.11.3}
-\contentsline {section}{\numberline {11.4}Lists}{99}{section.11.4}
-\contentsline {chapter}{\chapternumberline {12}Powersets}{101}{chapter.12}
-\contentsline {section}{\numberline {12.1}Finitary Structure of ${\EuScript {P}}(U)$}{102}{section.12.1}
-\contentsline {section}{\numberline {12.2}Laws of Finitary Set Operations}{106}{section.12.2}
-\contentsline {section}{\numberline {12.3}Binary Relations}{108}{section.12.3}
-\contentsline {section}{\numberline {12.4}Quantifiers and Completeness}{109}{section.12.4}
-\contentsline {section}{\numberline {12.5}Atomicity}{111}{section.12.5}
-\contentsline {section}{\numberline {12.6}Forward images}{112}{section.12.6}
-\contentsline {chapter}{\chapternumberline {13}Additional Constructions}{115}{chapter.13}
-\contentsline {section}{\numberline {13.1}Induction}{115}{section.13.1}
-\contentsline {section}{\numberline {13.2}Unions}{115}{section.13.2}
-\contentsline {section}{\numberline {13.3}Monomorphisms and Epimorphisms}{116}{section.13.3}
-\contentsline {section}{\numberline {13.4}Co-products}{125}{section.13.4}
-\contentsline {section}{\numberline {13.5}Quotients}{126}{section.13.5}
-\contentsline {section}{\numberline {13.6}Function Graphs}{128}{section.13.6}
-\contentsline {section}{\numberline {13.7}Splitting and the Axiom of Choice}{132}{section.13.7}
+\contentsline {chapter}{\chapternumberline {8}Other Number Systems}{64}{chapter.8}
+\contentsline {section}{\numberline {8.1}Integers}{64}{section.8.1}
+\contentsline {section}{\numberline {8.2}Rational Numbers}{67}{section.8.2}
+\contentsline {section}{\numberline {8.3}Real and Complex Numbers}{69}{section.8.3}
+\contentsline {chapter}{\chapternumberline {9}Modular Arithmetic}{70}{chapter.9}
+\contentsline {part}{\partnumberline {II}Sets and Functions}{71}{part.2}
+\contentsline {chapter}{\chapternumberline {10}Sets}{72}{chapter.10}
+\contentsline {section}{\numberline {10.1}Set Basics}{73}{section.10.1}
+\contentsline {section}{\numberline {10.2}Subsets and Extensionality}{76}{section.10.2}
+\contentsline {chapter}{\chapternumberline {11}Functions}{81}{chapter.11}
+\contentsline {section}{\numberline {11.1}Internal Diagrams}{83}{section.11.1}
+\contentsline {section}{\numberline {11.2}Extensionality}{85}{section.11.2}
+\contentsline {chapter}{\chapternumberline {12}Constructing Sets and Functions}{87}{chapter.12}
+\contentsline {section}{\numberline {12.1}Elements, Pointers and Constant Functions}{88}{section.12.1}
+\contentsline {section}{\numberline {12.2}The Empty Set}{90}{section.12.2}
+\contentsline {section}{\numberline {12.3}Solution Sets, Subsets, Characteristic Functions}{90}{section.12.3}
+\contentsline {section}{\numberline {12.4}Product Sets and Functions of Two Arguments}{95}{section.12.4}
+\contentsline {section}{\numberline {12.5}Function Sets and Parametric Functions}{97}{section.12.5}
+\contentsline {chapter}{\chapternumberline {13}The Set of Natural Numbers}{100}{chapter.13}
+\contentsline {section}{\numberline {13.1}Sequences and Simple Recurrences}{101}{section.13.1}
+\contentsline {section}{\numberline {13.2}Primitive Recursion}{103}{section.13.2}
+\contentsline {section}{\numberline {13.3}Primitive Recursion and ``for'' loops}{105}{section.13.3}
+\contentsline {section}{\numberline {13.4}Lists}{107}{section.13.4}
+\contentsline {chapter}{\chapternumberline {14}Powersets}{109}{chapter.14}
+\contentsline {section}{\numberline {14.1}Finitary Structure of ${\EuScript {P}}(U)$}{110}{section.14.1}
+\contentsline {section}{\numberline {14.2}Laws of Finitary Set Operations}{114}{section.14.2}
+\contentsline {section}{\numberline {14.3}Binary Relations}{116}{section.14.3}
+\contentsline {section}{\numberline {14.4}Quantifiers and Completeness}{117}{section.14.4}
+\contentsline {section}{\numberline {14.5}Atomicity}{119}{section.14.5}
+\contentsline {section}{\numberline {14.6}Forward images}{120}{section.14.6}
+\contentsline {chapter}{\chapternumberline {15}Additional Constructions}{123}{chapter.15}
+\contentsline {section}{\numberline {15.1}Induction}{123}{section.15.1}
+\contentsline {section}{\numberline {15.2}Unions}{123}{section.15.2}
+\contentsline {section}{\numberline {15.3}Monomorphisms and Epimorphisms}{124}{section.15.3}
+\contentsline {section}{\numberline {15.4}Co-products}{133}{section.15.4}
+\contentsline {section}{\numberline {15.5}Quotients}{134}{section.15.5}
+\contentsline {section}{\numberline {15.6}Function Graphs}{136}{section.15.6}
+\contentsline {section}{\numberline {15.7}Splitting and the Axiom of Choice}{140}{section.15.7}

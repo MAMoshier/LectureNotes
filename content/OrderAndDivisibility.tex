@@ -1,4 +1,4 @@
-\chapter{Ordering the Natural Numbers by Addition}
+\chapter{Ordering the Natural Numbers by Addition}\label{lec:NatOrdering}
 
 We have used the ordering of numbers informally without much comment
 because $\leq$ has its obvious meaning. In this lecture 
@@ -259,7 +259,7 @@ Basically, this means that addition together with $\min$ and $\max$ cooperate in
 The most useful laws having to do with $\min$ and $\max$ are:
 
 
-\begin{laws}
+\begin{laws}[$\min$ and $\max$]\label{laws:minmax}
 For all natural numbers $m$, $n$ and $p$:
 	\begin{description} 
 \item[Commutativity]
@@ -828,7 +828,7 @@ Recall that we can express any positive natural number $n$ as a product of prime
 $n = 2^{k_0}2^{k_1}3^{k_2}\dots p_{m-1}^{k_{m-1}}$ where the primes here are used in their standard order. The list of exponents $\PE(n) = [k_0,k_1,k_2,\dots,k_{m-1}]$ is all the information we need to reconstruct $n$. Recall that for any list of natural numbers, we let $R_{\pe}$ denote
 the product $\prod_{i<\len(R)} p_i^{R_i}$, where $p_i$ is the $i^{\text{th}}$ prime number.
 
-As an example, consider writing $\gcd(42,180)=6$ in prime factorized form. 
+Consider writing $\gcd(42,180)=6$ in prime factorized form. 
 This is \[\gcd(2^13^15^07^1, 2^23^25^17^0) = 2^13^15^07^0.\] 
 Each exponent in the result is the minimum of the corresponding exponents in the arguments. 
 This makes sense because $m\mid n$ is true if and only if each entry $i$ in $\PE(n)$ is less than or equal to entry $i$ in $\PE(m)$.
@@ -840,18 +840,46 @@ $\lcm(42,180) = 2^23^25^17^1 = 1260$.
 This leads to simple algorithms computing $\gcd$ and $\lcm$ if we are given two positive natural numbers in prime exponent form. That is, define the following operations on lists of natural numbers.
 
 \begin{align*}
-	\overline{\gcd}(P,[]) &= []\\
-	\overline{\gcd}([],Q) &= []\\
-	\overline{\gcd}(m:P, n:Q) &= min(m,n):\overline{\gcd}(P,Q)\\
-	\overline{\lcm}(P,[]) &= P\\
-	\overline{\lcm}([],Q) &= Q\\
-	\overline{\lcm}(m:P,n:Q) &= \max(m,n):\overline{lcm}(P,Q)
+	\overline{\min}(P,[]) &= []\\
+	\overline{\min}([],n:Q) &= []\\
+	\overline{\min}(m:P, n:Q) &= min(m,n):\overline{\gcd}(P,Q)\\
+	\overline{\max}(P,[]) &= P\\
+	\overline{\max}([],n:Q) &= n:Q\\
+	\overline{\max}(m:P,n:Q) &= \max(m,n):\overline{\max}(P,Q)
 \end{align*}
 
-Now it is straightforward to show that the following equations are true for any two lists of natural numbers.
+Now it is straightforward to show that the following equations are true for any two lists of natural numbers. The proofs (left as an exercise) are by induction on the lengths of the lists.
 
+\begin{lem}\label{lem:gcdviaprimes}
 \begin{align*}
-P\overline{+} Q &= \overline{\gcd}(P,Q) \overline+ \overline{\lcm}(P,Q)\\
-\gcd(P_{\pe}, Q_{\pe}) &= \overline{\gcd}(P,Q)\\
-\lcm(P_{\pe}, Q_{\pe}) &= \overline{\lcm}(P,Q)
+P\overline{+} Q &= \overline{\min}(P,Q) \overline+ \overline{\max}(P,Q)\\
+\gcd(P_{\pe}, Q_{\pe}) &= \overline{\min}(P,Q)\\
+\lcm(P_{\pe}, Q_{\pe}) &= \overline{\max}(P,Q)
 \end{align*}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+\end{lem}
+
+\begin{exer}
+	\begin{exercise}
+		\item Prove that $P\overline{+} Q &= \overline{\min}(P,Q) \overline+ \overline{\max}(P,Q)$ holds for any lists of natural numbers.
+		\item Prove that $\gcd(P_{\pe}, Q_{\pe}) &= \overline{\min}(P,Q)$ holds for any lists of natural numbers.
+		\item Prove that $\lcm(P_{\pe}, Q_{\pe}) &= \overline{\max}(P,Q)$ holds for any lists of natural numbers.
+	\end{exercise}
+\end{exer}
+
+Recall Laws \ref{lec:NatOrdering}.\ref{laws:minmax}. There, we list important ways in which $\min$, $\max$ and addition interact.
+Because of Lemma \ref{lem:gcdviaprimes}, we can justify an exactly analogous list of laws for how $\gcd$, $\lcm$ and multiplication interact.
+For example,
+\[\gcd(\gcd(m,n),p) = \gcd(m,\gcd(n,p))\]
+because
+\[\min(\min(m,n),p) = \min(m,\min(n,p)).\]
+
+\begin{exer}
+	\begin{exercise}
+		\item Rewrite the entire table of Laws \ref{lec:NatOrdering}.\ref{laws:minmax} for the analgous laws
+		pertaining to $\gcd$, $\lcm$ and multiplication.
+	\end{exercise}
+\end{exer}

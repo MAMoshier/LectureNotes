@@ -1,0 +1,222 @@
+\chapter{Other Number Systems}
+
+Discrete Mathematics is not only concerned with natural numbers. Integers, rational numbers, real numbers and even, on a few occasions, complex numbers, all play their roles. In this lecture, we discuss, with much less formality, integers and rational numbers, leaving real and complex numbers to a courses on analysis.
+
+\begin{goals}
+\begin{goal}{Lecture}
+\item Introduce the standard notation for these number systems.
+\item Discuss briefly the extensions of arithmetic to integers, rationals.
+\item Wave hands and mumble unconvincingly about real and complex numbers.
+\end{goal}
+
+\begin{goal}{Study}
+\item Learn the meanings of the symbols for standard number systems.
+\item Prove some simple facts about arithmetic on integers and rational numbers.
+\end{goal}
+\end{goals}
+
+\section{Integers}
+
+Our intention here is to give a general overview of the integers in light of our detailed study of natural numbers.
+Though we could, we will not go into the same level of detail.
+
+Integers, we understand, include the natural numbers but also include negatives. They constitute the simplest possible extension of the natural numbers in such a way so that for any integers $a$ and $b$, there is a solution of the equation $a = b + x$.  
+So the fundamental structure of integers is that (a) the natural numbers are integers and (b) addition on integers is invertible, i.e., subtraction works correctly.
+
+\begin{postulate}\label{post:IntSignature}
+The integers have the following basic structure.
+
+\begin{itemize}
+\item Every natural number is an integer. For this discussion, we will use letters $a$, $b$, $c$, \ldots for integers,
+and $m$, $n$, \ldots for natural numbers.
+To emphasize when a natural number $m$ plays the role of an integer we write ${}^+m$.
+\item For every two integers, $a$ and $b$, there is a \emph{sum} and a \emph{difference}, denoted by $a+b$ and $a-b$. 
+\end{itemize}
+\end{postulate}
+
+We must insist that addition on integers behaves as we should expect. 
+\begin{postulate}\label{post:IntAddition}
+For natural numbers $m$ and $n$,
+\[{}^+m + {}^+n = {}^+(m+n).\]
+That is, adding $m$ and $n$ \emph{as integers} is the same as adding them \emph{as natural numbers}.
+
+Furthermore, addition on integers is associative and commutative, and $a + {}^+0 = a$ for all integers $a$.
+\end{postulate}
+
+Next, sum and difference are related.
+
+\begin{postulate}\label{post:IntSubtraction}
+For any integers $a$, $b$ and $c$, 
+\[a = b + c\quad\text{if and only if}\quad a - b = c\]
+\end{postulate}
+
+Finally, we require minimality.
+
+\begin{postulate}\label{post:IntInduction}
+  No integers can be removed without violating Postulate \ref{post:IntSignature}.
+\end{postulate}
+
+We do not go through the details, but these axioms determine the structure of the integers similar to the way our earlier axioms determine the structure of the natural numbers. 
+Moreover, all the familiar laws of addition and subtraction follow.
+We illustrate with two simple laws. 
+As usual, we can abbreviate ${}^+0-a$ by $-a$.
+
+\begin{lem}\label{lem:IntAdditiveInverse}
+For any integer $a$, ${}^+0= a + -a$.
+
+\begin{proof}
+  Since ${}^+0-a = {}^+0-a$ (trivially), Postulate \ref{post:IntSubtraction} yields ${}^+0 = a + ({}^+0-a) = a + (-a)$.
+\end{proof}
+\end{lem}
+
+\begin{lem}\label{lem:IntAddSub}
+  For integers $a$ and $b$, $a-b = a + (-b)$.
+
+  \begin{proof}
+    $a = a + {}^+0 = a + (-b + b) = b + (a+(-b))$ by the basic laws of addition (identity, commutativity and associativity)
+and the previous lemma. So by Postulate \ref{post:IntSubtraction}, $a-b = a + (-b)$.
+  \end{proof}
+\end{lem}
+
+In the axiomatization of integers, we did not mention multiplication. This is because multiplication is definable from addition. But we need an aditional fact.
+
+Say that an integer $a$ is ``simple'' if either $a={}^+m$ or $-a = {}^+m$ for some natural number $m$. 
+
+\begin{lem}
+	Every integer is simple.
+	
+	\begin{proof}
+		Exercise
+	\end{proof}
+\end{lem}
+
+\begin{defn}
+For any two integers $a$ and $b$, the \emph{product} $a\cdot b$ defined as follows:
+\begin{align*}
+	a\cdot {}^+0 &= {}^+0\\
+	a\cdot {}^+(k^\nxt) &= a + a\cdot {}^+k\\
+	a\cdot (-{}^+m) &= -(a\cdot {}^+m)
+\end{align*}
+\begin{itemize}
+\item If $a\cdot {}^+0- ${}^+m\cdot {}^+n = {}^+(m\cdot n)$ for natural numbers $m$ and $n$;
+\item Multiplication is associative and commutative, and $a\cdot {}^+1 = a$ for all integers $a$;
+\item Multiplication distributes over addition.  
+\end{itemize}
+\end{defn}
+
+These requirements are enough to ensure that multiplication is the operation we expect it to be.
+We will not verify that fact, but it involves an inductive argument similar to the arguments that we saw in previous lectures.
+
+\begin{exer}
+	\begin{exercise}
+\item Using only the axioms for integers, the foregoing two lemmas and the definition of multiplication, prove the following (remember
+that $-a$ abbreviates ${}^+0 - a$). 
+You should prove these in the order presented here, as later exercises may depend on earlier ones.
+\begin{enumerate}
+\item Show that $+$ is cancellative, not just on natural numbers, but on all integers: $a + c = b + c$ implies $a = b$.
+\item Show that $a-b = -(b-a)$
+\item Show that $(a+b) - c = a + (b-c)$
+\item Show that $a-(b+c) = (a-b)-c$
+\item Show that $-(-a) = a$
+\item Show that ${}^+0\cdot a = {}^+0$
+\item Show that $-a\cdot -b = a\cdot b$
+\end{enumerate}
+\item Show that every integer is simple, using only the postulates given here.
+
+Hint: First observe that, trivially, every integer of the form ${}^+m$ is simple.
+This acts as the basis for an inductive proof. 
+Now suppose $a$ and $b$ are simple (the inductive hypothesis).
+Show that both $a+b$ and $a-b$ are simple (the inductive step).
+Since the integers are minimal for including the natural numbers and being closed under $+$ and $-$, this shows that all integers are simple.
+\end{exercise}
+\end{exer}
+
+\section{Rational Numbers}
+
+Rational numbers, roughly, are minimal with respect to the integers and multiplication, similar to 
+integers being minimal with respect to natural numbers and addition. Care must be taken, however, because $0\cdot a = 0\cdot b$
+does not tell us anything about $a$ and $b$. This means that ``division by $0$'' can not make sense.  
+
+\begin{postulate}\label{post:RatSignature}
+The rational numbers have the following basic structure.
+\begin{itemize}
+\item Every integer is a rational number. For this discussion, to emphasize when an integer $a$ plays the
+role of a rational number, we write $\frac{a}{1}$. 
+\item For every two rational numbers $p$ and $q$, there is a \emph{product}, denoted by $p\cdot q$.
+Moreover, if $q\neq \frac{0}{1}$, then there is a \emph{quotient}, denoted by $p/q$.
+\end{itemize}
+\end{postulate}
+
+In analogy with integers, where addition and subtraction are the main operations, we insist that
+multiplication behaves correctly. 
+
+\begin{postulate}\label{post:RatMultiplication}
+For integers $a$ and $b$,
+\[\frac{a}1 \cdot \frac{b}1 = \frac{ab}1\]
+That is, multiplying integers $a$ and $b$ \emph{as rational numbers} is the same as multiplying them \emph{as integers}.
+
+Furthermore, multiplication is associative and commutative, and $p \cdot \frac{1}{1} = p$ for all rational numbers $p$.
+\end{postulate}
+
+Again, continuing the analogy with integers, multiplication and division must cooperate.
+\begin{postulate}\label{post:rationaldivision}
+For any rationals $p$, $q$ and $r$,
+if $q\neq \frac{0}1$, then 
+\[p= q \cdot r\quad\text{if and only if}\quad p/q = r\]
+\end{postulate}
+
+Finally, we require minimality.
+
+\begin{postulate}\label{post:RationalInduction}
+  No rational numbers can be removed without violating Postulate \ref{post:RatSignature}.
+\end{postulate}
+
+Like the axioms for integers, these axioms completely determine the rational numbers along with multiplication and division. 
+To extend addition and subtraction to the rational numbers we can require the following.
+
+\begin{defn}
+For any two rational numbers $p$ and $q$, their \emph{sum} and \emph{difference}, denoted by $p+q$ and $p-q$, are rational numbers
+satisfying:
+\begin{itemize}
+\item  $\frac{a}{1} + \frac{b}{1} = \frac{a+b}{1}$ for integers $a$ and $b$. 
+\item Addition is associative and commutative, and $p + \frac{{}^+0}1 = p$ for all rational numbers $p$;
+\item $p = q + r$ if and only if $p - q = r$ for all rational numbers $p$, $q$ and $r$;
+\item Multiplication distributes over addition.
+\end{itemize}
+\end{defn}
+
+These requirements are enough to ensure that addition is the operation we expect
+it to be. 
+
+Now suppose $a$ is an integer and $m$ is a positive natural number. Then we
+can write $\frac{a}m$ as an abbreviation of $\frac{a}{1} / \frac{{}^+m}1$. This is
+the usual \emph{fraction} notation for rational numbers.
+For a non-zero rational number $p$, we also usually write $p^{-1}$ to abbreviate 
+$\frac{{}^+1}{1}/ p$.
+
+\begin{exer}
+\begin{exercise}
+\item Using the proof of Lemma \ref{lem:IntAdditiveInverse} as a prototype, show that if $p\neq \frac{{}^+0}{1}$,
+then $p\cdot p^{-1} = \frac{{}^+1}{1}$. 
+\item Using the proof of Lemma \ref{lem:IntAddSub} as a prototype, show that $p/ q = p\cdot q^{-1}$
+when $q\neq \frac{{}^+0}{1}$.
+\item Just using our axioms and the fraction notation (and the previous two exercises),
+show that $\frac{4}{6} = \frac{2}{3}$.
+\end{exercise}
+\end{exer}
+
+\section{Real and Complex Numbers}
+
+We will not deal with rigorous characterizations of the real numbers and complex numbers in this course. 
+A first course in real analysis is the appropriate place for such considerations. 
+We simply take for granted that $\RR$ constitutes a suitable
+extension of $\QQ$ to account for \emph{limits} (the mathematics you know from calculus). Likewise, $\CC$
+constitutes a suitable extension of $\RR$ to account for 
+algebraic closure (all polynomials having roots). The main things to know are that every rational number is real,
+every real number is complex, and arithmetic operations behave as they should for real and complex numbers.
+
+\begin{exer}
+\begin{exercise}
+  \item Relax. Take a walk.
+\end{exercise}
+\end{exer}
