@@ -23,9 +23,9 @@ For now, in order to avoid confusing pictures like this with the natural numbers
 For structures like those in \ref{fig:ModCycles}, let us write $T_0$ for the ``top'' of the cycle and $\next(a)$ for the ``next'' value after $a$. So we are now considering structures of the following sort.
 
 \begin{enumerate}
-	\item There is a value $T_0$ and every value $a$ has a successor $\next(a)$.
-	\item Every value has a predecessor: for every $b$, there is an $a$ so that $\next(a) = b$.
-	\item Predecessors are unique: $\next(a) = \next(b)$ implies $a=b$.
+	\item There is a value $T_0$ and every value $a$ has a successor $\nx(a)$.
+	\item Every value has a predecessor: for every $b$, there is an $a$ so that $\nx(a) = b$.
+	\item Predecessors are unique: $\nx(a) = \nx(b)$ implies $a=b$.
 	\item No values can be removed without violating 1.
 \end{enumerate}
 
@@ -52,11 +52,41 @@ The same definitions for addition and multiplication work in any $\ZZ_m$ as they
 	Fix a positive natural number $m$. Define addition in $\ZZ_m$ as follows: For any $a$ in $\ZZ_m$ and any natural number $n$, the sum $a+_m n$ is given by the equations:
 	\begin{align*}
 		a +_m 0 &= a\\
-		a +_m k^\nxt &= \next(a+_m k)
+		a +_m k^\nxt &= \nx(a+_m k)
 	\end{align*}
 \end{defn}
 
-This definition is subtle because plus sign and times sign do not refer to addition and multiplication on the natural numbers, or even in the integers. They denote new operations defined on the elements of $\ZZ_m$. Hence we write $+_m$ and $\cdot_m$ to emphasize that $+_m$ and $\cdot_m$ are operations defined only in $\ZZ_m$. You will probably agree that the extra bit of notation clutters things, so we later we will omit it. For now it is a useful reminder.
+\begin{lem}
+	For any $a$ in $\ZZ_m$ and any natural numbers $n$ and $p$, $a +_m (n+p) = (a +_m n) +_m p$.
+	
+	\begin{proof}
+		The proof is by induction on $p$. 
+		\begin{itemize}
+			\item{}[Basis] $a +_m (n+0) = a +_m n = (a +_m n) +_m 0$.
+			\item{}[Inductive Hypothesis] Assume that $a +_m (n+k) = (a +_m n) +_m k$ for some $k$.
+			\item{}[Inductive Step] 
+			\begin{align*}
+				a +_m (n+k^\nxt) &= a +_m (n+k)^\nxt\\ 
+				                 &= \\nx(a +_m (n+k))\\
+				                 &= \nx((a +_m n) +_m k)\\
+				                 &= (a +_m n) +_m k^\nxt.
+			\end{align*}
+		\end{itemize}
+	\end{proof}
+\end{lem}
+
+Notice that $a +_m (k + nm)= a +_m (k+pm)$ for any $a$ in $\ZZ_m$ and any natural numbers $k$, $n$ and $p$. 
+This is because counting forward by $m$  leads back to the original position, so counting forward by $2m$, $3m$ and so on also leads back to the original position. 
+Also, we may extend addition to all integers because of the following lemma.
+By the principle of induction, every $a$ in $\ZZ_m$ can be written uniquely as $T_0 + k$ for some $k<m$.
+That is, we can easily show that the values of the form $T_0 + k$ constitute a structure in satisfying all the postulates. So by minimality, no values can be removed. Furthermore, by induction, if $k,j<m$ and $T_0 +_m k = T_0 +_m j$, then $k=j$. 
+
+\begin{lem}
+	For any $a$ in $\ZZ_m$, there is a natural number $k<m$ so that $a +_m k = T_0$. 	
+	\begin{proof}
+		For $a = T_0 +_m j$, we take $k = m-j$. Then $a +_m k = (T_0 +_m j) + (m-j)) = T_0 +_m m = T_0$.
+	\end{proof}
+\end{lem}
 
 \begin{exer}
 	\begin{exercise}
