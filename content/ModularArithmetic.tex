@@ -20,7 +20,7 @@ Assuming your response to Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicMode
 THe integers clearly also fail to have this property because $0$ (as well as all other integers) has a precedessor. Suppose we \emph{replace} Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} with the the requirement that every value has a predecessor. Then the integers satisfy all postulates, including Induction. But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
 
 For now, in order to avoid confusing pictures like this with the natural numbers, let us use alternative notation for ``the start'' and ``successor'', which we have been denoting as $0$ and $n^\nxt$ in the natural numbers.
-For structures like those in \ref{fig:ModCycles}, let us write $T_0$ for the ``top'' of the cycle and $\next(a)$ for the ``next'' value after $a$. So we are now considering structures of the following sort.
+For structures like those in \ref{fig:ModCycles}, let us write $T_0$ for the ``top'' of the cycle and $\nx(a)$ for the ``next'' value after $a$. So we are now considering structures of the following sort.
 
 \begin{enumerate}
 	\item There is a value $T_0$ and every value $a$ has a successor $\nx(a)$.
@@ -67,7 +67,7 @@ The same definitions for addition and multiplication work in any $\ZZ_m$ as they
 			\item{}[Inductive Step] 
 			\begin{align*}
 				a +_m (n+k^\nxt) &= a +_m (n+k)^\nxt\\ 
-				                 &= \\nx(a +_m (n+k))\\
+				                 &= \nx(a +_m (n+k))\\
 				                 &= \nx((a +_m n) +_m k)\\
 				                 &= (a +_m n) +_m k^\nxt.
 			\end{align*}
@@ -88,20 +88,49 @@ That is, we can easily show that the values of the form $T_0 + k$ constitute a s
 	\end{proof}
 \end{lem}
 
+With these observations, we can define addition in $\ZZ_m$ directly by $T_n +_m T_p = T_k +_m p$. 
+
 \begin{exer}
 	\begin{exercise}
-		\item Calculate in $\ZZ_{10}$ the values step-by-step.
+		\item Calculate the following values step-by-step.
 		\begin{enumerate}
-			\item $T_4 + 4$
-			\item $T_8+3$
-			\item $T_2\times 
+			\item $T_4 +_{5}} 4$
+			\item $T_8+_{10}3$
+			\item $(T_2 +_{7} 3) +_{7} T_2$
 		\end{enumerate}
+		\item Show that addition in $\ZZ_m$ is commutative, associative and has an identity element. Furthermore, show that every element of $\ZZ_m$ has an additive inverse.
 	\end{exercise}
-	content
+\end{exer}
+
+We may now also define multiplication in $\ZZ_m$.
+
+\begin{defn}
+	For element $a$ of $\ZZ_m$ and natural number $n$, define $a\cdot n$ b the equations
+	\begin{align*}
+		a\cdot_m  0 &= T_0\\
+		a\cdot_m k^\nxt &= a +_m a\cdot_m k
+	\end{align*}
+	
+	Also define multiplication of elements of $\ZZ_{m}$ by $T_n \cdot_m T_p = T_n\cdot_m p$
+\end{defn}
+
+
+\begin{lem}\label{lem:modular-mult}
+	For any positive natural number $m$, $a$ in $\ZZ_m$ and natural numbers $n$ and $p$, it is the case that 
+	\begin{align*} 
+		(a \cdot_m n)+_m (a\cdot_m p) &= a\cdot_m (n+p)\\
+		(a\cdot_m n)\cdot_n p &= a\cdot_m (np).
+	\end{align*}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+\end{lem}
+
+\begin{exer}
+	\begin{exercise}
+		\item Prove Lemma \ref{lem:modular-mult}.
+	\end{exercise}
 \end{exer}
 
 
-
-\begin{lem}
-	For any positive natural number $m$, and $a$ in $\ZZ_m$ 
-\end{lem}
