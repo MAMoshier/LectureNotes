@@ -1,6 +1,6 @@
 \chapter{Modular Arithmetic}
 
-\begin{goals}
+\begin{goals} 
 	\begin{goal}{Lecture}
 		\item Introduce counting ``on a dial''
 		\item Extend to arithemetic.
@@ -14,36 +14,34 @@
 	\end{goal}
 \end{goals}
 
-Recall the postulates of the natural numbers included the requirement that $0$ does not have  a predecessor (Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero}).  Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} asked you to draw depictions in which Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} is relaxed. 
-Assuming your response to Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} is correct, you may have drawn something similar to the structures in Figure \ref{fig:ModCycles}.
+The positions on a dial such as a clock have some of the features of a number system. There is a ``top of the dial''. Each position has a next position (clock-wise) and a previous position (counter-clockwise). As it happens, arithmetic on a dial, which mathemticians call \emph{modular arithmetic}, is fundamental to how we actually write numbers, for example as base 10 numerals, and how we perform arithmetic on those numerals. Cryptography is also an important area of application.  
+ 
+Recall that the postulates of the natural numbers included the requirement that $0$ does not have  a predecessor (Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero}).  Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} asked you to draw depictions in which Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} is relaxed. 
+Assuming your response to Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} is correct, you may have drawn something similar to the dial-like structures in Figure \ref{fig:ModCycles}.
 
-The integers clearly also fail to have this property because $0$ (as well as all other integers) has a precedessor. Suppose we \emph{replace} Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} with the requirement that every value has a predecessor. Then the integers satisfy all postulates, including Induction. But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
+In the integers, $0$ (as well as all other integers) has a precedessor. Suppose we \emph{replace} Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} with the requirement that every value has a predecessor. 
+Then the integers satisfy all postulates, including the requirement that nothing can be removed. But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
 
 For now, in order to avoid confusing pictures like this with the natural numbers, let us use alternative notation for ``the start'' and ``successor'', which we have been denoting as $0$ and $n^\nxt$ in the natural numbers.
-For structures like those in \ref{fig:ModCycles}, let us write $D_0$ for the ``top of the dial'' and $\nx(a)$ for the ``next'' value after $a$ in the clock-wise direction. So we are now considering structures of the following sort.
+For structures like those in \ref{fig:ModCycles}, let us write $\dialtop$ for the ``top of the dial'' and $\nx(a)$ for the ``next'' value after $a$ in the clock-wise direction. So we are now considering structures of the following sort.
 
 \begin{defn}
-	A \emph{dial} is a structure satisfying the following conditions.
+	A \newterm{dial} is a structure satisfying the following conditions.
 \begin{enumerate}
-	\item There is a value $D_0$ and every value $a$ has a successor $\nx(a)$.
+	\item There is a value $\dialtop$ and every value $a$ has a successor $\nx(a)$.
 	\item Every value has a predecessor: for every $b$, there is an $a$ so that $\nx(a) = b$.
 	\item Predecessors are unique: $\nx(a) = \nx(b)$ implies $a=b$.
-	\item No values can be removed without violating 1.
+	\item No values can be removed without violating 1 and 2.
 \end{enumerate}
 \end{defn}
 
-With a bit of effort, one can show that the \emph{only} structures that satisfy these four postulates are either (i) structures that look exactly like the integers and (ii) the cyclic structures that differ from Figure \ref{fig:ModCycles} only by the number of elements in the picture (and the names we give the elements). Indeed for every natural number $m>0$, there is a dial consisting of $m$ elements.
-
-\begin{defn}
-	We refer to the structure of the integers as $\ZZ$. We refer to a cyclic structure with $m$ elements as $\ZZ_m$. For $\ZZ_m$ the natural number $m$ is called the \newterm{modulus}.
-\end{defn}
-
-We wish to investigate how the dials $\ZZ_m$ are similar to $\ZZ$. 
-
-For starters, we can informally give standard names for elements of $\ZZ_m$. Let us refer to them as $D_0$, $D_1$, \ldots, $D_{m-1}$. So $\nx(D_{m-1}) = D_0$. This is what makes the whole this cyclic. Notice, however, that $D_1$, $D_2$ and so on are really just an abbreviations for $\nx(D_0)$, $\nx(nx(D_0))$ and so on,  just like $1$, $2$ and so on are an abbreviations (in our notation for natural numbers) for $0^\nxt$, $0^{\nxt\nxt}$ and so on.
-
 \begin{example}
-Consider a dial with labels ``$D_0$'' through ``$D_9$'' printed on its edge. Then the label clockwise after ``$D_9$'' is ``$D_0$''. This is a good picture of $\ZZ_{10}$. Indeed, actual physical dials with $m$ evenly spaced labels are exactly the right physical models of $\ZZ_m$.
+The integers form a dial by letting $\dialtop={}^+0$ and $\nx(a)=a+1$.
+Every integer has a successor. Every integer has a unique predecessor. Moreover, if we were to remove any integers, then some other remaining integers would either not have successors or not have predecessors.
+
+Any actual cyclic structure like those in Figure \ref{fig:ModCycles} is a dial.
+
+Consider a dial with labels ``$D_0$'' through ``$D_9$'' printed on its edge. Then the label clockwise after ``$D_9$'' is ``$D_0$''. So letting $\dialtop = D_0$, this is a physical model of $\ZZ_{10}$.
 \end{example}
 
 \begin{exer}
@@ -52,7 +50,7 @@ Consider a dial with labels ``$D_0$'' through ``$D_9$'' printed on its edge. The
 	\end{exercise}
 \end{exer}   
 
-Almost same definitions for addition and multiplication work in any $\ZZ_m$ as they did in the natural numbers:
+Almost the same definitions for addition and multiplication work in dial as they did in the natural numbers:
 
 \begin{defn}[Addition on a Dial]
 	Suppose $\DD$ is a dial (it satisfies the four postulates above). For any $a$ in $\DD$ and any natural number $n$, the \newterm{sum} $a+_\DD n$ is given by the equations:
@@ -82,14 +80,14 @@ Almost same definitions for addition and multiplication work in any $\ZZ_m$ as t
 	\end{proof}
 \end{lem}
 
-Suppose we have a dial. How can we determine that it is $\ZZ_m$ and not the integers? Suppose there is some $n$ for which $D_0 +_\DD n = D_0$. Then there is a smallest one $m$. In that case, $m$ is called the \newterm{modulus} and the dial is denoted by $\ZZ_m$. If no such natural number exists, the dial is a model of the integers (that is, it satisfies all the requirements laid out in Lecture \ref{lec:OtherNumbers})and is denoted by $\ZZ$.
+Suppose we have a dial. How can we determine that it is $\ZZ_m$ and not the integers? Suppose there is some $n$ for which $\dialtop +_\DD n = \dialtop$. Then there is a smallest one $m$. In that case, $m$ is called the \newterm{modulus} and the dial is denoted by $\ZZ_m$. If no such natural number exists, the dial is a model of the integers (that is, it satisfies all the requirements laid out in Lecture \ref{lec:OtherNumbers})and is denoted by $\ZZ$.
 
 In case we are interested in a modular dial (one of the form $\ZZ_m$) we will write $+_m$ instead of $+_{\ZZ_m}$ to avoid clutter.
 
 We may extend addition in any dial to all integers because every element has a unique predecessor. That is, we may write $a-_\DD 1$ for the predecessor of $a$, $a-_\DD 2$ for the predecessor of $a-_\DD 1$ and so on. In general, $a-n$ is the unique value on the dial satisfying $(a-\DD n) +_\DD n = a$. Again, in $\ZZ_m$, we write $-_m$ in place of $-{\ZZ_m}$. 
 
-By the principle of induction, in any modulus, every $a$ in $\ZZ_m$ can be written uniquely as $D_0 + k$ for some $k<m$.
-That is, we can easily show that the values of the form $D_0 + k$ constitute a structure satisfying all the postulates. So by minimality, no values can be removed. Furthermore, by induction, if $k,j<m$ and $D_0 +_m k = D_0 +_m j$, then $k=j$. 
+By the principle of induction, in any modulus, every $a$ in $\ZZ_m$ can be written uniquely as $\dialtop + k$ for some $k<m$.
+That is, we can easily show that the values of the form $\dialtop + k$ constitute a structure satisfying all the postulates. So by minimality, no values can be removed. Furthermore, by induction, if $k,j<m$ and $\dialtop +_m k = \dialtop +_m j$, then $k=j$. 
 
 \begin{lem}
 	Fix a modulus $m$. 
@@ -99,15 +97,15 @@ That is, we can easily show that the values of the form $D_0 + k$ constitute a s
 	\end{proof}
 \end{lem}
 
-With these observations, we can define addition in $\ZZ_m$ directly by $T_n +_m T_p = T_k +_m p$. 
+With these observations, we can define addition in $\ZZ_m$ directly by $a +_m (\dialtop+_m k) = a +_m k$. 
 
 \begin{exer}
 	\begin{exercise}
 		\item Calculate the following values step-by-step.
 		\begin{enumerate}
-			\item $T_4 +_{5}} 4$
-			\item $T_8+_{10}3$
-			\item $(T_2 +_{7} 3) +_{7} T_2$
+			\item $D_4 +_{5}4$
+			\item $D_8+_{10}3$
+			\item $(D_2 +_{7} 3) +_{7} D_2$
 		\end{enumerate}
 		\item Show that addition in $\ZZ_m$ is commutative, associative and has an identity element. Furthermore, show that every element of $\ZZ_m$ has an additive inverse.
 		\item Prove that for any $a$ in $\ZZ_m$, it is the case that $a +_m m = a$.
@@ -117,13 +115,13 @@ With these observations, we can define addition in $\ZZ_m$ directly by $T_n +_m 
 We may now also define multiplication in $\ZZ_m$.
 
 \begin{defn}
-	For element $a$ of $\ZZ_m$ and natural number $n$, define $a\cdot n$ b the equations
+	For element $a$ of $\ZZ_m$ and natural number $n$, define $a\cdot_m n$ b the equations
 	\begin{align*}
-		a\cdot_m  0 &= T_0\\
+		a\cdot_m  0 &= dialtop\\
 		a\cdot_m k^\nxt &= a +_m a\cdot_m k
 	\end{align*}
 	
-	Also define multiplication of elements of $\ZZ_{m}$ by $T_n \cdot_m T_p = T_n\cdot_m p$
+	Also define multiplication of elements of $\ZZ_{m}$ by $a\cdot_m D_k = a\cdot_m k$
 \end{defn}
 
 
@@ -131,7 +129,7 @@ We may now also define multiplication in $\ZZ_m$.
 	For any positive natural number $m$, $a$ in $\ZZ_m$ and natural numbers $n$ and $p$, it is the case that 
 	\begin{align*} 
 		(a \cdot_m n)+_m (a\cdot_m p) &= a\cdot_m (n+p)\\
-		(a\cdot_m n)\cdot_n p &= a\cdot_m (np).
+		(a\cdot_m n)\cdot_m p &= a\cdot_m (np).
 	\end{align*}
 
 \begin{proof}
