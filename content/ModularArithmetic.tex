@@ -60,6 +60,25 @@ Almost the same definitions for addition and multiplication work in dial as they
 	\end{align*}
 \end{defn}
 
+This definition extends to all integers.
+
+\begin{lem}
+	Let $\DD$ be a dial.
+	For any natural number $n$, there is a unique $a$ in $\DD$ so that $a+_\DD n = \dialtop$.
+	
+	\begin{proof}
+		First, we proof that $\nx(a +_\DD n) = \nx(a) +_\DD n$ for all $a$ by induction on $n$. The basis is obvious. Assume that $\nx(b +_\DD k) = \nx(b) +_\DD k$ for all $b$. Then $\nx(a +_\DD k^\nxt) = \nx(\nx(a+_\DD k)) = \nx(\nx(a) +_\DD k) = \nx(a) +_\DD k^\nxt$
+		
+		Now we proof the lemma by induction on $n$,
+		\begin{itemize}
+			\item{}[Basis] $\dialtop +_\DD 0 = \dialtop$. If $a +_\DD 0 = \dialtop$, then obviously $a=\dialtop$.
+			\item{}[Inductive Hypothesis] Assume that there is a unique $b$ so that $b +_\DD k = \dialtop$.
+			\item{}[Inductive Step] Let $a$ be the unique predecessor of $b$ given by the inductive hypothesis. Then $\nx(a)=b$. Hence $a +_\DD k^\nxt = \nx(a +_\DD k) = \nx(a) +_\DD k = \dialtop$. 
+		\end{itemize}
+	\end{proof}
+\end{lem}
+
+
 \begin{lem}
 	Let $\DD$ be a dial.
 	For any $a$ in $\DD$ and any natural numbers $n$ and $p$, $a +_\DD (n+p) = (a +_\DD n) +_\DD p$.
@@ -80,6 +99,7 @@ Almost the same definitions for addition and multiplication work in dial as they
 	\end{proof}
 \end{lem}
 
+So now we can define $a -_\DD n$ as the unique element so that $(a -_\DD n) +_\DD n = \dialtop$.
 Suppose we have a dial. How can we determine that it is $\ZZ_m$ and not the integers? Suppose there is some $n$ for which $\dialtop +_\DD n = \dialtop$. Then there is a smallest one $m$. In that case, $m$ is called the \newterm{modulus} and the dial is denoted by $\ZZ_m$. If no such natural number exists, the dial is a model of the integers (that is, it satisfies all the requirements laid out in Lecture \ref{lec:OtherNumbers})and is denoted by $\ZZ$.
 
 In case we are interested in a modular dial (one of the form $\ZZ_m$) we will write $+_m$ instead of $+_{\ZZ_m}$ to avoid clutter.
