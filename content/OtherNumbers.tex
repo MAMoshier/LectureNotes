@@ -1,4 +1,4 @@
-\chapter{Other Number Systems}
+\chapter{Other Number Systems}\label{lec:OtherNumbers}
 
 Discrete Mathematics is not only concerned with natural numbers. Integers, rational numbers, real numbers and even, on a few occasions, complex numbers, all play their roles. In this lecture, we discuss, with much less formality, integers and rational numbers, leaving real and complex numbers to a courses on analysis.
 
@@ -95,13 +95,8 @@ For any two integers $a$ and $b$, the \emph{product} $a\cdot b$ defined as follo
 \begin{align*}
 	a\cdot {}^+0 &= {}^+0\\
 	a\cdot {}^+(k^\nxt) &= a + a\cdot {}^+k\\
-	a\cdot (-{}^+m) &= -(a\cdot {}^+m)
+	a\cdot -({}^+m) &= -(a\cdot {}^+m)
 \end{align*}
-\begin{itemize}
-\item If $a\cdot {}^+0- ${}^+m\cdot {}^+n = {}^+(m\cdot n)$ for natural numbers $m$ and $n$;
-\item Multiplication is associative and commutative, and $a\cdot {}^+1 = a$ for all integers $a$;
-\item Multiplication distributes over addition.  
-\end{itemize}
 \end{defn}
 
 These requirements are enough to ensure that multiplication is the operation we expect it to be.
@@ -109,18 +104,6 @@ We will not verify that fact, but it involves an inductive argument similar to t
 
 \begin{exer}
 	\begin{exercise}
-\item Using only the axioms for integers, the foregoing two lemmas and the definition of multiplication, prove the following (remember
-that $-a$ abbreviates ${}^+0 - a$). 
-You should prove these in the order presented here, as later exercises may depend on earlier ones.
-\begin{enumerate}
-\item Show that $+$ is cancellative, not just on natural numbers, but on all integers: $a + c = b + c$ implies $a = b$.
-\item Show that $a-b = -(b-a)$
-\item Show that $(a+b) - c = a + (b-c)$
-\item Show that $a-(b+c) = (a-b)-c$
-\item Show that $-(-a) = a$
-\item Show that ${}^+0\cdot a = {}^+0$
-\item Show that $-a\cdot -b = a\cdot b$
-\end{enumerate}
 \item Show that every integer is simple, using only the postulates given here.
 
 Hint: First observe that, trivially, every integer of the form ${}^+m$ is simple.
@@ -128,14 +111,26 @@ This acts as the basis for an inductive proof.
 Now suppose $a$ and $b$ are simple (the inductive hypothesis).
 Show that both $a+b$ and $a-b$ are simple (the inductive step).
 Since the integers are minimal for including the natural numbers and being closed under $+$ and $-$, this shows that all integers are simple.
+\item Using only the axioms for integers, the foregoing two lemmas and the definition of multiplication, prove the following (remember
+that $-a$ abbreviates ${}^+0 - a$). 
+You should prove these in the order presented here, as later exercises may depend on earlier ones. For all integers $a$, $b$ and $c$ show that the following are true.
+\begin{enumerate}
+\item Addition is cancellative: $a + c = b + c$ implies $a = b$.
+\item $a-b = -(b-a)$
+\item $(a+b) - c = a + (b-c)$
+\item $a-(b+c) = (a-b)-c$
+\item $-(-a) = a$
+\item ${}^+0\cdot a = {}^+0$
+\item $-a\cdot -b = a\cdot b$
+\item Multiplication distributes over addition.
+\end{enumerate}
 \end{exercise}
 \end{exer}
 
 \section{Rational Numbers}
 
-Rational numbers, roughly, are minimal with respect to the integers and multiplication, similar to 
-integers being minimal with respect to natural numbers and addition. Care must be taken, however, because $0\cdot a = 0\cdot b$
-does not tell us anything about $a$ and $b$. This means that ``division by $0$'' can not make sense.  
+Rational numbers, roughly, are minimal with respect to the integers and inverting multiplication, as 
+integers are minimal with respect to natural numbers and inverting addition. Care must be taken, however, because ${}^+0\cdot a = {}^+0\cdot b$ is always true, this does not tell us anything about $a$ and $b$. So ``division by $0$'' can not make sense.  
 
 \begin{postulate}\label{post:RatSignature}
 The rational numbers have the following basic structure.
@@ -174,19 +169,35 @@ Finally, we require minimality.
 Like the axioms for integers, these axioms completely determine the rational numbers along with multiplication and division. 
 To extend addition and subtraction to the rational numbers we can require the following.
 
+For integers, we introduced the idea of \emph{simplicity} to capture the fact that every integer is either a natural number or a negated natural number. The analogous idea for rational numbers is that every rational number is expressible as a fraction.
+
 \begin{defn}
-For any two rational numbers $p$ and $q$, their \emph{sum} and \emph{difference}, denoted by $p+q$ and $p-q$, are rational numbers
-satisfying:
-\begin{itemize}
-\item  $\frac{a}{1} + \frac{b}{1} = \frac{a+b}{1}$ for integers $a$ and $b$. 
-\item Addition is associative and commutative, and $p + \frac{{}^+0}1 = p$ for all rational numbers $p$;
-\item $p = q + r$ if and only if $p - q = r$ for all rational numbers $p$, $q$ and $r$;
-\item Multiplication distributes over addition.
-\end{itemize}
+	Say that a rational number $p$ is \newterm{fractional} if it is the case that $p=a/b$ for some integer $a$ and non-zero integer $b$. 
 \end{defn}
 
-These requirements are enough to ensure that addition is the operation we expect
-it to be. 
+\begin{lem}
+	Every rational number is fractional.
+	
+	\begin{proof}
+		Like the proof that every integer is simple, this involves an inductive argument. Namely, every integer is, according to the basic structure of rationals, fractional. Namely, $a/{}+1 = \frac{a}1$. Indeed the difference between the two notations is almost trivial.
+		For the sake of completeness though, note that an integer $a$ is written as $\frac{a}{1}$ only to emphasize that it is also a rational number. So $a/{}^+1 = a$ because $a = {}^+1\cdot a$.
+		
+		Suppose $p$ and $q$ are fractional. So $p=a/b$ and $q=c/d$ for some integers $a$, $b$, $c$ and $d$ with $b\neq 0$ and $d\neq 0$. Note that $a/b = p$ means that $a=b\cdot p$. Likewise $c=d\cdot q$. We claim that $p\cdot q = (a\cdot c)/(b\cdot d)$. This is true if
+		$p\cdot q \cdot b\cdot d = a\cdot c$. But this follows from the foregoing. Since $b$ and $d$ are not zer, $b\cdot d$ is not zero. Hence $p\cdot q$ is fractional.
+		We also claim that $p/q$ is fractional. Here we need two cases. Suppose $c=0$. Then $p=0/1$ as needed. Suppose $c\neq 0$. 
+		Then $p/q = (a\cdot d)/(b\cdot c)$ because $a\cdot d \cdot q = p b\cdot c\cdot p$. We leave it to the reader to figure out why this last equation is true.
+	\end{proof}
+\end{lem}
+
+Notice that this lemma does not tell us anything about simplified fractions. It merely says that every rational number can be written as a fraction. But over course, $2/4 = 4/8 = 6/12$ and so on.
+
+\begin{defn}
+For any two rational numbers $p = a/b $ and $q=c/d$, their \emph{sum}, denoted by $p+q$ is the rational number $(ad+cb)/bd$.
+\end{defn}
+
+This definition is not entirely legitimate yet. Because it could be the case that the result $(ad+cb)/bd$ depends on how we write $p$ and $q$ as fractions. In fact, though, this is not the case. For suppose $a/b = a'/b'$
+and $c/d=c'/d'$. Then $(ad+cb)/bd = (a'd'+c'b')/b'd'$. So the way we add \emph{fractions} is correct for adding rational numbers.
+These requirements are enough to ensure that addition is the operation we expect it to be. 
 
 Now suppose $a$ is an integer and $m$ is a positive natural number. Then we
 can write $\frac{a}m$ as an abbreviation of $\frac{a}{1} / \frac{{}^+m}1$. This is
@@ -196,10 +207,9 @@ $\frac{{}^+1}{1}/ p$.
 
 \begin{exer}
 \begin{exercise}
-\item Using the proof of Lemma \ref{lem:IntAdditiveInverse} as a prototype, show that if $p\neq \frac{{}^+0}{1}$,
-then $p\cdot p^{-1} = \frac{{}^+1}{1}$. 
-\item Using the proof of Lemma \ref{lem:IntAddSub} as a prototype, show that $p/ q = p\cdot q^{-1}$
-when $q\neq \frac{{}^+0}{1}$.
+\item Using the proof of Lemma \ref{lem:IntAdditiveInverse} as a prototype, show that if $p\neq 0$,
+then $p\cdot p^{-1} = 1$. 
+\item Using the proof of Lemma \ref{lem:IntAddSub} as a prototype, show that if $q\neq \frac{{}^+0}{1}$ then $p/ q = p\cdot q^{-1}$.
 \item Just using our axioms and the fraction notation (and the previous two exercises),
 show that $\frac{4}{6} = \frac{2}{3}$.
 \end{exercise}

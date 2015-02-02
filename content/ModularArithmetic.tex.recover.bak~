@@ -1,0 +1,136 @@
+\chapter{Modular Arithmetic}
+
+\begin{goals}
+	\begin{goal}{Lecture}
+		\item Introduce counting ``on a dial''
+		\item Extend to arithemetic.
+		\item Introduce the idea of an \emph{equivalence relation} via modular equivalence.
+		\item Introduce the extended Euclidean algorithm.
+	\end{goal}
+	
+	\begin{goal}{Study}
+		\item Learn to calculate within a modulus.
+		\item Learn to use the extended Euclidean algorithm to determine multipicative inverses.
+	\end{goal}
+\end{goals}
+
+Recall the postulates of the natural numbers included the requirement that $0$ does not have  a predecessor (Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero}).  Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} asked you to draw depictions in which Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} is relaxed. 
+Assuming your response to Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} is correct, you may have drawn something similar to the structures in Figure \ref{fig:ModCycles}.
+
+THe integers clearly also fail to have this property because $0$ (as well as all other integers) has a precedessor. Suppose we \emph{replace} Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} with the the requirement that every value has a predecessor. Then the integers satisfy all postulates, including Induction. But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
+
+For now, in order to avoid confusing pictures like this with the natural numbers, let us use alternative notation for ``the start'' and ``successor'', which we have been denoting as $0$ and $n^\nxt$ in the natural numbers.
+For structures like those in \ref{fig:ModCycles}, let us write $T_0$ for the ``top'' of the cycle and $\nx(a)$ for the ``next'' value after $a$. So we are now considering structures of the following sort.
+
+\begin{enumerate}
+	\item There is a value $T_0$ and every value $a$ has a successor $\nx(a)$.
+	\item Every value has a predecessor: for every $b$, there is an $a$ so that $\nx(a) = b$.
+	\item Predecessors are unique: $\nx(a) = \nx(b)$ implies $a=b$.
+	\item No values can be removed without violating 1.
+\end{enumerate}
+
+With a bit of effort, one can show that the \emph{only} structures that satisfy these four postulates are either (i) structures that look exactly like the integers and (ii) the cyclic structures that differ from Figure \ref{fig:ModCycles} only by the number of elements in the picture (and the names we give the elements). Indeed for every natural number $m>0$, there is a cycle consisting of $m$ elements.
+
+\begin{defn}
+	We refer to the structure of the integers as $\ZZ$. We refer to a cyclic structure with $m$ elements as $\ZZ_m$. For $\ZZ_m$ the natural number $m$ is called the \newterm{modulus}.
+\end{defn}
+
+We wish to investigate how $\ZZ_m$ is similar to $\ZZ$. 
+
+For starters, notice that we can give standard names for elements of $\ZZ_m$. Let us refer to them as $T_0$, $T_1$, \ldots, $T{m-1}$. So $\nxt(T_{m-1}) = T_0$. This is what makes the whole this cyclic.
+Think of a dial with labels ``$T_0$'' through ``$T_9$'' printed on its edge. Then the label after ``$T_9$'' is ``$T_0$''. So this dial is a good picture of $\ZZ_{10}$. Indeed, dials with $m$ labels are exactly the right physical models of $\ZZ_m$. 
+
+\begin{exer}
+	\begin{exercise}
+		\item A standard wall clock depicts $Z_n$ for what $n$? What changes on the labels of a clock dial would you make to highlight this fact?
+	\end{exercise}
+\end{exer}   
+
+The same definitions for addition and multiplication work in any $\ZZ_m$ as they did in the natural numbers:
+
+\begin{defn}[Modular Addition in $\ZZ_m$]
+	Fix a positive natural number $m$. Define addition in $\ZZ_m$ as follows: For any $a$ in $\ZZ_m$ and any natural number $n$, the sum $a+_m n$ is given by the equations:
+	\begin{align*}
+		a +_m 0 &= a\\
+		a +_m k^\nxt &= \nx(a+_m k)
+	\end{align*}
+\end{defn}
+
+\begin{lem}
+	For any $a$ in $\ZZ_m$ and any natural numbers $n$ and $p$, $a +_m (n+p) = (a +_m n) +_m p$.
+	
+	\begin{proof}
+		The proof is by induction on $p$. 
+		\begin{itemize}
+			\item{}[Basis] $a +_m (n+0) = a +_m n = (a +_m n) +_m 0$.
+			\item{}[Inductive Hypothesis] Assume that $a +_m (n+k) = (a +_m n) +_m k$ for some $k$.
+			\item{}[Inductive Step] 
+			\begin{align*}
+				a +_m (n+k^\nxt) &= a +_m (n+k)^\nxt\\ 
+				                 &= \nx(a +_m (n+k))\\
+				                 &= \nx((a +_m n) +_m k)\\
+				                 &= (a +_m n) +_m k^\nxt.
+			\end{align*}
+		\end{itemize}
+	\end{proof}
+\end{lem}
+
+Notice that $a +_m (k + nm)= a +_m (k+pm)$ for any $a$ in $\ZZ_m$ and any natural numbers $k$, $n$ and $p$. 
+This is because counting forward by $m$  leads back to the original position, so counting forward by $2m$, $3m$ and so on also leads back to the original position. 
+Also, we may extend addition to all integers because of the following lemma.
+By the principle of induction, every $a$ in $\ZZ_m$ can be written uniquely as $T_0 + k$ for some $k<m$.
+That is, we can easily show that the values of the form $T_0 + k$ constitute a structure in satisfying all the postulates. So by minimality, no values can be removed. Furthermore, by induction, if $k,j<m$ and $T_0 +_m k = T_0 +_m j$, then $k=j$. 
+
+\begin{lem}
+	For any $a$ in $\ZZ_m$, there is a natural number $k<m$ so that $a +_m k = T_0$. 	
+	\begin{proof}
+		For $a = T_0 +_m j$, we take $k = m-j$. Then $a +_m k = (T_0 +_m j) + (m-j)) = T_0 +_m m = T_0$.
+	\end{proof}
+\end{lem}
+
+With these observations, we can define addition in $\ZZ_m$ directly by $T_n +_m T_p = T_k +_m p$. 
+
+\begin{exer}
+	\begin{exercise}
+		\item Calculate the following values step-by-step.
+		\begin{enumerate}
+			\item $T_4 +_{5}} 4$
+			\item $T_8+_{10}3$
+			\item $(T_2 +_{7} 3) +_{7} T_2$
+		\end{enumerate}
+		\item Show that addition in $\ZZ_m$ is commutative, associative and has an identity element. Furthermore, show that every element of $\ZZ_m$ has an additive inverse.
+	\end{exercise}
+\end{exer}
+
+We may now also define multiplication in $\ZZ_m$.
+
+\begin{defn}
+	For element $a$ of $\ZZ_m$ and natural number $n$, define $a\cdot n$ b the equations
+	\begin{align*}
+		a\cdot_m  0 &= T_0\\
+		a\cdot_m k^\nxt &= a +_m a\cdot_m k
+	\end{align*}
+	
+	Also define multiplication of elements of $\ZZ_{m}$ by $T_n \cdot_m T_p = T_n\cdot_m p$
+\end{defn}
+
+
+\begin{lem}\label{lem:modular-mult}
+	For any positive natural number $m$, $a$ in $\ZZ_m$ and natural numbers $n$ and $p$, it is the case that 
+	\begin{align*} 
+		(a \cdot_m n)+_m (a\cdot_m p) &= a\cdot_m (n+p)\\
+		(a\cdot_m n)\cdot_n p &= a\cdot_m (np).
+	\end{align*}
+
+\begin{proof}
+	Exercise.
+\end{proof}
+\end{lem}
+
+\begin{exer}
+	\begin{exercise}
+		\item Prove Lemma \ref{lem:modular-mult}.
+	\end{exercise}
+\end{exer}
+
+

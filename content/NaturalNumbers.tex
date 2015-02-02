@@ -1,4 +1,4 @@
-The \emph{natural numbers} are the numbers we use to count things. Our earliest mathematical experience is learning to count. So, in a sense, a study of the natural numbers is a return to our childhood. Arithmetic is connected to counting. But also, our ability to prove things about natural numbers is deeply bound up in counting. 
+
 
 \chapter{The Natural Numbers}\label{lec:NaturalNumbers}
 
@@ -190,13 +190,11 @@ predecessors: $0^\nxt = 0^{\nxt\nxt\nxt\nxt}$.  We can insist that
 these flaws do not happen in the natural numbers. That is, 
 we rule them out with axioms.
 
-%\refstepcounter{axiomCnt}
-\begin{postulate}\label{ax:NatZero}[Nothing Precedes $0$]
+\begin{postulate}{Nothing Precedes $0$}\label{post:NatZero}
   For every natural number $n$, $n^\nxt\neq 0$.
 \end{postulate}
 
-%\refstepcounter{axiomCnt}
-\begin{postulate}\label{ax:NatPred}[Predecessors are Unique]
+\begin{postulate}{Predecessors are Unique}\label{post:NatPred}
   For any natural numbers $m$ and $n$, if $m^\nxt=n^\nxt$ then $m=n$.
 \end{postulate}
 
@@ -240,8 +238,8 @@ This is exactly what we mean by ``extra stuff'':
 elements that can be removed without violating the Postulate \ref{post:NatSig} (the essential structure). 
 This leads to our last axiom. 
 
-\begin{postulate}\label{ax:NatInd}
-[The Axiom of Induction] No natural numbers can be removed without violating \ref{post:NatSig}.
+\begin{postulate}{The Axiom of Induction}\label{post:NatInd}
+ No natural numbers can be removed without violating \ref{post:NatSig}.
 \end{postulate}
 
 %Believe it or not, the four axioms we have stated here completely
@@ -295,10 +293,11 @@ For each, explain which axioms are violated.
 \end{enumerate}
 \end{multicols}
 
-\item\label{exer:cases} I have in mind a picture for the Basic Vocabulary \ref{post:NatSig} and that satisfies Axioms \ref{ax:NatZero}
-and \ref{ax:NatPred}. Furthermore, in that picture, I have in mind and element $n$ for which (a) $n\neq 0$
+\item\label{exer:cases} I have in mind a picture for the Basic Vocabulary \ref{post:NatSig} and that satisfies Axioms \ref{post:NatZero}
+and \ref{post:NatPred}. Furthermore, in that picture, I have in mind and element $n$ for which (a) $n\neq 0$
 and (b) $n$ has no predecessor (that is, $n\neq m^\nxt$ for every $m$). Convince me that
-the picture fails to satisfy Axiom \ref{ax:NatInd}.
+the picture fails to satisfy Axiom \ref{post:NatInd}.
+\item\label{exer:CyclicModel} Draw three different pictures of situations that satisfies all the postulates except that they fail Postulate \ref{post:NatZero}. So there will be an arrow from a bubble into the bubble $0$. The result must satisfy all other postulates including the Axiom of Induction.
 \end{exercise}
 \end{exer}
 
@@ -329,6 +328,7 @@ words, every non-zero natural number has a predecessor.
 Adding and multiplying arise from counting. In this section, we explore how to define them purely in terms of counting.
 
 \ipadbreak
+\printbreak
 
 \section{Basic Arithmetic Operations}
 
@@ -453,8 +453,9 @@ would come out the same because of a law of arithmetic known as \emph{distributi
 Addition and multiplication satisfy several other laws.
 
 \ipadbreak
+\printbreak
 
-\section{Basic Laws}
+%\section{Basic Laws}
 
 The following list summarizes several useful laws of
 arithmetic on the natural numbers. They are organized to emphasize
