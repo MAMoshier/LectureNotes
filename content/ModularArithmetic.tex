@@ -174,7 +174,21 @@ These results tell us that multiplication of a dial position by an integer``beha
 
 \section*{Moduli}
 
-The cyclic dials (see Figure \ref{fig:ModularCycles}) differ from the dial consisting of all integers. We can detect the difference by noting that in  a cyclic dial, $\dialtop = \dialtop +_\DD k$ for some positive natural number $k$. We refer to the smallest positive integer $m$ satisfying $\dialtop = \dialtop +_\DD m$ as the \newterm{modulus} of $\DD$. In that case, we write $\ZZ_m$ instead of $\DD$.
+The cyclical dials (see Figure \ref{fig:ModularCycles}) differ from the dial consisting of all integers, for in a cyclical dail $\dialtop = \dialtop +_\DD k$ for some positive integer $k$. We refer to the smallest positive integer $m$ satisfying $\dialtop = \dialtop +_\DD m$ as the \newterm{modulus} of $\DD$. In that case, we write $\ZZ_m$ instead of $\DD$. If no modulus exists for a dial, then it is a model of the integers. In that case, we write $\ZZ$. 
+Thus for example, $\ZZ_{12}$ models a standard twelve hour clock. $\ZZ_{10}$ models a dial with labels $0$ through $9$, $\ZZ_{26}$ models a dial with the letters of the alphabet. An important example is $\ZZ_2$. This is a dial with exactly two labels, say one at the top and one at the bottom. We might as well think of this as a switch with on and off positions. $\ZZ_1$ is a trivial dial with only one position.
+
+For a dial $\ZZ_m$, we will write $a +_m b$ instead of $a +_{\ZZ_m} b$. Rememer though that $i+j$ means ``honest'' integer arithmetic. Now $i +_m j$ means arithmetic in the dial $\ZZ_m$: $(\dialtop +_m i)+_m(\dialtop +_m j)$. 
+
+\begin{defn}{Modular Equivalence}\label{def:modulus}
+	Fix a modulus $m>0$. Two integers $i$ and $j$ are \emph{equivalent modulo $m$} if it is the case that $\dialtop +_m i = \dialtop +_m j$. In that case, we write $i\equiv j\mod m$. 
+\end{defn}
+
+Recall that for any positive $m$ and any integer $i$, there is a unique pair of integers $(q,r)$ so that $i = qm + r$ and $0\leq r < m$. We used the notation $i\ddiv m$ and $i\drem m$ to denote these. It is easy to see that
+$i \equiv j \mod m$ if and only if $(i\drem m)=(j\drem m)$ if and only if $m\mid (i-j)$.
+
+The lemmas of the previous section show that integer arithmetic is compatible with modular equivalence in the sense that if $a_0\equiv a_1\mod m$ then $a_0 + b \equiv a_1 + b\mod m$ and $a_0b\equiv a_1b\mod m$. This means we can safely perform arithmetic in the familiar way and maintain equivalence modulus $m$. 
+
+Consider this: $5\cdot 5 \equiv 1\mod {12}$. 
 
 
 
