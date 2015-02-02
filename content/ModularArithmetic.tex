@@ -179,7 +179,7 @@ Thus for example, $\ZZ_{12}$ models a standard twelve hour clock. $\ZZ_{10}$ mod
 
 For a dial $\ZZ_m$, we will write $a +_m b$ instead of $a +_{\ZZ_m} b$. Rememer though that $i+j$ means ``honest'' integer arithmetic. Now $i +_m j$ means arithmetic in the dial $\ZZ_m$: $(\dialtop +_m i)+_m(\dialtop +_m j)$. 
 
-\begin{defn}{Modular Equivalence}\label{def:modulus}
+\begin{defn}[Modular Equivalence]\label{def:modulus}
 	Fix a modulus $m>0$. Two integers $i$ and $j$ are \emph{equivalent modulo $m$} if it is the case that $\dialtop +_m i = \dialtop +_m j$. In that case, we write $i\equiv j\mod m$. 
 \end{defn}
 
@@ -188,8 +188,39 @@ $i \equiv j \mod m$ if and only if $(i\drem m)=(j\drem m)$ if and only if $m\mid
 
 The lemmas of the previous section show that integer arithmetic is compatible with modular equivalence in the sense that if $a_0\equiv a_1\mod m$ then $a_0 + b \equiv a_1 + b\mod m$ and $a_0b\equiv a_1b\mod m$. This means we can safely perform arithmetic in the familiar way and maintain equivalence modulus $m$. 
 
-Consider this: $5\cdot 5 \equiv 1\mod {12}$. 
+\begin{exer}
+	For each of the following, find an integer $x$ making the statement true, or show that no such $x$ exists.
+	\begin{exercise}
+		\item $5 + x \equiv 3 \mod 7$
+		\item $x\cdot 5\equiv 1 \mod 11$
+		\item $3 + 4x \equiv 2\mod 9$
+		\item $x\cdot 4 \equiv 1\mod 12$
+		\item $4 \equiv 7 \mod x$
+		\item $x\equiv 2\mod 7$ and $x\equiv 3\mod 5$
+	\end{exercise}
+\end{exer}
+
+Two integers $a$ and $b$ act as reciprocals if $a \cdot b\equiv 1\mod m$.
+That is, in rational numbers $q\cdot \frac1q = 1$ for any non-zero rational $q$. So $a\cdot b\equiv 1\mod m$ is analogous. But, for example, $x\cdot 5\equiv 1\mod 15$ can not be solved for $x$. We need a criterion for determining when an integer $a$ has a reciprocal modulo $m$. Even better, a method for determining reciprocals when they exist, would allow us to make modular arithmetic effective. 
+
+\begin{lem}[Extended Euclid's Algorithm]
+	For any two integers $a$ and $b$, there exist integers $s$ and $t$ so that $\gcd(a,b)=as+bt$.
+	
+	\begin{proof}
+		The proof is by strong induction on $a$. 
+		Suppose $a=0$.
+		Then let $s=0$ and $t=1$. Otherwise, we know that $\gcd(a,b)=\gcd(b\drem a, a)$. By the inductive hypothesis, there are integers $s'$ and $t'$
+		so that $\gcd(b\drem a, a)= (b\drem a)s'+at'$. But also $b = a\cdot(b\ddiv a)+(b\drem a)$.
+		So $\gcd(a,b) = (b-a\cdot(b\ddiv a))\cdot s' + at'= a(t'-(b\ddiv a)s') + bs'$. Thus we let $s=t'-(b\ddiv a)s'$ and $t=s'$.
+	\end{proof}
+\end{lem}
 
 
 
-
+\begin{thm}
+	For integer $a\neq 0$ and positive integer $m$, there is an integer $x$ so that $x\cdot a\equiv 1\mod m$ if and only if \gcd(a,m)=1$.
+	
+	\begin{proof}
+	content
+	\end{proof}
+\end{thm}
