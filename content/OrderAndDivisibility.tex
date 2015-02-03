@@ -405,10 +405,10 @@ Figure \ref{fig:Divisibility} shows a fragment of the natural numbers with respe
 ]
 \foreach \a in {0,...,\dimension}
 {   \foreach \b in {0,...,\dimension}
-    {   \pgfmathsetmacro{\c}{100-\a*7-\b*7}
-        \draw[canvas is xy plane at z=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
-        \draw[canvas is xz plane at y=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
-        \draw[canvas is yz plane at x=\a, black!\c] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+    {   %\pgfmathsetmacro{\c}{100-\a*7-\b*7}
+        \draw[canvas is xy plane at z=\a, black] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+        \draw[canvas is xz plane at y=\a, black] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
+        \draw[canvas is yz plane at x=\a, black] (\b,0) -- (\b,\dimension) (0,\b) -- (\dimension,\b);
     }
 }
 \foreach \a in {0,...,\dimension}
