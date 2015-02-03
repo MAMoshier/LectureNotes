@@ -45,13 +45,12 @@
 \def\tt{\textsc{t}}
 \def\ff{\textsc{f}}
 
-%\newcommand{\newterm}[1]{{\bfseries{#1}}}
+\newcommand{\newterm}[1]{{\bfseries{#1}}}
 
 %\newlength{\proofsep}
 %\setlength{\proofsep}{1.5\baselineskip}
 %\newenvironment{proof}{\vskip\proofsep\noindent \textbf{Proof:}\ }{$\Box$}
 %
-\newcommand{\id}{\textsf{id}}
 
 \newcommand{\st}{\,\mid\,}
 
@@ -80,7 +79,10 @@
 					\leftarrowfill\cr}}}\limits^{\!#1}_{\!#2}}}
 \makeatother
 
+% Constants
 \newcommand{\const}[1]{{\mathord{\textsf{#1}}}}
+\newcommand{\id}{\const{id}}}
+
 \newcommand{\curry}{\mathord{\textsf{curry}}}
 \newcommand{\suc}{\mathord{\textsf{suc}}}
 \newcommand{\pred}{\mathord{\textsf{pred}}}
