@@ -81,32 +81,34 @@
 
 % Constants
 \newcommand{\const}[1]{{\mathord{\textsf{#1}}}}
+
 \newcommand{\id}{{\const{id}}}
+\newcommand{\curry}{\const{curry}}}
+\newcommand{\suc}{\const{suc}}}
+\newcommand{\pred}{\const{pred}}}
+\newcommand{\nx}{\const{nxt}}}
+\newcommand{\len}{\const{len}}}
+\newcommand{\map}{\const{map}}}
+\newcommand{\appl}{\const{appl}}}
+\newcommand{\inj}{\const{inj}}}
+\newcommand{\constant}{\const{c}}}
+\newcommand{\List}{\const{List}}}
+\newcommand{\srec}{\const{s-rec}}}
+\newcommand{\primrec}{\const{p-rec}}}
+\newcommand{\rank}{\const{rank}}}
+\newcommand{\suit}{\const{suit}}}
+\newcommand{\pe}{\const{pe}}} % ``prime exponent notation''
+\newcommand{\PE}{\const{PE}}}
 
-\newcommand{\curry}{\mathord{\textsf{curry}}}
-\newcommand{\suc}{\mathord{\textsf{suc}}}
-\newcommand{\pred}{\mathord{\textsf{pred}}}
-
-\newcommand{\nx}{\mathord{\textsf{nxt}}}
-\newcommand{\dialtop}{\owedge}
-\newcommand{\nxt}{\curvearrowright}
-\newcommand{\len}{\mathord{\textsf{len}}}
-\newcommand{\map}{\mathord{\textsf{map}}}
-\newcommand{\appl}{\mathord{\textsf{appl}}}
-\newcommand{\inj}{\mathord{\textsf{inj}}}
-\newcommand{\constant}{\mathord{\textsf{c}}}
-\newcommand{\List}{\mathord{\textsf{List}}}
-\newcommand{\srec}{\mathord{\textsf{s-rec}}}
-\newcommand{\primrec}{\mathord{\textsf{p-rec}}}
-\newcommand{\rank}{\mathord{\textsf{rank}}}
-\newcommand{\suit}{\mathord{\textsf{suit}}}
 \newcommand{\size}[1]{{\lVert #1\rVert}}
 \newcommand{\ddiv}{\mathop{/\mkern-5mu/}}
 \newcommand{\drem}{\bmod}
+\newcommand{\nxt}{\curvearrowright}
+\newcommand{\dialtop}{\owedge}
 
+% One-off symbols
+\newcommand{\symbol}{\mathord{\textsf{#1}}}
 \DeclareMathOperator{\lcm}{lcm}
-\newcommand{\pe}{\mathord{\textsf{pe}}} % ``prime exponent notation''
-\newcommand{\PE}{\mathord{\textsf{PE}}}
 
 \newcommand{\pluseq}{\mathrel{\mathord+\mathord=}}
 \newcommand{\minuseq}{\mathrel{\mathord-\mathord=}}
