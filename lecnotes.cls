@@ -34,8 +34,8 @@
 \DeclareOption{ipad}{
 	\toggletrue{ipadformatting}
 	\def\Format{ipad}
-	\PassOptionsToPackage{paperwidth=9in,
-		paperheight=6in,
+	\PassOptionsToPackage{paperwidth=6in,
+		paperheight=9in,
 		left=3mm,% right=3mm,
 		top=1mm,
 		bottom=1mm,
