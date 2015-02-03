@@ -36,11 +36,17 @@
 	\def\Format{ipad}
 	\PassOptionsToPackage{paperwidth=6in,
 		paperheight=9in,
-		centering,
-		left=3mm,% right=3mm,
-		top=1mm,
-		bottom=1mm,
-		right=3cm}{geometry}
+		scale=0.9, centering,
+		text={.9\paperwidth,.9\paperheight}, ratio=1:1,
+		width=.9\paperwidth, vmargin=.05\paperheight, marginratio=1:1,
+		hdivide={*,0.9\paperwidth,*}, vdivide={*,0.9\paperheight,*},
+		margin={0.05\paperwidth,0.05\paperheight}
+		
+		%left=3mm,% right=3mm,
+		%top=1mm,
+		%bottom=1mm,
+		%right=3cm}
+		{geometry}
 }
 \DeclareOption{kindle}{
 	\toggletrue{kindleformatting}
