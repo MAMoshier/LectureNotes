@@ -41,7 +41,7 @@
 		width=.9\paperwidth, vmargin=.05\paperheight, marginratio=1:1,
 		hdivide={*,0.9\paperwidth,*}, vdivide={*,0.9\paperheight,*},
 		margin={0.05\paperwidth,0.05\paperheight}
-		
+	} %	
 		%left=3mm,% right=3mm,
 		%top=1mm,
 		%bottom=1mm,
