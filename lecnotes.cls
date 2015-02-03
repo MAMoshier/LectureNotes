@@ -36,7 +36,7 @@
 	\def\Format{ipad}
 	\PassOptionsToPackage{paperwidth=6in,
 		paperheight=9in,
-		oneside,
+		centering,
 		left=3mm,% right=3mm,
 		top=1mm,
 		bottom=1mm,
