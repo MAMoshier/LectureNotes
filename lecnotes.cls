@@ -2,7 +2,7 @@
 \ProvidesClass{lecnotes}[2014/08/21 lecnotes package]
 
 % Basics
-\LoadClass[10pt,openany]{memoir}
+\LoadClass[10pt,a5paper,openany]{memoir}
 \RequirePackage{etoolbox}
 \RequirePackage{mathtools}
 \RequirePackage[dvipsnames]{xcolor}
