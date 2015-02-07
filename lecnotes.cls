@@ -34,8 +34,7 @@
 \DeclareOption{ipad}{
 	\toggletrue{ipadformatting}
 	\def\Format{ipad}
-	\PassOptionsToPackage{paperwidth=6in,
-		paperheight=9in,
+	\PassOptionsToPackage{a5paper,
 		scale=0.9, centering,
 		text={.9\paperwidth,.9\paperheight}, ratio=1:1,
 		width=.9\paperwidth, vmargin=.05\paperheight, marginratio=1:1,
