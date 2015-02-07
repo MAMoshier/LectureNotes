@@ -21,7 +21,7 @@
 \DeclareOption{print}{
 	\toggletrue{printformatting}
 	\def\Format{print}
-	\RequirePackage[letterpaper,
+	\PassOptionsToPackage{letterpaper,
 		twoside %,
 		%left=2cm,
 		%top=1.5cm,
@@ -29,19 +29,19 @@
 		%bottom=2cm,
 		%marginparwidth=4cm,
 		%marginparsep=3mm
-		]{geometry}
+		}{geometry}
 }
 \DeclareOption{ipad}{
 	\toggletrue{ipadformatting}
 	\def\Format{ipad}
-	\RequirePackage[paperwidth=6in,
+	\PassOptionsToPackage{paperwidth=6in,
 		paperheight=9in,
 		scale=0.9, centering,
 		text={.9\paperwidth,.9\paperheight}, ratio=1:1,
 		width=.9\paperwidth, vmargin=.05\paperheight, marginratio=1:1,
 		hdivide={*,0.9\paperwidth,*}, vdivide={*,0.9\paperheight,*},
 		margin={0.05\paperwidth,0.05\paperheight}
-	] %	
+	} %	
 		%left=3mm,% right=3mm,
 		%top=1mm,
 		%bottom=1mm,
@@ -51,20 +51,20 @@
 \DeclareOption{kindle}{
 	\toggletrue{kindleformatting}
 	\def\Format{kindle}
-	\RequirePackage[letterpaper,
+	\PassOptionsToPackage{letterpaper,
 		left=2cm,
 		top=1.5cm,
 		right=5cm,
 		bottom=2cm,
 		marginparwidth=4cm,
-		marginparsep=3mm]{geometry}
+		marginparsep=3mm}{geometry}
 }
 \DeclareOption*{\PackageWarning{lecnotes}{Unknown ‘\CurrentOption’}}
 \ExecuteOptions{print}
 \ProcessOptions\relax
 
 % Now set up page geometry
-%\RequirePackage{geometry}
+\RequirePackage{geometry}
 
 % Author commands for fine tuning pagination for specific media
 \newcommand{\printbreak}{\iftoggle{printformatting}{\newpage}{}}
