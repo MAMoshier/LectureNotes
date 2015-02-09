@@ -14,27 +14,32 @@
 	\end{goal}
 \end{goals}
 
-The positions on a dial such as a clock have some of the features of a number system. There is a ``top of the dial''. Each position has a next position (clock-wise) and a previous position (counter-clockwise). As it happens, arithmetic on a dial, which mathematicians call \emph{modular arithmetic}, is fundamental to how we actually write numbers, for example as base 10 numerals, and how we perform arithmetic on those numerals. Cryptography is also an important area of application.  
+Think of doing arithmetic on a clock. $5$ o'clock plus $9$ hours is $2$ o'clock. So $5+9=2$. If we replace the $12$ at the top with $0$, then things work a little more smoothly, but nothing essential changes. The point is that we can think of addition as defining an operation on positions on the dial. ON the relabeled clock (with $0$ at the top) $1 + 11 = 0$, $2+11=1$, $3+11=2$ and so on. So it seems reasonable to think of $11$ as playing the role of $-1$: adding $11$ has the same effect as subtracting $1$.    
+
+Think of a dial labeled 'Sunday', 'Monday', \ldots, 'Saturday', equally spaced going around clockwise. Then, for example, 'Monday' plus $6$ will be 'Sunday'. So adding $6$ has the same effect as subtracting $1$.
+
+The positions on any dial have the features of a number system. There is a ``top of the dial''. Each position has a next position (clock-wise) and a previous position (counter-clockwise). As it happens, arithmetic on a dial, which mathematicians call \emph{modular arithmetic}, is fundamental to how we actually write numbers, for example as base 10 numerals and in binary, and how we perform arithmetic on those numerals. Cryptography is also an important area of application.
  
 Recall that the postulates of the natural numbers included the requirement that $0$ does not have  a predecessor (Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero}).  Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} asked you to draw depictions in which Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} is relaxed. 
 Assuming your response to Exercise \ref{lec:NaturalNumbers}.\ref{exer:CyclicModel} is correct, you may have drawn something similar to the dial-like structures in Figure \ref{fig:ModCycles}.
 
 In the integers, $0$ (as well as all other integers) has a precedessor. Suppose we \emph{replace} Postulate \ref{lec:NaturalNumbers}.\ref{post:NatZero} with the requirement that every value has a predecessor. 
-Then the integers satisfy all postulates, including the requirement that nothing can be removed. But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
+Then the integers satisfy all postulates, including the requirement that nothing can be removed.
+But it is also true that the cyclical pictures of Figure \ref{fig:ModCycles} do the job. 
 
 For now, in order to avoid confusing pictures like this with the natural numbers, let us use alternative notation for ``the start'' and ``successor'', which we have been denoting as $0$ and $n^\nxt$ in the natural numbers.
-For structures like those in \ref{fig:ModCycles}, let us write $\dialtop$ for the ``top of the dial'' and $\nx(a)$ for the ``next'' value after $a$ in the clock-wise direction. So we are now considering structures of the following sort.
+For structures like those in \ref{fig:ModCycles}, let us write $\dialtop$ for the podition at the ``top of the dial'' and $\nx(p)$ for the next position after $p$ in the clock-wise direction.
+So we are now considering structures of the following sort.
 
 \begin{defn}
-	A \newterm{dial} is a structure satisfying the following conditions.
+	A \newterm{dial} is a structure consisting of \newterm{positions} satisfying the following conditions.
 \begin{enumerate}
-	\item There is a value $\dialtop$ and every value $a$ has a successor $\nx(a)$.
-	\item Every value has a predecessor: for every $b$, there is an $a$ so that $\nx(a) = b$.
-	\item Predecessors are unique: $\nx(a) = \nx(b)$ implies $a=b$.
-	\item No values can be removed without violating 1 and 2.
+	\item There is a position $\dialtop$, every position $p$ has a successor $\nx(p)$ and a predecessor $\pv(p)$.
+	\item Predecessors and successors are opposite each other: $\nx(p) = q$ if and only if $p = \pv(q)$.
+	\item No values can be removed without violating 1.
 \end{enumerate}
 
-For our purposes, we may refer to the values of a dial as \newterm{positions}. So think of $\dialtop$ as the name for the \emph{top the dial}; think of $\nx(a)$ as the next position \emph{clock-wise from $a$}. 
+For our purposes, we may think of $\nx(p)$ as the next position \emph{clockwise from $p$} and $\pv(p)$ as the next position \emph{counter-clockwise} from $p$. 
 \end{defn}
 
 \begin{example}
@@ -231,4 +236,4 @@ In rational numbers $q\cdot \frac1q = 1$ for any non-zero rational $q$. So $a\cd
 	\end{proof}
 \end{thm}
 
-This shows that if a modulus $m$ is a prime number, then all integers have reciprocals modulo $m$. It also shows that any odd number has a reciprocal modulo any $m$ that is a power of $2$. 
+This shows that if a modulus $m$ is a prime number, then all integers have reciprocals modulo $m$. It also shows that any odd number has a reciprocal modulo any power of $2$. 
