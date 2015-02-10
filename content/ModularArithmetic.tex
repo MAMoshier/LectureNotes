@@ -34,7 +34,7 @@ So we are now considering structures of the following sort.
 \begin{defn}
 	A \newterm{dial} is a structure consisting of \newterm{positions} satisfying the following conditions.
 \begin{enumerate}
-	\item There is a position $\dialtop$, every position $p$ has a successor $\nx(p)$ and a predecessor $\pv(p)$.
+	\item There is a position $\dialtop$, and every position $p$ has a successor $\nx(p)$ and a predecessor $\pv(p)$.
 	\item Predecessors and successors are opposite each other: $\nx(p) = q$ if and only if $p = \pv(q)$.
 	\item No values can be removed without violating 1.
 \end{enumerate}
@@ -43,8 +43,8 @@ For our purposes, we may think of $\nx(p)$ as the next position \emph{clockwise 
 \end{defn}
 
 \begin{example}
-The integers form a dial by letting $\dialtop={}^+0$ and $\nx(a)=a+1$.
-Every integer has a successor. Every integer has a unique predecessor. Moreover, if we were to remove any integers, then eith er we would remove $0$, or some other remaining integer would either not have a successor or not have a predecessor.
+The integers form a dial by letting $\dialtop={}^+0$, $\nx(a)=a+1$ and $\pv(a)=a-1$. Thus
+every integer has a successor and a predecessor. Moreover, if we were to remove any integers, then either we would remove ${}^+0$, or some other remaining integer would not have a successor or not have a predecessor.
 
 Any actual cyclic structure like those in Figure \ref{fig:ModCycles} is a dial.
 
@@ -54,62 +54,31 @@ Consider a disc with labels ``$A$'' through ``$Z$'' printed evenly spaced on its
 Almost the same definitions for addition and multiplication work in dial as they did in the natural numbers:
 
 \begin{defn}[Addition on a Dial]
-	Suppose $\DD$ is a dial (it satisfies the four postulates above). For any $a$ in $\DD$ and any natural number $n$, the \newterm{sum} $a+_\DD n$ is given by the equations:
+	Suppose $\DD$ is a dial (it satisfies the four postulates above). For any position $p$ in $\DD$ and any natural number $n$, the \newterm{sum} $p+_\DD n$ is given by the equations
 	\begin{align*}
-		a +_\DD 0 &= a\\
-		a +_\DD k^\nxt &= \nx(a+_\DD k)
+		p +_\DD 0 &= p\\
+		p +_\DD k^\nxt &= \nx(p+_\DD k)
+	\end{align*}
+	Likewise $p -_\DD n$ is given by the equations
+	\begin{align*}
+	p -_\DD 0 &= p\\
+	p -_\DD k^\nxt &= \pv(p-_\DD k)
 	\end{align*}
 \end{defn}
 
-This definition extends to all integers.
-
-\begin{lem}
-	Let $\DD$ be a dial.
-	For any natural number $n$, there is a position $a$ on the dial so that $a+_\DD n = \dialtop$.
-	
-	\begin{proof}
-		First, we proof that $\nx(a +_\DD n) = \nx(a) +_\DD n$ for all $a$ by induction on $n$. The basis is obvious from the definition of $+_\DD$. Assume that $\nx(b +_\DD k) = \nx(b) +_\DD k$ for all $b$. Then 
-		\begin{align*}
-		\nx(a +_\DD k^\nxt) &= \nx(\nx(a+_\DD k))\\
-		                    &= \nx(\nx(a) +_\DD k)\\
-		                    &= \nx(a) +_\DD k^\nxt.
-		\end{align*}
-		
-		Now we proof the lemma by induction on $n$,
-		\begin{itemize}
-			\item{}[Basis] $\dialtop +_\DD 0 = \dialtop$. If $a +_\DD 0 = \dialtop$, then obviously $a=\dialtop$.
-			\item{}[Inductive Hypothesis] Assume that there is a unique $b$ so that $b +_\DD k = \dialtop$.
-			\item{}[Inductive Step] Let $a$ be the unique predecessor of the position $b$ given by the inductive hypothesis. Then $\nx(a)=b$. Hence $a +_\DD k^\nxt = = \nx(a) +_\DD k = \dialtop$. 
-		\end{itemize}
-	\end{proof}
-\end{lem}
 
 
-\begin{lem}\label{lem:modular-addition}
-	Let $\DD$ be a dial.
-	For any $a$ in $\DD$ and any natural numbers $n$ and $p$, $a +_\DD (n+p) = (a +_\DD n) +_\DD p$.
-	
-	\begin{proof}
-		Exercise
-%		The proof is by induction on $p$. 
-%		\begin{itemize}
-%			\item{}[Basis] $a +_\DD (n+0) = a +_\DD n = (a +_\DD n) +_\DD 0$.
-%			\item{}[Inductive Hypothesis] Assume that $a +_\DD (n+k) = (a +_\DD n) +_\DD k$ for some $k$.
-%			\item{}[Inductive Step] 
-%			\begin{align*}
-%				a +_\DD (n+k^\nxt) &= a +_\DD (n+k)^\nxt\\ 
-%				                 &= \nx(a +_\DD (n+k))\\
-%				                 &= \nx((a +_\DD n) +_\DD k)\\
-%				                 &= (a +_\DD n) +_\DD k^\nxt.
-%			\end{align*}
-%		\end{itemize}
-	\end{proof}
-\end{lem}
-
-So now we can define $a -_\DD n$ as the unique element so that $(a -_\DD n) +_\DD n = \dialtop$. So every integer $i$ determines an element $\dialtop +_\DD i$. 
+So now we define $p +_\DD a$ for an integer $i$ by $p +_\DD i$ when $i\geq 0$ and $p -_\DD i$ when $i \leq 0$.
 
 The elements on a dial that can be written as $\dialtop +_\DD i$ for some integer $i$ evidently satisfy the conditions 1. and 2 in the definition of dials, so according to condition 4, they constitute all elements of the dial.   
-In other words, when we wish to consider a general position $a$ on a dial, we may say ``pick an integer $i$ so that $a = \dialtop +_\DD i$. This $i$ may not be unique, but it exists.
+In other words, when we wish to consider a general position $p$ on a dial, we may ``pick'' an integer $i$ so that $p = \dialtop +_\DD i$. This $i$ may not be unique, but it exists.
+
+\begin{lem}\label{lem:modular-addition}
+	Let $\DD$ be a dial. For any position, $p$ and integers $i$ and $j$,
+	$p +_\DD (i+j) = (p +_\DD i) +_\DD j$.
+\end{lem}
+
+
 
 \begin{exer}
 	\begin{exercise}
@@ -117,17 +86,17 @@ In other words, when we wish to consider a general position $a$ on a dial, we ma
 	\end{exercise}
 \end{exer}
 
-Now that we know we can describe any position as $\dialtop +_\DD i$, we are tempted to define addition of positions: $a +_\DD b$ by saying ``pick some $i$ so that $b = \dialtop +_m i$. Then define $a+_\DD b$ to be equal to $a +_m i$.'' That, however, is \emph{not} a definition unless we can show that the result does not depend on which $i$ we pick. In other words, we need to show that if $b=\dialtop +_m i = \dialtop +_m j$, then $a +_\DD i = a +_\DD j$.
+Now that we know we can describe any position as $\dialtop +_\DD i$, we are tempted to define addition of positions: $p +_\DD q$ by saying ``pick some $i$ so that $q = \dialtop +_\DD i$. Then define $p+_\DD q$ to be equal to $p +_\DD i$.'' That, however, is \emph{not} a definition unless we can show that the result does not depend on which $i$ we pick. In other words, we need to show that if $\dialtop +_\DD i = \dialtop +_\DD j$, then $p +_\DD i = p +_\DD j$.
 
 \begin{lem}
-	On any dial $\DD$, for any positions $a$ and $b$ and any integers $i$ and $j$, if $b +_\DD i = b +_\DD j$, then $a +_\DD i = a +_\DD j$.
-	\begin{proof} 
-Suppose $b +_\DD i = b +_\DD j$.
-Pick an integers $k$ and $h$ so that $a = \dialtop +_\DD k$ and $b = \dialtop +_\DD h$. Thus $a+_\DD i = \dialtop +_\DD(k-h+h + i) = (b +_\DD i) +_\DD (k-h)$. Likewise $a+_\DD j = (b +_\DD j) +_\DD(k-h)$. So the two are equal.
+	On any dial $\DD$, for any positions $p$ and $q$ and any integers $i$ and $j$, if $q +_\DD i = q +_\DD j$, then $p +_\DD i = p +_\DD j$.
+\begin{proof} 
+Suppose $q +_\DD i = q +_\DD j$.
+Pick integers $k$ and $h$ so that $p = \dialtop +_\DD k$ and $q = \dialtop +_\DD h$. Then $p+_\DD i = \dialtop +_\DD(k-h+h + i) = (q +_\DD i) +_\DD (k-h)$. Likewise $p+_\DD j = (q +_\DD j) +_\DD(k-h)$.
 \end{proof}
 \end{lem}
 
-This justifies writing $a +_\DD b$ for adding positions on the dial. Namely, we can pick any $i$ so that $b = \dialtop +_\DD i$ and define $a +_\DD b$ to be equal to $a +_\DD i$. 
+This justifies writing $p +_\DD q$ for adding positions on the dial. Namely, we can pick any $i$ so that $q = \dialtop +_\DD i$ and define $p +_\DD q$ to be equal to $p +_\DD i$. 
 
 \begin{exer}
 	Fix a dial $\DD$. [All of these are easy exercises. Do not over think them.]
@@ -135,51 +104,54 @@ This justifies writing $a +_\DD b$ for adding positions on the dial. Namely, we 
 		\item Show that addition of positions is associative.
 		\item Show that addition of positions is commutative.
 		\item Show that $\dialtop$ is an additive identity.
-		\item Show that every position has a unique additive inverse. That is, for any $a$ there is exactly one position ${}^-a$ so that $a +_\DD {}^-a = \dialtop$. [Hint: if $a = \dialtop +_\DD i$, then let ${}^-a = \dialtop +_\DD(-i)$. Now show that if $a +_\DD b = \dialtop$, then $b = {}^-a$.]
+		\item Show that every position has a unique additive inverse. That is, for any $p$ there is exactly one position $q$ so that $p +_\DD q = \dialtop$.
 	\end{exercise}
 \end{exer}
 
 We may now also define multiplication in a dial.
 
 \begin{defn}
-	For position $a$ of a dial $\DD$ and integer $i$, define $a\cdot_\DD i$ by the equations
+	For position $a$ of a dial $\DD$ and natural number $n$, define $a\cdot_\DD n$ by the equations
 	\begin{align*}
-		a\cdot_\DD  0 &= \dialtop\\
-		a\cdot_\DD j^\nxt &= a +_\DD (a\cdot_\DD j)
+		p\cdot_\DD  0 &= \dialtop\\
+		p\cdot_\DD k^\nxt &= p +_\DD (p\cdot_\DD k)
 	\end{align*}
-	
-	This defines addition of natural numbers in the usual way, but it also extends uniquely to negative integers. For example, $a \cdot_\DD {}^-1$ must satisfy the equation $a\cdot_\DD {}^-1^\nxt = a +_\DD a\cdot {}^-1$.
-	Therefore, $\dialtop = a +_\DD a\cdot {}^-1$. So $a\cdot_\DD {}^-1 = {}^- a$.
 \end{defn}
 
 
 \begin{lem}\label{lem:modular-mult}
-	Fix a dial $\DD$. For any position $a$ and integers $i$ and $j$, it is the case that 
+	Fix a dial $\DD$. For any position $p$ and natural numbers $m$ and $n$, it is the case that 
 	\begin{align*} 
-		(a \cdot_\DD i)+_\DD (a\cdot_\DD j) &= a\cdot_\DD (i+j)\\
-		(a\cdot_\DD i)\cdot_\DD j &= a\cdot_\DD (i\cdot j)\\
-		(a\cdot_\DD i) +_\DD (b\cdot_\DD i) &= (a+_\DD b)\cdot_\DD i\\
-		a\cdot_\DD{}^-i &= {}^-a \cdot_\DD i
+		(p \cdot_\DD m)+_\DD (p\cdot_\DD n) &= p\cdot_\DD (m+n)\\
+		(p\cdot_\DD m)\cdot_\DD n &= p\cdot_\DD (m\cdot n)\\
+		(p\cdot_\DD m) +_\DD (b\cdot_\DD m) &= (p+_\DD q)\cdot_\DD m
 	\end{align*}
-
 \begin{proof}
 	Exercise.
 \end{proof}
 \end{lem}
 
-These results tell us that multiplication of a dial position by an integer``behaves'' as we would expect it to. Thus we can also make sense of multiplying two positions: $a \cdot_\DD b$ is defined by picking some $i$ so that $b = \dialtop +_\DD i$ and letting $a\cdot_\DD b = a\cdot_\DD i$. As with addition, this is meaningful only if the result does not depend on the choice of $i$. That is, we need to show that if $\dialtop +_\DD i = \dialtop +_\DD j$, then $a\cdot_\DD i = a\cdot_\DD j$. We leave that as an unassigned exercise.
+These results tell us that multiplication of a dial position by a natural number ``behaves'' as we would expect it to. 
+Moreover, suppose $p+_\DD q = \dialtop$. 
+Then $p\cdot_\DD n + q\cdot_\DD n=\dialtop$.
+Thus we can also make sense of multiplying two positions:
+$p\cdot_\DD q$ is defined by picking some $n$ so that $q = \dialtop +_\DD n$ and letting $p\cdot_\DD q = p\cdot_\DD n$.
+As with addition, this is meaningful only if the result does not depend on the choice of $n$.
+That is, we need to show that if $\dialtop +_\DD m = \dialtop +_\DD n$, then $a\cdot_\DD m = a\cdot_\DD n$.
+We leave that as an unassigned exercise.
 
 \begin{exer}
 	\begin{exercise}
 		\item Prove Lemma \ref{lem:modular-mult}.
-		\item Refer to the Arithmetic Laws in Lecture \ref{lec:ArithmeticLaws}. For each law, determine whether or not the same law holds for arithmetic on all dials.
+		\item Refer to the Arithmetic Laws in Lecture \ref{lec:ArithmeticLaws}. For each law, determine whether or not the analogous law holds for arithmetic on all dials.
 	\end{exercise}
 \end{exer}
 
 
 \section*{Moduli}
 
-The cyclical dials (see Figure \ref{fig:ModularCycles}) differ from the dial consisting of all integers, for in a cyclical dial $\dialtop = \dialtop +_\DD k$ for some positive integer $k$. We refer to the smallest positive integer $m$ satisfying $\dialtop = \dialtop +_\DD m$ as the \newterm{modulus} of $\DD$. In that case, we write $\ZZ_m$ instead of $\DD$. If no modulus exists for a dial, then it is a model of the integers. In that case, we write $\ZZ$. 
+The cyclical dials (see Figure \ref{fig:ModularCycles}) differ from the dial consisting of all integers, for in a cyclical dial $\dialtop = \dialtop +_\DD m$ for some positive natural number $m$. 
+We refer to the smallest positive integer $m$ satisfying $\dialtop = \dialtop +_\DD m$ as the \newterm{modulus} of $\DD$. In that case, we write $\ZZ_m$ instead of $\DD$. If no modulus exists for a dial, then it is a model of the integers. In that case, we write $\ZZ$. 
 Thus for example, $\ZZ_{12}$ models a standard twelve hour clock. $\ZZ_{10}$ models a dial with labels $0$ through $9$, $\ZZ_{26}$ models a dial with the letters of the alphabet. An important example is $\ZZ_2$. This is a dial with exactly two labels, say one at the top and one at the bottom. We might as well think of this as a switch with on and off positions. $\ZZ_1$ is a trivial dial with only one position.
 
 For a dial $\ZZ_m$, we will write $a +_m b$ instead of $a +_{\ZZ_m} b$. Remember though that $i+j$ means ``honest'' integer arithmetic. Now $a +_m b$ means arithmetic in the dial $\ZZ_m$: $(\dialtop +_m i)+_m(\dialtop +_m j)$. 
