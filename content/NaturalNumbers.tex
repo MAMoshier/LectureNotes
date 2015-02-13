@@ -364,9 +364,9 @@ Do the defining equations for addition really explain how to add? Let's use them
 $4+3$:
 \begin{align*}
   4 + 3 &= 4 + 0^{\nxt\nxt\nxt}&&\text{[$3$ abbreviates $0^{\nxt\nxt\nxt}$]}\\
-  &= 4^\nxt + 0^{\nxt\nxt} &&\text{[$m + k^\nxt = m^\nxt+k$]}\\
-  &= 4^{\nxt\nxt} + 0^\nxt &&\text{[Same reason]}\\
-  &= 4^{\nxt\nxt\nxt} + 0 &&\text{[Same reason]}\\
+  &= (4 + 0^{\nxt\nxt})^\nxt &&\text{[$m+k^\nxt = (m+k)^\nxt$]}\\
+  &= (4 + 0^\nxt)^{\nxt\nxt} &&\text{[Same reason]}\\
+  &= (4 + 0)^{\nxt\nxt\nxt} &&\text{[Same reason]}\\
   &= 4^{\nxt\nxt\nxt} &&\text{[$m+0 = m$]}\\
   &= (0^{\nxt\nxt\nxt\nxt})^{\nxt\nxt\nxt} && \text{[$4$ abbreviates $0^{\nxt\nxt\nxt\nxt}$]}\\
   &= 0^{\nxt\nxt\nxt\nxt\nxt\nxt\nxt} && \text{[Remove unneeded parentheses]}\\
@@ -384,8 +384,8 @@ A product can be calculated similarly. Consider $2\cdot 2$.
            &= 2 + (2 + 0) &&\text{[$m\cdot 0=0$]}\\
            &= 2 + 2&&\text{[$m+0 = m$]}\\
            &= 2 + 0^{\nxt\nxt}&&\text{[$2$ abbreviates $0^{\nxt\nxt}$]}\\
-           &= 2^\nxt + 0^\nxt &&\text{[$m+k^\nxt = m^\nxt+k$]}\\
-           &= 2^{\nxt\nxt} + 0&&\text{[Same reason]}\\
+           &= (2 + 0^\nxt)^\nxt &&\text{[$m+k^\nxt = (m+k)^\nxt$]}\\
+           &= (2 + 0)^{\nxt\nxt}&&\text{[Same reason]}\\
            &= 2^{\nxt\nxt} &&\text{[$m+0 = m$]}\\
            &= (0^{\nxt\nxt})^{\nxt\nxt} &&\text{[$2$ abbreviates $0^{\nxt\nxt}$]}\\
            &= 0^{\nxt\nxt\nxt\nxt}&&\text{[Remove unnecessary parentheses]}\\
@@ -464,19 +464,23 @@ similarities between addition and multiplication.
 \begin{laws}
 \noindent For any natural numbers, $m$, $n$ and $p$:
 
-\begin{tabular}{lr@{\,}l@{\qquad}lr@{\,}l}
-\textbf{Associativity}& $m + (n + p)$      &$= (m+n)+p$           &\textbf{Commutativity}&$m + n$    &$= n + m$\\
-                      &$m \cdot(n\cdot p)$ &$= (m\cdot n)\cdot p$ &                      &$m\cdot n$ &$= n\cdot m$\\
-&&&&&\\ 
-\textbf{Identity}&$m + 0$    &$= m$&\textbf{Positivity}&\multicolumn{2}{c}{if $m + n = 0$ then $m=0$}\\
-                 &$m\cdot 1$ &$= m$&                   &\multicolumn{2}{c}{if $m\cdot n = 1$ then $m=1$}\\
-&&&&&\\
-\textbf{Cancellativity}&\multicolumn{2}{c}{if $m + p = n+p$ then $m=n$}&&&\\
-                       &\multicolumn{2}{c}{if $m \cdot p^\nxt = n\cdot p^\nxt$ then $m=n$}&&&\\
-&&&&&\\
-\textbf{Distributivity}&$m\cdot(n+p)$&$= (m\cdot n) + (m\cdot p)$&&&\\
-&&&&&\\
-\textbf{Case Distinction}&\multicolumn{2}{c}{if $m\neq 0$ then $m=k^\nxt$ for some $k$}&&&\\
+\begin{tabular}{lr@{\,}l}
+\textbf{Associativity}& $m + (n + p)$       &$= (m+n)+p$\\
+                      & $m \cdot(n\cdot p)$ &$= (m\cdot n)\cdot p$\\
+\textbf{Commutativity}& $m + n$             &$= n + m$\\
+                      &                     &$m\cdot n$ &$= n\cdot m$\\
+&&\\ 
+\textbf{Identity}     & $m + 0$             &$= m$\\
+                      & $m\cdot 1$          &$= m$\\
+&\textbf{Positivity}&\multicolumn{2}{c}{if $m + n = 0$ then $m=0$}\\
+                                    &\multicolumn{2}{c}{if $m\cdot n = 1$ then $m=1$}\\
+&&\\
+\textbf{Cancellativity}&\multicolumn{2}{c}{if $m + p = n+p$ then $m=n$}\\
+                       &\multicolumn{2}{c}{if $m \cdot p^\nxt = n\cdot p^\nxt$ then $m=n$}\\
+&&\\
+\textbf{Distributivity}&$m\cdot(n+p)$&$= (m\cdot n) + (m\cdot p)$\\
+&&\\
+\textbf{Case Distinction}&\multicolumn{2}{c}{if $m\neq 0$ then $m=k^\nxt$ for some $k$}\\
 \end{tabular}
 \end{laws}
 \medskip
