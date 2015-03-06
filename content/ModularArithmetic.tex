@@ -46,12 +46,12 @@ For our purposes, we may think of $\nx(p)$ as the next position \emph{clockwise 
 The integers form a dial by letting $\dialtop={}^+0$, $\nx(a)=a+1$ and $\pv(a)=a-1$. Thus
 every integer has a successor and a predecessor. Moreover, if we were to remove any integers, then either we would remove ${}^+0$, or some other remaining integer would not have a successor or not have a predecessor.
 
-Any actual cyclic structure like those in Figure \ref{fig:ModCycles} is a dial.
+Any actually cyclic structure like those in Figure \ref{fig:ModCycles} is a dial.
 
-Consider a disc with labels ``$A$'' through ``$Z$'' printed evenly spaced on its edge. Then the label clockwise after ``$Z$'' is ``$A$''. So letting $\dialtop = A$, this is a physical model of finite dial.
+Consider a disc with labels ``$A$'' through ``$Z$'' printed evenly spaced on its edge. Then the label clockwise after ``$Z$'' is ``$A$''. So letting $\dialtop = A$, this is a physical model of a finite dial.
 \end{example}  
 
-Almost the same definitions for addition and multiplication work in dial as they did in the natural numbers:
+Almost the same definitions for addition and multiplication work in dials as they did in the natural numbers:
 
 \begin{defn}[Addition on a Dial]
 	Suppose $\DD$ is a dial (it satisfies the four postulates above). For any position $p$ in $\DD$ and any natural number $n$, the \newterm{sum} $p+_\DD n$ is given by the equations
@@ -66,9 +66,7 @@ Almost the same definitions for addition and multiplication work in dial as they
 	\end{align*}
 \end{defn}
 
-
-
-So now we define $p +_\DD a$ for an integer $i$ by $p +_\DD i$ when $i\geq 0$ and $p -_\DD i$ when $i \leq 0$.
+Now we define $p +_\DD a$ for an integer $i$ by $p +_\DD i$ when $i\geq 0$ and $p -_\DD i$ when $i \leq 0$.
 
 The elements on a dial that can be written as $\dialtop +_\DD i$ for some integer $i$ evidently satisfy the conditions 1. and 2 in the definition of dials, so according to condition 4, they constitute all elements of the dial.   
 In other words, when we wish to consider a general position $p$ on a dial, we may ``pick'' an integer $i$ so that $p = \dialtop +_\DD i$. This $i$ may not be unique, but it exists.
@@ -86,7 +84,7 @@ In other words, when we wish to consider a general position $p$ on a dial, we ma
 	\end{exercise}
 \end{exer}
 
-Now that we know we can describe any position as $\dialtop +_\DD i$, we are tempted to define addition of positions: $p +_\DD q$ by saying ``pick some $i$ so that $q = \dialtop +_\DD i$. Then define $p+_\DD q$ to be equal to $p +_\DD i$.'' That, however, is \emph{not} a definition unless we can show that the result does not depend on which $i$ we pick. In other words, we need to show that if $\dialtop +_\DD i = \dialtop +_\DD j$, then $p +_\DD i = p +_\DD j$.
+Now that we know we can describe any position as $\dialtop +_\DD i$, we are tempted to define addition of \emph{positions} ($p +_\DD q$) by saying ``pick some $i$ so that $q = \dialtop +_\DD i$. Then define $p+_\DD q$ to be equal to $p +_\DD i$.'' That, however, is \emph{not} a definition unless we can show that the result does not depend on which $i$ we pick. In other words, we need to show that if $\dialtop +_\DD i = \dialtop +_\DD j$, then $p +_\DD i = p +_\DD j$.
 
 \begin{lem}
 	On any dial $\DD$, for any positions $p$ and $q$ and any integers $i$ and $j$, if $q +_\DD i = q +_\DD j$, then $p +_\DD i = p +_\DD j$.
@@ -178,7 +176,12 @@ The lemmas of the previous section show that integer arithmetic is compatible wi
 \end{exer}
 
 Two integers $a$ and $b$ act as reciprocals if $a \cdot_\DD b\equiv 1\mod m$.
-In rational numbers $q\cdot \frac1q = 1$ for any non-zero rational $q$. So $a\cdot b\equiv 1\mod m$ is analogous. For example, $7\cdot 13 \equiv 1\mod 15$. But $5\cdot x \equiv 1\mod 15$ can not be solved for $x$. We need a criterion for determining when an integer $a$ has a reciprocal modulo $m$. Even better, a method for determining reciprocals when they exist would allow us to make modular arithmetic effective. 
+In rational numbers $q\cdot \frac1q = 1$ for any non-zero rational $q$.
+So $a\cdot b\equiv 1\mod m$ is analogous.
+For example, $7\cdot 13 \equiv 1\mod 15$.
+But $5\cdot x \equiv 1\mod 15$ can not be solved for $x$.
+We need a criterion for determining when an integer $a$ has a reciprocal modulo $m$.
+Even better, a method for determining reciprocals when they exist would allow us to make modular arithmetic effective. 
 
 \begin{lem}[Extended Euclid's Algorithm]
 	For any two integers $a$ and $b$, there exist integers $s$ and $t$ so that $\gcd(a,b)=as+bt$.
@@ -186,26 +189,61 @@ In rational numbers $q\cdot \frac1q = 1$ for any non-zero rational $q$. So $a\cd
 	\begin{proof}
 		The proof is by strong induction on $a$. 
 		Suppose $a=0$.
-		Then let $s=0$ and $t=1$. Otherwise, we know that $\gcd(a,b)=\gcd(b\drem a, a)$. By the inductive hypothesis, there are integers $s'$ and $t'$
-		so that $\gcd(b\drem a, a)= (b\drem a)s'+at'$. But also $b = a\cdot(b\ddiv a)+(b\drem a)$.
-		So $\gcd(a,b) = (b-a\cdot(b\ddiv a))\cdot s' + at'= a(t'-(b\ddiv a)s') + bs'$. Thus we let $s=t'-(b\ddiv a)s'$ and $t=s'$.
+		Then let $s=0$ and $t=1$.
+		Otherwise, we know that $\gcd(a,b)=\gcd(b\drem a, a)$.
+		By the inductive hypothesis, there are integers $s'$ and $t'$
+		so that $\gcd(b\drem a, a)= (b\drem a)s'+at'$.
+		But also $b = a\cdot(b\ddiv a)+(b\drem a)$.
+		So $\gcd(a,b) = (b-a\cdot(b\ddiv a))\cdot s' + at'= a(t'-(b\ddiv a)s') + bs'$.
+		Thus we let $s=t'-(b\ddiv a)s'$ and $t=s'$.
 	\end{proof}
 \end{lem}
-
 
 
 \begin{thm}
 	For integer $a\neq 0$ and positive integer $m$, there is an integer $x$ so that $x\cdot a\equiv 1\mod m$ if and only if $\gcd(a,m)=1$.
 	
 	\begin{proof}
-		According to the previous lemma there are integers $s$ and $t$ so that $as+mt = \gcd(a,m)$. Thus $as\drem m = \gcd(a,m)$.
+		According to the previous lemma there are integers $s$ and $t$ so that $as+mt = \gcd(a,m)$.
+		Thus $as\drem m = \gcd(a,m)$.
 		If $\gcd(a,m)=1$, then $s$ is the desired value for $x$.
-		Conversely, suppose $ab\equiv 1\mod m$ is true for some $b$. Then
-		$ab\drem m = 1$. So there is some $c$ for which $ab + mc = 1$.
-		Now suppose $d$ is a positive common divisor of $a$ and $m$. That is, $d>0$ and
-		$a = de$ and $m = df$ for some $e$ and $f$. Then $deb + dfc = 1$. So
-		$d(eb + cf) = 1$. But this can only happen when $d=1$. Hence $\gcd(a,m)=1$.
+		Conversely, suppose $ab\equiv 1\mod m$ is true for some $b$.
+		Then $ab\drem m = 1$.
+		So there is some $c$ for which $ab + mc = 1$.
+		Now suppose $d$ is a positive common divisor of $a$ and $m$.
+		That is, $d>0$ and $a = de$ and $m = df$ for some $e$ and $f$.
+		Then $deb + dfc = 1$.
+		So $d(eb + cf) = 1$.
+		But this can only happen when $d=1$.
+		Hence $\gcd(a,m)=1$.
 	\end{proof}
 \end{thm}
 
-This shows that if a modulus $m$ is a prime number, then all integers have reciprocals modulo $m$. It also shows that any odd number has a reciprocal modulo any power of $2$. 
+This shows that if a modulus $m$ is a prime number, then all integers have reciprocals modulo $m$.
+It also shows that any odd number has a reciprocal modulo any power of $2$.
+
+\section{Discrete Logarithm: An application in data security}
+
+An crucial problem in data security involves two parties who need to communicate securely over a network. 
+One common approach to this is for them to somehow establish a \emph{shared secret}. 
+That is, if they both know something, like a cryptographic key, in common, they can use that key to encrypt a message before sending it and then to decrypt the received message.
+The problem is how can they agree on a key without sending it over the network, thus jepardizing its security?
+
+On a dial $\ZZ_m$, we can define exponents as usual:
+
+\begin{align*}
+	p^0 &= 1\\
+	p^{k^\nxt} &= p\cdot_m p^k
+\end{align*}
+Note that this is defined in terms of modular arithmetic. 
+For example, in $\ZZ_7$, $3^2 = 2$, $3^3 = 6$, $3^4=4$, and so on.
+
+For a modulus $p$ and base $b$ where $p$ and $b$ are relatively prime, the \emph{discrete logarithm} of a number $m$ is an integer $\log_{p,b} m$ so that $b^k = m$ if and only if $k = \log_{p,b}m$.
+
+It is quite trivial to confirm that $b^kb^j = b^{k+j}$. So $\log_{p,b} m \cdot n = \log_{p,b}m + \log_{p,b}n$. In other words, discrete logarithms obey the same laws are familiar exponents.
+
+Now suppose Alice and Bob wish to establish a common secret. They can only communicate via a channel that they do not entirely trust. So they must assume that an eavesdrpper (named Eve) is listening in on their communication. First, they agree on a pair $(p,m)$ that are relatively prime to each other. They assume that Eve has listened in, so she knows $p$ and $m$ are well. Now, Alice chooses a value $a$ so that $0<a<p$, and Bob chooses a value $b$ so that $0<b<p$. Alice calculates $A = m^a\bmod p$ and Bob calculates $B = m^b \bmod p$, Then Alice sends $A$ to Bob and Bob sends $B$ to Alice. Notice that Eve discovers both $A$ and $B$, but can't easily know $a$ or $b$ without calculating the discrete logarithms. Now Alice calculates $B^a\bmod p$ and Bob calculates $A^b\bmod p$. Eve cannot duplicate either of these calculations without discovering either $a$ or $b$. But that is very hard for a large enough modulus. Now we note that the value Alice has just computed is $(m^b)^a \bmod p$, where as Bob has calculated $(m^a)^b\bmod p$. The laws of exponents tell us that these are equal (both are equal to $m^{ab}\bmod p$). So the value $m^{ab}\bmod p$ is known to both Alice and Bob, but not to Eve.
+
+
+
+One important method is due to two mathematicians working independently. Diffie and Helman both hit on the same idea without being aware of each other's work. The method uses the obsrvation that \emph{discrete logarithm} is difficult to compute.
