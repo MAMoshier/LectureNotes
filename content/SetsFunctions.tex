@@ -2674,7 +2674,7 @@ So functions from $\sfromto fXY$ correspond exactly to functional relations from
 		\item Show that for any relations $R\subseteq W\times X$, $S\subseteq X\times Y$ and $T\subseteq Y\times Z$, $R;(S;T) = (R;S);T$.
 		\item Show that for any functions $\sfromto fXY$ and $\sfromto gYZ$, 
 		$\Gamma_f;\Gamma_g = \Gamma_{g\circ f}$.
-		Show that for any set $X$, $\Gamma_{\id_X} = \Delta_X$. 
+		\item Show that for any set $X$, $\Gamma_{\id_X} = \Delta_X$. 
 	\end{exercise}
 \end{exer}
 
@@ -2711,15 +2711,19 @@ In a section-retract pair, the section is a monomorphism. In fact, nearly all mo
 
 This tells us that every monomorphism from a non-empty domain is \emph{split}: it is the section of a section-retract pair.
 
-The dual of this would be that every epimorphism is also split. But it turns out that the dual is not provable without additional assumptions about $Y$. We won't go what additional assumptions would help in general, but a hint is given by the natural numbers. Suppose $\fromto e\NN X$ is an epimorphism. Then each subset $e^-(x)\subseteq \NN$ is not empty. Every non-empty subset of $\NN$ has a least element. So we may define a section corresponding to $e$ by setting $s(x) = \text{the least $n\in \NN$ so that $e(n)=x$}$. The point is that $\NN$ has enough structure (every non-empty subset has a least element) to allow us to \emph{define} a section.
+The dual of this would be that every epimorphism is also split. 
+But it turns out that the dual is not provable without additional assumptions about $Y$. 
+We won't go into what additional assumptions would help in general, but a hint is given by the natural numbers. 
+Suppose $\fromto e\NN X$ is an epimorphism. 
+Then each subset $e^-(x)\subseteq \NN$ is not empty. Every non-empty subset of $\NN$ has a least element. So we may define a section corresponding to $e$ by setting $s(x) = \text{the least $n\in \NN$ so that $e(n)=x$}$. 
+The point is that $\NN$ has enough structure (every non-empty subset has a least element) to allow us to \emph{define} a section.
 
-Without additional structure, it seems reasonable that a section might \emph{exist} for an epimorphism, even though we may not be able to \emph{construct} one explicitly. The Axiom of Choice addresses this situation. 
+Without additional structure, it seems reasonable that a section might \emph{exist} for an epimorphism, even though we may not be able to \emph{construct} one explicitly. 
+The Axiom of Choice addresses this situation. 
 Roughly is says that some how, one can make arbitrarily many choices all at once, without having an explicit construction of those choices.
 Though we will not need it very often in this course, the Axiom of Choice (AC) is quite useful in other areas of mathematics, sometimes to prove something that genuinely needs the axiom, other times to simplify a proof that could have been proved without it.
 
 \begin{principle}[Axiom of Choice]\label{princ:choice}
-	\noindent\textbf{Axiom of Choice}
-	
 	For every epimorphism $\sfromto eXY$ there is a function $\sfromto cYX$ for which $e\circ c = \id_Y$
 \end{principle}
 
